@@ -1,4 +1,4 @@
-package com.cgg.lrs2020officerapp;
+package com.cgg.lrs2020officerapp.constants;
 
 public class AppConstants {
     public static final String SHARED_PREF="com.cgg.lrs.preferences";

@@ -4,7 +4,7 @@ import android.content.Context;
 
 
 import com.cgg.lrs2020officerapp.R;
-import com.cgg.lrs2020officerapp.Utils;
+import com.cgg.lrs2020officerapp.utils.Utils;
 import com.google.gson.stream.MalformedJsonException;
 
 import java.io.IOException;

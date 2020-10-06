@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
-import com.cgg.lrs2020officerapp.AppConstants;
+import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.google.gson.Gson;
 
 public class LRSApplication extends MultiDexApplication {

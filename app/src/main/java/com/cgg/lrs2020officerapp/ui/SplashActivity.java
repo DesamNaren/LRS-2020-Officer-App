@@ -1,4 +1,4 @@
-package com.cgg.lrs2020officerapp;
+package com.cgg.lrs2020officerapp.ui;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
@@ -25,6 +25,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.cgg.lrs2020officerapp.BuildConfig;
+import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.databinding.ActivitySplashBinding;
 import com.cgg.lrs2020officerapp.databinding.CustomLayoutForPermissionsBinding;

@@ -1,4 +1,4 @@
-package com.cgg.lrs2020officerapp;
+package com.cgg.lrs2020officerapp.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -22,6 +22,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.cgg.lrs2020officerapp.BuildConfig;
+import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.constants.AppConstants;
+import com.cgg.lrs2020officerapp.ui.QuitAppActivity;
+import com.cgg.lrs2020officerapp.ui.SplashActivity;
 
 import org.json.JSONObject;
 

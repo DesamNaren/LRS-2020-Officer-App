@@ -1,4 +1,4 @@
-package com.cgg.lrs2020officerapp;
+package com.cgg.lrs2020officerapp.ui;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
