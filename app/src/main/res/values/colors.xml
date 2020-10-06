@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#10464c</color>
+    <color name="colorPrimaryDark">#10464c</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="ven_col">#556286</color>
+    <color name="bg">#A4A4A4</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="appbar">#324755</color>
+
+    <color name="green">#4F684F</color>
+    <color name="light_green">#228B22</color>
+    <color name="red">#B40404</color>
+    <color name="row_yellow">#FFE87C</color>
+    <color name="light_gray">#A9A9A9</color>
+    <color name="e_gray">#E9E9E9</color>
+    <color name="gray">#999999</color>
+    <color name="dark_gray">#808080</color>
+
+    <color name="text_selected">#b0003a</color>
+    <color name="text_focused">#E91E63</color>
+    <color name="text_default">#F8BBD0</color>
+    <color name="text_hint_default">#BDBDBD</color>
+    <color name="line_selected">#E91E63</color>
+    <color name="line_focused">#3F51B5</color>
+    <color name="line_default">#C5CAE9</color>
+
+    <color name="blue">#1565c0</color>
+    <color name="ash">#eae7e5</color>
+
+    <color name="placeholder_bg">#dddddd</color>
+    <color name="item_name">#0c0c0c</color>
+    <color name="description">#1a1a1a</color>
+    <color name="chef">#777</color>
+    <color name="timestamp">#777</color>
 </resources>

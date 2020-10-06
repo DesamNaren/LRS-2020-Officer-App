@@ -1,4 +1,30 @@
 <resources>
-    <string name="app_name_release">LRS2020 Officer App</string>
-    <string name="app_name_demo">LRS2020 Officer App-Demo</string>
+    <string name="app_name_release">LRS 2020 Officer App</string>
+    <string name="app_name_demo">LRS 2020 Officer App-Demo</string>
+    <string name="select">Select</string>
+
+    <string name="permissionText">Make your LRS 2020 Officer App experience better with these permissions</string>
+    <string name="camera">Camera</string>
+    <string name="cameratxt">Camera allowing you to capture pictures in the application</string>
+
+    <string name="location">Location</string>
+    <string name="location_txt">Collect and monitor information about the location of your device</string>
+    <string name="storage">Storage</string>
+    <string name="storage_txt" >Storage allowing you to upload pictures/files in the application</string>
+    <string name="accept">Accept</string>
+
+    <string name="plz_grant">Please grant required permissions</string>
+    <string name="plz_grant_loc">Please turn on device location to proceed further</string>
+    <string name="plz_grant_camera">Please allow camera permission proceed further</string>
+    <string name="plz_grant_storage">Please allow storage permission proceed further</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+
+    <string name="con_time_out">The connection has timed out, please try again</string>
+    <string name="something">Something went wrong, please try again</string>
+    <string name="server_not">Server not responding, Please try later</string>
+    <string name="plz_check_int">No network connectivity found, please check your internet connection</string>
+
 </resources>
