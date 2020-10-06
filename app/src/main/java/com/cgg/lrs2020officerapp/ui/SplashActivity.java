@@ -24,8 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.multidex.BuildConfig;
 
-import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.ScrutinyCheckListActivity;
 import com.cgg.lrs2020officerapp.utils.Utils;
@@ -85,7 +85,7 @@ public class SplashActivity extends AppCompatActivity implements ErrorHandlerInt
                                 R.layout.custom_layout_for_permissions);
                         customBinding.accept.setOnClickListener(onBtnClick);
                     } else {
-                        startActivity(new Intent(context, ScrutinyCheckListActivity.class));
+                        startActivity(new Intent(context, LoginActivity.class));
                         finish();
                     }
                 } catch (Exception e) {
@@ -125,7 +125,7 @@ public class SplashActivity extends AppCompatActivity implements ErrorHandlerInt
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            startActivity(new Intent(context, ScrutinyCheckListActivity.class));
+                            startActivity(new Intent(context, LoginActivity.class));
                             finish();
                         }
                     }, 1000);
