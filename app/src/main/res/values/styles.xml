@@ -17,6 +17,16 @@
         <item name="android:fontFamily">@font/elmessiri_regular</item>
     </style>
 
+    <style name="Light_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--        <item name="pinViewStyle">@style/PinWidget.PinView</item>-->
+
+    </style>
+
+
     <style name="exitdialog_animation1">
         <item name="android:windowEnterAnimation">@anim/exitdialog_anim1</item>
         <item name="android:windowExitAnimation">@anim/exitdialog_anim2</item>

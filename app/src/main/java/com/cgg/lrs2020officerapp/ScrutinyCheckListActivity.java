@@ -1,6 +1,7 @@
 package com.cgg.lrs2020officerapp;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -18,4 +19,6 @@ public class ScrutinyCheckListActivity extends AppCompatActivity {
 
        binding.header.headerTitle.setText(R.string.scrutiny_checklist);
     }
+
+
 }

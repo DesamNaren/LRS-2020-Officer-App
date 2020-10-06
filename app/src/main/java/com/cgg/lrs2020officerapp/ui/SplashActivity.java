@@ -27,13 +27,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.multidex.BuildConfig;
 
 import com.cgg.lrs2020officerapp.R;
-import com.cgg.lrs2020officerapp.ScrutinyCheckListActivity;
-import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.databinding.ActivitySplashBinding;
 import com.cgg.lrs2020officerapp.databinding.CustomLayoutForPermissionsBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
+import com.cgg.lrs2020officerapp.utils.Utils;
 
 
 public class SplashActivity extends AppCompatActivity implements ErrorHandlerInterface {

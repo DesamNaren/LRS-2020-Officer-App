@@ -47,6 +47,10 @@
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="scrutiny_checklist">Scrutiny Checklist</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="pending_for_scrutiny">PENDING FOR SCRUTINY</string>
+    <string name="total">Total Records: 04</string>
     <array name="abutting_road_details">
         <item>-Select Item-</item>
         <item>Open Plot</item>
