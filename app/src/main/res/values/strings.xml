@@ -51,6 +51,7 @@
     <string name="no">No</string>
     <string name="pending_for_scrutiny">PENDING FOR SCRUTINY</string>
     <string name="total">Total Records: 04</string>
+    <string name="scrutiny_details">Scrutiny Details</string>
     <array name="abutting_road_details">
         <item>-Select Item-</item>
         <item>Open Plot</item>
