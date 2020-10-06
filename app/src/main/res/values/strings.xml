@@ -83,5 +83,7 @@
     <string name="upload_extract">Upload Extract*</string>
     <string name="all_cam_per_setting">Allow camera permission from settings</string>
     <string name="upload_plot_layout_plan">Upload Plot Layout Plan</string>
+    <string name="upload_files">Upload Files</string>
+    <string name="proceed">Proceed</string>
 
 </resources>

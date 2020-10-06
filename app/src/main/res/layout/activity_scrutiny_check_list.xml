@@ -22,16 +22,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:layout_marginRight="@dimen/dimen_4dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_4dp">
                 <Button
                     android:id="@+id/btn_sro_reg_doc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_10dp"
-                    android:background="@color/colorPrimaryDark"
                     android:text="@string/view_sro_registered_document"
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -311,7 +318,7 @@
                                         android:id="@+id/et_east"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:focusableInTouchMode="false"
+                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_1_east"
                                         android:imeOptions="actionNext"
                                         android:textSize="16dp" />
@@ -338,7 +345,7 @@
                                         android:id="@+id/et_west"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:focusableInTouchMode="false"
+                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_2_west"
                                         android:imeOptions="actionNext"
                                         android:textSize="16dp" />
@@ -374,7 +381,7 @@
                                     <EditText
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:focusableInTouchMode="false"
+                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_3_north"
                                         android:imeOptions="actionNext"
                                         android:textSize="16dp" />
@@ -401,7 +408,7 @@
                                     <EditText
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:focusableInTouchMode="false"
+                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_4_south"
                                         android:imeOptions="actionNext"
                                         android:textSize="16dp" />
@@ -447,7 +454,7 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:focusableInTouchMode="false"
+                                android:inputType="numberDecimal"
                                 android:hint="@string/market_vaule_as_per_the_sale_deed"
                                 android:imeOptions="actionNext"
                                 android:textSize="16dp" />
@@ -489,7 +496,7 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:focusableInTouchMode="false"
+                                android:inputType="numberDecimal"
                                 android:hint="@string/market_vaule_as_on_26_08_202"
                                 android:imeOptions="actionNext"
                                 android:textSize="16dp" />
@@ -682,8 +689,8 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:focusableInTouchMode="false"
                                 android:hint="@string/verification_remarks"
+                                android:inputType="text"
                                 android:imeOptions="actionNext"
                                 android:textSize="16dp" />
 
@@ -720,7 +727,7 @@
                         android:layout_margin="@dimen/dimen_5dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/white"
-                        android:text="@string/submit"
+                        android:text="@string/proceed"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimary"
                         tools:ignore="ButtonStyle" />

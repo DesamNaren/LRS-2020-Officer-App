@@ -39,6 +39,7 @@ public class ImageUploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(ImageUploadActivity.this, R.layout.activity_image_upload);
+        binding.header.headerTitle.setText(R.string.upload_files);
         binding.image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

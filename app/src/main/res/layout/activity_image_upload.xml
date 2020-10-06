@@ -109,6 +109,7 @@
                                     android:layout_gravity="center"
                                     android:layout_margin="@dimen/dimen_10dp"
                                     android:scaleType="fitXY"
+                                    android:tint="@color/colorPrimaryDark"
                                     app:srcCompat="@drawable/camera" />
                             </LinearLayout>
 
@@ -123,6 +124,7 @@
                                     android:id="@+id/image2"
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
+                                    android:tint="@color/colorPrimaryDark"
                                     android:layout_gravity="center"
                                     android:layout_margin="@dimen/dimen_10dp"
                                     android:scaleType="fitXY"
@@ -147,6 +149,7 @@
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
                                     android:layout_gravity="center"
+                                    android:tint="@color/colorPrimaryDark"
                                     android:layout_margin="@dimen/dimen_10dp"
                                     android:scaleType="fitXY"
                                     app:srcCompat="@drawable/camera" />
@@ -164,6 +167,7 @@
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
                                     android:layout_gravity="center"
+                                    android:tint="@color/colorPrimaryDark"
                                     android:layout_margin="@dimen/dimen_10dp"
                                     android:scaleType="fitXY"
                                     app:srcCompat="@drawable/camera" />
