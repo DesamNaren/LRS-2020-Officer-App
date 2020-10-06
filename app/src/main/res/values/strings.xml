@@ -18,9 +18,11 @@
     <string name="plz_grant_camera">Please allow camera permission proceed further</string>
     <string name="plz_grant_storage">Please allow storage permission proceed further</string>
 
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="ok">OK</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 
     <string name="con_time_out">The connection has timed out, please try again</string>
     <string name="something">Something went wrong, please try again</string>
@@ -28,8 +30,6 @@
     <string name="plz_check_int">No network connectivity found, please check your internet connection</string>
     <string name="view_sro_registered_document">View SRO registered document</string>
     <string name="whether_the_plot_is_registered_prior_to_26_08_2020">Whether the plot is registered prior to 26/08/2020*</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="whether_the_name_of_lrs_applicant_is_tallying_with_the_ownership_document">Whether the name of LRS applicant is tallying with the Ownership document*</string>
     <string name="area_matching_with_application">Whether Plot area matching with the application*</string>
     <string name="abutting_road_details">Abutting Road Details*</string>
@@ -46,6 +46,11 @@
     <string name="verification_remarks">Verification Remarks*</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
+    <string name="scrutiny_checklist">Scrutiny Checklist</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="pending_for_scrutiny">PENDING FOR SCRUTINY</string>
+    <string name="total">Total Records: 04</string>
     <array name="abutting_road_details">
         <item>-Select Item-</item>
         <item>Open Plot</item>
@@ -73,4 +78,10 @@
         <item>Residential to Industrial</item>
         <item>Residential to Miscellaneous</item>
     </array>
+
+
+    <string name="upload_extract">Upload Extract*</string>
+    <string name="all_cam_per_setting">Allow camera permission from settings</string>
+    <string name="upload_plot_layout_plan">Upload Plot Layout Plan</string>
+
 </resources>
