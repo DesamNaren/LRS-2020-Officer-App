@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">LRS2020 Officer App</string>
+    <string name="app_name_release">LRS2020 Officer App</string>
+    <string name="app_name_demo">LRS2020 Officer App-Demo</string>
 </resources>
