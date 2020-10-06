@@ -26,5 +26,51 @@
     <string name="something">Something went wrong, please try again</string>
     <string name="server_not">Server not responding, Please try later</string>
     <string name="plz_check_int">No network connectivity found, please check your internet connection</string>
-
+    <string name="view_sro_registered_document">View SRO registered document</string>
+    <string name="whether_the_plot_is_registered_prior_to_26_08_2020">Whether the plot is registered prior to 26/08/2020*</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="whether_the_name_of_lrs_applicant_is_tallying_with_the_ownership_document">Whether the name of LRS applicant is tallying with the Ownership document*</string>
+    <string name="area_matching_with_application">Whether Plot area matching with the application*</string>
+    <string name="abutting_road_details">Abutting Road Details*</string>
+    <string name="_4_1_east">4.1. East* (in Sq.Mtrs)</string>
+    <string name="_4_2_west">4.2. West* (in Sq.Mtrs)</string>
+    <string name="_4_3_north">4.3. North* (in Sq.Mtrs)</string>
+    <string name="_4_4_south">4.4. South* (in Sq.Mtrs)</string>
+    <string name="market_vaule_as_per_the_sale_deed">Market Vaule as per the Sale Deed* (in Rs)</string>
+    <string name="market_vaule_as_on_26_08_202">Market Vaule as on 26-08-202* (in Rs)</string>
+    <string name="is_the_sy_no_plot_number_of_the_application_existing_in_objection_database">Is the SY.No/Plot number of the application existing in objection database*</string>
+    <string name="land_use">Land Use*</string>
+    <string name="site_inspection_image">Site Inspection Image</string>
+    <string name="recommend_for">Recommend for*</string>
+    <string name="verification_remarks">Verification Remarks*</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <array name="abutting_road_details">
+        <item>-Select Item-</item>
+        <item>Open Plot</item>
+        <item>Road</item>
+        <item>Existing Building</item>
+    </array>
+    <array name="recommendations">
+        <item>-Select Item-</item>
+        <item>Eligible</item>
+        <item>Eligible on submission of shortfall</item>
+        <item>Not eligible</item>
+        <item>Partially eligible</item>
+    </array>
+    <array name="land_use">
+        <item>-Select Landuse-</item>
+        <item>Vacant to Residential</item>
+        <item>Vacant to Commercial</item>
+        <item>Vacant to Industrial</item>
+        <item>Vacant to Miscellaneous</item>
+        <item>Recreatinal to Residential</item>
+        <item>Recreatinal to Commercial</item>
+        <item>Recreatinal to Industrial</item>
+        <item>Recreatinal to Miscellaneous</item>
+        <item>Residential to Commercial</item>
+        <item>Residential to Industrial</item>
+        <item>Residential to Miscellaneous</item>
+    </array>
 </resources>
