@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity {
             binding.cv1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(context, ScrutinyCheckListActivity.class));
+                    startActivity(new Intent(context, LayoutActivity.class));
 
                 }
             });
@@ -55,21 +55,21 @@ public class ListActivity extends AppCompatActivity {
             binding.cv2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(context, ScrutinyCheckListActivity.class));
+                    startActivity(new Intent(context, LayoutActivity.class));
                 }
             });
 
             binding.cv3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(context, ScrutinyCheckListActivity.class));
+                    startActivity(new Intent(context, LayoutActivity.class));
                 }
             });
 
             binding.cv4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(context, ScrutinyCheckListActivity.class));
+                    startActivity(new Intent(context, LayoutActivity.class));
                 }
             });
         } catch (Exception e) {

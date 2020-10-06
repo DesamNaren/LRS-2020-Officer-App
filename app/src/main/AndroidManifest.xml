@@ -37,15 +37,18 @@
         <activity
             android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:theme="@style/Light_AppTheme"
             android:name=".ui.ListActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Light_AppTheme"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.ScrutinyCheckListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.LayoutActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.ImageUploadActivity"
