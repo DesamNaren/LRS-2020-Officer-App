@@ -1,20 +1,17 @@
 package com.cgg.lrs2020officerapp.viewmodel;
 
-import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
 import com.cgg.lrs2020officerapp.R;
-import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.error_handler.SubmitScrutinyInterface;
 import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
 import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyResponse;
 import com.cgg.lrs2020officerapp.network.LRSService;
-import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -31,13 +28,14 @@ public class AddScrutinyViewModel extends ViewModel {
 
     public AddScrutinyViewModel(Context context) {
         this.context = context;
-        submitScrutinyInterface = (SubmitScrutinyInterface)context;
+        submitScrutinyInterface = (SubmitScrutinyInterface) context;
         errorHandlerInterface = (ErrorHandlerInterface) context;
     }
 
 
     public void callSubmitAPI(SubmitScrutinyRequest request) {
         LRSService lrsService = LRSService.Factory.create();
+        String str = new Gson().toJson(request);
         lrsService.getSubmitResponse(request)
                 .enqueue(new Callback<List<SubmitScrutinyResponse>>() {
                              @Override

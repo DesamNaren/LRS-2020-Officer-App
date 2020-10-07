@@ -330,7 +330,8 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                     editor.putString(AppConstants.SUBMIT_REQUEST,request);
                     editor.commit();
 
-                    startActivity(new Intent(ScrutinyCheckListActivity.this,ImageUploadActivity.class).
+                    startActivity(new Intent(ScrutinyCheckListActivity.this,
+                            ImageUploadActivity.class).
                             setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
                 }

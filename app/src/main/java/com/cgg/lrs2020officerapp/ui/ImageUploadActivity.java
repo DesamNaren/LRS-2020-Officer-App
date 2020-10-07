@@ -99,6 +99,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
     private boolean siteImage = false;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private SubmitScrutinyRequest submitScrutinyRequest;
 
 
     @Override
@@ -122,6 +123,18 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             }
         });
 
+
+        try{
+            String str = sharedPreferences.getString(AppConstants.SUBMIT_REQUEST, "");
+            submitScrutinyRequest = new Gson().fromJson(str, SubmitScrutinyRequest.class);
+            if(submitScrutinyRequest==null){
+                Toast.makeText(context, R.string.something, Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         addScrutinyViewModel = new ViewModelProvider(
                 this, new AddScrutinyCustomViewModel(context)).
                 get(AddScrutinyViewModel.class);
@@ -156,14 +169,20 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 if (Utils.checkInternetConnection(context)) {
                     if(validations()) {
                         customProgressDialog.show();
-                        SubmitScrutinyRequest request = new SubmitScrutinyRequest();
-                        request.setPIMAGE1PATH(P_IMAGE1_PATH);
-                        request.setPIMAGE2PATH(P_IMAGE2_PATH);
-                        request.setPIMAGE3PATH(P_IMAGE3_PATH);
-                        request.setPIMAGE4PATH(P_IMAGE4_PATH);
-                        request.setPEXFILEPATH(P_EX_FILE_PATH);
-                        request.setPPLANPATH(P_PLAN_PATH);
-                        addScrutinyViewModel.callSubmitAPI(request);
+                        submitScrutinyRequest.setPIPADDRESS(Utils.getLocalIpAddress());
+                        submitScrutinyRequest.setPOFFICERTYPE("");
+                        submitScrutinyRequest.setPEMPLOYEEID("");
+                        submitScrutinyRequest.setPCREATEDBY("");
+                        submitScrutinyRequest.setPOTPNO("");
+                        submitScrutinyRequest.setPSRODOCLINK("");
+                        submitScrutinyRequest.setPAPPLICANTID("");
+                        submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
+                        submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);
+                        submitScrutinyRequest.setPIMAGE3PATH(P_IMAGE3_PATH);
+                        submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
+                        submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
+                        submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
+                        addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
                     }
                 } else {
                     Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
