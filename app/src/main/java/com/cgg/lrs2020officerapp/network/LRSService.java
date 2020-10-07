@@ -1,6 +1,8 @@
 package com.cgg.lrs2020officerapp.network;
 
 
+import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsReq;
+import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsRes;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
 import com.cgg.lrs2020officerapp.model.land.LandDetailsResponse;
@@ -46,6 +48,10 @@ public interface LRSService {
 
     @POST("Scrutiny/GET_APPLICATIONS_LIST")
     Call<ApplicationRes> getApplicationListResponse(@Body ApplicationReq applicationReq);
+
+
+    @POST("Scrutiny/GetApplicantSiteDetails")
+    Call<ApplicantDetailsRes> getApplicantDetailsResponse(@Body ApplicantDetailsReq applicationReq);
 
     @GET("Scrutiny/Abutting_Road_Data")
     Call<RoadDetailsResponse> getRoadDetails();
