@@ -1,6 +1,7 @@
 package com.cgg.lrs2020officerapp.ui;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.adapter.ViewTaskAdapter;
+import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityListBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
@@ -27,9 +29,11 @@ import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
+import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.ApplicationListCustomViewModel;
 import com.cgg.lrs2020officerapp.viewmodel.ApplicationListViewModel;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +45,27 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     private ApplicationListViewModel viewModel;
     private ActivityListBinding binding;
     private List<ApplicationListData> list;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private LoginResponse loginResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_list);
         context = ListActivity.this;
+
+        sharedPreferences = LRSApplication.get(context).getPreferences();
+        editor = sharedPreferences.edit();
+
+
+        try {
+            String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
+            loginResponse = new Gson().fromJson(str, LoginResponse.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         list = new ArrayList<>();
         try {
@@ -71,7 +90,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                     get(ApplicationListViewModel.class);
             binding.setViewModel(viewModel);
 
-            callLogin();
+            callList();
 
             viewModel.getApplicationListCall().observe(this, new Observer<ApplicationRes>() {
                 @Override
@@ -98,47 +117,19 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                 }
             });
 
-            /*binding.cv1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(context, LayoutActivity.class));
-
-                }
-            });
-
-            binding.cv2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(context, LayoutActivity.class));
-                }
-            });
-
-            binding.cv3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(context, LayoutActivity.class));
-                }
-            });
-
-            binding.cv4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(context, LayoutActivity.class));
-                }
-            });*/
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void callLogin() {
+    private void callList() {
         ApplicationReq request = new ApplicationReq();
-        request.setOFFICEID("119");
-        request.setAUTHORITYID("3");
-        request.setROLEID("3");
+        request.setOFFICEID(loginResponse.getOFFICEID());
+        request.setAUTHORITYID(loginResponse.getAUTHORITYID());
+        request.setROLEID(loginResponse.getROLEID());
         request.setSTATUSID("30");
-        request.setUSERID("IO000001");
+        request.setUSERID(loginResponse.getUSERID());
 
         if (Utils.checkInternetConnection(context)) {
             viewModel.callApplicationList(request);

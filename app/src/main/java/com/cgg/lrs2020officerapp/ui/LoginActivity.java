@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityLoginBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
@@ -22,6 +23,7 @@ import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.LoginCustomViewModel;
 import com.cgg.lrs2020officerapp.viewmodel.LoginViewModel;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -42,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements ErrorHandlerInte
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         context = LoginActivity.this;
 
+        sharedPreferences = LRSApplication.get(context).getPreferences();
+        editor = sharedPreferences.edit();
 
         loginViewModel = new ViewModelProvider(
                 this, new LoginCustomViewModel(binding, context)).
@@ -55,6 +59,10 @@ public class LoginActivity extends AppCompatActivity implements ErrorHandlerInte
                 if (loginResponse != null && loginResponse.get(0).getStatusCode() != null) {
 
                     if (loginResponse.get(0).getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+                        LoginResponse loginResponse1 = loginResponse.get(0);
+                        String str = new Gson().toJson(loginResponse1);
+                        editor.putString(AppConstants.LOGIN_RES, str);
+                        editor.commit();
                         startActivity(new Intent(context, ListActivity.class));
 //                        finish();
                     } else if (loginResponse.get(0).getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
