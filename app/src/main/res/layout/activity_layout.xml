@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.cgg.lrs2020officerapp.viewmodel.LayoutViewModel" />
+
+        <variable
+            name="data"
+            type="com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsListData" />
+
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -87,11 +99,12 @@
                             android:text="Plot/Layout Falls Under" />
 
                         <TextView
+                            android:id="@+id/plot_layout_falls_under"
                             style="@style/text_data"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Municipality" />
+                            android:text="@{data.plotLayoutFallsUnder}" />
 
                     </LinearLayout>
 
@@ -108,11 +121,12 @@
                             android:text="District" />
 
                         <TextView
+                            android:id="@+id/district"
                             style="@style/text_data"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Nalgonda" />
+                            android:text="@{data.districtName}" />
 
                     </LinearLayout>
 
@@ -129,11 +143,12 @@
                             android:text="Municipality" />
 
                         <TextView
+                            android:id="@+id/muncipality"
                             style="@style/text_data"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Nalgonda" />
+                            android:text="" />
 
                     </LinearLayout>
 
@@ -150,11 +165,12 @@
                             android:text="Mandal" />
 
                         <TextView
+                            android:id="@+id/mandal"
                             style="@style/text_data"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Nalgonda" />
+                            android:text="@{data.mandalName}" />
 
                     </LinearLayout>
 
@@ -171,11 +187,12 @@
                             android:text="Gram Panchayat" />
 
                         <TextView
+                            android:id="@+id/gram_panchayat"
                             style="@style/text_data"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Nalgonda" />
+                            android:text="@{data.gramPanchayat}" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -223,7 +240,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="ANSARI COLONY, NALGONDA TOWN." />
+                            android:text="@{data.locality}" />
 
                     </LinearLayout>
 
@@ -244,7 +261,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="NA" />
+                            android:text="@{data.plotNumber}" />
 
                     </LinearLayout>
 
@@ -265,7 +282,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="6/EE" />
+                            android:text="@{data.surveyNumber}" />
 
                     </LinearLayout>
 
@@ -286,7 +303,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="21542" />
+                            android:text="@{data.village}" />
 
                     </LinearLayout>
 
@@ -307,7 +324,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="166.00" />
+                            android:text="@{data.areaExtent}" />
 
                     </LinearLayout>
 
@@ -328,7 +345,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="4702" />
+                            android:text="@{data.saleDeedNumber}" />
 
                     </LinearLayout>
 
@@ -349,7 +366,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="4702" />
+                            android:text="@{data.saledeedYeay}" />
 
                     </LinearLayout>
 
@@ -418,7 +435,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="M/NALG/000082/2020" />
+                            android:text="@{data.applicationId}" />
 
                     </LinearLayout>
 
@@ -439,7 +456,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="VANDANAPU PRASAD BABU  VANDANAPU MADHU BABU" />
+                            android:text="@{data.name}" />
 
                     </LinearLayout>
 
@@ -460,7 +477,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="SATHAIAH" />
+                            android:text="@{data.fatherHusbandName}" />
 
                     </LinearLayout>
 
@@ -481,7 +498,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="501683365546" />
+                            android:text="@{data.aadharNumber}" />
 
                     </LinearLayout>
 
@@ -502,7 +519,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Male" />
+                            android:text="@{data.gender}" />
 
                     </LinearLayout>
 
@@ -523,7 +540,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="6-7-457/1" />
+                            android:text="@{data.hnoDoorno}" />
 
                     </LinearLayout>
 
@@ -544,7 +561,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="SHIVAJI NAGAR, NALGONDA TOWN." />
+                            android:text="@{data.streetColony}" />
 
                     </LinearLayout>
 
@@ -565,7 +582,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="ANSARI COLONY, NALGONDA TOWN." />
+                            android:text="@{data.locality}" />
 
                     </LinearLayout>
 
@@ -586,7 +603,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="NALGONDA" />
+                            android:text="@{data.cityMandalVillage}" />
 
                     </LinearLayout>
 
@@ -607,7 +624,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="" />
+                            android:text="@{data.districtName}" />
 
                     </LinearLayout>
 
@@ -628,7 +645,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="508001" />
+                            android:text="@{data.pincode}" />
 
                     </LinearLayout>
 
@@ -649,7 +666,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="9848237328" />
+                            android:text="@{data.mobileNumber}" />
 
                     </LinearLayout>
 
@@ -670,7 +687,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="er.b.srinivas@gmail.com" />
+                            android:text="@{data.emailId}" />
 
                     </LinearLayout>
 
@@ -691,7 +708,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="8985179189" />
+                            android:text="@{data.alterMobileNo}" />
 
                     </LinearLayout>
 
@@ -712,7 +729,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Under Progress" />
+                            android:text="@{data.status}" />
 
                     </LinearLayout>
 
@@ -761,7 +778,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="1000" />
+                            android:text="@{data.amountpaid}" />
 
                     </LinearLayout>
 
@@ -782,7 +799,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="08-09-2020 20:32:45" />
+                            android:text="@{data.paidon}" />
 
                     </LinearLayout>
 
@@ -803,7 +820,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="" />
+                            android:text="@{data.bankreceiptno}" />
 
                     </LinearLayout>
 
@@ -824,7 +841,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Online" />
+                            android:text="@{data.paymenttype}" />
 
                     </LinearLayout>
 
