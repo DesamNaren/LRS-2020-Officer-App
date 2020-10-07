@@ -27,4 +27,7 @@ public class AppConstants {
     public static final int MAX_TRUST_DEVICES = 205;
     public static final String LOGIN_RES = "LOGIN_RES";
     public static final String APPLICATION_ID = "APPLICATION_ID";
+    public static final String YES = "Y";
+    public static final String NO = "N";
+    public static final String SUBMIT_REQUEST = "SUBMIT_REQUEST";
 }

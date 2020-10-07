@@ -94,4 +94,18 @@
     <string name="no_roads">No Abutting Road Details found</string>
     <string name="no_land">No Land Use Details found</string>
     <string name="no_recomm">No Recommend Details found</string>
+    <string name="whether_plot_registered_prior">Please check whether plot is registered prior to 26/08/2020</string>
+    <string name="whether_name_tallying">Please check whether name is tallying with ownership document</string>
+    <string name="whether_area_matching">Please check whether plot area matching with the application</string>
+    <string name="select_road_details">Please select abutting road details</string>
+    <string name="enter_east">Please enter east area</string>
+    <string name="enter_west">Please enter west area</string>
+    <string name="enter_north">Please enter north area</string>
+    <string name="enter_south">Please enter south area</string>
+    <string name="enter_value_as_per_sale">Please enter market value as per sale deed</string>
+    <string name="enter_value_as_one">Please enter market value as on 26-08-2020</string>
+    <string name="plot_no_objection">Please check whether S.No/Plot No existing in objection database</string>
+    <string name="select_land_use">Please select land use</string>
+    <string name="select_recommend">Please select recommend for</string>
+    <string name="enter_verification_remarks">Please enter verification remarks</string>
 </resources>
