@@ -51,7 +51,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
@@ -71,11 +70,16 @@ public class ImageUploadActivity extends LocBaseActivity {
     public static final int PERMISSION_CODE = 42042;
     public static final int REQUEST_PDF = 3;
     private int pic_number;
-    public static String PHOTO_ENCODED_STRING1;
-    public static String PHOTO_ENCODED_STRING2;
+    public static String P_EX_FILE_PATH;
+    public static String P_PLAN_PATH;
+    public static String P_IMAGE1_PATH;
+    public static String P_IMAGE2_PATH;
+    public static String P_IMAGE3_PATH;
+    public static String P_IMAGE4_PATH;
     Uri uriPdf1, uriPdf2;
     private boolean extractDoc = false;
     private boolean plotDoc = false;
+    private boolean siteImage = false;
 
 
     @Override
@@ -184,25 +188,38 @@ public class ImageUploadActivity extends LocBaseActivity {
                 bm.compress(Bitmap.CompressFormat.PNG, 50, stream);
 
                 if (IMAGE_FLAG.equals(AppConstants.IMAGE1)) {
+                    siteImage=true;
                     binding.image1.setPadding(0, 0, 0, 0);
                     binding.image1.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image1 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image1).into(binding.image1);
+
+                    P_IMAGE1_PATH = convertBase64(bm);
+
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE2)) {
+                    siteImage=true;
                     binding.image2.setPadding(0, 0, 0, 0);
                     binding.image2.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image2 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image2).into(binding.image2);
+
+                    P_IMAGE2_PATH = convertBase64(bm);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE3)) {
+                    siteImage=true;
                     binding.image3.setPadding(0, 0, 0, 0);
                     binding.image3.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image3 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image3).into(binding.image3);
+                    P_IMAGE3_PATH = convertBase64(bm);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE4)) {
+                    siteImage=true;
                     binding.image4.setPadding(0, 0, 0, 0);
                     binding.image4.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image4 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image4).into(binding.image4);
+
+                    P_IMAGE4_PATH = convertBase64(bm);
+
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_DOC)) {
                     extractDoc = true;
                     file_image_doc = new File(FilePath);
@@ -211,6 +228,9 @@ public class ImageUploadActivity extends LocBaseActivity {
                     binding.imageExtract.setPadding(0, 0, 0, 0);
                     binding.imageExtract.setBackgroundColor(getResources().getColor(R.color.white));
                     Glide.with(ImageUploadActivity.this).load(file_image_doc).into(binding.imageExtract);
+
+                    P_EX_FILE_PATH = convertBase64(bm);
+
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_PLOT)) {
                     plotDoc = true;
                     file_image_plot = new File(FilePath);
@@ -219,6 +239,8 @@ public class ImageUploadActivity extends LocBaseActivity {
                     binding.imagePlot.setPadding(0, 0, 0, 0);
                     binding.imagePlot.setBackgroundColor(getResources().getColor(R.color.white));
                     Glide.with(ImageUploadActivity.this).load(file_image_plot).into(binding.imagePlot);
+
+                    P_PLAN_PATH = convertBase64(bm);
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
@@ -276,7 +298,7 @@ public class ImageUploadActivity extends LocBaseActivity {
                             assert in != null;
                             bytes = getBytesPDF1(in);
 
-                            PHOTO_ENCODED_STRING1 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                            P_EX_FILE_PATH = Base64.encodeToString(bytes, Base64.DEFAULT);
 
                             binding.imageExtract.setVisibility(View.GONE);
                             binding.tvDoc.setVisibility(View.VISIBLE);
@@ -321,7 +343,7 @@ public class ImageUploadActivity extends LocBaseActivity {
                             assert in != null;
                             bytes = getBytesPDF1(in);
 
-                            PHOTO_ENCODED_STRING2 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                            P_PLAN_PATH = Base64.encodeToString(bytes, Base64.DEFAULT);
 
                             binding.imagePlot.setVisibility(View.GONE);
                             binding.tvPlot.setVisibility(View.VISIBLE);
@@ -411,7 +433,7 @@ public class ImageUploadActivity extends LocBaseActivity {
             binding.imageExtract.setVisibility(View.VISIBLE);
             binding.imageExtract.setImageBitmap(selectedImage);
             img_bitmap = ((BitmapDrawable) binding.imageExtract.getDrawable()).getBitmap();
-            PHOTO_ENCODED_STRING1 = convertBitMap(img_bitmap);
+            P_EX_FILE_PATH = convertBitMap(img_bitmap);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -432,7 +454,7 @@ public class ImageUploadActivity extends LocBaseActivity {
             binding.imagePlot.setVisibility(View.VISIBLE);
             binding.imagePlot.setImageBitmap(selectedImage);
             img_bitmap = ((BitmapDrawable) binding.imagePlot.getDrawable()).getBitmap();
-            PHOTO_ENCODED_STRING2 = convertBitMap(img_bitmap);
+            P_PLAN_PATH = convertBitMap(img_bitmap);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -527,7 +549,6 @@ public class ImageUploadActivity extends LocBaseActivity {
     };
 
 
-
     public String convertBitMap(Bitmap img_bitmap) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -578,7 +599,7 @@ public class ImageUploadActivity extends LocBaseActivity {
         if (type == MEDIA_TYPE_IMAGE) {
             String deviceId = Utils.getDeviceID(ImageUploadActivity.this);
             String versionName = Utils.getVersionName(ImageUploadActivity.this);
-            PIC_NAME = IMAGE_FLAG + "~" + Utils.getCurrentDateTimeFormat() + ".png";
+            PIC_NAME = IMAGE_FLAG + Utils.getCurrentDateTimeFormat() + ".png";
 
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
                     + IMAGE_FLAG + ".png");
