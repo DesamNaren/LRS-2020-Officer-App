@@ -71,13 +71,6 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
 
         scrutinyCheckListViewModel = new ScrutinyCheckListViewModel(context, getApplication());
 
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ScrutinyCheckListActivity.this, ImageUploadActivity.class).
-                        setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            }
-        });
 
         if (Utils.checkInternetConnection(context)) {
             customProgressDialog.show();
@@ -298,7 +291,7 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
             }
         });
 
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 east=binding.etEast.getText().toString().trim();
@@ -405,4 +398,8 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         Utils.customErrorAlert(context, getString(R.string.app_name), e);
     }
 
+    @Override
+    public void onBackPressed() {
+        Utils.customWarningAlert(this, getString(R.string.app_name),"Data will be lost. Do you want to go back?",  editor);
+    }
 }

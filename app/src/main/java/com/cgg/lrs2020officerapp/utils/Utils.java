@@ -461,28 +461,42 @@ public class Utils {
     }
 
     public static void customWarningAlert(Activity activity, String title, String msg,
-                                          boolean flag) {
+                                          SharedPreferences.Editor editor) {
         try {
             final Dialog dialog = new Dialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             if (dialog.getWindow() != null && dialog.getWindow().getAttributes() != null) {
                 dialog.getWindow().getAttributes().windowAnimations = R.style.exitdialog_animation1;
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setContentView(R.layout.custom_alert_warning);
+                dialog.setContentView(R.layout.custom_alert_information);
                 dialog.setCancelable(false);
                 TextView versionTitle = dialog.findViewById(R.id.version_tv);
                 versionTitle.setText("Version: " + Utils.getVersionName(activity));
                 TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
                 dialogTitle.setText(title);
                 TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
-                if (flag) {
-                    dialogMessage.setVisibility(View.VISIBLE);
-                } else {
-                    dialogMessage.setVisibility(View.GONE);
-                }
+//                if (flag) {
+//                    dialogMessage.setVisibility(View.VISIBLE);
+//                } else {
+//                    dialogMessage.setVisibility(View.GONE);
+//                }
                 dialogMessage.setText(msg);
                 Button btDialogYes = dialog.findViewById(R.id.btDialogYes);
+                Button btDialogNo = dialog.findViewById(R.id.btDialogNo);
                 btDialogYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+
+                        editor.putString(AppConstants.SUBMIT_REQUEST,"");
+                        editor.commit();
+
+                        activity.finish();
+                    }
+                });
+                btDialogNo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (dialog.isShowing()) {
@@ -499,7 +513,6 @@ public class Utils {
             e.printStackTrace();
         }
     }
-
 /*
     public static void customMPINSuccessAlert(Activity activity, String title, String
             msg, String mPIN, SharedPreferences.Editor editor) {

@@ -46,13 +46,14 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
         viewModel = new LayoutViewModel(context, getApplication());
         binding.setViewModel(viewModel);
 
-        applicationID = getIntent().getStringExtra(AppConstants.APPLICATION_ID);
+//        applicationID = getIntent().getStringExtra(AppConstants.APPLICATION_ID);
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
 
         try {
             String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
+            applicationID = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
             loginResponse = new Gson().fromJson(str, LoginResponse.class);
 
         } catch (Exception e) {
@@ -110,5 +111,10 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
     @Override
     public void handleError(String errMsg, Context context) {
         Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

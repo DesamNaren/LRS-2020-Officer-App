@@ -2,6 +2,7 @@ package com.cgg.lrs2020officerapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ItemViewBinding;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
@@ -28,7 +30,8 @@ public class ViewTaskAdapter extends RecyclerView.Adapter<ViewTaskAdapter.ItemHo
     private Context context;
     private List<ApplicationListData> list;
     private List<ApplicationListData> mFilteredList;
-
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     public ViewTaskAdapter(Context context, List<ApplicationListData> list) {
         this.context = context;
@@ -54,8 +57,13 @@ public class ViewTaskAdapter extends RecyclerView.Adapter<ViewTaskAdapter.ItemHo
         holder.listItemBinding.llData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sharedPreferences = LRSApplication.get(context).getPreferences();
+                editor = sharedPreferences.edit();
+                editor.putString(AppConstants.APPLICATION_ID, dataModel.getAPPLICATIONID());
+                editor.commit();
+
                 Intent intent = new Intent(context, LayoutActivity.class);
-                intent.putExtra(AppConstants.APPLICATION_ID, dataModel.getAPPLICATIONID());
+//                intent.putExtra(AppConstants.APPLICATION_ID, dataModel.getAPPLICATIONID());
                 context.startActivity(intent);
             }
         });

@@ -30,4 +30,7 @@ public class AppConstants {
     public static final String YES = "Y";
     public static final String NO = "N";
     public static final String SUBMIT_REQUEST = "SUBMIT_REQUEST";
+    public static final String OTP = "123456";
+    public static final String OFFICER_TYPE = "IO";
+
 }

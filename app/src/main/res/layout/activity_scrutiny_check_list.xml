@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,40 +14,42 @@
             layout="@layout/action_bar_layout" />
 
         <ScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/ll_btn"
-            android:layout_below="@id/header"
-            android:id="@+id/scroll">
+            android:layout_below="@id/header">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_marginTop="@dimen/dimen_4dp"
                     android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
                     android:layout_marginRight="@dimen/dimen_4dp"
                     android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_4dp">
-                <Button
-                    android:id="@+id/btn_sro_reg_doc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_10dp"
-                    android:text="@string/view_sro_registered_document"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
+                    android:padding="@dimen/dimen_4dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btn_sro_reg_doc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10dp"
+                        android:text="@string/view_sro_registered_document"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_4dp"
                     android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
                     android:layout_marginRight="@dimen/dimen_4dp"
                     android:elevation="@dimen/dimen_4dp"
                     android:padding="@dimen/dimen_4dp">
@@ -56,8 +57,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_1dp"
                         android:layout_marginLeft="@dimen/dimen_5dp"
+                        android:layout_marginTop="@dimen/dimen_1dp"
                         android:layout_marginRight="@dimen/dimen_5dp"
                         android:layout_marginBottom="@dimen/dimen_5dp"
                         android:orientation="horizontal">
@@ -286,10 +287,10 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_east_west_nor_sou"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_4dp"
-                    android:id="@+id/cv_east_west_nor_sou"
                     android:elevation="@dimen/dimen_4dp"
                     android:padding="@dimen/dimen_4dp">
 
@@ -322,9 +323,9 @@
                                         android:id="@+id/et_east"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_1_east"
                                         android:imeOptions="actionNext"
+                                        android:inputType="numberDecimal"
                                         android:textSize="16dp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -349,9 +350,9 @@
                                         android:id="@+id/et_west"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_2_west"
                                         android:imeOptions="actionNext"
+                                        android:inputType="numberDecimal"
                                         android:textSize="16dp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -383,12 +384,12 @@
 
 
                                     <EditText
+                                        android:id="@+id/et_north"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/et_north"
-                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_3_north"
                                         android:imeOptions="actionNext"
+                                        android:inputType="numberDecimal"
                                         android:textSize="16dp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -410,12 +411,12 @@
 
 
                                     <EditText
+                                        android:id="@+id/et_south"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/et_south"
-                                        android:inputType="numberDecimal"
                                         android:hint="@string/_4_4_south"
                                         android:imeOptions="actionNext"
+                                        android:inputType="numberDecimal"
                                         android:textSize="16dp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -457,12 +458,12 @@
 
 
                             <EditText
+                                android:id="@+id/et_value_sale_deed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
-                                android:id="@+id/et_value_sale_deed"
                                 android:hint="@string/market_vaule_as_per_the_sale_deed"
                                 android:imeOptions="actionNext"
+                                android:inputType="numberDecimal"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -500,12 +501,12 @@
 
 
                             <EditText
+                                android:id="@+id/et_value_ason"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
-                                android:id="@+id/et_value_ason"
                                 android:hint="@string/market_vaule_as_on_26_08_202"
                                 android:imeOptions="actionNext"
+                                android:inputType="numberDecimal"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -654,14 +655,14 @@
                                 android:textColor="@color/black" />
 
                             <Spinner
-                                android:layout_marginLeft="@dimen/dimen_12dp"
                                 android:id="@+id/sp_recommendation_for"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dimen_12dp"
+                                android:layout_marginLeft="@dimen/dimen_12dp"
                                 android:layout_marginTop="@dimen/dimen_5dp"
                                 android:padding="@dimen/dimen_12dp"
-                                android:spinnerMode="dropdown"
-                                android:layout_marginStart="@dimen/dimen_12dp" />
+                                android:spinnerMode="dropdown" />
 
 
                         </LinearLayout>
@@ -692,12 +693,12 @@
 
 
                             <EditText
+                                android:id="@+id/et_verification"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/verification_remarks"
-                                android:id="@+id/et_verification"
-                                android:inputType="text"
                                 android:imeOptions="actionNext"
+                                android:inputType="text"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -710,15 +711,18 @@
             </LinearLayout>
 
         </ScrollView>
+
         <LinearLayout
+            android:id="@+id/ll_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ll_btn"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
-
-            <Button
+            <include
+                android:id="@+id/btn_layout"
+                layout="@layout/button_layout" />
+            <!--<Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -726,6 +730,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/red"
                 android:text="@string/cancel"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 tools:ignore="ButtonStyle" />
@@ -741,7 +746,7 @@
                 android:text="@string/proceed"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
-                tools:ignore="ButtonStyle" />/
+                tools:ignore="ButtonStyle" />-->
 
         </LinearLayout>
 
