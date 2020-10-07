@@ -35,6 +35,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
+import com.bumptech.glide.Glide;
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
@@ -53,7 +54,7 @@ import java.io.InputStream;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-public class ImageUploadActivity extends LocBaseActivity {
+public class ImageUploadActivityCopy extends LocBaseActivity {
 
     private static final int SELECT_FILE = 1;
     private Context context;
@@ -84,11 +85,11 @@ public class ImageUploadActivity extends LocBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(ImageUploadActivity.this,
+        binding = DataBindingUtil.setContentView(ImageUploadActivityCopy.this,
                 R.layout.activity_image_upload);
         binding.header.headerTitle.setText(R.string.upload_files);
 
-        context = ImageUploadActivity.this;
+        context = ImageUploadActivityCopy.this;
         binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,16 +112,12 @@ public class ImageUploadActivity extends LocBaseActivity {
             public void onClick(View view) {
                 if (callPermissions()) {
                     IMAGE_FLAG = AppConstants.IMAGE1;
-
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-
-//                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-//                    if (fileUri != null) {
-//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-//                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-//                    }
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
+                    }
                 }
             }
         });
@@ -130,14 +127,11 @@ public class ImageUploadActivity extends LocBaseActivity {
                 if (callPermissions()) {
                     IMAGE_FLAG = AppConstants.IMAGE2;
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-
-//                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-//                    if (fileUri != null) {
-//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-//                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-//                    }
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
+                    }
                 }
             }
         });
@@ -146,16 +140,12 @@ public class ImageUploadActivity extends LocBaseActivity {
             public void onClick(View view) {
                 if (callPermissions()) {
                     IMAGE_FLAG = AppConstants.IMAGE3;
-
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-
-//                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-//                    if (fileUri != null) {
-//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-//                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-//                    }
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
+                    }
                 }
             }
         });
@@ -164,16 +154,12 @@ public class ImageUploadActivity extends LocBaseActivity {
             public void onClick(View view) {
                 if (callPermissions()) {
                     IMAGE_FLAG = AppConstants.IMAGE4;
-
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-
-//                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-//                    if (fileUri != null) {
-//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-//                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-//                    }
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
+                    }
                 }
             }
         });
@@ -187,130 +173,74 @@ public class ImageUploadActivity extends LocBaseActivity {
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
-//                FilePath = getExternalFilesDir(null)
-//                        + "/" + IMAGE_DIRECTORY_NAME;
-//
-//                String Image_name = IMAGE_FLAG + ".png";
-//                FilePath = FilePath + "/" + Image_name;
-//
-//                FilePath = compressImage(FilePath);
-//
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inSampleSize = 8;
-//                bm = BitmapFactory.decodeFile(FilePath, options);
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                bm.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                FilePath = getExternalFilesDir(null)
+                        + "/" + IMAGE_DIRECTORY_NAME;
+
+                String Image_name = IMAGE_FLAG + ".png";
+                FilePath = FilePath + "/" + Image_name;
+
+                FilePath = compressImage(FilePath);
+
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 8;
+                bm = BitmapFactory.decodeFile(FilePath, options);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bm.compress(Bitmap.CompressFormat.PNG, 50, stream);
 
                 if (IMAGE_FLAG.equals(AppConstants.IMAGE1)) {
                     siteImage = true;
+                    binding.image1.setPadding(0, 0, 0, 0);
+                    binding.image1.setBackgroundColor(getResources().getColor(R.color.white));
+                    file_image1 = new File(FilePath);
+                    Glide.with(ImageUploadActivityCopy.this).load(file_image1).into(binding.image1);
 
-                    if (data != null && data.getExtras() != null) {
-                        Bitmap capturePhotoBitmap = (Bitmap) data.getExtras().get("data");
-                        Bitmap bmp = ProcessingBitmap(capturePhotoBitmap);
-                        binding.image1.setImageBitmap(bmp);
-                        P_IMAGE1_PATH = convertBase64(bmp);
-                    }
-
-//                    binding.image1.setPadding(0, 0, 0, 0);
-//                    binding.image1.setBackgroundColor(getResources().getColor(R.color.white));
-//                    file_image1 = new File(FilePath);
-//                    Glide.with(ImageUploadActivity.this).load(file_image1).into(binding.image1);
-//
-//                    P_IMAGE1_PATH = convertBase64(bm);
+                    P_IMAGE1_PATH = convertBase64(bm);
 
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE2)) {
                     siteImage = true;
+                    binding.image2.setPadding(0, 0, 0, 0);
+                    binding.image2.setBackgroundColor(getResources().getColor(R.color.white));
+                    file_image2 = new File(FilePath);
+                    Glide.with(ImageUploadActivityCopy.this).load(file_image2).into(binding.image2);
 
-                    if (data != null && data.getExtras() != null) {
-                        Bitmap capturePhotoBitmap = (Bitmap) data.getExtras().get("data");
-                        Bitmap bmp = ProcessingBitmap(capturePhotoBitmap);
-                        binding.image2.setImageBitmap(bmp);
-                        P_IMAGE2_PATH = convertBase64(bmp);
-                    }
-
-//                    binding.image2.setPadding(0, 0, 0, 0);
-//                    binding.image2.setBackgroundColor(getResources().getColor(R.color.white));
-//                    file_image2 = new File(FilePath);
-//                    Glide.with(ImageUploadActivity.this).load(file_image2).into(binding.image2);
-//
-//                    P_IMAGE2_PATH = convertBase64(bm);
+                    P_IMAGE2_PATH = convertBase64(bm);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE3)) {
                     siteImage = true;
-
-                    if (data != null && data.getExtras() != null) {
-                        Bitmap capturePhotoBitmap = (Bitmap) data.getExtras().get("data");
-                        Bitmap bmp = ProcessingBitmap(capturePhotoBitmap);
-                        binding.image3.setImageBitmap(bmp);
-                        P_IMAGE3_PATH = convertBase64(bmp);
-                    }
-
-//                    binding.image3.setPadding(0, 0, 0, 0);
-//                    binding.image3.setBackgroundColor(getResources().getColor(R.color.white));
-//                    file_image3 = new File(FilePath);
-//                    Glide.with(ImageUploadActivity.this).load(file_image3).into(binding.image3);
-//                    P_IMAGE3_PATH = convertBase64(bm);
+                    binding.image3.setPadding(0, 0, 0, 0);
+                    binding.image3.setBackgroundColor(getResources().getColor(R.color.white));
+                    file_image3 = new File(FilePath);
+                    Glide.with(ImageUploadActivityCopy.this).load(file_image3).into(binding.image3);
+                    P_IMAGE3_PATH = convertBase64(bm);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE4)) {
                     siteImage = true;
+                    binding.image4.setPadding(0, 0, 0, 0);
+                    binding.image4.setBackgroundColor(getResources().getColor(R.color.white));
+                    file_image4 = new File(FilePath);
+                    Glide.with(ImageUploadActivityCopy.this).load(file_image4).into(binding.image4);
 
-                    if (data != null && data.getExtras() != null) {
-                        Bitmap capturePhotoBitmap = (Bitmap) data.getExtras().get("data");
-                        Bitmap bmp = ProcessingBitmap(capturePhotoBitmap);
-                        binding.image4.setImageBitmap(bmp);
-                        P_IMAGE4_PATH = convertBase64(bmp);
-                    }
-
-//                    binding.image4.setPadding(0, 0, 0, 0);
-//                    binding.image4.setBackgroundColor(getResources().getColor(R.color.white));
-//                    file_image4 = new File(FilePath);
-//                    Glide.with(ImageUploadActivity.this).load(file_image4).into(binding.image4);
-//
-//                    P_IMAGE4_PATH = convertBase64(bm);
+                    P_IMAGE4_PATH = convertBase64(bm);
 
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_DOC)) {
                     extractDoc = true;
+                    file_image_doc = new File(FilePath);
+                    binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    binding.imageExtract.setVisibility(View.VISIBLE);
+                    binding.imageExtract.setPadding(0, 0, 0, 0);
+                    binding.imageExtract.setBackgroundColor(getResources().getColor(R.color.white));
+                    Glide.with(ImageUploadActivityCopy.this).load(file_image_doc).into(binding.imageExtract);
 
-                    binding.tvDoc.setVisibility(View.GONE);
-                    binding.tvDoc.setText("");
-
-                    if (data != null && data.getExtras() != null) {
-                        Bitmap capturePhotoBitmap = (Bitmap) data.getExtras().get("data");
-                        Bitmap bmp = ProcessingBitmap(capturePhotoBitmap);
-                        binding.imageExtract.setImageBitmap(bmp);
-                        P_EX_FILE_PATH = convertBase64(bmp);
-                        binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                    }
-
-//                    file_image_doc = new File(FilePath);
-//                    binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-//                    binding.imageExtract.setVisibility(View.VISIBLE);
-//                    binding.imageExtract.setPadding(0, 0, 0, 0);
-//                    binding.imageExtract.setBackgroundColor(getResources().getColor(R.color.white));
-//                    Glide.with(ImageUploadActivity.this).load(file_image_doc).into(binding.imageExtract);
-//
-//                    P_EX_FILE_PATH = convertBase64(bm);
+                    P_EX_FILE_PATH = convertBase64(bm);
 
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_PLOT)) {
                     plotDoc = true;
+                    file_image_plot = new File(FilePath);
+                    binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    binding.imagePlot.setVisibility(View.VISIBLE);
+                    binding.imagePlot.setPadding(0, 0, 0, 0);
+                    binding.imagePlot.setBackgroundColor(getResources().getColor(R.color.white));
+                    Glide.with(ImageUploadActivityCopy.this).load(file_image_plot).into(binding.imagePlot);
 
-                    binding.tvPlot.setVisibility(View.GONE);
-                    binding.tvPlot.setText("");
-
-                    if (data != null && data.getExtras() != null) {
-                        Bitmap capturePhotoBitmap = (Bitmap) data.getExtras().get("data");
-                        Bitmap bmp = ProcessingBitmap(capturePhotoBitmap);
-                        binding.imagePlot.setImageBitmap(bmp);
-                        P_PLAN_PATH = convertBase64(bmp);
-                        binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                    }
-
-//                    file_image_plot = new File(FilePath);
-//                    binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-//                    binding.imagePlot.setVisibility(View.VISIBLE);
-//                    binding.imagePlot.setPadding(0, 0, 0, 0);
-//                    binding.imagePlot.setBackgroundColor(getResources().getColor(R.color.white));
-//                    Glide.with(ImageUploadActivity.this).load(file_image_plot).into(binding.imagePlot);
-//
-//                    P_PLAN_PATH = convertBase64(bm);
+                    P_PLAN_PATH = convertBase64(bm);
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
@@ -507,10 +437,6 @@ public class ImageUploadActivity extends LocBaseActivity {
             img_bitmap = ((BitmapDrawable) binding.imageExtract.getDrawable()).getBitmap();
             binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             P_EX_FILE_PATH = convertBitMap(img_bitmap);
-
-            binding.tvDoc.setVisibility(View.GONE);
-            binding.tvDoc.setText("");
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -533,9 +459,6 @@ public class ImageUploadActivity extends LocBaseActivity {
             img_bitmap = ((BitmapDrawable) binding.imagePlot.getDrawable()).getBitmap();
             binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             P_PLAN_PATH = convertBitMap(img_bitmap);
-
-            binding.tvPlot.setVisibility(View.GONE);
-            binding.tvPlot.setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -648,7 +571,7 @@ public class ImageUploadActivity extends LocBaseActivity {
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
-                Utils.openSettings(ImageUploadActivity.this);
+                Utils.openSettings(ImageUploadActivityCopy.this);
             }
         });
 
@@ -678,8 +601,8 @@ public class ImageUploadActivity extends LocBaseActivity {
         }
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE) {
-            String deviceId = Utils.getDeviceID(ImageUploadActivity.this);
-            String versionName = Utils.getVersionName(ImageUploadActivity.this);
+            String deviceId = Utils.getDeviceID(ImageUploadActivityCopy.this);
+            String versionName = Utils.getVersionName(ImageUploadActivityCopy.this);
             PIC_NAME = IMAGE_FLAG + Utils.getCurrentDateTimeFormat() + ".png";
 
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
@@ -877,16 +800,12 @@ public class ImageUploadActivity extends LocBaseActivity {
                         } else if (snO == 2) {
                             IMAGE_FLAG = AppConstants.IMAGE_PLOT;
                         }
-
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-
-//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-//                        if (fileUri != null) {
-//                            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-//                            startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-//                        }
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                        if (fileUri != null) {
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                            startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
+                        }
                     }
                 } else if (items[item].equals("Choose from Library")) {
                     userChoosenTask = "Choose from Library";
@@ -917,7 +836,7 @@ public class ImageUploadActivity extends LocBaseActivity {
 
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
-                    ImageUploadActivity.this,
+                    ImageUploadActivityCopy.this,
                     new String[]{READ_EXTERNAL_STORAGE},
                     PERMISSION_CODE
             );
