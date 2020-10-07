@@ -29,7 +29,6 @@ import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.ui.ListActivity;
 import com.cgg.lrs2020officerapp.ui.LoginActivity;
 import com.cgg.lrs2020officerapp.ui.QuitAppActivity;
-import com.cgg.lrs2020officerapp.ui.SplashActivity;
 
 import org.json.JSONObject;
 
@@ -401,8 +400,8 @@ public class Utils {
                         if (dialog.isShowing()) {
                             dialog.dismiss();
                         }
-
-                        editor.clear();
+                        editor.putString(AppConstants.SUBMIT_REQUEST,"");
+                        editor.putString(AppConstants.APPLICATION_ID, "");
                         editor.commit();
                         Intent newIntent = new Intent(activity, ListActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -421,44 +420,6 @@ public class Utils {
         }
     }
 
-    public static void customInfoAlert(Activity activity, String title, String msg, boolean flag) {
-        try {
-            final Dialog dialog = new Dialog(activity);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            if (dialog.getWindow() != null && dialog.getWindow().getAttributes() != null) {
-                dialog.getWindow().getAttributes().windowAnimations = R.style.exitdialog_animation1;
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setContentView(R.layout.custom_alert_info_ok);
-                dialog.setCancelable(false);
-                TextView versionTitle = dialog.findViewById(R.id.version_tv);
-                versionTitle.setText("Version: " + Utils.getVersionName(activity));
-                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
-                dialogTitle.setText(title);
-                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
-                if (flag) {
-                    dialogMessage.setVisibility(View.VISIBLE);
-                } else {
-                    dialogMessage.setVisibility(View.GONE);
-                }
-                dialogMessage.setText(msg);
-                Button btDialogYes = dialog.findViewById(R.id.btDialogYes);
-                btDialogYes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                    }
-                });
-
-
-                if (!dialog.isShowing())
-                    dialog.show();
-            }
-        } catch (Resources.NotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void customWarningAlert(Activity activity, String title, String msg,
                                           SharedPreferences.Editor editor) {

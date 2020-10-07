@@ -63,7 +63,6 @@
             <Button
                 app:backgroundTint="@color/red"
                 android:id="@+id/btDialogYes"
-                style="@style/roundedDialog_red"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
@@ -82,11 +81,10 @@
 
 
             <Button
-
+                app:backgroundTint="@color/colorPrimary"
                 android:textAllCaps="false"
                 android:layout_weight="1"
                 android:id="@+id/btDialogNo"
-                style="@style/roundedDialogInfo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="10dp"

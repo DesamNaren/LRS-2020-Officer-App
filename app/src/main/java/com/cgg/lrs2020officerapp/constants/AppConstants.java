@@ -33,4 +33,5 @@ public class AppConstants {
     public static final String OTP = "123456";
     public static final String OFFICER_TYPE = "IO";
 
+    public static final String STATUS_ID = "30";
 }

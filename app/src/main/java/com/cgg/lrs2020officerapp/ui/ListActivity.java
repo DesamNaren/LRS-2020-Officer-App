@@ -23,6 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.adapter.ViewTaskAdapter;
@@ -97,6 +98,14 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                     get(ApplicationListViewModel.class);
             binding.setViewModel(viewModel);
 
+            binding.swipeRV.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    callList();
+                    binding.swipeRV.setRefreshing(false); // Disables the refresh icon
+                }
+            });
+
             callList();
 
             viewModel.getApplicationListCall().observe(this, new Observer<ApplicationRes>() {
@@ -135,7 +144,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         request.setOFFICEID(loginResponse.getOFFICEID());
         request.setAUTHORITYID(loginResponse.getAUTHORITYID());
         request.setROLEID(loginResponse.getROLEID());
-        request.setSTATUSID("30");
+        request.setSTATUSID(AppConstants.STATUS_ID);
         request.setUSERID(loginResponse.getUSERID());
 
         if (Utils.checkInternetConnection(context)) {

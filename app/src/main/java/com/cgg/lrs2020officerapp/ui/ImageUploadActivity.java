@@ -1,5 +1,6 @@
 package com.cgg.lrs2020officerapp.ui;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,17 +19,22 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -52,8 +59,6 @@ import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyCustomViewModel;
 import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyViewModel;
-import com.cgg.lrs2020officerapp.viewmodel.LoginCustomViewModel;
-import com.cgg.lrs2020officerapp.viewmodel.LoginViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.material.snackbar.Snackbar;
@@ -100,7 +105,8 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private SubmitScrutinyRequest submitScrutinyRequest;
-
+    private String applicationId;
+    private LoginResponse loginResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,10 +117,11 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
 
         binding.header.headerTitle.setText(R.string.upload_files);
 
-        customProgressDialog= new CustomProgressDialog(context);
+        customProgressDialog = new CustomProgressDialog(context);
 
         sharedPreferences = LRSApplication.get(this).getPreferences();
         editor = sharedPreferences.edit();
+
 
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,15 +131,18 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
         });
 
 
-        try{
+        try {
+            String strLogin = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
+            loginResponse = new Gson().fromJson(strLogin, LoginResponse.class);
+            applicationId = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
             String str = sharedPreferences.getString(AppConstants.SUBMIT_REQUEST, "");
             submitScrutinyRequest = new Gson().fromJson(str, SubmitScrutinyRequest.class);
-            if(submitScrutinyRequest==null){
+            if (TextUtils.isEmpty(applicationId) || submitScrutinyRequest == null || loginResponse == null) {
                 Toast.makeText(context, R.string.something, Toast.LENGTH_SHORT).show();
                 finish();
                 return;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         addScrutinyViewModel = new ViewModelProvider(
@@ -165,28 +175,22 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
         binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                submitScrutinyRequest.setPIPADDRESS(Utils.getLocalIpAddress());
+                submitScrutinyRequest.setPOFFICERTYPE(AppConstants.OFFICER_TYPE);
+                submitScrutinyRequest.setPEMPLOYEEID(loginResponse.getUSERID());
+                submitScrutinyRequest.setPCREATEDBY(loginResponse.getUSERID());
+                submitScrutinyRequest.setPOTPNO(AppConstants.OTP);
+                submitScrutinyRequest.setPSRODOCLINK("");
+                submitScrutinyRequest.setPAPPLICANTID(applicationId);
+                submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
+                submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);
+                submitScrutinyRequest.setPIMAGE3PATH(P_IMAGE3_PATH);
+                submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
+                submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
+                submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
 
-                if (Utils.checkInternetConnection(context)) {
-                    if(validations()) {
-                        customProgressDialog.show();
-                        submitScrutinyRequest.setPIPADDRESS(Utils.getLocalIpAddress());
-                        submitScrutinyRequest.setPOFFICERTYPE("");
-                        submitScrutinyRequest.setPEMPLOYEEID("");
-                        submitScrutinyRequest.setPCREATEDBY("");
-                        submitScrutinyRequest.setPOTPNO("");
-                        submitScrutinyRequest.setPSRODOCLINK("");
-                        submitScrutinyRequest.setPAPPLICANTID("");
-                        submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
-                        submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);
-                        submitScrutinyRequest.setPIMAGE3PATH(P_IMAGE3_PATH);
-                        submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
-                        submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
-                        submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
-                        addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
-                    }
-                } else {
-                    Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
-                }
+
+                customInfoAlert(submitScrutinyRequest);
             }
         });
 
@@ -457,20 +461,28 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                     if (cursor != null && cursor.moveToFirst()) {
                         String result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                         if (result.contains(".pdf")) {
-                            extractDoc = true;
-                            binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                            binding.imageExtract.setVisibility(View.GONE);
+
                             InputStream in = getContentResolver().openInputStream(uri);
 
                             byte[] bytes;
                             assert in != null;
                             bytes = getBytesPDF1(in);
 
-                            P_EX_FILE_PATH = Base64.encodeToString(bytes, Base64.DEFAULT);
+                            if (bytes.length <= 1000000) {
+                                extractDoc = true;
+                                binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                                binding.imageExtract.setVisibility(View.GONE);
 
-                            binding.imageExtract.setVisibility(View.GONE);
-                            binding.tvDoc.setVisibility(View.VISIBLE);
-                            binding.tvDoc.setText(result);
+                                P_EX_FILE_PATH = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+                                binding.imageExtract.setVisibility(View.GONE);
+                                binding.tvDoc.setVisibility(View.VISIBLE);
+                                binding.tvDoc.setText(result);
+                            } else {
+                                Toast.makeText(context, "Upload file with maximum 1 MB only", Toast.LENGTH_SHORT).show();
+                            }
+
+
                         } else {
                             extractDoc = false;
                             binding.imageExtract.setVisibility(View.GONE);
@@ -503,20 +515,29 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                     if (cursor != null && cursor.moveToFirst()) {
                         String result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                         if (result.contains(".pdf")) {
-                            plotDoc = true;
-                            binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                            binding.imagePlot.setVisibility(View.GONE);
+
                             InputStream in = getContentResolver().openInputStream(uri);
 
                             byte[] bytes;
                             assert in != null;
                             bytes = getBytesPDF1(in);
 
-                            P_PLAN_PATH = Base64.encodeToString(bytes, Base64.DEFAULT);
+                            if (bytes.length <= 1000000) {
+                                plotDoc = true;
+                                binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                                binding.imagePlot.setVisibility(View.GONE);
 
-                            binding.imagePlot.setVisibility(View.GONE);
-                            binding.tvPlot.setVisibility(View.VISIBLE);
-                            binding.tvPlot.setText(result);
+                                P_PLAN_PATH = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+
+                                binding.imagePlot.setVisibility(View.GONE);
+                                binding.tvPlot.setVisibility(View.VISIBLE);
+                                binding.tvPlot.setText(result);
+                            } else {
+                                Toast.makeText(context, "Upload file with maximum 1 MB only", Toast.LENGTH_SHORT).show();
+                            }
+
+
                         } else {
                             plotDoc = false;
                             binding.imagePlot.setVisibility(View.GONE);
@@ -1068,4 +1089,65 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.server_not));
         }
     }
+
+    public void customInfoAlert(SubmitScrutinyRequest submitScrutinyRequest) {
+        try {
+            final Dialog dialog = new Dialog(context);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            if (dialog.getWindow() != null && dialog.getWindow().getAttributes() != null) {
+                dialog.getWindow().getAttributes().windowAnimations = R.style.exitdialog_animation1;
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(R.layout.custom_alert_information);
+                dialog.setCancelable(false);
+                TextView versionTitle = dialog.findViewById(R.id.version_tv);
+                versionTitle.setText("Version: " + Utils.getVersionName(context));
+                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                dialogTitle.setText(R.string.app_name);
+                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                if (flag) {
+                    dialogMessage.setVisibility(View.VISIBLE);
+                } else {
+                    dialogMessage.setVisibility(View.GONE);
+                }
+                dialogMessage.setText("Are you sure you want to submit data?");
+                Button btDialogYes = dialog.findViewById(R.id.btDialogYes);
+                btDialogYes.setText(R.string.yes);
+                Button btDialogNo = dialog.findViewById(R.id.btDialogNo);
+                btDialogNo.setText(R.string.cancel);
+                btDialogYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+
+                        if (Utils.checkInternetConnection(context)) {
+                            if (validations()) {
+                                customProgressDialog.show();
+                                addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
+                            }
+                        } else {
+                            Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
+                        }
+                    }
+                });
+
+                btDialogNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+
+                if (!dialog.isShowing())
+                    dialog.show();
+            }
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
