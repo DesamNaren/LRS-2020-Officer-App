@@ -91,4 +91,7 @@
     <string name="proceed">Proceed</string>
 
     <string name="loc_stopped">Location updates stopped!</string>
+    <string name="no_roads">No Abutting Road Details found</string>
+    <string name="no_land">No Land Use Details found</string>
+    <string name="no_recomm">No Recommend Details found</string>
 </resources>
