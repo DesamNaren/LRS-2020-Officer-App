@@ -1,26 +1,28 @@
 package com.cgg.lrs2020officerapp.ui;
 
-import android.Manifest;
-import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
@@ -40,35 +42,49 @@ import java.io.IOException;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-public class ImageUploadActivity extends AppCompatActivity {
+public class ImageUploadActivity extends LocBaseActivity {
 
-
+    private static final int SELECT_FILE = 1;
+    private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
-    String IMAGE_FLAG = null,PIC_NAME,FilePath;
+    String IMAGE_FLAG = null, PIC_NAME, FilePath;
     ActivityImageUploadBinding binding;
     public Uri fileUri;
     public static final String IMAGE_DIRECTORY_NAME = "LRS_IMAGES";
     Bitmap bm;
-    File file_image1,file_image2,file_image3,file_image4;
+    File file_image1, file_image2, file_image3, file_image4, file_image_doc;
+    private String userChoosenTask;
+    public static final String READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE";
+    public static final int PERMISSION_CODE = 42042;
+    public static final int REQUEST_PDF = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(ImageUploadActivity.this, R.layout.activity_image_upload);
+        binding = DataBindingUtil.setContentView(ImageUploadActivity.this,
+                R.layout.activity_image_upload);
         binding.header.headerTitle.setText(R.string.upload_files);
+
+        context = ImageUploadActivity.this;
+        binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImageDialog();
+            }
+        });
+
+
         binding.image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
-                    } else if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-                        callSettings();
-                    } else {
-                        IMAGE_FLAG = AppConstants.IMAGE1;
-                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, MY_CAMERA_REQUEST_CODE);
+                if (callPermissions()) {
+                    IMAGE_FLAG = AppConstants.IMAGE1;
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
                     }
                 }
             }
@@ -76,16 +92,13 @@ public class ImageUploadActivity extends AppCompatActivity {
         binding.image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
-                    } else if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-                        callSettings();
-                    } else {
-                        IMAGE_FLAG = AppConstants.IMAGE2;
-                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, MY_CAMERA_REQUEST_CODE);
+                if (callPermissions()) {
+                    IMAGE_FLAG = AppConstants.IMAGE2;
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
                     }
                 }
             }
@@ -93,16 +106,13 @@ public class ImageUploadActivity extends AppCompatActivity {
         binding.image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
-                    } else if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-                        callSettings();
-                    } else {
-                        IMAGE_FLAG = AppConstants.IMAGE3;
-                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, MY_CAMERA_REQUEST_CODE);
+                if (callPermissions()) {
+                    IMAGE_FLAG = AppConstants.IMAGE3;
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
                     }
                 }
             }
@@ -110,43 +120,19 @@ public class ImageUploadActivity extends AppCompatActivity {
         binding.image4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
-                    } else if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-                        callSettings();
-                    } else {
-                        IMAGE_FLAG = AppConstants.IMAGE4;
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-                        if (fileUri != null) {
-                            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                            startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
-                        }
+                if (callPermissions()) {
+                    IMAGE_FLAG = AppConstants.IMAGE4;
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                    if (fileUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                        startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
                     }
                 }
             }
         });
 
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, MY_CAMERA_REQUEST_CODE
-                );
-            } else {
-                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -167,22 +153,33 @@ public class ImageUploadActivity extends AppCompatActivity {
                 options.inSampleSize = 8;
                 bm = BitmapFactory.decodeFile(FilePath, options);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                bm.compress(Bitmap.CompressFormat.PNG, 50, stream);
 
                 if (IMAGE_FLAG.equals(AppConstants.IMAGE1)) {
+                    binding.image1.setPadding(0, 0, 0, 0);
+                    binding.image1.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image1 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image1).into(binding.image1);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE2)) {
+                    binding.image2.setPadding(0, 0, 0, 0);
+                    binding.image2.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image2 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image2).into(binding.image2);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE3)) {
+                    binding.image3.setPadding(0, 0, 0, 0);
+                    binding.image3.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image3 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image3).into(binding.image3);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE4)) {
+                    binding.image4.setPadding(0, 0, 0, 0);
+                    binding.image4.setBackgroundColor(getResources().getColor(R.color.white));
                     file_image4 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image4).into(binding.image4);
+                } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_DOC)) {
+                    file_image_doc = new File(FilePath);
+                    binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    Toast.makeText(context, file_image_doc.getName(), Toast.LENGTH_SHORT).show();
                 }
-
 
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(),
@@ -209,13 +206,14 @@ public class ImageUploadActivity extends AppCompatActivity {
 
         snackbar.show();
     }
+
     public Uri getOutputMediaFileUri(int type) {
         File imageFile = getOutputMediaFile(type);
         Uri imageUri = null;
         if (imageFile != null) {
             imageUri = FileProvider.getUriForFile(
-                    ImageUploadActivity.this,
-                    BuildConfig.APPLICATION_ID + ".provider",
+                    context,
+                    BuildConfig.APPLICATION_ID + ".provider", //(use your app signature + ".provider" )
                     imageFile);
         }
         return imageUri;
@@ -412,4 +410,76 @@ public class ImageUploadActivity extends AppCompatActivity {
 
     }
 
+
+    private void selectImageDialog() {
+        final CharSequence[] items = {"Take Photo", "Choose from Library", "Choose Documents",
+                "Cancel"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Pick Image/Pdf");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+
+                if (items[item].equals("Take Photo")) {
+                    userChoosenTask = "Take Photo";
+                    if (callPermissions()) {
+                        IMAGE_FLAG = AppConstants.IMAGE_DOC;
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+                        if (fileUri != null) {
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                            startActivityForResult(intent, MY_CAMERA_REQUEST_CODE);
+                        }
+                    }
+                } else if (items[item].equals("Choose from Library")) {
+                    userChoosenTask = "Choose from Library";
+                    galleryIntent();
+
+                } else if (items[item].equals("Choose Documents")) {
+
+                    chooseDocs();
+
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+    private void galleryIntent() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, SELECT_FILE);
+    }
+
+    private void chooseDocs() {
+
+        int permissionCheck = ContextCompat.checkSelfPermission(context,
+                READ_EXTERNAL_STORAGE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    ImageUploadActivity.this,
+                    new String[]{READ_EXTERNAL_STORAGE},
+                    PERMISSION_CODE
+            );
+
+            return;
+        }
+
+        launchPicker();
+    }
+
+    void launchPicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/pdf");
+        try {
+            startActivityForResult(intent, REQUEST_PDF);
+        } catch (ActivityNotFoundException e) {
+            //alert user that file manager not working
+            Toast.makeText(this, "Unable to pick file. Check status of file manager.", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
