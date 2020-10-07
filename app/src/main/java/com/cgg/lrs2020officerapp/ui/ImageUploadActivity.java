@@ -180,7 +180,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 submitScrutinyRequest.setPEMPLOYEEID(loginResponse.getUSERID());
                 submitScrutinyRequest.setPCREATEDBY(loginResponse.getUSERID());
                 submitScrutinyRequest.setPOTPNO(AppConstants.OTP);
-                submitScrutinyRequest.setPSRODOCLINK("");
+                submitScrutinyRequest.setPSRODOCLINK(loginResponse.getsRO_DOC_LINK());
                 submitScrutinyRequest.setPAPPLICANTID(applicationId);
                 submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
                 submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);

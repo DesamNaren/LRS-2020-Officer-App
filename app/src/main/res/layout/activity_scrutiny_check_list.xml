@@ -33,7 +33,7 @@
                     android:layout_marginRight="@dimen/dimen_4dp"
                     android:elevation="@dimen/dimen_4dp"
                     android:padding="@dimen/dimen_4dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <Button
                         android:id="@+id/btn_sro_reg_doc"

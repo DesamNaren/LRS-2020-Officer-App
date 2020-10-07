@@ -23,6 +23,9 @@ public class LoginResponse {
     @SerializedName("OFFICE_ID")
     @Expose
     private String oFFICEID;
+     @SerializedName("SRO_DOC_LINK")
+    @Expose
+    private String sRO_DOC_LINK;
     @SerializedName("UserName")
     @Expose
     private String userName;
@@ -83,4 +86,11 @@ public class LoginResponse {
         this.userName = userName;
     }
 
+    public String getsRO_DOC_LINK() {
+        return sRO_DOC_LINK;
+    }
+
+    public void setsRO_DOC_LINK(String sRO_DOC_LINK) {
+        this.sRO_DOC_LINK = sRO_DOC_LINK;
+    }
 }

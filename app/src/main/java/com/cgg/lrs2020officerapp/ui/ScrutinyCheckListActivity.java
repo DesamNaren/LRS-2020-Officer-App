@@ -79,6 +79,13 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
             }
         });
 
+        binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, WebActivity.class));
+            }
+        });
+
         if (Utils.checkInternetConnection(context)) {
             customProgressDialog.show();
             LiveData<RoadDetailsResponse> roadDetailsResponseLiveData = scrutinyCheckListViewModel.getRoadDetailsResponse();
