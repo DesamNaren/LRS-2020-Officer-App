@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -76,7 +77,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         list = new ArrayList<>();
         try {
             if (getSupportActionBar() != null) {
-                 tv = new TextView(getApplicationContext());
+                tv = new TextView(getApplicationContext());
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
                         RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
@@ -107,7 +108,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                             list = response.getData();
                             if (list != null && list.size() > 0) {
                                 binding.tvRecords.setText("Total Records: " + list.size());
-                                 viewTaskAdapter = new ViewTaskAdapter(context, list);
+                                viewTaskAdapter = new ViewTaskAdapter(context, list);
                                 binding.recyclerView.setAdapter(viewTaskAdapter);
                                 binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                 binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
@@ -154,7 +155,6 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             @Override
             public boolean onQueryTextChange(String newText) {
                 try {
-
                     if (viewTaskAdapter != null) {
                         viewTaskAdapter.getFilter().filter(newText);
                     }
@@ -163,12 +163,14 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                 }
                 return true;
             }
+
+
         });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -190,6 +192,14 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         MenuItem menuItem = mMenu.findItem(R.id.action_search);
         searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setQueryHint("Search by Applicant Name or OT Application Number");
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv.setVisibility(View.GONE);
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -201,6 +211,14 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             public boolean onQueryTextChange(String s) {
                 search(searchView);
                 return true;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                tv.setVisibility(View.VISIBLE);
+                return false;
             }
         });
         return true;
