@@ -578,7 +578,7 @@ public class ImageUploadActivity extends LocBaseActivity {
         if (type == MEDIA_TYPE_IMAGE) {
             String deviceId = Utils.getDeviceID(ImageUploadActivity.this);
             String versionName = Utils.getVersionName(ImageUploadActivity.this);
-            PIC_NAME = IMAGE_FLAG + ".png";
+            PIC_NAME = IMAGE_FLAG + "~" + Utils.getCurrentDateTimeFormat() + ".png";
 
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
                     + IMAGE_FLAG + ".png");
