@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
+import com.cgg.lrs2020officerapp.ui.ListActivity;
 import com.cgg.lrs2020officerapp.ui.LoginActivity;
 import com.cgg.lrs2020officerapp.ui.QuitAppActivity;
 import com.cgg.lrs2020officerapp.ui.SplashActivity;
@@ -371,7 +372,7 @@ public class Utils {
 
 
     public static void customSuccessAlert(Activity activity, String title, String msg,
-                                          boolean flag) {
+                                          boolean flag, SharedPreferences.Editor editor) {
         try {
             final Dialog dialog = new Dialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -398,6 +399,14 @@ public class Utils {
                         if (dialog.isShowing()) {
                             dialog.dismiss();
                         }
+
+                        editor.clear();
+                        editor.commit();
+                        Intent newIntent = new Intent(activity, ListActivity.class);
+                        newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        activity.startActivity(newIntent);
+                        activity.finish();
                     }
                 });
 

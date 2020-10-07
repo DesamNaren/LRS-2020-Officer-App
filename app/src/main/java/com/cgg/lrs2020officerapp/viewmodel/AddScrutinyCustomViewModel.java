@@ -10,17 +10,15 @@ import com.cgg.lrs2020officerapp.databinding.ActivityListBinding;
 
 
 public class AddScrutinyCustomViewModel implements ViewModelProvider.Factory {
-    private ActivityListBinding binding;
     private Context context;
 
-    public AddScrutinyCustomViewModel(ActivityListBinding binding, Context context) {
-        this.binding = binding;
+    public AddScrutinyCustomViewModel(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new ApplicationListViewModel( context);
+        return (T) new AddScrutinyViewModel( context);
     }
 }

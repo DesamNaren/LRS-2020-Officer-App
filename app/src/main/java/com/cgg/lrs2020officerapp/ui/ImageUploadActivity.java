@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -34,17 +35,29 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityImageUploadBinding;
+import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
+import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
+import com.cgg.lrs2020officerapp.error_handler.SubmitScrutinyInterface;
+import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
+import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyResponse;
+import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
+import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyCustomViewModel;
 import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.LoginCustomViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.LoginViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,11 +65,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-public class ImageUploadActivity extends LocBaseActivity {
+public class ImageUploadActivity extends LocBaseActivity implements ErrorHandlerInterface, SubmitScrutinyInterface {
 
+    private CustomProgressDialog customProgressDialog;
     private AddScrutinyViewModel addScrutinyViewModel;
     private static final int SELECT_FILE = 1;
     private Context context;
@@ -82,6 +97,8 @@ public class ImageUploadActivity extends LocBaseActivity {
     private boolean extractDoc = false;
     private boolean plotDoc = false;
     private boolean siteImage = false;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
 
     @Override
@@ -89,7 +106,14 @@ public class ImageUploadActivity extends LocBaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(ImageUploadActivity.this,
                 R.layout.activity_image_upload);
+        context = ImageUploadActivity.this;
+
         binding.header.headerTitle.setText(R.string.upload_files);
+
+        customProgressDialog= new CustomProgressDialog(context);
+
+        sharedPreferences = LRSApplication.get(this).getPreferences();
+        editor = sharedPreferences.edit();
 
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +122,10 @@ public class ImageUploadActivity extends LocBaseActivity {
             }
         });
 
-        context = ImageUploadActivity.this;
-        addScrutinyViewModel = new AddScrutinyViewModel(getApplication());
+        addScrutinyViewModel = new ViewModelProvider(
+                this, new AddScrutinyCustomViewModel(context)).
+                get(AddScrutinyViewModel.class);
+
         binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,15 +152,19 @@ public class ImageUploadActivity extends LocBaseActivity {
         binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (Utils.checkInternetConnection(context)) {
-                    SubmitScrutinyRequest request = new SubmitScrutinyRequest();
-                    request.setPIMAGE1PATH(P_IMAGE1_PATH);
-                    request.setPIMAGE2PATH(P_IMAGE2_PATH);
-                    request.setPIMAGE3PATH(P_IMAGE3_PATH);
-                    request.setPIMAGE4PATH(P_IMAGE4_PATH);
-                    request.setPEXFILEPATH(P_EX_FILE_PATH);
-                    request.setPPLANPATH(P_PLAN_PATH);
-                    addScrutinyViewModel.callSubmitAPI(request);
+                    if(validations()) {
+                        customProgressDialog.show();
+                        SubmitScrutinyRequest request = new SubmitScrutinyRequest();
+                        request.setPIMAGE1PATH(P_IMAGE1_PATH);
+                        request.setPIMAGE2PATH(P_IMAGE2_PATH);
+                        request.setPIMAGE3PATH(P_IMAGE3_PATH);
+                        request.setPIMAGE4PATH(P_IMAGE4_PATH);
+                        request.setPEXFILEPATH(P_EX_FILE_PATH);
+                        request.setPPLANPATH(P_PLAN_PATH);
+                        addScrutinyViewModel.callSubmitAPI(request);
+                    }
                 } else {
                     Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
                 }
@@ -985,6 +1015,38 @@ public class ImageUploadActivity extends LocBaseActivity {
         } catch (ActivityNotFoundException e) {
             //alert user that file manager not working
             Toast.makeText(this, "Unable to pick file. Check status of file manager.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void handleError(Throwable e, Context context) {
+        customProgressDialog.dismiss();
+        String errMsg = ErrorHandler.handleError(e, context);
+        Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
+    }
+
+    @Override
+    public void handleError(String errMsg, Context context) {
+        customProgressDialog.dismiss();
+        Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
+    }
+
+    @Override
+    public void submitResponse(List<SubmitScrutinyResponse> responses) {
+        customProgressDialog.dismiss();
+        if (responses != null && responses.get(0).getStatusCode() != null) {
+
+            if (responses.get(0).getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+                Utils.customSuccessAlert(this, getString(R.string.app_name),
+                        responses.get(0).getStatusMessage(), true, editor);
+
+            } else if (responses.get(0).getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
+                Utils.customErrorAlert(context, getString(R.string.app_name), responses.get(0).getStatusMessage());
+            } else {
+                Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.something));
+            }
+        } else {
+            Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.server_not));
         }
     }
 }
