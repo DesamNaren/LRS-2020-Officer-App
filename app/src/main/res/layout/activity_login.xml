@@ -169,6 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/cover"
             android:gravity="center"
+            android:layout_marginBottom="@dimen/dimen_20dp"
             android:orientation="vertical">
 
             <ImageView
@@ -182,7 +183,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_5dp"
-                android:layout_marginBottom="@dimen/dimen_10dp"
                 android:gravity="center"
                 android:text="Officer App"
                 android:textColor="@color/white"

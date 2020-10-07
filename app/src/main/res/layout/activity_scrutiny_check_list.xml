@@ -250,6 +250,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
+                        android:paddingTop="@dimen/dimen_10dp"
+                        android:paddingBottom="@dimen/dimen_10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -268,6 +270,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/dimen_5dp"
+                                android:layout_marginBottom="@dimen/dimen_5dp"
                                 android:text="@string/abutting_road_details"
                                 android:textColor="@color/black" />
 
@@ -275,13 +278,9 @@
                                 android:id="@+id/sp_abutting_road_details"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_5dp"
-                                android:padding="@dimen/dimen_12dp"
                                 android:spinnerMode="dropdown" />
 
-
                         </LinearLayout>
-
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -589,6 +588,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
+                        android:paddingTop="@dimen/dimen_10dp"
+                        android:paddingBottom="@dimen/dimen_10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -607,6 +608,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/dimen_5dp"
+                                android:layout_marginBottom="@dimen/dimen_5dp"
                                 android:text="@string/land_use"
                                 android:textColor="@color/black" />
 
@@ -614,10 +616,6 @@
                                 android:id="@+id/sp_land_use"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dimen_8dp"
-                                android:layout_marginLeft="@dimen/dimen_8dp"
-                                android:layout_marginTop="@dimen/dimen_5dp"
-                                android:padding="@dimen/dimen_12dp"
                                 android:spinnerMode="dropdown" />
 
 
@@ -639,6 +637,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
+                        android:paddingTop="@dimen/dimen_10dp"
+                        android:paddingBottom="@dimen/dimen_10dp"
                         android:orientation="horizontal">
 
 
@@ -651,6 +651,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/dimen_5dp"
+                                android:layout_marginBottom="@dimen/dimen_5dp"
                                 android:text="@string/recommend_for"
                                 android:textColor="@color/black" />
 
@@ -658,10 +659,6 @@
                                 android:id="@+id/sp_recommendation_for"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dimen_12dp"
-                                android:layout_marginLeft="@dimen/dimen_12dp"
-                                android:layout_marginTop="@dimen/dimen_5dp"
-                                android:padding="@dimen/dimen_12dp"
                                 android:spinnerMode="dropdown" />
 
 
@@ -722,31 +719,6 @@
             <include
                 android:id="@+id/btn_layout"
                 layout="@layout/button_layout" />
-            <!--<Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/red"
-                android:text="@string/cancel"
-                android:visibility="gone"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                tools:ignore="ButtonStyle" />
-
-
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:text="@string/proceed"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                tools:ignore="ButtonStyle" />-->
 
         </LinearLayout>
 

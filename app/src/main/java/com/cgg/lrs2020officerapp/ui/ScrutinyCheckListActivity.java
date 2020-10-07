@@ -43,8 +43,8 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
     ScrutinyCheckListViewModel scrutinyCheckListViewModel;
     Context context;
     CustomProgressDialog customProgressDialog;
-    ArrayList<String> roadList,landUseList,recommendList;
-    String plot_registered,name_tally,area_match,abutting_road,abuting_road_id,east,west,north,south,value_sale_deed,value_ason,pNo_objection,land_use,land_use_id,recomend,recomend_id,verification;
+    ArrayList<String> roadList, landUseList, recommendList;
+    String plot_registered, name_tally, area_match, abutting_road, abuting_road_id, east, west, north, south, value_sale_deed, value_ason, pNo_objection, land_use, land_use_id, recomend, recomend_id, verification;
     List<RoadListData> roadListData;
     List<LandListData> landListData;
     List<RecommendListData> recommendListData;
@@ -58,12 +58,12 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         context = ScrutinyCheckListActivity.this;
         binding.header.headerTitle.setText(R.string.scrutiny_checklist);
         customProgressDialog = new CustomProgressDialog(context);
-        roadList=new ArrayList<>();
-        landUseList=new ArrayList<>();
-        recommendList=new ArrayList<>();
-        roadListData=new ArrayList<>();
-        landListData=new ArrayList<>();
-        recommendListData=new ArrayList<>();
+        roadList = new ArrayList<>();
+        landUseList = new ArrayList<>();
+        recommendList = new ArrayList<>();
+        roadListData = new ArrayList<>();
+        landListData = new ArrayList<>();
+        recommendListData = new ArrayList<>();
 
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
@@ -71,6 +71,13 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
 
         scrutinyCheckListViewModel = new ScrutinyCheckListViewModel(context, getApplication());
 
+
+        binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.customWarningAlert(ScrutinyCheckListActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
+            }
+        });
 
         if (Utils.checkInternetConnection(context)) {
             customProgressDialog.show();
@@ -82,10 +89,10 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                     if (roadDetailsResponse != null && roadDetailsResponse.getStatusCode() != null) {
                         if (roadDetailsResponse.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                             if (roadDetailsResponse.getData() != null && roadDetailsResponse.getData().size() > 0) {
-                                roadListData=roadDetailsResponse.getData();
-                               roadList.clear();
-                               roadList.add(getString(R.string.select));
-                                for(int i=0;i<roadDetailsResponse.getData().size();i++){
+                                roadListData = roadDetailsResponse.getData();
+                                roadList.clear();
+                                roadList.add(getString(R.string.select));
+                                for (int i = 0; i < roadDetailsResponse.getData().size(); i++) {
                                     roadList.add(roadDetailsResponse.getData().get(i).getABBUTINGNAME());
                                 }
 
@@ -100,10 +107,10 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                                         if (landDetailsResponse1 != null && landDetailsResponse1.getStatus() != null) {
                                             if (landDetailsResponse1.getStatus().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                                                 if (landDetailsResponse1.getRemarks() != null && landDetailsResponse1.getRemarks().size() > 0) {
-                                                   landListData=landDetailsResponse1.getRemarks();
+                                                    landListData = landDetailsResponse1.getRemarks();
                                                     landUseList.clear();
                                                     landUseList.add(getString(R.string.select));
-                                                    for(int i=0;i<landDetailsResponse1.getRemarks().size();i++){
+                                                    for (int i = 0; i < landDetailsResponse1.getRemarks().size(); i++) {
                                                         landUseList.add(landDetailsResponse1.getRemarks().get(i).getUSAGETYPE());
                                                     }
 
@@ -119,11 +126,11 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                                                             if (recommendDetailsResponse1 != null && recommendDetailsResponse1.getStatus() != null) {
                                                                 if (recommendDetailsResponse1.getStatus().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                                                                     if (recommendDetailsResponse1.getRecommendMasterList() != null && recommendDetailsResponse1.getRecommendMasterList().size() > 0) {
-                                                                        recommendListData=recommendDetailsResponse1.getRecommendMasterList();
+                                                                        recommendListData = recommendDetailsResponse1.getRecommendMasterList();
                                                                         customProgressDialog.dismiss();
                                                                         recommendList.clear();
                                                                         recommendList.add(getString(R.string.select));
-                                                                        for(int i=0;i<recommendDetailsResponse1.getRecommendMasterList().size();i++){
+                                                                        for (int i = 0; i < recommendDetailsResponse1.getRecommendMasterList().size(); i++) {
                                                                             recommendList.add(recommendDetailsResponse1.getRecommendMasterList().get(i).getRECNAME());
                                                                         }
 
@@ -188,55 +195,55 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                 }
             });
 
-            } else {
+        } else {
             Utils.customErrorAlert(ScrutinyCheckListActivity.this, getResources().getString(R.string.app_name), getString(R.string.plz_check_int));
         }
         binding.rgWhetherPlotRegPrior.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(radioGroup.getCheckedRadioButtonId()==R.id.whether_plot_reg_prior_yes){
-                    plot_registered=AppConstants.YES;
-                }else if(radioGroup.getCheckedRadioButtonId()==R.id.whether_plot_reg_prior_no){
-                    plot_registered=AppConstants.NO;
+                if (radioGroup.getCheckedRadioButtonId() == R.id.whether_plot_reg_prior_yes) {
+                    plot_registered = AppConstants.YES;
+                } else if (radioGroup.getCheckedRadioButtonId() == R.id.whether_plot_reg_prior_no) {
+                    plot_registered = AppConstants.NO;
                 }
             }
         });
         binding.rgNameOfLrsTallying.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(radioGroup.getCheckedRadioButtonId()==R.id.name_of_lrs_tallying_yes){
-                    name_tally=AppConstants.YES;
-                }else if(radioGroup.getCheckedRadioButtonId()==R.id.name_of_lrs_tallying_no){
-                    name_tally=AppConstants.NO;
+                if (radioGroup.getCheckedRadioButtonId() == R.id.name_of_lrs_tallying_yes) {
+                    name_tally = AppConstants.YES;
+                } else if (radioGroup.getCheckedRadioButtonId() == R.id.name_of_lrs_tallying_no) {
+                    name_tally = AppConstants.NO;
                 }
             }
         });
         binding.rgAreaMatchingWithApplication.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(radioGroup.getCheckedRadioButtonId()==R.id.area_matching_with_application_yes){
-                    area_match=AppConstants.YES;
-                }else if(radioGroup.getCheckedRadioButtonId()==R.id.area_matching_with_application_no){
-                    area_match=AppConstants.NO;
+                if (radioGroup.getCheckedRadioButtonId() == R.id.area_matching_with_application_yes) {
+                    area_match = AppConstants.YES;
+                } else if (radioGroup.getCheckedRadioButtonId() == R.id.area_matching_with_application_no) {
+                    area_match = AppConstants.NO;
                 }
             }
         });
         binding.spAbuttingRoadDetails.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                abutting_road=binding.spAbuttingRoadDetails.getSelectedItem().toString();
-                for(int z=0;z<roadListData.size();z++){
-                    if(roadListData.get(z).getABBUTINGNAME().equalsIgnoreCase(abutting_road)){
-                        abuting_road_id=roadListData.get(z).getABBUTINGID();
+                abutting_road = binding.spAbuttingRoadDetails.getSelectedItem().toString();
+                for (int z = 0; z < roadListData.size(); z++) {
+                    if (roadListData.get(z).getABBUTINGNAME().equalsIgnoreCase(abutting_road)) {
+                        abuting_road_id = roadListData.get(z).getABBUTINGID();
                     }
                 }
-                if(abutting_road.equalsIgnoreCase("Road")){
+                if (abutting_road.equalsIgnoreCase("Road")) {
                     binding.cvEastWestNorSou.setVisibility(View.GONE);
                     binding.etEast.setText(null);
                     binding.etWest.setText(null);
                     binding.etNorth.setText(null);
                     binding.etSouth.setText(null);
-                }else{
+                } else {
                     binding.cvEastWestNorSou.setVisibility(View.VISIBLE);
                 }
             }
@@ -250,20 +257,20 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         binding.rgSynoPlotnoExistingInDatabase.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(radioGroup.getCheckedRadioButtonId()==R.id.syno_plotno_existing_in_database_yes){
-                    pNo_objection=AppConstants.YES;
-                }else if(radioGroup.getCheckedRadioButtonId()==R.id.syno_plotno_existing_in_database_no){
-                    pNo_objection=AppConstants.NO;
+                if (radioGroup.getCheckedRadioButtonId() == R.id.syno_plotno_existing_in_database_yes) {
+                    pNo_objection = AppConstants.YES;
+                } else if (radioGroup.getCheckedRadioButtonId() == R.id.syno_plotno_existing_in_database_no) {
+                    pNo_objection = AppConstants.NO;
                 }
             }
         });
         binding.spLandUse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                land_use=binding.spLandUse.getSelectedItem().toString();
-                for(int z=0;z<landListData.size();z++){
-                    if(landListData.get(z).getUSAGETYPE().equalsIgnoreCase(land_use)){
-                        land_use_id=landListData.get(z).getUSAGETYPEID();
+                land_use = binding.spLandUse.getSelectedItem().toString();
+                for (int z = 0; z < landListData.size(); z++) {
+                    if (landListData.get(z).getUSAGETYPE().equalsIgnoreCase(land_use)) {
+                        land_use_id = landListData.get(z).getUSAGETYPEID();
                     }
                 }
             }
@@ -277,10 +284,10 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         binding.spRecommendationFor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                recomend=binding.spRecommendationFor.getSelectedItem().toString();
-                for(int z=0;z<recommendListData.size();z++){
-                    if(recommendListData.get(z).getRECNAME().equalsIgnoreCase(recomend)){
-                        recomend_id=recommendListData.get(z).getRECID();
+                recomend = binding.spRecommendationFor.getSelectedItem().toString();
+                for (int z = 0; z < recommendListData.size(); z++) {
+                    if (recommendListData.get(z).getRECNAME().equalsIgnoreCase(recomend)) {
+                        recomend_id = recommendListData.get(z).getRECID();
                     }
                 }
             }
@@ -294,15 +301,15 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                east=binding.etEast.getText().toString().trim();
-                west=binding.etWest.getText().toString().trim();
-                north=binding.etNorth.getText().toString().trim();
-                south=binding.etSouth.getText().toString().trim();
-                value_sale_deed=binding.etValueSaleDeed.getText().toString().trim();
-                value_ason=binding.etValueAson.getText().toString().trim();
-                verification=binding.etVerification.getText().toString().trim();
-                if(validate()){
-                    SubmitScrutinyRequest submitScrutinyRequest=new SubmitScrutinyRequest();
+                east = binding.etEast.getText().toString().trim();
+                west = binding.etWest.getText().toString().trim();
+                north = binding.etNorth.getText().toString().trim();
+                south = binding.etSouth.getText().toString().trim();
+                value_sale_deed = binding.etValueSaleDeed.getText().toString().trim();
+                value_ason = binding.etValueAson.getText().toString().trim();
+                verification = binding.etVerification.getText().toString().trim();
+                if (validate()) {
+                    SubmitScrutinyRequest submitScrutinyRequest = new SubmitScrutinyRequest();
                     submitScrutinyRequest.setPPRIDate(plot_registered);
                     submitScrutinyRequest.setPNAMEMATCH(name_tally);
                     submitScrutinyRequest.setPAREAMATCH(area_match);
@@ -318,9 +325,9 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                     submitScrutinyRequest.setPRECOMMENDEDFOR(recomend_id);
                     submitScrutinyRequest.setPREMARKS(verification);
 
-                    Gson gson=new Gson();
-                    String request=gson.toJson(submitScrutinyRequest);
-                    editor.putString(AppConstants.SUBMIT_REQUEST,request);
+                    Gson gson = new Gson();
+                    String request = gson.toJson(submitScrutinyRequest);
+                    editor.putString(AppConstants.SUBMIT_REQUEST, request);
                     editor.commit();
 
                     startActivity(new Intent(ScrutinyCheckListActivity.this,
@@ -334,46 +341,46 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
     }
 
     private boolean validate() {
-        if(TextUtils.isEmpty(plot_registered)){
+        if (TextUtils.isEmpty(plot_registered)) {
             callSnackBar(getString(R.string.whether_plot_registered_prior));
             return false;
-        }else if(TextUtils.isEmpty(name_tally)){
+        } else if (TextUtils.isEmpty(name_tally)) {
             callSnackBar(getString(R.string.whether_name_tallying));
             return false;
-        }else if(TextUtils.isEmpty(area_match)){
+        } else if (TextUtils.isEmpty(area_match)) {
             callSnackBar(getString(R.string.area_matching_with_application));
             return false;
-        }else if(abutting_road.equalsIgnoreCase(getString(R.string.select))){
+        } else if (abutting_road.equalsIgnoreCase(getString(R.string.select))) {
             callSnackBar(getString(R.string.select_road_details));
             return false;
-        }else if(TextUtils.isEmpty(east) && binding.cvEastWestNorSou.getVisibility()==View.VISIBLE){
+        } else if (TextUtils.isEmpty(east) && binding.cvEastWestNorSou.getVisibility() == View.VISIBLE) {
             callSnackBar(getString(R.string.enter_east));
             return false;
-        }else if(TextUtils.isEmpty(west) && binding.cvEastWestNorSou.getVisibility()==View.VISIBLE){
+        } else if (TextUtils.isEmpty(west) && binding.cvEastWestNorSou.getVisibility() == View.VISIBLE) {
             callSnackBar(getString(R.string.enter_west));
             return false;
-        }else if(TextUtils.isEmpty(north) && binding.cvEastWestNorSou.getVisibility()==View.VISIBLE){
+        } else if (TextUtils.isEmpty(north) && binding.cvEastWestNorSou.getVisibility() == View.VISIBLE) {
             callSnackBar(getString(R.string.enter_north));
             return false;
-        }else if(TextUtils.isEmpty(south) && binding.cvEastWestNorSou.getVisibility()==View.VISIBLE){
+        } else if (TextUtils.isEmpty(south) && binding.cvEastWestNorSou.getVisibility() == View.VISIBLE) {
             callSnackBar(getString(R.string.enter_south));
             return false;
-        }else if(TextUtils.isEmpty(value_sale_deed)){
+        } else if (TextUtils.isEmpty(value_sale_deed)) {
             callSnackBar(getString(R.string.enter_value_as_per_sale));
             return false;
-        }else if(TextUtils.isEmpty(value_ason)){
+        } else if (TextUtils.isEmpty(value_ason)) {
             callSnackBar(getString(R.string.enter_value_as_one));
             return false;
-        }else if(TextUtils.isEmpty(pNo_objection)){
+        } else if (TextUtils.isEmpty(pNo_objection)) {
             callSnackBar(getString(R.string.plot_no_objection));
             return false;
-        }else if(land_use.equalsIgnoreCase(getString(R.string.select))){
+        } else if (land_use.equalsIgnoreCase(getString(R.string.select))) {
             callSnackBar(getString(R.string.select_land_use));
             return false;
-        }else if(recomend.equalsIgnoreCase(getString(R.string.select))){
+        } else if (recomend.equalsIgnoreCase(getString(R.string.select))) {
             callSnackBar(getString(R.string.select_recommend));
             return false;
-        }else if(TextUtils.isEmpty(verification)){
+        } else if (TextUtils.isEmpty(verification)) {
             callSnackBar(getString(R.string.enter_verification_remarks));
             return false;
         }
@@ -400,6 +407,6 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
 
     @Override
     public void onBackPressed() {
-        Utils.customWarningAlert(this, getString(R.string.app_name),"Data will be lost. Do you want to go back?",  editor);
+        Utils.customWarningAlert(this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
     }
 }

@@ -9,7 +9,6 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
@@ -22,9 +21,7 @@ import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsReq;
 import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsRes;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.ApplicationListViewModel;
 import com.cgg.lrs2020officerapp.viewmodel.LayoutViewModel;
-import com.cgg.lrs2020officerapp.viewmodel.ScrutinyCheckListViewModel;
 import com.google.gson.Gson;
 
 public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInterface {
@@ -46,8 +43,6 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
         viewModel = new LayoutViewModel(context, getApplication());
         binding.setViewModel(viewModel);
 
-//        applicationID = getIntent().getStringExtra(AppConstants.APPLICATION_ID);
-
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
 
@@ -60,6 +55,12 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
             e.printStackTrace();
         }
 
+        binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         callApplicantDetails();
 
@@ -82,7 +83,7 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
             }
         });
 
-        binding.proceed.setOnClickListener(new View.OnClickListener() {
+        binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LayoutActivity.this, ScrutinyCheckListActivity.class));

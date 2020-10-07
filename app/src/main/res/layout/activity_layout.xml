@@ -25,7 +25,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/proceed"
+            android:layout_above="@+id/ll_btn"
             android:layout_below="@+id/header">
 
             <LinearLayout
@@ -851,15 +851,19 @@
 
         </ScrollView>
 
-        <Button
-            android:id="@+id/proceed"
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimaryDark"
-            android:padding="10dp"
-            android:text="Proceed"
-            android:textAllCaps="false" />
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/btn_layout"
+                layout="@layout/button_layout" />
+
+        </LinearLayout>
     </RelativeLayout>
 
 </layout>
