@@ -1,9 +1,11 @@
 package com.cgg.lrs2020officerapp.ui;
 
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,12 +14,19 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.text.format.DateFormat;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -32,6 +41,8 @@ import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityImageUploadBinding;
 import com.cgg.lrs2020officerapp.utils.Utils;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
@@ -39,6 +50,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
@@ -52,11 +65,17 @@ public class ImageUploadActivity extends LocBaseActivity {
     public Uri fileUri;
     public static final String IMAGE_DIRECTORY_NAME = "LRS_IMAGES";
     Bitmap bm;
-    File file_image1, file_image2, file_image3, file_image4, file_image_doc;
+    File file_image1, file_image2, file_image3, file_image4, file_image_doc, file_image_plot;
     private String userChoosenTask;
     public static final String READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE";
     public static final int PERMISSION_CODE = 42042;
     public static final int REQUEST_PDF = 3;
+    private int pic_number;
+    public static String PHOTO_ENCODED_STRING1;
+    public static String PHOTO_ENCODED_STRING2;
+    Uri uriPdf1, uriPdf2;
+    private boolean extractDoc = false;
+    private boolean plotDoc = false;
 
 
     @Override
@@ -70,7 +89,16 @@ public class ImageUploadActivity extends LocBaseActivity {
         binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectImageDialog();
+                pic_number = 1;
+                selectImageDialog(pic_number);
+            }
+        });
+
+        binding.btnUploadPlotLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pic_number = 2;
+                selectImageDialog(pic_number);
             }
         });
 
@@ -176,9 +204,21 @@ public class ImageUploadActivity extends LocBaseActivity {
                     file_image4 = new File(FilePath);
                     Glide.with(ImageUploadActivity.this).load(file_image4).into(binding.image4);
                 } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_DOC)) {
+                    extractDoc = true;
                     file_image_doc = new File(FilePath);
                     binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                    Toast.makeText(context, file_image_doc.getName(), Toast.LENGTH_SHORT).show();
+                    binding.imageExtract.setVisibility(View.VISIBLE);
+                    binding.imageExtract.setPadding(0, 0, 0, 0);
+                    binding.imageExtract.setBackgroundColor(getResources().getColor(R.color.white));
+                    Glide.with(ImageUploadActivity.this).load(file_image_doc).into(binding.imageExtract);
+                } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_PLOT)) {
+                    plotDoc = true;
+                    file_image_plot = new File(FilePath);
+                    binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    binding.imagePlot.setVisibility(View.VISIBLE);
+                    binding.imagePlot.setPadding(0, 0, 0, 0);
+                    binding.imagePlot.setBackgroundColor(getResources().getColor(R.color.white));
+                    Glide.with(ImageUploadActivity.this).load(file_image_plot).into(binding.imagePlot);
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
@@ -190,7 +230,313 @@ public class ImageUploadActivity extends LocBaseActivity {
                         "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
                         .show();
             }
+        } else if (requestCode == SELECT_FILE && resultCode == RESULT_OK
+                && null != data) {
+            onSelectFromGalleryResult(data);
+        } else if (requestCode == REQUEST_PDF) {
+            if (pic_number == 1) {
+                uriPdf1 = data.getData();
+                displayFromUriPDF1(uriPdf1);
+            } else if (pic_number == 2) {
+                uriPdf2 = data.getData();
+                displayFromUriPDF2(uriPdf2);
+            }
+
         }
+    }
+
+
+    private String convertBase64(Bitmap bitmap) {
+        String base64 = "";
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return base64;
+    }
+
+    private void displayFromUriPDF1(Uri uri) {
+        try {
+            if (uri != null && uri.getScheme() != null && uri.getScheme().equals("content")) {
+                Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                try {
+                    if (cursor != null && cursor.moveToFirst()) {
+                        String result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                        if (result.contains(".pdf")) {
+                            extractDoc = true;
+                            binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                            binding.imageExtract.setVisibility(View.GONE);
+                            InputStream in = getContentResolver().openInputStream(uri);
+
+                            byte[] bytes;
+                            assert in != null;
+                            bytes = getBytesPDF1(in);
+
+                            PHOTO_ENCODED_STRING1 = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+                            binding.imageExtract.setVisibility(View.GONE);
+                            binding.tvDoc.setVisibility(View.VISIBLE);
+                            binding.tvDoc.setText(result);
+                        } else {
+                            extractDoc = false;
+                            binding.imageExtract.setVisibility(View.GONE);
+                            binding.tvDoc.setVisibility(View.GONE);
+                            binding.tvDoc.setText("");
+                            binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.gray));
+                            Toast.makeText(context, "Please select pdf file only", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    assert cursor != null;
+                    cursor.close();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void displayFromUriPDF2(Uri uri) {
+        try {
+            if (uri != null && uri.getScheme() != null && uri.getScheme().equals("content")) {
+                Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                try {
+                    if (cursor != null && cursor.moveToFirst()) {
+                        String result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                        if (result.contains(".pdf")) {
+                            plotDoc = true;
+                            binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                            binding.imagePlot.setVisibility(View.GONE);
+                            InputStream in = getContentResolver().openInputStream(uri);
+
+                            byte[] bytes;
+                            assert in != null;
+                            bytes = getBytesPDF1(in);
+
+                            PHOTO_ENCODED_STRING2 = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+                            binding.imagePlot.setVisibility(View.GONE);
+                            binding.tvPlot.setVisibility(View.VISIBLE);
+                            binding.tvPlot.setText(result);
+                        } else {
+                            plotDoc = false;
+                            binding.imagePlot.setVisibility(View.GONE);
+                            binding.tvPlot.setVisibility(View.GONE);
+                            binding.tvPlot.setText("");
+                            binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.gray));
+                            Toast.makeText(context, "Please select pdf file only", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    assert cursor != null;
+                    cursor.close();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public byte[] getBytesPDF1(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        int len = 0;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return byteBuffer.toByteArray();
+    }
+
+    private void onSelectFromGalleryResult(Intent data) {
+        if (data != null) {
+            try {
+                Uri imageUri = data.getData();
+
+                if (pic_number == 1) {
+                    galleryImageSetter(imageUri);
+                } else if (pic_number == 2) {
+                    galleryImageSetter2(imageUri);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+
+    public void galleryImageSetter(Uri imageUri) {
+
+        try {
+            InputStream imageStream = getContentResolver().openInputStream(imageUri);
+            Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            selectedImage = getResizedBitmap(selectedImage, 200);// 400 is for example, replace with desired size
+            ImageView imageView;
+            Bitmap img_bitmap;
+            extractDoc = true;
+            binding.tvDoc.setVisibility(View.GONE);
+            binding.imageExtract.setVisibility(View.VISIBLE);
+            binding.imageExtract.setImageBitmap(selectedImage);
+            img_bitmap = ((BitmapDrawable) binding.imageExtract.getDrawable()).getBitmap();
+            PHOTO_ENCODED_STRING1 = convertBitMap(img_bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void galleryImageSetter2(Uri imageUri) {
+
+        try {
+            InputStream imageStream = getContentResolver().openInputStream(imageUri);
+            Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            selectedImage = getResizedBitmap(selectedImage, 200);// 400 is for example, replace with desired size
+            ImageView imageView;
+            Bitmap img_bitmap;
+            plotDoc = true;
+            binding.tvPlot.setVisibility(View.GONE);
+            binding.imagePlot.setVisibility(View.VISIBLE);
+            binding.imagePlot.setImageBitmap(selectedImage);
+            img_bitmap = ((BitmapDrawable) binding.imagePlot.getDrawable()).getBitmap();
+            PHOTO_ENCODED_STRING2 = convertBitMap(img_bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private Bitmap ProcessingBitmap(Bitmap bitmap) {
+        Bitmap bm1 = null;
+        Bitmap newBitmap = null;
+
+        try {
+            bm1 = bitmap;
+            Bitmap.Config config = bm1.getConfig();
+            if (config == null) {
+                config = Bitmap.Config.ARGB_8888;
+            }
+
+            newBitmap = Bitmap.createBitmap(bm1.getWidth(), bm1.getHeight(), config);
+            Canvas newCanvas = new Canvas(newBitmap);
+
+
+            newCanvas.drawBitmap(bm1, 0, 0, null);
+
+            String currentDateTimeString = (String) DateFormat.format("yyyy/MM/dd hh:mm",
+                    System.currentTimeMillis());
+
+            if (mCurrentLocation != null && mCurrentLocation.getLatitude() > 0 && mCurrentLocation.getLongitude() > 0) {
+
+                Paint paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+                paintText.setTextSize(10);
+                paintText.setStyle(Paint.Style.FILL);
+
+                Rect rectText = new Rect();
+                paintText.getTextBounds(String.valueOf(mCurrentLocation.getLatitude()), 0, String.valueOf(mCurrentLocation.getLatitude()).length(), rectText);
+
+                paintText.setColor(Color.WHITE);
+                newCanvas.drawText(currentDateTimeString,
+                        0, 120, paintText);
+                paintText.setColor(Color.WHITE);
+                newCanvas.drawText(String.valueOf(mCurrentLocation.getLatitude()),
+                        0, 140, paintText);
+                paintText.setColor(Color.WHITE);
+                newCanvas.drawText(String.valueOf(mCurrentLocation.getLongitude()),
+                        0, 150, paintText);
+
+            } else {
+                Toast.makeText(this, "caption empty!", Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return newBitmap;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mGpsSwitchStateReceiver, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
+
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                mCurrentLocation = locationResult.getLastLocation();
+            }
+        };
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mGpsSwitchStateReceiver);
+    }
+
+
+    private BroadcastReceiver mGpsSwitchStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                if (intent.getAction().matches("android.location.PROVIDERS_CHANGED")) {
+                    callPermissions();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
+
+    public String convertBitMap(Bitmap img_bitmap) {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        img_bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+        return encodedImage;
     }
 
     private void callSettings() {
@@ -411,7 +757,7 @@ public class ImageUploadActivity extends LocBaseActivity {
     }
 
 
-    private void selectImageDialog() {
+    private void selectImageDialog(int snO) {
         final CharSequence[] items = {"Take Photo", "Choose from Library", "Choose Documents",
                 "Cancel"};
 
@@ -424,7 +770,11 @@ public class ImageUploadActivity extends LocBaseActivity {
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
                     if (callPermissions()) {
-                        IMAGE_FLAG = AppConstants.IMAGE_DOC;
+                        if (snO == 1) {
+                            IMAGE_FLAG = AppConstants.IMAGE_DOC;
+                        } else if (snO == 2) {
+                            IMAGE_FLAG = AppConstants.IMAGE_PLOT;
+                        }
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
                         if (fileUri != null) {

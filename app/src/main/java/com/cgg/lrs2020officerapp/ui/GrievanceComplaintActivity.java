@@ -689,30 +689,6 @@
 //                if(pic_number==1) {
 //                    uriPdf1 = data.getData();
 //                    displayFromUriPDF1(uriPdf1);
-//
-//              /*      try {
-//                        iv_cam_one.setVisibility(View.VISIBLE);
-//                      //  pdfView1.setVisibility(View.VISIBLE);
-//                        InputStream in = getContentResolver().openInputStream(uriPdf1);
-//
-//                        byte[] bytes;
-//                        bytes=getBytesPDF1(in);
-//                        Log.d("data", "onActivityResult: bytes size="+bytes.length);
-//
-//                        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//
-//                        iv_cam_one.setImageBitmap(bmp);
-//
-//
-//                        PHOTO_ENCODED_STRING1=Base64.encodeToString(bytes,Base64.DEFAULT);
-//
-//                        GlobalDeclarations.PDFBase64String1=PHOTO_ENCODED_STRING1;
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        Log.d("error", "onActivityResult: " + e.toString());
-//                    }*/
-//
 //                }
 //
 //                if(pic_number==2) {
@@ -880,7 +856,7 @@
 //                .onPageError(this)
 //                .load();*/
 //
-//    }
+//    }uriPdf1
 //
 //
 //    public byte[] getBytesPDF1(InputStream inputStream) throws IOException {
@@ -1009,7 +985,7 @@
 //            width = maxSize;
 //            height = (int) (width / bitmapRatio);
 //        } else {
-//            height = maxSize;
+//            height = maxSize;getResizedBitmap
 //            width = (int) (height * bitmapRatio);
 //        }
 //        return Bitmap.createScaledBitmap(image, width, height, true);
