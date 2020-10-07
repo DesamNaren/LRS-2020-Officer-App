@@ -619,16 +619,18 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             selectedImage = getResizedBitmap(selectedImage, 200);// 400 is for example, replace with desired size
             ImageView imageView;
             Bitmap img_bitmap;
-            extractDoc = true;
-            binding.tvDoc.setVisibility(View.GONE);
-            binding.imageExtract.setVisibility(View.VISIBLE);
-            binding.imageExtract.setImageBitmap(selectedImage);
-            img_bitmap = ((BitmapDrawable) binding.imageExtract.getDrawable()).getBitmap();
-            binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            P_EX_FILE_PATH = convertBitMap(img_bitmap);
 
-            binding.tvDoc.setVisibility(View.GONE);
-            binding.tvDoc.setText("");
+            img_bitmap = ((BitmapDrawable) binding.imageExtract.getDrawable()).getBitmap();
+            P_EX_FILE_PATH = convertBitMap(img_bitmap);
+            if (!TextUtils.isEmpty(P_EX_FILE_PATH)) {
+                extractDoc = true;
+                binding.tvDoc.setVisibility(View.GONE);
+                binding.imageExtract.setVisibility(View.VISIBLE);
+                binding.imageExtract.setImageBitmap(selectedImage);
+                binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                binding.tvDoc.setVisibility(View.GONE);
+                binding.tvDoc.setText("");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -643,18 +645,20 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             InputStream imageStream = getContentResolver().openInputStream(imageUri);
             Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
             selectedImage = getResizedBitmap(selectedImage, 200);// 400 is for example, replace with desired size
-            ImageView imageView;
             Bitmap img_bitmap;
-            plotDoc = true;
-            binding.tvPlot.setVisibility(View.GONE);
-            binding.imagePlot.setVisibility(View.VISIBLE);
-            binding.imagePlot.setImageBitmap(selectedImage);
+
             img_bitmap = ((BitmapDrawable) binding.imagePlot.getDrawable()).getBitmap();
-            binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             P_PLAN_PATH = convertBitMap(img_bitmap);
 
-            binding.tvPlot.setVisibility(View.GONE);
-            binding.tvPlot.setText("");
+            if (!TextUtils.isEmpty(P_PLAN_PATH)) {
+                plotDoc = true;
+                binding.tvPlot.setVisibility(View.GONE);
+                binding.imagePlot.setVisibility(View.VISIBLE);
+                binding.imagePlot.setImageBitmap(selectedImage);
+                binding.btnUploadPlotLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                binding.tvPlot.setVisibility(View.GONE);
+                binding.tvPlot.setText("");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -751,11 +755,16 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
 
     public String convertBitMap(Bitmap img_bitmap) {
 
+        String encodedImage = "";
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         img_bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
         byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        if (imageBytes.length <= 1000000) {
+            encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        } else {
+            Toast.makeText(context, "Upload file with maximum 1 MB only", Toast.LENGTH_SHORT).show();
+        }
 
         return encodedImage;
     }
