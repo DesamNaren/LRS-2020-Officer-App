@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements ErrorHandlerInte
 
                     if (loginResponse.get(0).getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                         startActivity(new Intent(context, ListActivity.class));
-                        finish();
+//                        finish();
                     } else if (loginResponse.get(0).getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
                         Utils.customErrorAlert(context, getString(R.string.app_name), loginResponse.get(0).getStatusMessage());
                     } else {

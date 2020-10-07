@@ -2,938 +2,254 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="taskData"
+            type="com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData" />
+
+    </data>
+
     <LinearLayout
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
+        android:id="@+id/ll_data"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+     >
 
-
-        <TextView
-            android:layout_gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/white"
-            android:padding="@dimen/dimen_8dp"
-            android:text="@string/total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <ScrollView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/ll_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/root_cl"
+                android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="@dimen/dimen_10dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/root_cl"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        android:visibility="visible"
-                        app:layout_behavior="@string/bottom_sheet_behavior">
+                android:visibility="visible"
+                app:layout_behavior="@string/bottom_sheet_behavior">
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_5dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="@dimen/dimen_5dp"
-                            android:paddingTop="@dimen/dimen_5dp"
-                            android:paddingRight="@dimen/dimen_5dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Application Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="M/NALG/000111/2020"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Applicant Name"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="VADLAMUDI BALAPRASAD"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/dimen_5dp">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.8"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:text="Father Name"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:singleLine="false"
-                                        android:text="CHALMAIAH"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Mobile Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="9490043769"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Plot Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="145"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Locality"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="Residential Area Jam Masjid to Munugode Road"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Verified Date"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="06-10-2020 13:53:51"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv2"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_10dp">
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dimen_5dp"
+                    android:paddingTop="@dimen/dimen_5dp"
+                    android:paddingRight="@dimen/dimen_5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/root_cl"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        android:visibility="visible"
-                        app:layout_behavior="@string/bottom_sheet_behavior">
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_5dp">
 
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_5dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="@dimen/dimen_5dp"
-                            android:paddingTop="@dimen/dimen_5dp"
-                            android:paddingRight="@dimen/dimen_5dp">
+                            android:layout_weight="0.8"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:text="Application Number"
+                            android:textSize="@dimen/dimen_16sp" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
+                        <TextView
+                            android:id="@+id/application_no"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:singleLine="false"
+                            android:text="@{taskData.APPLICATIONID}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Application Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="M/NALG/000108/2020"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Applicant Name"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="PRDDAGONI LINGAIAH"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/dimen_5dp">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.8"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:text="Father Name"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:singleLine="false"
-                                        android:text="LAXMAIAH"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Mobile Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="LAXMAIAH"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Plot Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="461"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Locality"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="GANDHAMVARIGUDEM REVENUE VILLAGE"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Verified Date"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="06-10-2020 13:53:45"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/root_cl"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        android:visibility="visible"
-                        app:layout_behavior="@string/bottom_sheet_behavior">
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_5dp">
 
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_5dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="@dimen/dimen_5dp"
-                            android:paddingTop="@dimen/dimen_5dp"
-                            android:paddingRight="@dimen/dimen_5dp">
+                            android:layout_weight="0.8"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:text="Applicant Name"
+                            android:textSize="@dimen/dimen_16sp" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
+                        <TextView
+                            android:id="@+id/applicant_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:singleLine="false"
+                            android:text="@{taskData.NAME}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Application Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="M/NALG/000111/2020"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Applicant Name"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="VADLAMUDI BALAPRASAD"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/dimen_5dp">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.8"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:text="Father Name"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:singleLine="false"
-                                        android:text="CHALMAIAH"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Mobile Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="9490043769"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Plot Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="145"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Locality"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="Residential Area Jam Masjid to Munugode Road"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Verified Date"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="06-10-2020 13:53:51"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/root_cl"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        android:visibility="visible"
-                        app:layout_behavior="@string/bottom_sheet_behavior">
-
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_5dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="@dimen/dimen_5dp"
-                            android:paddingTop="@dimen/dimen_5dp"
-                            android:paddingRight="@dimen/dimen_5dp">
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dimen_5dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:text="Father Name"
+                                android:textSize="@dimen/dimen_16sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Application Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="M/NALG/000108/2020"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:id="@+id/father_name"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Applicant Name"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="PRDDAGONI LINGAIAH"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/dimen_5dp">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.8"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:text="Father Name"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:fontFamily="@font/elmessiri_regular"
-                                        android:singleLine="false"
-                                        android:text="LAXMAIAH"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/dimen_16sp" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Mobile Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="LAXMAIAH"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Plot Number"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="461"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Locality"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="GANDHAMVARIGUDEM REVENUE VILLAGE"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Verified Date"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="06-10-2020 13:53:45"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
+                                android:layout_weight="1"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:singleLine="false"
+                                android:text="@{taskData.FATHERHUSBANDNAME}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dimen_16sp" />
 
                         </LinearLayout>
+
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.8"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:text="Mobile Number"
+                            android:textSize="@dimen/dimen_16sp" />
+
+                        <TextView
+                            android:id="@+id/mbl_no"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:singleLine="false"
+                            android:text="@{taskData.APPLICANTMOBILENO}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.8"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:text="Plot Number"
+                            android:textSize="@dimen/dimen_16sp" />
+
+                        <TextView
+                            android:id="@+id/plot_no"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:singleLine="false"
+                            android:text="@{taskData.PLOTNUMBER}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_5dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.8"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:text="Locality"
+                            android:textSize="@dimen/dimen_16sp" />
 
 
+                        <TextView
+                            android:id="@+id/locality"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:singleLine="false"
+                            android:text="@{taskData.LOCALITY}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_5dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.8"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:text="Verified Date"
+                            android:textSize="@dimen/dimen_16sp" />
+
+
+                        <TextView
+                            android:id="@+id/verified_date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:singleLine="false"
+                            android:text="@{taskData.UPDATEDON}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-
-        </ScrollView>
 
     </LinearLayout>
 

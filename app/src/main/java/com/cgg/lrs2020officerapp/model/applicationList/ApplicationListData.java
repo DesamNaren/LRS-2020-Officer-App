@@ -22,10 +22,10 @@ public class ApplicationListData {
     private String pLOTNUMBER;
     @SerializedName("LOCALITY")
     @Expose
-    private Object lOCALITY;
+    private String lOCALITY;
     @SerializedName("UPDATEDON")
     @Expose
-    private Object uPDATEDON;
+    private String uPDATEDON;
 
     public String getAPPLICATIONID() {
         return aPPLICATIONID;
@@ -67,19 +67,19 @@ public class ApplicationListData {
         this.pLOTNUMBER = pLOTNUMBER;
     }
 
-    public Object getLOCALITY() {
+    public String getLOCALITY() {
         return lOCALITY;
     }
 
-    public void setLOCALITY(Object lOCALITY) {
+    public void setLOCALITY(String lOCALITY) {
         this.lOCALITY = lOCALITY;
     }
 
-    public Object getUPDATEDON() {
+    public String getUPDATEDON() {
         return uPDATEDON;
     }
 
-    public void setUPDATEDON(Object uPDATEDON) {
+    public void setUPDATEDON(String uPDATEDON) {
         this.uPDATEDON = uPDATEDON;
     }
 }
