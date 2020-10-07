@@ -51,22 +51,22 @@
                             app:backgroundTint="@color/gray" />
 
                         <ImageView
-                            android:visibility="gone"
                             android:id="@+id/image_extract"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
+                            android:visibility="gone"
                             app:srcCompat="@drawable/camera" />
 
                         <TextView
-                            android:visibility="gone"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:layout_marginTop="@dimen/dimen_8dp"
                             android:id="@+id/tvDoc"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/dimen_8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:visibility="gone" />
                     </LinearLayout>
 
 
@@ -80,6 +80,7 @@
                     android:layout_marginRight="@dimen/dimen_4dp"
                     android:elevation="@dimen/dimen_4dp"
                     android:padding="@dimen/dimen_4dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -97,22 +98,22 @@
                             app:backgroundTint="@color/gray" />
 
                         <ImageView
-                            android:visibility="gone"
                             android:id="@+id/image_plot"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
+                            android:visibility="gone"
                             app:srcCompat="@drawable/camera" />
 
                         <TextView
-                            android:visibility="gone"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:layout_marginTop="@dimen/dimen_8dp"
                             android:id="@+id/tvPlot"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/dimen_8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -244,10 +245,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/red"
-                android:text="@string/cancel"
+                android:text="Previous"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                app:backgroundTint="@color/gray"
                 tools:ignore="ButtonStyle" />
 
 

@@ -10,6 +10,8 @@ import com.cgg.lrs2020officerapp.model.login.LoginRequest;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
 import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
+import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
+import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyResponse;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +47,10 @@ public interface LRSService {
 
     @POST("Scrutiny/OfficerLogin")
     Call<List<LoginResponse>> getLoginResponse(@Body LoginRequest loginRequest);
+
+
+    @POST("Scrutiny/AddScrutinyDetails")
+    Call<List<SubmitScrutinyResponse>> getSubmitResponse(@Body SubmitScrutinyRequest request);
 
     @POST("Scrutiny/GET_APPLICATIONS_LIST")
     Call<ApplicationRes> getApplicationListResponse(@Body ApplicationReq applicationReq);

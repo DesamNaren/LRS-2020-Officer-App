@@ -39,7 +39,9 @@ import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityImageUploadBinding;
+import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
 import com.cgg.lrs2020officerapp.utils.Utils;
+import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.material.snackbar.Snackbar;
@@ -55,6 +57,7 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
 public class ImageUploadActivity extends LocBaseActivity {
 
+    private AddScrutinyViewModel addScrutinyViewModel;
     private static final int SELECT_FILE = 1;
     private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
@@ -69,12 +72,12 @@ public class ImageUploadActivity extends LocBaseActivity {
     public static final int PERMISSION_CODE = 42042;
     public static final int REQUEST_PDF = 3;
     private int pic_number;
-    public static String P_EX_FILE_PATH;
-    public static String P_PLAN_PATH;
-    public static String P_IMAGE1_PATH;
-    public static String P_IMAGE2_PATH;
-    public static String P_IMAGE3_PATH;
-    public static String P_IMAGE4_PATH;
+    public static String P_EX_FILE_PATH = "";
+    public static String P_PLAN_PATH = "";
+    public static String P_IMAGE1_PATH = "";
+    public static String P_IMAGE2_PATH = "";
+    public static String P_IMAGE3_PATH = "";
+    public static String P_IMAGE4_PATH = "";
     Uri uriPdf1, uriPdf2;
     private boolean extractDoc = false;
     private boolean plotDoc = false;
@@ -88,7 +91,15 @@ public class ImageUploadActivity extends LocBaseActivity {
                 R.layout.activity_image_upload);
         binding.header.headerTitle.setText(R.string.upload_files);
 
+        binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         context = ImageUploadActivity.this;
+        addScrutinyViewModel = new AddScrutinyViewModel(getApplication());
         binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +116,30 @@ public class ImageUploadActivity extends LocBaseActivity {
             }
         });
 
+        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Utils.checkInternetConnection(context)) {
+                    SubmitScrutinyRequest request = new SubmitScrutinyRequest();
+                    request.setPIMAGE1PATH(P_IMAGE1_PATH);
+                    request.setPIMAGE2PATH(P_IMAGE2_PATH);
+                    request.setPIMAGE3PATH(P_IMAGE3_PATH);
+                    request.setPIMAGE4PATH(P_IMAGE4_PATH);
+                    request.setPEXFILEPATH(P_EX_FILE_PATH);
+                    request.setPPLANPATH(P_PLAN_PATH);
+                    addScrutinyViewModel.callSubmitAPI(request);
+                } else {
+                    Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
+                }
+            }
+        });
 
         binding.image1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +213,20 @@ public class ImageUploadActivity extends LocBaseActivity {
             }
         });
 
+    }
+
+    private boolean validations() {
+        if (!extractDoc) {
+            Toast.makeText(context, "Upload extract image/document", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!siteImage) {
+            Toast.makeText(context, "Upload at least one site inspection image", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
