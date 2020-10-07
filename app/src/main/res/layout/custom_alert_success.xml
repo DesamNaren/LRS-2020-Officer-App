@@ -35,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_60dp"
             android:text="@string/app_name"
-            android:textSize="@dimen/dimen_20sp"
+            android:textSize="@dimen/dimen_18sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
