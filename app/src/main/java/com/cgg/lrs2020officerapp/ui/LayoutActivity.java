@@ -17,7 +17,7 @@ public class LayoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_layout);
-        binding.header.headerTitle.setText("Scrutiny Details");
+        binding.header.headerTitle.setText(getString(R.string.scrutiny_details));
         binding.proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

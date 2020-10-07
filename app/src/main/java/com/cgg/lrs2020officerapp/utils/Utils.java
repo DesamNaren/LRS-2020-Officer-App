@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
+import com.cgg.lrs2020officerapp.ui.LoginActivity;
 import com.cgg.lrs2020officerapp.ui.QuitAppActivity;
 import com.cgg.lrs2020officerapp.ui.SplashActivity;
 
@@ -340,7 +341,7 @@ public class Utils {
 
                         editor.clear();
                         editor.commit();
-                        Intent newIntent = new Intent(activity, SplashActivity.class);
+                        Intent newIntent = new Intent(activity, LoginActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         activity.startActivity(newIntent);
@@ -641,7 +642,7 @@ public class Utils {
 
                         editor.clear();
                         editor.commit();
-                        Intent newIntent = new Intent(activity, SplashActivity.class);
+                        Intent newIntent = new Intent(activity, LoginActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         activity.startActivity(newIntent);
