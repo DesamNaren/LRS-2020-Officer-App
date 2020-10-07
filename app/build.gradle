@@ -42,7 +42,7 @@ android {
         release {
             resValue "string", "app_name", "@string/app_name_release"
             versionNameSuffix ".0"
-            buildConfigField("String", "SERVER_URL", "\"http://testghmc.cgg.gov.in/LRSScrutiny/\"")
+            buildConfigField("String", "SERVER_URL", "\"http://qaghmc.cgg.gov.in/CGGLRS_SERVICES/\"")
             signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -51,7 +51,7 @@ android {
             resValue "string", "app_name", "@string/app_name_demo"
             applicationIdSuffix ".uat"
             versionNameSuffix ".0.6"
-            buildConfigField("String", "SERVER_URL", "\"http://testghmc.cgg.gov.in/LRSScrutiny/\"")
+            buildConfigField("String", "SERVER_URL", "\"http://qaghmc.cgg.gov.in/CGGLRS_SERVICES/\"")
             signingConfig signingConfigs.release
             debuggable true
         }
@@ -59,7 +59,7 @@ android {
             resValue "string", "app_name", "@string/app_name_demo"
             applicationIdSuffix ".debug"
             versionNameSuffix ".0"
-            buildConfigField("String", "SERVER_URL", "\"http://testghmc.cgg.gov.in/LRSScrutiny/\"")
+            buildConfigField("String", "SERVER_URL", "\"http://qaghmc.cgg.gov.in/CGGLRS_SERVICES/\"")
             signingConfig signingConfigs.release
         }
     }

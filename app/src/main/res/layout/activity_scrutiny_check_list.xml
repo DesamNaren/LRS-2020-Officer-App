@@ -16,7 +16,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/scroll">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,6 +26,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/dimen_4dp"
                     android:layout_marginLeft="@dimen/dimen_4dp"
                     android:layout_marginRight="@dimen/dimen_4dp"
@@ -271,7 +273,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:entries="@array/abutting_road_details"
                                 android:padding="@dimen/dimen_12dp"
                                 android:spinnerMode="dropdown" />
 
@@ -286,6 +287,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_4dp"
+                    android:id="@+id/cv_east_west_nor_sou"
                     android:elevation="@dimen/dimen_4dp"
                     android:padding="@dimen/dimen_4dp">
 
@@ -391,7 +393,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/ll_start_time"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2dp"
@@ -609,7 +610,6 @@
                                 android:layout_marginStart="@dimen/dimen_8dp"
                                 android:layout_marginLeft="@dimen/dimen_8dp"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:entries="@array/abutting_road_details"
                                 android:padding="@dimen/dimen_12dp"
                                 android:spinnerMode="dropdown" />
 
@@ -653,7 +653,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:entries="@array/recommendations"
                                 android:padding="@dimen/dimen_12dp"
                                 android:spinnerMode="dropdown"
                                 android:layout_marginStart="@dimen/dimen_12dp" />
