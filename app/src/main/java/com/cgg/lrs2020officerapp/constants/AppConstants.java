@@ -26,4 +26,5 @@ public class AppConstants {
     public static final int DEVICE_ALREADY_EXIST_CODE = 403;
     public static final int MAX_TRUST_DEVICES = 205;
     public static final String LOGIN_RES = "LOGIN_RES";
+    public static final String APPLICATION_ID = "APPLICATION_ID";
 }

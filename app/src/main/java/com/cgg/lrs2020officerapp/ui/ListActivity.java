@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -41,6 +45,7 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
+    private TextView tv;
     private Context context;
     private ApplicationListViewModel viewModel;
     private ActivityListBinding binding;
@@ -48,6 +53,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LoginResponse loginResponse;
+    private ViewTaskAdapter viewTaskAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +76,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         list = new ArrayList<>();
         try {
             if (getSupportActionBar() != null) {
-                TextView tv = new TextView(getApplicationContext());
+                 tv = new TextView(getApplicationContext());
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
                         RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
@@ -101,7 +107,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                             list = response.getData();
                             if (list != null && list.size() > 0) {
                                 binding.tvRecords.setText("Total Records: " + list.size());
-                                ViewTaskAdapter viewTaskAdapter = new ViewTaskAdapter(context, list);
+                                 viewTaskAdapter = new ViewTaskAdapter(context, list);
                                 binding.recyclerView.setAdapter(viewTaskAdapter);
                                 binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                 binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
@@ -138,9 +144,65 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         }
     }
 
+    private void search(SearchView searchView) {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                try {
+
+                    if (viewTaskAdapter != null) {
+                        viewTaskAdapter.getFilter().filter(newText);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return false;
+    }
+
+    private SearchView searchView = null;
+    private Menu mMenu;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+        mMenu = menu;
+
+        mMenu.findItem(R.id.action_search).setVisible(true);
+
+        MenuItem menuItem = mMenu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        searchView.setQueryHint("Search by Applicant Name or OT Application Number");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                searchView.clearFocus();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                search(searchView);
+                return true;
+            }
+        });
         return true;
     }
 
