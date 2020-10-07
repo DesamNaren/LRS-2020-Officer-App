@@ -21,9 +21,7 @@ import retrofit2.Response;
 public class ApplicationListViewModel extends ViewModel {
 
     private MutableLiveData<ApplicationRes> responseMutableLiveData;
-    public MutableLiveData<String> username = new MutableLiveData<>();
-    public MutableLiveData<String> password = new MutableLiveData<>();
-    public MutableLiveData<String> mobileNum = new MutableLiveData<>();
+
     private Context context;
     private ErrorHandlerInterface errorHandlerInterface;
     private CustomProgressDialog customProgressDialog;

@@ -16,7 +16,7 @@ public class ApplicantDetailsListData {
     private String name;
     @SerializedName("father_husband_name")
     @Expose
-    private Object fatherHusbandName;
+    private String fatherHusbandName;
     @SerializedName("aadhar_number")
     @Expose
     private String aadharNumber;
@@ -189,11 +189,11 @@ public class ApplicantDetailsListData {
         this.name = name;
     }
 
-    public Object getFatherHusbandName() {
+    public String getFatherHusbandName() {
         return fatherHusbandName;
     }
 
-    public void setFatherHusbandName(Object fatherHusbandName) {
+    public void setFatherHusbandName(String fatherHusbandName) {
         this.fatherHusbandName = fatherHusbandName;
     }
 
