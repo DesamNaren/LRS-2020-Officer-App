@@ -42,17 +42,24 @@ android {
         release {
             resValue "string", "app_name", "@string/app_name_release"
             versionNameSuffix ".0"
-            buildConfigField("String", "SERVER_URL", "\"https://google.com/\"")
+            buildConfigField("String", "SERVER_URL", "\"http://testghmc.cgg.gov.in/LRSScrutiny/\"")
             signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
+        uat {
+            resValue "string", "app_name", "@string/app_name_demo"
+            applicationIdSuffix ".uat"
+            versionNameSuffix ".0.6"
+            buildConfigField("String", "SERVER_URL", "\"http://testghmc.cgg.gov.in/LRSScrutiny/\"")
+            signingConfig signingConfigs.release
+            debuggable true
+        }
         debug {
             resValue "string", "app_name", "@string/app_name_demo"
             applicationIdSuffix ".debug"
             versionNameSuffix ".0"
-            buildConfigField("String", "SERVER_URL", "\"https://google.com/\"")
+            buildConfigField("String", "SERVER_URL", "\"http://testghmc.cgg.gov.in/LRSScrutiny/\"")
             signingConfig signingConfigs.release
         }
     }

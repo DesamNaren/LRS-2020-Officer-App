@@ -1,4 +1,4 @@
-package com.cgg.lrs2020officerapp.bean;
+package com.cgg.lrs2020officerapp.model;
 
 public class ListData {
     String applicationNo;
