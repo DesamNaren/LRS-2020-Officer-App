@@ -64,7 +64,9 @@ public class Utils {
             e.printStackTrace();
         }
     }
-
+    public static String getCurrentDateTimeFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss", Locale.getDefault()).format(new Date());
+    }
     public static String getVersionName(Context context) {
         String version;
         try {
