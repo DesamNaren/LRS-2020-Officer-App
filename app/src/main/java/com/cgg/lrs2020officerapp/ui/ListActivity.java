@@ -171,7 +171,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            onBackPressed();
             return true;
         }
 
@@ -233,5 +233,10 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     @Override
     public void handleError(String errMsg, Context context) {
         Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
     }
 }
