@@ -51,8 +51,7 @@
     <string name="scrutiny_checklist">Scrutiny Checklist</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="pending_for_scrutiny">PENDING FOR SCRUTINY</string>
-    <string name="pending_for_scrutiny_small">Pending For Scrutiny</string>
+    <string name="pending_for_scrutiny">Pending For Scrutiny</string>
     <string name="total">Total Records: 04</string>
     <string name="scrutiny_details">Scrutiny Details</string>
     <array name="abutting_road_details">
