@@ -29,7 +29,7 @@
             android:layout_marginRight="6dp"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp">
+            android:layout_marginBottom="5dp">
         </SearchView>
         <TextView
             android:id="@+id/tv_records"
@@ -38,8 +38,9 @@
             android:gravity="center"
             android:padding="@dimen/dimen_5dp"
             android:fontFamily="@font/elmessiri_regular"
-            android:layout_marginBottom="@dimen/dimen_10dp"
-            android:text=""
+            android:layout_marginBottom="@dimen/dimen_5dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:text="jhg"
             android:textColor="@color/white"
             android:textSize="18sp"
           />

@@ -1128,6 +1128,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 btDialogYes.setText(R.string.yes);
                 btDialogYes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 Button btDialogNo = dialog.findViewById(R.id.btDialogNo);
+                btDialogNo.setBackgroundColor(getResources().getColor(R.color.red));
                 btDialogNo.setText(R.string.cancel);
                 btDialogYes.setBackgroundColor(getResources().getColor(R.color.red));
                 btDialogYes.setOnClickListener(new View.OnClickListener() {
