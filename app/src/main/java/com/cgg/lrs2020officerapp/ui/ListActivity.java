@@ -56,6 +56,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     private SharedPreferences.Editor editor;
     private LoginResponse loginResponse;
     private ViewTaskAdapter viewTaskAdapter;
+    SearchView mySearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,20 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
+        binding.header.headerTitle.setText(R.string.pending_for_scrutiny);
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(ListActivity.this);
+            }
+        });
+
+         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               onBackPressed();
+            }
+        });
 
 
         try {
@@ -77,21 +92,22 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
 
         list = new ArrayList<>();
         try {
-            if (getSupportActionBar() != null) {
-                tv = new TextView(getApplicationContext());
-                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
-                        RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-                tv.setLayoutParams(lp);
-                tv.setText(getResources().getString(R.string.pending_for_scrutiny));
-                tv.setGravity(Gravity.CENTER);
-                tv.setTextColor(Color.WHITE);
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(tv);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
-            }
+//            if (getSupportActionBar() != null) {
+//                tv = new TextView(getApplicationContext());
+//                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+//                        RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
+//                        RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
+//                tv.setLayoutParams(lp);
+//                tv.setText(getResources().getString(R.string.pending_for_scrutiny));
+//                tv.setGravity(Gravity.CENTER);
+//                tv.setTextColor(Color.WHITE);
+//                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+//                getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//                getSupportActionBar().setCustomView(tv);
+//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+//            }
+            setupSearchView(binding.searchView);
 
             viewModel = new ViewModelProvider(
                     this, new ApplicationListCustomViewModel(binding, context)).
@@ -153,7 +169,31 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
         }
     }
+    private void setupSearchView(SearchView searchView) {
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                try {
+                    if (viewTaskAdapter != null) {
+                        viewTaskAdapter.getFilter().filter(newText);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+
+
+        });
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setQueryHint("Search here");
+    }
     private void search(SearchView searchView) {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -176,62 +216,62 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
 
         });
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-
-        return false;
-    }
-
-    private SearchView searchView = null;
-    private Menu mMenu;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
-        mMenu = menu;
-
-        mMenu.findItem(R.id.action_search).setVisible(true);
-
-        MenuItem menuItem = mMenu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        searchView.setQueryHint("Search by Applicant Name or OT Application Number");
-
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tv.setVisibility(View.GONE);
-            }
-        });
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                searchView.clearFocus();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                search(searchView);
-                return true;
-            }
-        });
-
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                tv.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
-        return true;
-    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == android.R.id.home) {
+//            onBackPressed();
+//            return true;
+//        }
+//
+//        return false;
+//    }
+//
+//    private SearchView searchView = null;
+//    private Menu mMenu;
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.search_menu, menu);
+//        mMenu = menu;
+//
+//        mMenu.findItem(R.id.action_search).setVisible(true);
+//
+//        MenuItem menuItem = mMenu.findItem(R.id.action_search);
+//        searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+//        searchView.setQueryHint("Search by Applicant Name or OT Application Number");
+//
+//        searchView.setOnSearchClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                tv.setVisibility(View.GONE);
+//            }
+//        });
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                searchView.clearFocus();
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                search(searchView);
+//                return true;
+//            }
+//        });
+//
+//        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+//            @Override
+//            public boolean onClose() {
+//                tv.setVisibility(View.VISIBLE);
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
 
     @Override
     public void handleError(Throwable e, Context context) {

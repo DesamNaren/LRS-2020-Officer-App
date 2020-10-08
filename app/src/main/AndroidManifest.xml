@@ -48,7 +48,6 @@
         <activity
             android:name=".ui.ListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Light_AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.ScrutinyCheckListActivity"
