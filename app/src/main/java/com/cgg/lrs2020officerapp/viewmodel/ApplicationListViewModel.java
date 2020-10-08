@@ -32,8 +32,9 @@ public class ApplicationListViewModel extends ViewModel {
         errorHandlerInterface = (ErrorHandlerInterface) context;
     }
 
-    public LiveData<ApplicationRes> getApplicationListCall() {
+    public LiveData<ApplicationRes> getApplicationListCall(ApplicationReq request) {
         responseMutableLiveData = new MutableLiveData<>();
+        callApplicationList(request);
         return responseMutableLiveData;
     }
 

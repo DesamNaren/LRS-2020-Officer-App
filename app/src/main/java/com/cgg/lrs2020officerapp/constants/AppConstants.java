@@ -34,4 +34,5 @@ public class AppConstants {
     public static final String OFFICER_TYPE = "IO";
 
     public static final String STATUS_ID = "30";
+    public static final String APPLICATION_LIST_RESPONSE = "APPLICATION_LIST_RESPONSE";
 }

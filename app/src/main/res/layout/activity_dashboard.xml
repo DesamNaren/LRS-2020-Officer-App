@@ -139,6 +139,15 @@
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimary"
                             android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:id="@+id/tv_pend_cnt"
+                            android:textAlignment="center"
+                            android:textColor="@color/red"
+                            android:textSize="20sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

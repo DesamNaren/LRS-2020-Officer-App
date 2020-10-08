@@ -57,7 +57,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     private LoginResponse loginResponse;
     private ViewTaskAdapter viewTaskAdapter;
     SearchView mySearchView;
-
+    ApplicationRes applicationRes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +73,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                 Utils.DashboardActivity(ListActivity.this);
             }
         });
+
 
          binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,37 +118,61 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             binding.swipeRV.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    callList();
+                    ApplicationReq request = new ApplicationReq();
+                    request.setOFFICEID(loginResponse.getOFFICEID());
+                    request.setAUTHORITYID(loginResponse.getAUTHORITYID());
+                    request.setROLEID(loginResponse.getROLEID());
+                    request.setSTATUSID(AppConstants.STATUS_ID);
+                    request.setUSERID(loginResponse.getUSERID());
+
+                    if (Utils.checkInternetConnection(ListActivity.this)) {
+                        viewModel.getApplicationListCall(request).observe(ListActivity.this, new Observer<ApplicationRes>() {
+                            @Override
+                            public void onChanged(ApplicationRes response) {
+
+                                if (response != null && response.getStatusCode() != null) {
+                                    if (response.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+                                        list = response.getData();
+                                        if (list != null && list.size() > 0) {
+                                            binding.tvRecords.setText("Total Records: " + list.size());
+                                            viewTaskAdapter = new ViewTaskAdapter(context, list);
+                                            binding.recyclerView.setAdapter(viewTaskAdapter);
+                                            binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                                            binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+                                        }
+                                    } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
+                                        Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), response.getStatusMessage());
+                                    } else {
+                                        Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.something));
+                                    }
+                                } else {
+                                    Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
+                                }
+                            }
+                        });
+                    } else {
+                        Utils.customErrorAlert(ListActivity.this, getResources().getString(R.string.app_name),
+                                getString(R.string.plz_check_int));
+                    }
                     binding.swipeRV.setRefreshing(false); // Disables the refresh icon
                 }
             });
 
-            callList();
-
-            viewModel.getApplicationListCall().observe(this, new Observer<ApplicationRes>() {
-                @Override
-                public void onChanged(ApplicationRes response) {
-
-                    if (response != null && response.getStatusCode() != null) {
-                        if (response.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
-                            list = response.getData();
-                            if (list != null && list.size() > 0) {
-                                binding.tvRecords.setText("Total Records: " + list.size());
-                                viewTaskAdapter = new ViewTaskAdapter(context, list);
-                                binding.recyclerView.setAdapter(viewTaskAdapter);
-                                binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                                binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
-                            }
-                        } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
-                            Utils.customErrorAlert(context, getString(R.string.app_name), response.getStatusMessage());
-                        } else {
-                            Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.something));
-                        }
-                    } else {
-                        Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.server_not));
+//            callList();
+            Gson gson=new Gson();
+            applicationRes=gson.fromJson(sharedPreferences.getString(AppConstants.APPLICATION_LIST_RESPONSE,""),ApplicationRes.class);
+            if (applicationRes != null && applicationRes.getStatusCode() != null) {
+                    list = applicationRes.getData();
+                    if (list != null && list.size() > 0) {
+                        viewTaskAdapter = new ViewTaskAdapter(context, list);
+                        binding.recyclerView.setAdapter(viewTaskAdapter);
+                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                        binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
                     }
-                }
-            });
+            } else {
+                Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.something));
+            }
+
 
 
         } catch (Exception e) {
@@ -155,20 +180,20 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         }
     }
 
-    private void callList() {
-        ApplicationReq request = new ApplicationReq();
-        request.setOFFICEID(loginResponse.getOFFICEID());
-        request.setAUTHORITYID(loginResponse.getAUTHORITYID());
-        request.setROLEID(loginResponse.getROLEID());
-        request.setSTATUSID(AppConstants.STATUS_ID);
-        request.setUSERID(loginResponse.getUSERID());
-
-        if (Utils.checkInternetConnection(context)) {
-            viewModel.callApplicationList(request);
-        } else {
-            Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
-        }
-    }
+//    private void callList() {
+//        ApplicationReq request = new ApplicationReq();
+//        request.setOFFICEID(loginResponse.getOFFICEID());
+//        request.setAUTHORITYID(loginResponse.getAUTHORITYID());
+//        request.setROLEID(loginResponse.getROLEID());
+//        request.setSTATUSID(AppConstants.STATUS_ID);
+//        request.setUSERID(loginResponse.getUSERID());
+//
+//        if (Utils.checkInternetConnection(context)) {
+//            viewModel.callApplicationList(request);
+//        } else {
+//            Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
+//        }
+//    }
     private void setupSearchView(SearchView searchView) {
         searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
