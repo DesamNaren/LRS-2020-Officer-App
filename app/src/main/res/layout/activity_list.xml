@@ -40,7 +40,7 @@
             android:fontFamily="@font/elmessiri_regular"
             android:layout_marginBottom="@dimen/dimen_5dp"
             android:layout_marginTop="@dimen/dimen_5dp"
-            android:text="jhg"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="18sp"
           />
