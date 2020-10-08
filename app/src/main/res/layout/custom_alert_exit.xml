@@ -36,9 +36,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimary"
             android:layout_marginTop="@dimen/_60dp"
             android:text="@string/app_name"
-            android:textSize="@dimen/dimen_18sp"
+            android:textSize="@dimen/dimen_16sp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
             android:textStyle="bold" />
 
         <TextView

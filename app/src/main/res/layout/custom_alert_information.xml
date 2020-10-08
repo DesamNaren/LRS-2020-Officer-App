@@ -37,7 +37,10 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_60dp"
             android:text="@string/app_name"
-            android:textSize="@dimen/dimen_18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:textSize="@dimen/dimen_16sp"
             android:textStyle="bold" />
 
         <TextView
