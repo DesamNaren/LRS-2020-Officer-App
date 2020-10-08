@@ -134,7 +134,6 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                     if (response.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                                         list = response.getData();
                                         if (list != null && list.size() > 0) {
-                                            binding.tvRecords.setText("Total Records: " + list.size());
                                             viewTaskAdapter = new ViewTaskAdapter(context, list);
                                             binding.recyclerView.setAdapter(viewTaskAdapter);
                                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
