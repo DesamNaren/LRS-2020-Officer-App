@@ -1,6 +1,7 @@
 package com.cgg.lrs2020officerapp.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -311,6 +312,11 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     @Override
     public void onBackPressed() {
         //Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
+
+        Intent intent = new Intent(context, Dashboard.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 }

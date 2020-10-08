@@ -180,22 +180,24 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
         binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitScrutinyRequest.setPIPADDRESS(Utils.getLocalIpAddress());
-                submitScrutinyRequest.setPOFFICERTYPE(AppConstants.OFFICER_TYPE);
-                submitScrutinyRequest.setPEMPLOYEEID(loginResponse.getUSERID());
-                submitScrutinyRequest.setPCREATEDBY(loginResponse.getUSERID());
-                submitScrutinyRequest.setPOTPNO(AppConstants.OTP);
-                submitScrutinyRequest.setPSRODOCLINK(loginResponse.getsRO_DOC_LINK());
-                submitScrutinyRequest.setPAPPLICANTID(applicationId);
-                submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
-                submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);
-                submitScrutinyRequest.setPIMAGE3PATH(P_IMAGE3_PATH);
-                submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
-                submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
-                submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
+                if (validations()) {
+                    submitScrutinyRequest.setPIPADDRESS(Utils.getLocalIpAddress());
+                    submitScrutinyRequest.setPOFFICERTYPE(AppConstants.OFFICER_TYPE);
+                    submitScrutinyRequest.setPEMPLOYEEID(loginResponse.getUSERID());
+                    submitScrutinyRequest.setPCREATEDBY(loginResponse.getUSERID());
+                    submitScrutinyRequest.setPOTPNO(AppConstants.OTP);
+                    submitScrutinyRequest.setPSRODOCLINK(loginResponse.getsRO_DOC_LINK());
+                    submitScrutinyRequest.setPAPPLICANTID(applicationId);
+                    submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
+                    submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);
+                    submitScrutinyRequest.setPIMAGE3PATH(P_IMAGE3_PATH);
+                    submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
+                    submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
+                    submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
 
+                    customInfoAlert(submitScrutinyRequest);
+                }
 
-                customInfoAlert(submitScrutinyRequest);
             }
         });
 
@@ -711,7 +713,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                         0, 150, paintText);
 
             } else {
-                Toast.makeText(this, "caption empty!", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "caption empty!", Toast.LENGTH_LONG).show();
             }
 
         } catch (Exception e) {
@@ -1138,10 +1140,10 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                         }
 
                         if (Utils.checkInternetConnection(context)) {
-                            if (validations()) {
+//                            if (validations()) {
                                 customProgressDialog.show();
                                 addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
-                            }
+//                            }
                         } else {
                             Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
                         }

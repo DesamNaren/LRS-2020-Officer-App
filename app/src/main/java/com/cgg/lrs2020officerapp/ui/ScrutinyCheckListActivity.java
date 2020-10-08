@@ -249,7 +249,7 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                         abuting_road_id = roadListData.get(z).getABBUTINGID();
                     }
                 }
-                if (abutting_road.equalsIgnoreCase("Road") || abutting_road.equalsIgnoreCase("Select")) {
+                if (abutting_road.equalsIgnoreCase("Road")) {
                     binding.cvEastWestNorSou.setVisibility(View.VISIBLE);
                 } else {
                     binding.cvEastWestNorSou.setVisibility(View.GONE);
