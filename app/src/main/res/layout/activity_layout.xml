@@ -36,7 +36,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/colorPrimary"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -68,7 +68,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -95,7 +95,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Plot/Layout Falls Under" />
 
                         <TextView
@@ -117,7 +117,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="District" />
 
                         <TextView
@@ -139,7 +139,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Municipality" />
 
                         <TextView
@@ -161,7 +161,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Mandal" />
 
                         <TextView
@@ -183,7 +183,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Gram Panchayat" />
 
                         <TextView
@@ -205,7 +205,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -232,7 +232,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Locality" />
 
                         <TextView
@@ -253,7 +253,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Plot Number" />
 
                         <TextView
@@ -274,7 +274,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Survey Number" />
 
                         <TextView
@@ -295,7 +295,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Village" />
 
                         <TextView
@@ -316,7 +316,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Area/Extent in Sq.Yards" />
 
                         <TextView
@@ -337,7 +337,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Sale Deed Number" />
 
                         <TextView
@@ -358,7 +358,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Sale Deed Year" />
 
                         <TextView
@@ -379,8 +379,8 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
-                            android:text="Registered at (Sub-Registrar Office)" />
+                            android:layout_weight="0.7"
+                            android:text="Registered at (SRO)" />
 
                         <TextView
                             style="@style/text_data"
@@ -400,7 +400,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -427,7 +427,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Application No" />
 
                         <TextView
@@ -448,7 +448,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Applicant Name" />
 
                         <TextView
@@ -469,7 +469,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Father/Spouse Name" />
 
                         <TextView
@@ -490,7 +490,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Aadhaar Number" />
 
                         <TextView
@@ -511,7 +511,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Gender" />
 
                         <TextView
@@ -532,7 +532,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="H.No / Door No" />
 
                         <TextView
@@ -553,7 +553,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Street / Colony" />
 
                         <TextView
@@ -574,7 +574,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Locality" />
 
                         <TextView
@@ -595,7 +595,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Town / City / Village" />
 
                         <TextView
@@ -616,7 +616,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="District " />
 
                         <TextView
@@ -637,7 +637,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Pincode" />
 
                         <TextView
@@ -658,7 +658,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Mobile Number" />
 
                         <TextView
@@ -679,7 +679,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="E-Mail ID" />
 
                         <TextView
@@ -700,7 +700,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Alternate Mobile Number" />
 
                         <TextView
@@ -721,7 +721,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Applicant Status" />
 
                         <TextView
@@ -743,7 +743,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -770,15 +770,15 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
-                            android:text="Amount Paid(in Rs/-)" />
+                            android:layout_weight="0.7"
+                            android:text="Amount Paid(in )" />
 
                         <TextView
                             style="@style/text_data"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@{data.amountpaid}" />
+                            android:text="@{`Rs.`+data.amountpaid+`/-`}" />
 
                     </LinearLayout>
 
@@ -791,7 +791,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Paid On" />
 
                         <TextView
@@ -812,7 +812,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Bank Receipt No." />
 
                         <TextView
@@ -833,7 +833,7 @@
                             style="@style/text_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.7"
                             android:text="Paid At" />
 
                         <TextView
