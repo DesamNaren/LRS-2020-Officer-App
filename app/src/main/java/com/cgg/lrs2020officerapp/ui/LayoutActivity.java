@@ -67,9 +67,12 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
             }
         });
 
-        callApplicantDetails();
+//        callApplicantDetails();
+        ApplicantDetailsReq request = new ApplicantDetailsReq();
+        request.setPAPPLICATIONID(applicationID);
+        request.setPROLEID(loginResponse.getROLEID());
 
-        viewModel.getApplicantDetailsResponse().observe(this, new Observer<ApplicantDetailsRes>() {
+        viewModel.getApplicantDetailsResponse(request).observe(this, new Observer<ApplicantDetailsRes>() {
             @Override
             public void onChanged(ApplicantDetailsRes response) {
 

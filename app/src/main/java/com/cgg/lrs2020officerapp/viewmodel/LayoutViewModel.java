@@ -34,8 +34,9 @@ public class LayoutViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<ApplicantDetailsRes> getApplicantDetailsResponse() {
+    public LiveData<ApplicantDetailsRes> getApplicantDetailsResponse(ApplicantDetailsReq request) {
         applicantDetailsResMutableLiveData = new MutableLiveData<>();
+        getApplicantDetailsResponseCall(request);
         return applicantDetailsResMutableLiveData;
     }
 

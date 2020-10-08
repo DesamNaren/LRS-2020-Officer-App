@@ -3,22 +3,13 @@ package com.cgg.lrs2020officerapp.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -59,6 +50,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     private ViewTaskAdapter viewTaskAdapter;
     SearchView mySearchView;
     ApplicationRes applicationRes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +68,10 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         });
 
 
-         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
+        binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -135,11 +127,17 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                     if (response.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                                         list = response.getData();
                                         if (list != null && list.size() > 0) {
+                                            binding.recyclerView.setVisibility(View.VISIBLE);
+                                            binding.tvEmpty.setVisibility(View.GONE);
                                             viewTaskAdapter = new ViewTaskAdapter(context, list);
                                             binding.recyclerView.setAdapter(viewTaskAdapter);
                                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                             binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+                                        } else {
+                                            binding.recyclerView.setVisibility(View.GONE);
+                                            binding.tvEmpty.setVisibility(View.VISIBLE);
                                         }
+
                                     } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
                                         Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), response.getStatusMessage());
                                     } else {
@@ -158,21 +156,25 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                 }
             });
 
-//            callList();
-            Gson gson=new Gson();
-            applicationRes=gson.fromJson(sharedPreferences.getString(AppConstants.APPLICATION_LIST_RESPONSE,""),ApplicationRes.class);
+            Gson gson = new Gson();
+            applicationRes = gson.fromJson(sharedPreferences.getString(AppConstants.APPLICATION_LIST_RESPONSE, ""), ApplicationRes.class);
             if (applicationRes != null && applicationRes.getStatusCode() != null) {
-                    list = applicationRes.getData();
-                    if (list != null && list.size() > 0) {
-                        viewTaskAdapter = new ViewTaskAdapter(context, list);
-                        binding.recyclerView.setAdapter(viewTaskAdapter);
-                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                        binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
-                    }
+                list = applicationRes.getData();
+                if (list != null && list.size() > 0) {
+                    binding.recyclerView.setVisibility(View.VISIBLE);
+                    binding.tvEmpty.setVisibility(View.GONE);
+
+                    viewTaskAdapter = new ViewTaskAdapter(context, list);
+                    binding.recyclerView.setAdapter(viewTaskAdapter);
+                    binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                    binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+                }else {
+                    binding.recyclerView.setVisibility(View.GONE);
+                    binding.tvEmpty.setVisibility(View.VISIBLE);
+                }
             } else {
                 Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.something));
             }
-
 
 
         } catch (Exception e) {
@@ -180,7 +182,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         }
     }
 
-//    private void callList() {
+    //    private void callList() {
 //        ApplicationReq request = new ApplicationReq();
 //        request.setOFFICEID(loginResponse.getOFFICEID());
 //        request.setAUTHORITYID(loginResponse.getAUTHORITYID());
@@ -219,6 +221,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         searchView.setSubmitButtonEnabled(true);
         searchView.setQueryHint("Search here");
     }
+
     private void search(SearchView searchView) {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

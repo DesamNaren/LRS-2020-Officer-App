@@ -404,7 +404,7 @@ public class Utils {
                         editor.putString(AppConstants.SUBMIT_REQUEST,"");
                         editor.putString(AppConstants.APPLICATION_ID, "");
                         editor.commit();
-                        Intent newIntent = new Intent(activity, ListActivity.class);
+                        Intent newIntent = new Intent(activity, Dashboard.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         activity.startActivity(newIntent);
