@@ -1126,8 +1126,10 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 dialogMessage.setText("Are you sure you want to submit data?");
                 Button btDialogYes = dialog.findViewById(R.id.btDialogYes);
                 btDialogYes.setText(R.string.yes);
+                btDialogYes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 Button btDialogNo = dialog.findViewById(R.id.btDialogNo);
                 btDialogNo.setText(R.string.cancel);
+                btDialogYes.setBackgroundColor(getResources().getColor(R.color.red));
                 btDialogYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
