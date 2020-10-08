@@ -47,6 +47,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/upload_extract"
                             android:textAllCaps="false"
+                            android:layout_margin="@dimen/dimen_10dp"
                             android:textColor="@color/white"
                             app:backgroundTint="@color/gray" />
 

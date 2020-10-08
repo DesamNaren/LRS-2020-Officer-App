@@ -103,6 +103,7 @@
                                     android:imeOptions="actionNext"
                                     android:maxLength="40"
                                     android:singleLine="true"
+                                    android:inputType="textCapCharacters"
                                     android:textAllCaps="true"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dimen_16sp" />

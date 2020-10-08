@@ -435,12 +435,22 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 && null != data) {
             onSelectFromGalleryResult(data);
         } else if (requestCode == REQUEST_PDF) {
-            if (pic_number == 1) {
-                uriPdf1 = data.getData();
-                displayFromUriPDF1(uriPdf1);
-            } else if (pic_number == 2) {
-                uriPdf2 = data.getData();
-                displayFromUriPDF2(uriPdf2);
+            if (resultCode == RESULT_OK) {
+                if (pic_number == 1) {
+                    uriPdf1 = data.getData();
+                    displayFromUriPDF1(uriPdf1);
+                } else if (pic_number == 2) {
+                    uriPdf2 = data.getData();
+                    displayFromUriPDF2(uriPdf2);
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(),
+                        "User cancelled Document", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Sorry! Failed to load document", Toast.LENGTH_SHORT)
+                        .show();
             }
 
         }
