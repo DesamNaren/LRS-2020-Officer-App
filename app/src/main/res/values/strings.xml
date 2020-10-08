@@ -103,7 +103,9 @@
     <string name="enter_north">Please enter north area</string>
     <string name="enter_south">Please enter south area</string>
     <string name="enter_value_as_per_sale">Please enter market value as per sale deed</string>
+    <string name="enter_valid_value_as_per_sale">Please enter valid market value as per sale deed</string>
     <string name="enter_value_as_one">Please enter market value as on 26-08-2020</string>
+    <string name="enter_valid_value_as_one">Please enter valid market value as on 26-08-2020</string>
     <string name="plot_no_objection">Please check whether S.No/Plot No existing in objection database</string>
     <string name="select_land_use">Please select land use</string>
     <string name="select_recommend">Please select recommend for</string>

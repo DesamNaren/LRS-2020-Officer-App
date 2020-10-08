@@ -380,8 +380,14 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         } else if (TextUtils.isEmpty(value_sale_deed)) {
             callSnackBar(getString(R.string.enter_value_as_per_sale));
             return false;
+        } else if (Double.valueOf(value_sale_deed)<=0) {
+            callSnackBar(getString(R.string.enter_valid_value_as_per_sale));
+            return false;
         } else if (TextUtils.isEmpty(value_ason)) {
             callSnackBar(getString(R.string.enter_value_as_one));
+            return false;
+        } else if (Double.valueOf(value_ason)<=0) {
+            callSnackBar(getString(R.string.enter_valid_value_as_one));
             return false;
         } else if (TextUtils.isEmpty(pNo_objection)) {
             callSnackBar(getString(R.string.plot_no_objection));
