@@ -41,6 +41,7 @@
             android:layout_marginBottom="@dimen/dimen_5dp"
             android:layout_marginTop="@dimen/dimen_5dp"
             android:text=""
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="18sp"
           />
