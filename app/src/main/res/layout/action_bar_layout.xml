@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_back"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/header_title"
@@ -62,7 +62,7 @@
                     android:layout_marginEnd="@dimen/dimen_10dp"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:src="@drawable/home"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <!--                <ImageView-->
                 <!--                    android:id="@+id/sync_iv"-->

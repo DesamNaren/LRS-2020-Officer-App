@@ -29,6 +29,9 @@ public class LoginResponse {
     @SerializedName("UserName")
     @Expose
     private String userName;
+    @SerializedName("DESIGNATION")
+    @Expose
+    private String DESIGNATION;
 
     public String getStatusCode() {
         return statusCode;
@@ -92,5 +95,13 @@ public class LoginResponse {
 
     public void setsRO_DOC_LINK(String sRO_DOC_LINK) {
         this.sRO_DOC_LINK = sRO_DOC_LINK;
+    }
+
+    public String getDESIGNATION() {
+        return DESIGNATION;
+    }
+
+    public void setDESIGNATION(String DESIGNATION) {
+        this.DESIGNATION = DESIGNATION;
     }
 }

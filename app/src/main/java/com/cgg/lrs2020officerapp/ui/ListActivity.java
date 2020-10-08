@@ -246,6 +246,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
 
     @Override
     public void onBackPressed() {
-        Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
+        //Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
+        finish();
     }
 }

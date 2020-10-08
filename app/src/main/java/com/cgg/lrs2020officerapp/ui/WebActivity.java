@@ -1,7 +1,10 @@
 package com.cgg.lrs2020officerapp.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -15,6 +18,7 @@ import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityWebBinding;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
+import com.cgg.lrs2020officerapp.utils.Utils;
 import com.google.gson.Gson;
 
 public class WebActivity extends AppCompatActivity {
@@ -29,6 +33,12 @@ public class WebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_web);
         binding.header.headerTitle.setText("SRO Registered Document");
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(WebActivity.this);
+            }
+        });
 
         sharedPreferences = LRSApplication.get(WebActivity.this).getPreferences();
         editor = sharedPreferences.edit();
@@ -66,5 +76,14 @@ public class WebActivity extends AppCompatActivity {
         });
 
         webView.loadUrl(loginResponse.getsRO_DOC_LINK());
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return false;
     }
 }

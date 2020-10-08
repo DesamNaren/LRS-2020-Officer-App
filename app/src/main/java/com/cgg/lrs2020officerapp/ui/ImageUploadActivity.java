@@ -116,7 +116,12 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
         context = ImageUploadActivity.this;
 
         binding.header.headerTitle.setText(R.string.upload_files);
-
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(ImageUploadActivity.this);
+            }
+        });
         customProgressDialog = new CustomProgressDialog(context);
 
         sharedPreferences = LRSApplication.get(this).getPreferences();

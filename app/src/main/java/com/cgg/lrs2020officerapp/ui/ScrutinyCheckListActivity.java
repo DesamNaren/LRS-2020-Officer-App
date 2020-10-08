@@ -64,7 +64,12 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
         roadListData = new ArrayList<>();
         landListData = new ArrayList<>();
         recommendListData = new ArrayList<>();
-
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(ScrutinyCheckListActivity.this);
+            }
+        });
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
@@ -244,14 +249,14 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
                         abuting_road_id = roadListData.get(z).getABBUTINGID();
                     }
                 }
-                if (abutting_road.equalsIgnoreCase("Road")) {
+                if (abutting_road.equalsIgnoreCase("Road") || abutting_road.equalsIgnoreCase("Select")) {
+                    binding.cvEastWestNorSou.setVisibility(View.VISIBLE);
+                } else {
                     binding.cvEastWestNorSou.setVisibility(View.GONE);
                     binding.etEast.setText(null);
                     binding.etWest.setText(null);
                     binding.etNorth.setText(null);
                     binding.etSouth.setText(null);
-                } else {
-                    binding.cvEastWestNorSou.setVisibility(View.VISIBLE);
                 }
             }
 

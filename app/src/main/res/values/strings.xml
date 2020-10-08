@@ -52,6 +52,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="pending_for_scrutiny">PENDING FOR SCRUTINY</string>
+    <string name="pending_for_scrutiny_small">Pending For Scrutiny</string>
     <string name="total">Total Records: 04</string>
     <string name="scrutiny_details">Scrutiny Details</string>
     <array name="abutting_road_details">
@@ -108,4 +109,5 @@
     <string name="select_land_use">Please select land use</string>
     <string name="select_recommend">Please select recommend for</string>
     <string name="enter_verification_remarks">Please enter verification remarks</string>
+    <string name="Logout">Logout</string>
 </resources>

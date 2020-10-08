@@ -88,7 +88,12 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
         binding = DataBindingUtil.setContentView(ImageUploadActivityCopy.this,
                 R.layout.activity_image_upload);
         binding.header.headerTitle.setText(R.string.upload_files);
-
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(ImageUploadActivityCopy.this);
+            }
+        });
         context = ImageUploadActivityCopy.this;
         binding.btnSroRegDoc.setOnClickListener(new View.OnClickListener() {
             @Override

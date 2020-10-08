@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
+import com.cgg.lrs2020officerapp.ui.Dashboard;
 import com.cgg.lrs2020officerapp.ui.ListActivity;
 import com.cgg.lrs2020officerapp.ui.LoginActivity;
 import com.cgg.lrs2020officerapp.ui.QuitAppActivity;
@@ -645,4 +646,10 @@ public class Utils {
     }
 
 
+    public static void DashboardActivity(Activity context) {
+        Intent i=new Intent(context, Dashboard.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
+        context.finish();
+    }
 }

@@ -39,7 +39,12 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
         binding = DataBindingUtil.setContentView(this, R.layout.activity_layout);
         binding.header.headerTitle.setText(getString(R.string.scrutiny_details));
         context = LayoutActivity.this;
-
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(LayoutActivity.this);
+            }
+        });
         viewModel = new LayoutViewModel(context, getApplication());
         binding.setViewModel(viewModel);
 
