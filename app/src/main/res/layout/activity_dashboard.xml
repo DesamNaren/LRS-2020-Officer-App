@@ -105,7 +105,7 @@
                             android:layout_weight="5"
                             android:gravity="center"
                             android:text="@string/view_sro_registered_document"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/black"
                             android:textSize="20sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -139,7 +139,7 @@
                             android:layout_weight="5"
                             android:text="@string/pending_for_scrutiny"
                             android:gravity="center"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:textSize="20sp" />
                         <TextView
                             android:layout_width="0dp"

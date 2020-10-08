@@ -67,7 +67,7 @@
                         style="@style/text_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Individual Plot" />
+                        android:text="@{data.appliedFor}" />
                 </LinearLayout>
 
                 <LinearLayout
