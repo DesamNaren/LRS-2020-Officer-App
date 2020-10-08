@@ -25,10 +25,9 @@
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
             android:background="@color/white"
             app:queryHint="Search by Applicant Name or OT Application Number"></SearchView>
 
@@ -51,9 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:visibility="visible"
             android:text="@string/no_data"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="visible" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRV"
@@ -63,8 +62,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="match_parent"
+                android:visibility="gone"
+                android:padding="@dimen/dimen_5dp"
                 tools:listitem="@layout/item_view" />
 
 

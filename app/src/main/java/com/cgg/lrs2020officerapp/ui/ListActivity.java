@@ -139,7 +139,10 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                         }
 
                                     } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
-                                        Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), response.getStatusMessage());
+                                        binding.recyclerView.setVisibility(View.GONE);
+                                        binding.tvEmpty.setVisibility(View.VISIBLE);
+                                        binding.tvEmpty.setText(response.getStatusMessage());
+//                                        Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), response.getStatusMessage());
                                     } else {
                                         Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.something));
                                     }
@@ -159,23 +162,31 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             Gson gson = new Gson();
             applicationRes = gson.fromJson(sharedPreferences.getString(AppConstants.APPLICATION_LIST_RESPONSE, ""), ApplicationRes.class);
             if (applicationRes != null && applicationRes.getStatusCode() != null) {
-                list = applicationRes.getData();
-                if (list != null && list.size() > 0) {
-                    binding.recyclerView.setVisibility(View.VISIBLE);
-                    binding.tvEmpty.setVisibility(View.GONE);
+                if (applicationRes.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+                    list = applicationRes.getData();
+                    if (list != null && list.size() > 0) {
+                        binding.recyclerView.setVisibility(View.VISIBLE);
+                        binding.tvEmpty.setVisibility(View.GONE);
 
-                    viewTaskAdapter = new ViewTaskAdapter(context, list);
-                    binding.recyclerView.setAdapter(viewTaskAdapter);
-                    binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                    binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
-                }else {
+                        viewTaskAdapter = new ViewTaskAdapter(context, list);
+                        binding.recyclerView.setAdapter(viewTaskAdapter);
+                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                        binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+                    } else {
+                        binding.recyclerView.setVisibility(View.GONE);
+                        binding.tvEmpty.setVisibility(View.VISIBLE);
+                    }
+                } else if (applicationRes.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
                     binding.recyclerView.setVisibility(View.GONE);
                     binding.tvEmpty.setVisibility(View.VISIBLE);
+                    binding.tvEmpty.setText(applicationRes.getStatusMessage());
+//                Utils.customErrorAlert(context, getString(R.string.app_name), applicationRes.getStatusMessage());
+                } else {
+                    Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.something));
                 }
             } else {
-                Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.something));
+                Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();
