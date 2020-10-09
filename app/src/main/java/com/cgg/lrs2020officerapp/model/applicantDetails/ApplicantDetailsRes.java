@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ApplicantDetailsRes {
 
-
     @SerializedName("status")
     @Expose
     private String status;
@@ -19,7 +18,7 @@ public class ApplicantDetailsRes {
     private List<ApplicantDetailsListData> applicantList = null;
     @SerializedName("siteList")
     @Expose
-    private List<Object> siteList = null;
+    private List<ApplicantSiteList>  siteList = null;
 
     public String getStatus() {
         return status;
@@ -45,11 +44,11 @@ public class ApplicantDetailsRes {
         this.applicantList = applicantList;
     }
 
-    public List<Object> getSiteList() {
+    public List<ApplicantSiteList> getSiteList() {
         return siteList;
     }
 
-    public void setSiteList(List<Object> siteList) {
+    public void setSiteList(List<ApplicantSiteList> siteList) {
         this.siteList = siteList;
     }
 
