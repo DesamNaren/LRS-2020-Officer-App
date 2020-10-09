@@ -111,5 +111,5 @@
     <string name="select_recommend">Please select recommend for</string>
     <string name="enter_verification_remarks">Please enter verification remarks</string>
     <string name="Logout">Logout</string>
-    <string name="no_data">No data</string>
+    <string name="data_empty">No Records Found</string>
 </resources>

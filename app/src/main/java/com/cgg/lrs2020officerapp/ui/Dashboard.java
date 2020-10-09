@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -48,24 +49,30 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         try {
             String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
             loginResponse = new Gson().fromJson(str, LoginResponse.class);
+            editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, "");
+            editor.commit();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        viewModel=new ApplicationListViewModel(Dashboard.this);
-        binding.name.setText(""+loginResponse.getUserName());
-        binding.designation.setText(""+loginResponse.getDESIGNATION());
+        viewModel = new ApplicationListViewModel(Dashboard.this);
+        binding.name.setText("" + loginResponse.getUserName());
+        binding.designation.setText("" + loginResponse.getDESIGNATION());
         binding.pendingForScrutiny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Dashboard.this, ListActivity.class);
-                startActivity(i);
+                if (list != null && list.size() > 0) {
+                    Intent i = new Intent(Dashboard.this, ListActivity.class);
+                    startActivity(i);
+                }else {
+                    Toast.makeText(Dashboard.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
+                }
             }
         });
         binding.logoutimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.customLogoutAlert(Dashboard.this, getString(R.string.app_name),"Do you want to logout from app?", editor);
+                Utils.customLogoutAlert(Dashboard.this, getString(R.string.app_name), "Do you want to logout from app?", editor);
             }
         });
 
@@ -93,17 +100,19 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
                         if (response.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                             list = response.getData();
                             if (list != null && list.size() > 0) {
-                                binding.tvPendCnt.setText(""+list.size());
-                                Gson gson=new Gson();
-                                String applicationListDetails=gson.toJson(response);
-                                editor.putString(AppConstants.APPLICATION_LIST_RESPONSE,applicationListDetails);
+                                binding.tvPendCnt.setText("" + list.size());
+
+                                Gson gson = new Gson();
+                                String applicationListDetails = gson.toJson(response);
+                                editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, applicationListDetails);
                                 editor.commit();
                             }
                         } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
-                            Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), response.getStatusMessage());
+//                            Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), response.getStatusMessage());
                         } else {
                             Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), getString(R.string.something));
                         }
+
                     } else {
                         Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), getString(R.string.server_not));
                     }
@@ -114,9 +123,10 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
                     getString(R.string.plz_check_int));
         }
     }
+
     @Override
     public void onBackPressed() {
-        Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
+        Utils.customLogoutAlert(this, getString(R.string.app_name), "Do you want to logout from app?", editor);
         //exitHandler();
     }
 
