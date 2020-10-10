@@ -30,7 +30,9 @@
             android:layout_margin="@dimen/dimen_5dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/muli_bold"
             android:padding="5dp"
+            android:textStyle="bold"
             android:text="@string/proceed"
             android:textAllCaps="false"
             android:textColor="@color/white" />

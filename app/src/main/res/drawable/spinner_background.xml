@@ -12,7 +12,7 @@
                 <padding
                     android:bottom="3dp"
                     android:left="3dp"
-                    android:right="3dp"
+                    android:right="10dp"
                     android:top="3dp" />
                 <stroke
                     android:width="2dp"
@@ -21,7 +21,7 @@
         </item>
         <item >
             <bitmap android:gravity="center|right"
-                android:src="@drawable/down_arrow_new"
+                android:src="@drawable/drop_down_arrow"
                 android:tint="@color/dark_gray"/>
         </item>
     </layer-list></item>
