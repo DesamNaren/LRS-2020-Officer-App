@@ -717,13 +717,13 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
 
                 paintText.setColor(Color.WHITE);
                 newCanvas.drawText(currentDateTimeString,
-                        0, 120, paintText);
+                        bm1.getWidth()/2,  bm1.getHeight()-25, paintText);
                 paintText.setColor(Color.WHITE);
                 newCanvas.drawText(String.valueOf(mCurrentLocation.getLatitude()),
-                        0, 140, paintText);
+                        10, bm1.getHeight()-25, paintText);
                 paintText.setColor(Color.WHITE);
                 newCanvas.drawText(String.valueOf(mCurrentLocation.getLongitude()),
-                        0, 150, paintText);
+                        10, bm1.getHeight()-10, paintText);
 
             } else {
 //                Toast.makeText(this, "caption empty!", Toast.LENGTH_LONG).show();
