@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -23,6 +24,7 @@ import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.land.LandDetailsResponse;
 import com.cgg.lrs2020officerapp.model.land.LandListData;
+import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendListData;
 import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
@@ -50,6 +52,7 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
     List<RecommendListData> recommendListData;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private String applicationId, applicantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,15 @@ public class ScrutinyCheckListActivity extends AppCompatActivity implements Erro
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
+        try {
+            applicationId = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
+            applicantName = sharedPreferences.getString(AppConstants.APPLICANT_NAME, "");
+
+            binding.basicLayout.applicationNo.setText(applicationId);
+            binding.basicLayout.applicantName.setText(applicantName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         scrutinyCheckListViewModel = new ScrutinyCheckListViewModel(context, getApplication());
 

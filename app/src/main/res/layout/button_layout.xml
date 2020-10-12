@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/ll_btn"
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_5dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            app:background="@color/colorPrimaryDark"
             android:fontFamily="@font/muli_bold"
             android:padding="5dp"
             android:textStyle="bold"
