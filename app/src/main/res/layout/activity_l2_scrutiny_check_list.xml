@@ -31,25 +31,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_5dp"
                     android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="visible">
-
-                    <Button
-                        android:id="@+id/btn_sro_reg_doc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_10dp"
-                        android:fontFamily="@font/muli_bold"
-                        android:text="@string/view_sro_registered_document"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
                     android:padding="@dimen/dimen_5dp">
 
                     <LinearLayout
@@ -84,32 +65,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
 
-                            <RadioGroup
-                                android:id="@+id/rg_whether_plot_reg_prior"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-
-                                <RadioButton
-                                    android:id="@+id/whether_plot_reg_prior_yes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/yes"
-                                    android:textSize="16sp" />
-
-                                <RadioButton
-                                    android:id="@+id/whether_plot_reg_prior_no"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/no"
-                                    android:textSize="16sp" />
-
-                            </RadioGroup>
+                                android:id="@+id/tv_whether_plot_reg_prior"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -153,32 +114,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
 
-                            <RadioGroup
-                                android:id="@+id/rg_name_of_lrs_tallying"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-
-                                <RadioButton
-                                    android:id="@+id/name_of_lrs_tallying_yes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/yes"
-                                    android:textSize="16sp" />
-
-                                <RadioButton
-                                    android:id="@+id/name_of_lrs_tallying_no"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/no"
-                                    android:textSize="16sp" />
-
-                            </RadioGroup>
+                                android:id="@+id/tv_name_of_lrs_tallying"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -222,32 +163,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
 
-                            <RadioGroup
-                                android:id="@+id/rg_area_matching_with_application"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-
-                                <RadioButton
-                                    android:id="@+id/area_matching_with_application_yes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/yes"
-                                    android:textSize="16sp" />
-
-                                <RadioButton
-                                    android:id="@+id/area_matching_with_application_no"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/no"
-                                    android:textSize="16sp" />
-
-                            </RadioGroup>
+                                android:id="@+id/tv_area_matching_with_application"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -267,8 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="horizontal"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
+                        >
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -294,12 +214,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
 
-                            <Spinner
-                                android:id="@+id/sp_abutting_road_details"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:spinnerMode="dropdown" />
+                                android:id="@+id/tv_abutting_road_details"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -476,36 +396,36 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:fontFamily="@font/elmessiri_regular"
                             android:padding="@dimen/dimen_5dp"
                             android:text="5."
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:errorEnabled="true">
+                            android:orientation="vertical">
 
-
-                            <EditText
-                                android:id="@+id/et_value_sale_deed"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/edittext_bg"
                                 android:fontFamily="@font/elmessiri_regular"
-                                android:hint="@string/market_vaule_as_per_the_sale_deed"
-                                android:imeOptions="actionNext"
-                                android:inputType="numberDecimal"
-                                android:maxLength="15"
-                                android:textSize="16dp" />
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/market_vaule_as_per_the_sale_deed"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_value_sale_deed"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -524,36 +444,36 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:fontFamily="@font/elmessiri_regular"
                             android:padding="@dimen/dimen_5dp"
                             android:text="6."
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:errorEnabled="true">
+                            android:orientation="vertical">
 
-
-                            <EditText
-                                android:id="@+id/et_value_ason"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/edittext_bg"
                                 android:fontFamily="@font/elmessiri_regular"
-                                android:hint="@string/market_vaule_as_on_26_08_202"
-                                android:imeOptions="actionNext"
-                                android:inputType="numberDecimal"
-                                android:maxLength="15"
-                                android:textSize="16dp" />
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/market_vaule_as_on_26_08_202"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_value_ason"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -592,32 +512,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
 
-                            <RadioGroup
-                                android:id="@+id/rg_syno_plotno_existing_in_database"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-
-                                <RadioButton
-                                    android:id="@+id/syno_plotno_existing_in_database_yes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/yes"
-                                    android:textSize="16sp" />
-
-                                <RadioButton
-                                    android:id="@+id/syno_plotno_existing_in_database_no"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:padding="@dimen/dimen_5dp"
-                                    android:text="@string/no"
-                                    android:textSize="16sp" />
-
-                            </RadioGroup>
+                                android:id="@+id/tv_syno_plotno_existing_in_database"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -664,56 +564,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
 
-                            <Spinner
-                                android:id="@+id/sp_land_use"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:spinnerMode="dropdown" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_5dp"
-                    android:padding="@dimen/dimen_4dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="horizontal"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/dimen_5dp"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
-                                android:text="@string/recommend_for"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-
-                            <Spinner
-                                android:id="@+id/sp_recommendation_for"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:spinnerMode="dropdown" />
+                                android:id="@+id/tv_land_use"
+                                style="@style/text_data"
+                                android:textSize="16sp"/>
 
                         </LinearLayout>
 
@@ -721,41 +577,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:errorEnabled="true">
-
-                            <EditText
-                                android:id="@+id/et_verification"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/edittext_bg"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:hint="@string/verification_remarks"
-                                android:imeOptions="actionNext"
-                                android:inputType="text"
-                                android:textSize="16dp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
