@@ -403,6 +403,7 @@ public class Utils {
                         }
                         editor.putString(AppConstants.SUBMIT_REQUEST,"");
                         editor.putString(AppConstants.APPLICATION_ID, "");
+                        editor.putString(AppConstants.APPLICANT_NAME, "");
                         editor.commit();
                         Intent newIntent = new Intent(activity, Dashboard.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

@@ -105,7 +105,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private SubmitScrutinyRequest submitScrutinyRequest;
-    private String applicationId;
+    private String applicationId, applicantName;
     private LoginResponse loginResponse;
 
     @Override
@@ -140,6 +140,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             String strLogin = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
             loginResponse = new Gson().fromJson(strLogin, LoginResponse.class);
             applicationId = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
+            applicantName = sharedPreferences.getString(AppConstants.APPLICANT_NAME, "");
             String str = sharedPreferences.getString(AppConstants.SUBMIT_REQUEST, "");
             submitScrutinyRequest = new Gson().fromJson(str, SubmitScrutinyRequest.class);
             if (TextUtils.isEmpty(applicationId) || submitScrutinyRequest == null || loginResponse == null) {
@@ -147,6 +148,8 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 finish();
                 return;
             }
+            binding.basicLayout.applicationNo.setText(applicationId);
+            binding.basicLayout.applicantName.setText(applicantName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1151,8 +1154,8 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
 
                         if (Utils.checkInternetConnection(context)) {
 //                            if (validations()) {
-                                customProgressDialog.show();
-                                addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
+                            customProgressDialog.show();
+                            addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
 //                            }
                         } else {
                             Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));

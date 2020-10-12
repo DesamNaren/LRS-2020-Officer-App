@@ -60,6 +60,7 @@ public class ViewTaskAdapter extends RecyclerView.Adapter<ViewTaskAdapter.ItemHo
                 sharedPreferences = LRSApplication.get(context).getPreferences();
                 editor = sharedPreferences.edit();
                 editor.putString(AppConstants.APPLICATION_ID, dataModel.getAPPLICATIONID());
+                editor.putString(AppConstants.APPLICANT_NAME, dataModel.getNAME());
                 editor.commit();
 
                 Intent intent = new Intent(context, LayoutActivity.class);
