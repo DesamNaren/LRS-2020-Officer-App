@@ -44,6 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_10dp"
                         android:fontFamily="@font/muli_bold"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:text="@string/view_sro_registered_document"
                         android:textAllCaps="false"
                         android:textColor="@color/white" />
@@ -751,7 +752,7 @@
                                 android:background="@drawable/edittext_bg"
                                 android:fontFamily="@font/elmessiri_regular"
                                 android:hint="@string/verification_remarks"
-                                android:imeOptions="actionNext"
+                                android:imeOptions="actionDone"
                                 android:inputType="text"
                                 android:textSize="16dp" />
 

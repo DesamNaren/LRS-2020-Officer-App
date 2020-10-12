@@ -16,7 +16,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/btn_layout"
+            android:layout_above="@id/ll_btn"
             android:layout_below="@+id/header">
 
             <LinearLayout
@@ -245,43 +245,16 @@
             </LinearLayout>
 
         </ScrollView>
-
         <LinearLayout
-            android:id="@+id/btn_layout"
+            android:id="@+id/ll_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
-
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/muli_bold"
-                android:text="Previous"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:backgroundTint="@color/gray"
-                tools:ignore="ButtonStyle" />
-
-
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/muli_bold"
-                android:text="@string/submit"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                tools:ignore="ButtonStyle" />
+            <include
+                android:id="@+id/btn_layout"
+                layout="@layout/button_layout" />
 
         </LinearLayout>
 

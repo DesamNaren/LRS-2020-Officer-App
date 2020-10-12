@@ -134,8 +134,8 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                 finish();
             }
         });
-
-
+        binding.btnLayout.btnCancel.setVisibility(View.VISIBLE);
+        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
         try {
             String strLogin = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
             loginResponse = new Gson().fromJson(strLogin, LoginResponse.class);
@@ -173,14 +173,14 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             }
         });
 
-        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+        binding.btnLayout.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validations()) {
