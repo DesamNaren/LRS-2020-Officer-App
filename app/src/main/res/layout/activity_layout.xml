@@ -124,7 +124,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@{data.plotLayoutFallsUnder}" />
+                                android:text="@{data.plotLayoutFallUnderText}" />
 
                         </LinearLayout>
 
@@ -133,7 +133,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="@{data.plotLayoutFallsUnder.equalsIgnoreCase(`Corporation`)? View.VISIBLE : View.GONE, default = gone}">
+                            android:visibility="@{data.plotLayoutFallUnderText.equalsIgnoreCase(`Corporation`)? View.VISIBLE : View.GONE, default = gone}">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="" />
+                                    android:text="@{data.vicinity}" />
 
                             </LinearLayout>
 
@@ -160,7 +160,8 @@
                                 android:id="@+id/ghmc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:visibility="@{data.vicinity.equalsIgnoreCase(`Ghmc`)? View.VISIBLE : View.GONE, default = gone}">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -231,7 +232,8 @@
                                 android:id="@+id/other_than_ghmc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:visibility="@{!data.vicinity.equalsIgnoreCase(`Ghmc`)? View.VISIBLE : View.GONE, default = gone}">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -284,7 +286,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="@{data.plotLayoutFallsUnder.equalsIgnoreCase(`Municipality`)? View.VISIBLE : View.GONE, default = gone}">
+                            android:visibility="@{data.plotLayoutFallUnderText.equalsIgnoreCase(`Municipality`)? View.VISIBLE : View.GONE, default = gone}">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -324,7 +326,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="" />
+                                    android:text="@{data.vicinity}" />
 
                             </LinearLayout>
 
@@ -377,7 +379,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="@{data.plotLayoutFallsUnder.equalsIgnoreCase(`Gram Panchayat`)? View.VISIBLE : View.GONE, default = gone}">
+                            android:visibility="@{data.plotLayoutFallUnderText.equalsIgnoreCase(`Gram Panchayat`)? View.VISIBLE : View.GONE, default = gone}">
 
                             <LinearLayout
                                 android:layout_width="match_parent"

@@ -112,4 +112,13 @@
     <string name="enter_verification_remarks">Please enter verification remarks</string>
     <string name="Logout">Logout</string>
     <string name="data_empty">No Records Found</string>
+    <string name="recommended_officer_remarks">Recommended Officer Remarks</string>
+    <string name="enter_recommended_officer_remarks">Please enter Recommended Officer Remarks</string>
+    <string name="enter_valid_recommended_officer_remarks">Please enter valid Recommended Officer Remarks</string>
+    <string name="fee_intimation">Fee Intimation</string>
+    <string name="select_fee_intimation">Please check Fee Intimation</string>
+    <string name="short_fall">Short Fall</string>
+    <string name="select_short_fall">Please check Short Fall</string>
+    <string name="fee_paid">Fee Paid</string>
+    <string name="fee_to_be_paid">Fee To be Paid</string>
 </resources>

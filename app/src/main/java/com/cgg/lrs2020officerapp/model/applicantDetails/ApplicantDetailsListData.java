@@ -8,6 +8,9 @@ public class ApplicantDetailsListData {
     @SerializedName("PlotLayoutFallUnder")
     @Expose
     private String plotLayoutFallUnder;
+    @SerializedName("PlotLayoutFallUnderText")
+    @Expose
+    private String plotLayoutFallUnderText;
     @SerializedName("applicant_mobile_no")
     @Expose
     private String applicantMobileNo;
@@ -38,6 +41,9 @@ public class ApplicantDetailsListData {
     @SerializedName("district_name")
     @Expose
     private String districtName;
+    @SerializedName("vicinity")
+    @Expose
+    private String vicinity;
     @SerializedName("mandal_name")
     @Expose
     private String mandalName;
@@ -173,6 +179,14 @@ public class ApplicantDetailsListData {
         this.plotLayoutFallUnder = plotLayoutFallUnder;
     }
 
+    public String getPlotLayoutFallUnderText() {
+        return plotLayoutFallUnderText;
+    }
+
+    public void setPlotLayoutFallUnderText(String plotLayoutFallUnderText) {
+        this.plotLayoutFallUnderText = plotLayoutFallUnderText;
+    }
+
     public String getApplicantMobileNo() {
         return applicantMobileNo;
     }
@@ -251,6 +265,14 @@ public class ApplicantDetailsListData {
 
     public void setDistrictName(String districtName) {
         this.districtName = districtName;
+    }
+
+    public String getVicinity() {
+        return vicinity;
+    }
+
+    public void setVicinity(String vicinity) {
+        this.vicinity = vicinity;
     }
 
     public String getMandalName() {
