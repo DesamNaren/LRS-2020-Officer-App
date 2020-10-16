@@ -24,6 +24,7 @@ import com.cgg.lrs2020officerapp.databinding.ActivityL2UploadBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.land.LandListData;
+import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendListData;
 import com.cgg.lrs2020officerapp.model.road.RoadListData;
 import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
@@ -31,6 +32,7 @@ import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.ScrutinyCheckListViewModel;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,7 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private String applicationId, applicantName;
+    private LoginResponse loginResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,8 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
         try {
+            String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
+            loginResponse = new Gson().fromJson(str, LoginResponse.class);
             applicationId = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
             applicantName = sharedPreferences.getString(AppConstants.APPLICANT_NAME, "");
 
@@ -240,7 +245,13 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
         });
 
         binding.btnLayout.btnCancel.setVisibility(View.VISIBLE);
-        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
+        if (loginResponse.getROLEID().equalsIgnoreCase("4")) {
+            binding.btnLayout.btnCancel.setText(getResources().getString(R.string.revert));
+            binding.btnLayout.btnProceed.setText(getResources().getString(R.string.forward));
+        } else if (loginResponse.getROLEID().equalsIgnoreCase("5")) {
+            binding.btnLayout.btnCancel.setText(getResources().getString(R.string.reject));
+            binding.btnLayout.btnProceed.setText(getResources().getString(R.string.approve));
+        }
 
         binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override

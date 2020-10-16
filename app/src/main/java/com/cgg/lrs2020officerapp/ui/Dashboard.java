@@ -64,7 +64,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
                 if (list != null && list.size() > 0) {
                     Intent i = new Intent(Dashboard.this, ListActivity.class);
                     startActivity(i);
-                }else {
+                } else {
                     Toast.makeText(Dashboard.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -88,7 +88,13 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         request.setOFFICEID(loginResponse.getOFFICEID());
         request.setAUTHORITYID(loginResponse.getAUTHORITYID());
         request.setROLEID(loginResponse.getROLEID());
-        request.setSTATUSID(AppConstants.STATUS_ID);
+        if (loginResponse.getROLEID().equalsIgnoreCase("3"))
+            request.setSTATUSID(AppConstants.STATUS_ID);
+        else if (loginResponse.getROLEID().equalsIgnoreCase("4"))
+            request.setSTATUSID("50");
+        else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
+            request.setSTATUSID("80");
+
         request.setUSERID(loginResponse.getUSERID());
 
         if (Utils.checkInternetConnection(Dashboard.this)) {

@@ -47,6 +47,10 @@
     <string name="recommend_for">Recommend for*</string>
     <string name="verification_remarks">Verification Remarks*</string>
     <string name="submit">Submit</string>
+    <string name="forward">Forward</string>
+    <string name="revert">Revert</string>
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
     <string name="cancel">Cancel</string>
     <string name="scrutiny_checklist">Scrutiny Checklist</string>
     <string name="yes">Yes</string>
