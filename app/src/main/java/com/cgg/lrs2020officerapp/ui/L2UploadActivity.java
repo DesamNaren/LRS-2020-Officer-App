@@ -274,10 +274,10 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
         } else if (short_fall.equalsIgnoreCase(AppConstants.NO) && TextUtils.isEmpty(fee_intimation)) {
             callSnackBar(getString(R.string.select_fee_intimation));
             return false;
-        } else if (short_fall.equalsIgnoreCase(AppConstants.NO) && TextUtils.isEmpty(recommended_officer_remarks)) {
+        } else if (TextUtils.isEmpty(recommended_officer_remarks)) {
             callSnackBar(getString(R.string.enter_recommended_officer_remarks));
             return false;
-        } else if (short_fall.equalsIgnoreCase(AppConstants.NO) && Double.valueOf(recommended_officer_remarks) <= 0) {
+        } else if (Double.valueOf(recommended_officer_remarks) <= 0) {
             callSnackBar(getString(R.string.enter_valid_recommended_officer_remarks));
             return false;
         }

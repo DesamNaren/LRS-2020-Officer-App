@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.cgg.lrs2020officerapp.R;
-import com.cgg.lrs2020officerapp.adapter.ViewTaskAdapter;
+import com.cgg.lrs2020officerapp.adapter.ApplicationListAdapter;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityListBinding;
@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LoginResponse loginResponse;
-    private ViewTaskAdapter viewTaskAdapter;
+    private ApplicationListAdapter viewTaskAdapter;
     SearchView mySearchView;
     ApplicationRes applicationRes;
 
@@ -129,7 +129,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
                                             binding.tvEmpty.setVisibility(View.GONE);
-                                            viewTaskAdapter = new ViewTaskAdapter(context, list);
+                                            viewTaskAdapter = new ApplicationListAdapter(context, list);
                                             binding.recyclerView.setAdapter(viewTaskAdapter);
                                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                             binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
@@ -168,7 +168,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                         binding.recyclerView.setVisibility(View.VISIBLE);
                         binding.tvEmpty.setVisibility(View.GONE);
 
-                        viewTaskAdapter = new ViewTaskAdapter(context, list);
+                        viewTaskAdapter = new ApplicationListAdapter(context, list);
                         binding.recyclerView.setAdapter(viewTaskAdapter);
                         binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                         binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));

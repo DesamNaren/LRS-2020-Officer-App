@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ViewTaskAdapter extends RecyclerView.Adapter<ViewTaskAdapter.ItemHolder>
+public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationListAdapter.ItemHolder>
         implements Filterable {
     private Context context;
     private List<ApplicationListData> list;
@@ -33,7 +33,7 @@ public class ViewTaskAdapter extends RecyclerView.Adapter<ViewTaskAdapter.ItemHo
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    public ViewTaskAdapter(Context context, List<ApplicationListData> list) {
+    public ApplicationListAdapter(Context context, List<ApplicationListData> list) {
         this.context = context;
         this.list = list;
         mFilteredList = list;
@@ -64,7 +64,6 @@ public class ViewTaskAdapter extends RecyclerView.Adapter<ViewTaskAdapter.ItemHo
                 editor.commit();
 
                 Intent intent = new Intent(context, LayoutActivity.class);
-//                intent.putExtra(AppConstants.APPLICATION_ID, dataModel.getAPPLICATIONID());
                 context.startActivity(intent);
             }
         });
