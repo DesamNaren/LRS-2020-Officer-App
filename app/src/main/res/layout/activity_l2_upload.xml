@@ -172,6 +172,7 @@
                                 style="@style/text_data"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:text="1000"
                                 android:layout_weight="1" />
 
                         </LinearLayout>
@@ -191,6 +192,7 @@
                             <TextView
                                 style="@style/text_data"
                                 android:layout_width="0dp"
+                                android:text="0"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1" />
 
@@ -297,6 +299,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:background="@color/colorPrimary"
                     android:orientation="horizontal">
 

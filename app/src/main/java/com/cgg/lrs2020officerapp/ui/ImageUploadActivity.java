@@ -135,7 +135,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             }
         });
         binding.btnLayout.btnCancel.setVisibility(View.VISIBLE);
-        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
+//        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
         try {
             String strLogin = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
             loginResponse = new Gson().fromJson(strLogin, LoginResponse.class);
@@ -198,7 +198,9 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                     submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
                     submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
 
-                    customInfoAlert(submitScrutinyRequest);
+                    startActivity(new Intent(ImageUploadActivity.this, L2UploadActivity.class));
+
+//                    customInfoAlert(submitScrutinyRequest);
                 }
 
             }
@@ -717,13 +719,13 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
 
                 paintText.setColor(Color.WHITE);
                 newCanvas.drawText(currentDateTimeString,
-                        bm1.getWidth()/2,  bm1.getHeight()-25, paintText);
+                        bm1.getWidth() / 2, bm1.getHeight() - 25, paintText);
                 paintText.setColor(Color.WHITE);
                 newCanvas.drawText(String.valueOf(mCurrentLocation.getLatitude()),
-                        10, bm1.getHeight()-25, paintText);
+                        10, bm1.getHeight() - 25, paintText);
                 paintText.setColor(Color.WHITE);
                 newCanvas.drawText(String.valueOf(mCurrentLocation.getLongitude()),
-                        10, bm1.getHeight()-10, paintText);
+                        10, bm1.getHeight() - 10, paintText);
 
             } else {
 //                Toast.makeText(this, "caption empty!", Toast.LENGTH_LONG).show();

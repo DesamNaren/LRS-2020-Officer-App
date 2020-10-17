@@ -32,10 +32,12 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     private List<ApplicationListData> mFilteredList;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private String roleID;
 
-    public ApplicationListAdapter(Context context, List<ApplicationListData> list) {
+    public ApplicationListAdapter(Context context, List<ApplicationListData> list, String roleId) {
         this.context = context;
         this.list = list;
+        this.roleID = roleId;
         mFilteredList = list;
     }
 
@@ -53,6 +55,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
         final ApplicationListData dataModel = mFilteredList.get(i);
         holder.listItemBinding.setTaskData(dataModel);
         holder.bind(dataModel);
+
+        if (roleID.equalsIgnoreCase("3") || roleID.equalsIgnoreCase("4"))
+            holder.listItemBinding.checkbox.setVisibility(View.VISIBLE);
+        else if (roleID.equalsIgnoreCase("5"))
+            holder.listItemBinding.checkbox.setVisibility(View.GONE);
 
         holder.listItemBinding.llData.setOnClickListener(new View.OnClickListener() {
             @Override

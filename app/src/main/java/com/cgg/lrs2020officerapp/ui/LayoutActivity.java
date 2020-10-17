@@ -97,9 +97,9 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
                 if (loginResponse.getROLEID().equalsIgnoreCase("3"))
                     startActivity(new Intent(LayoutActivity.this, ScrutinyCheckListActivity.class));
                 else if (loginResponse.getROLEID().equalsIgnoreCase("4"))
-                    startActivity(new Intent(LayoutActivity.this, L2ScrutinyCheckListActivity.class));
-                else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
-                    startActivity(new Intent(LayoutActivity.this, L2ScrutinyCheckListActivity.class));
+                    startActivity(new Intent(LayoutActivity.this, ScrutinyCheckListActivity.class));
+//                else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
+//                    startActivity(new Intent(LayoutActivity.this, L2ScrutinyCheckListActivity.class));
             }
         });
     }

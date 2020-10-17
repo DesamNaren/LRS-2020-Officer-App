@@ -129,7 +129,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
                                             binding.tvEmpty.setVisibility(View.GONE);
-                                            viewTaskAdapter = new ApplicationListAdapter(context, list);
+                                            viewTaskAdapter = new ApplicationListAdapter(context, list,loginResponse.getROLEID());
                                             binding.recyclerView.setAdapter(viewTaskAdapter);
                                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                             binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
@@ -168,7 +168,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                         binding.recyclerView.setVisibility(View.VISIBLE);
                         binding.tvEmpty.setVisibility(View.GONE);
 
-                        viewTaskAdapter = new ApplicationListAdapter(context, list);
+                        viewTaskAdapter = new ApplicationListAdapter(context, list,loginResponse.getROLEID());
                         binding.recyclerView.setAdapter(viewTaskAdapter);
                         binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                         binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
