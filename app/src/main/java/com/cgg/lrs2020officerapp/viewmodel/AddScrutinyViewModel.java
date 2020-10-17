@@ -28,7 +28,7 @@ public class AddScrutinyViewModel extends ViewModel {
 
     public AddScrutinyViewModel(Context context) {
         this.context = context;
-        submitScrutinyInterface = (SubmitScrutinyInterface) context;
+//        submitScrutinyInterface = (SubmitScrutinyInterface) context;
         errorHandlerInterface = (ErrorHandlerInterface) context;
     }
 

@@ -76,7 +76,8 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.customWarningAlert(L2UploadActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
+                finish();
+//                Utils.customWarningAlert(L2UploadActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
             }
         });
 
@@ -230,6 +231,12 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
 
         binding.btnLayout.btnCancel.setVisibility(View.VISIBLE);
         binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
+        binding.btnLayout.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,9 +254,7 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
 //                    String request = gson.toJson(submitScrutinyRequest);
 //                    editor.putString(AppConstants.SUBMIT_REQUEST, request);
 //                    editor.commit();
-
                     customInfoAlert();
-
                 }
             }
         });
@@ -353,6 +358,7 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
 
     @Override
     public void onBackPressed() {
-        Utils.customWarningAlert(this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
+        super.onBackPressed();
+//        Utils.customWarningAlert(this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
     }
 }

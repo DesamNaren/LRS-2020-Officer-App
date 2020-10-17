@@ -113,6 +113,13 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
                 binding.btnLayout.llBtn.setVisibility(View.GONE);
 
+            binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ListActivity.this, ImageUploadActivity.class));
+                }
+            });
+
             binding.swipeRV.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {

@@ -48,7 +48,7 @@ import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.databinding.ActivityImageUploadBinding;
+import com.cgg.lrs2020officerapp.databinding.ActivityL1ImageUploadBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
@@ -71,7 +71,7 @@ import java.io.InputStream;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-public class ImageUploadActivity extends LocBaseActivity implements ErrorHandlerInterface {
+public class L1ImageUploadActivity extends LocBaseActivity implements ErrorHandlerInterface {
 
     private CustomProgressDialog customProgressDialog;
     private AddScrutinyViewModel addScrutinyViewModel;
@@ -79,7 +79,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
     private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     String IMAGE_FLAG = null, PIC_NAME, FilePath;
-    ActivityImageUploadBinding binding;
+    ActivityL1ImageUploadBinding binding;
     public Uri fileUri;
     public static final String IMAGE_DIRECTORY_NAME = "LRS_IMAGES";
     Bitmap bm;
@@ -109,15 +109,15 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(ImageUploadActivity.this,
-                R.layout.activity_image_upload);
-        context = ImageUploadActivity.this;
+        binding = DataBindingUtil.setContentView(L1ImageUploadActivity.this,
+                R.layout.activity_l1_image_upload);
+        context = L1ImageUploadActivity.this;
 
         binding.header.headerTitle.setText(R.string.upload_files);
         binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.DashboardActivity(ImageUploadActivity.this);
+                Utils.DashboardActivity(L1ImageUploadActivity.this);
             }
         });
         customProgressDialog = new CustomProgressDialog(context);
@@ -215,7 +215,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                     if (loginResponse.getROLEID().equalsIgnoreCase("3"))
                         customInfoAlert(submitScrutinyRequest);
                     else if (loginResponse.getROLEID().equalsIgnoreCase("4"))
-                        startActivity(new Intent(ImageUploadActivity.this, L2UploadActivity.class));
+                        startActivity(new Intent(L1ImageUploadActivity.this, L2UploadActivity.class));
 
 //                    customInfoAlert(submitScrutinyRequest);
                 }
@@ -853,7 +853,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
-                Utils.openSettings(ImageUploadActivity.this);
+                Utils.openSettings(L1ImageUploadActivity.this);
             }
         });
 
@@ -883,8 +883,8 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
         }
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE) {
-            String deviceId = Utils.getDeviceID(ImageUploadActivity.this);
-            String versionName = Utils.getVersionName(ImageUploadActivity.this);
+            String deviceId = Utils.getDeviceID(L1ImageUploadActivity.this);
+            String versionName = Utils.getVersionName(L1ImageUploadActivity.this);
             PIC_NAME = IMAGE_FLAG + Utils.getCurrentDateTimeFormat() + ".png";
 
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
@@ -1122,7 +1122,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
 
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
-                    ImageUploadActivity.this,
+                    L1ImageUploadActivity.this,
                     new String[]{READ_EXTERNAL_STORAGE},
                     PERMISSION_CODE
             );
@@ -1212,7 +1212,7 @@ public class ImageUploadActivity extends LocBaseActivity implements ErrorHandler
                         if (Utils.checkInternetConnection(context)) {
 //                            customProgressDialog.show();
 //                            addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
-                            Utils.customSuccessAlert(ImageUploadActivity.this, getString(R.string.app_name),
+                            Utils.customSuccessAlert(L1ImageUploadActivity.this, getString(R.string.app_name),
                                     "L1 Review Successfully completed", true, editor);
 
                         } else {

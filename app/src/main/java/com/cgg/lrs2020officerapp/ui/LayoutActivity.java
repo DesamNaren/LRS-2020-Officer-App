@@ -91,12 +91,16 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
             }
         });
 
+        if (loginResponse.getROLEID().equalsIgnoreCase("3"))
+            binding.btnLayout.llBtn.setVisibility(View.GONE);
+        else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
+            binding.btnLayout.llBtn.setVisibility(View.VISIBLE);
+
         binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (loginResponse.getROLEID().equalsIgnoreCase("3"))
-                    startActivity(new Intent(LayoutActivity.this, ScrutinyCheckListActivity.class));
-                else if (loginResponse.getROLEID().equalsIgnoreCase("4"))
+
+                if (loginResponse.getROLEID().equalsIgnoreCase("4"))
                     startActivity(new Intent(LayoutActivity.this, ScrutinyCheckListActivity.class));
                 else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
                     startActivity(new Intent(LayoutActivity.this, L3UploadActivity.class));

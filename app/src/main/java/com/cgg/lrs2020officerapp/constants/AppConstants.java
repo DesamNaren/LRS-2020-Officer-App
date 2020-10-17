@@ -9,6 +9,7 @@ public class AppConstants {
     public static final String IMAGE2 = "IMAGE2";
     public static final String IMAGE3 = "IMAGE3";
     public static final String IMAGE4 = "IMAGE4";
+    public static final String IMAGE5 = "IMAGE5";
 
 
     public static final String SUCCESS_CODE = "200";
