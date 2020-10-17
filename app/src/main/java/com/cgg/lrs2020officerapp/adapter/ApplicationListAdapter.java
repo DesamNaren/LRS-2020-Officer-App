@@ -56,9 +56,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
         holder.listItemBinding.setTaskData(dataModel);
         holder.bind(dataModel);
 
-        if (roleID.equalsIgnoreCase("3") || roleID.equalsIgnoreCase("4"))
+        if (roleID.equalsIgnoreCase("3"))
             holder.listItemBinding.checkbox.setVisibility(View.VISIBLE);
-        else if (roleID.equalsIgnoreCase("5"))
+        else if (roleID.equalsIgnoreCase("5") || roleID.equalsIgnoreCase("4"))
             holder.listItemBinding.checkbox.setVisibility(View.GONE);
 
         holder.listItemBinding.llData.setOnClickListener(new View.OnClickListener() {

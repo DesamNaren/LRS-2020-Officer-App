@@ -108,6 +108,11 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                     get(ApplicationListViewModel.class);
             binding.setViewModel(viewModel);
 
+            if (loginResponse.getROLEID().equalsIgnoreCase("3"))
+                binding.btnLayout.llBtn.setVisibility(View.VISIBLE);
+            else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
+                binding.btnLayout.llBtn.setVisibility(View.GONE);
+
             binding.swipeRV.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -129,7 +134,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
                                             binding.tvEmpty.setVisibility(View.GONE);
-                                            viewTaskAdapter = new ApplicationListAdapter(context, list,loginResponse.getROLEID());
+                                            viewTaskAdapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
                                             binding.recyclerView.setAdapter(viewTaskAdapter);
                                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                                             binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
@@ -168,7 +173,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                         binding.recyclerView.setVisibility(View.VISIBLE);
                         binding.tvEmpty.setVisibility(View.GONE);
 
-                        viewTaskAdapter = new ApplicationListAdapter(context, list,loginResponse.getROLEID());
+                        viewTaskAdapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
                         binding.recyclerView.setAdapter(viewTaskAdapter);
                         binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
                         binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));

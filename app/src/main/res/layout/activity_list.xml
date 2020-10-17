@@ -11,7 +11,7 @@
     </data>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
@@ -21,55 +21,75 @@
             android:id="@+id/header"
             layout="@layout/action_bar_layout" />
 
-        <SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
-            android:background="@color/white"
-            app:queryHint="Search by Applicant Name or OT Application Number"></SearchView>
-
-        <TextView
-            android:id="@+id/tv_records"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_5dp"
-            android:layout_marginBottom="@dimen/dimen_5dp"
-            android:fontFamily="@font/elmessiri_regular"
-            android:gravity="center"
-            android:padding="@dimen/dimen_5dp"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/tv_empty"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/data_empty"
-            android:textColor="@color/white"
-            android:visibility="visible" />
+            android:layout_below="@+id/header"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@color/white"
+                app:queryHint="Search by Applicant Name or OT Application Number"></SearchView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <TextView
+                android:id="@+id/tv_records"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:fontFamily="@font/elmessiri_regular"
+                android:gravity="center"
+                android:padding="@dimen/dimen_5dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_empty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                android:padding="@dimen/dimen_5dp"
-                tools:listitem="@layout/item_view" />
+                android:gravity="center"
+                android:text="@string/data_empty"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_view" />
 
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
 
-    </LinearLayout>
+            <include
+                android:id="@+id/btn_layout"
+                layout="@layout/button_layout" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </layout>

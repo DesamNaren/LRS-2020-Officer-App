@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +19,7 @@ import androidx.databinding.DataBindingUtil;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.databinding.ActivityL2UploadBinding;
+import com.cgg.lrs2020officerapp.databinding.ActivityL3UploadBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
@@ -30,13 +29,13 @@ import com.cgg.lrs2020officerapp.viewmodel.ScrutinyCheckListViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
-public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerInterface {
+public class L3UploadActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
-    ActivityL2UploadBinding binding;
+    ActivityL3UploadBinding binding;
     ScrutinyCheckListViewModel scrutinyCheckListViewModel;
     Context context;
     CustomProgressDialog customProgressDialog;
-    String short_fall, fee_intimation, recommended_officer_remarks;
+    String recommended_officer_remarks;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private String applicationId, applicantName;
@@ -45,15 +44,14 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_l2_upload);
-        context = L2UploadActivity.this;
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_l3_upload);
+        context = L3UploadActivity.this;
         binding.header.headerTitle.setText(R.string.upload_files);
         customProgressDialog = new CustomProgressDialog(context);
-
         binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.DashboardActivity(L2UploadActivity.this);
+                Utils.DashboardActivity(L3UploadActivity.this);
             }
         });
 
@@ -76,7 +74,7 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.customWarningAlert(L2UploadActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
+                Utils.customWarningAlert(L3UploadActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
             }
         });
 
@@ -199,37 +197,11 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
         } else {
             Utils.customErrorAlert(L2UploadActivity.this, getResources().getString(R.string.app_name), getString(R.string.plz_check_int));
         }*/
-        binding.rgShortFall.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (radioGroup.getCheckedRadioButtonId() == R.id.short_fall_yes) {
-                    short_fall = AppConstants.YES;
-                    binding.llShortYes.setVisibility(View.VISIBLE);
-                    binding.llShortNo.setVisibility(View.GONE);
-                } else if (radioGroup.getCheckedRadioButtonId() == R.id.short_fall_no) {
-                    short_fall = AppConstants.NO;
-                    binding.llShortNo.setVisibility(View.VISIBLE);
-                    binding.llShortYes.setVisibility(View.GONE);
-                } else {
-                    short_fall = null;
-                    binding.llShortNo.setVisibility(View.GONE);
-                    binding.llShortYes.setVisibility(View.GONE);
-                }
-            }
-        });
-        binding.rgFeeIntimation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (radioGroup.getCheckedRadioButtonId() == R.id.fee_intimation_yes) {
-                    fee_intimation = AppConstants.YES;
-                } else if (radioGroup.getCheckedRadioButtonId() == R.id.fee_intimation_no) {
-                    fee_intimation = AppConstants.NO;
-                }
-            }
-        });
 
         binding.btnLayout.btnCancel.setVisibility(View.VISIBLE);
-        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
+
+        binding.btnLayout.btnCancel.setText(getResources().getString(R.string.reject));
+        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.approve));
 
         binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,13 +229,7 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
     }
 
     private boolean validate() {
-        if (TextUtils.isEmpty(short_fall)) {
-            callSnackBar(getString(R.string.select_short_fall));
-            return false;
-        } else if (short_fall.equalsIgnoreCase(AppConstants.NO) && TextUtils.isEmpty(fee_intimation)) {
-            callSnackBar(getString(R.string.select_fee_intimation));
-            return false;
-        } else if (TextUtils.isEmpty(recommended_officer_remarks)) {
+        if (TextUtils.isEmpty(recommended_officer_remarks)) {
             callSnackBar(getString(R.string.enter_recommended_officer_remarks));
             return false;
         }
@@ -312,8 +278,8 @@ public class L2UploadActivity extends AppCompatActivity implements ErrorHandlerI
                         if (Utils.checkInternetConnection(context)) {
                             customProgressDialog.show();
 //                            addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
-                            Utils.customSuccessAlert(L2UploadActivity.this, getString(R.string.app_name),
-                                    "L2 Review Successfully completed", true, editor);
+                            Utils.customSuccessAlert(L3UploadActivity.this, getString(R.string.app_name),
+                                    "Approved Successfully", true, editor);
 
                         } else {
                             Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));

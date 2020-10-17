@@ -63,9 +63,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
 //                if (list != null && list.size() > 0) {
                 if (loginResponse.getROLEID().equalsIgnoreCase("3"))
                     startActivity(new Intent(Dashboard.this, ClusterActivity.class));
-                else if (loginResponse.getROLEID().equalsIgnoreCase("4"))
-                    startActivity(new Intent(Dashboard.this, ClusterActivity.class));
-                else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
+                else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
                     startActivity(new Intent(Dashboard.this, ListActivity.class));
 //                } else {
 //                    Toast.makeText(Dashboard.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
