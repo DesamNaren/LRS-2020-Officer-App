@@ -104,7 +104,6 @@
                                     android:inputType="textCapCharacters"
                                     android:maxLength="40"
                                     android:singleLine="true"
-                                    android:text="IO000001"
                                     android:textAllCaps="true"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dimen_16sp" />
@@ -137,7 +136,6 @@
                                     android:imeOptions="actionDone"
                                     android:inputType="textPassword"
                                     android:singleLine="true"
-                                    android:text="123"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dimen_16sp" />
                             </com.google.android.material.textfield.TextInputLayout>

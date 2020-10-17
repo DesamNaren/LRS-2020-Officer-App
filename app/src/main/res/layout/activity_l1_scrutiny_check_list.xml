@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/action_bar_layout" />
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ll_btn"
+            android:layout_below="@id/header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_5dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_10dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/name_of_the_municipality_corporation" />
+
+                            <TextView
+                                android:id="@+id/tv_name_municipality"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Chityal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ward" />
+
+                            <TextView
+                                android:id="@+id/tv_ward"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Ward_020319" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Revenue Village" />
+
+                            <TextView
+                                android:id="@+id/tv_revenue_village"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Chityal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/mandal" />
+
+                            <TextView
+                                android:id="@+id/tv_mandal"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Chityal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/district" />
+
+                            <TextView
+                                android:id="@+id/tv_district"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Nalgonda" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/cluster_id" />
+
+                            <TextView
+                                android:id="@+id/tv_cluster_id"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Cluster-1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/cluster_survey_s" />
+
+                            <TextView
+                                android:id="@+id/tv_cluster_survey"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="243" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/localities_covered" />
+
+                            <TextView
+                                android:id="@+id/tv_localities_covered"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="10" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/applications" />
+
+                            <TextView
+                                android:id="@+id/tv_applications"
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="72" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        app:errorEnabled="true">
+
+
+                        <EditText
+                            android:id="@+id/et_name_colony_localilty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:hint="@string/name_of_the_colony_locality"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:textSize="16dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        app:errorEnabled="true">
+
+
+                        <EditText
+                            android:id="@+id/et_survey_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:hint="@string/survey_no_s_name_of_village"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:textSize="16dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        app:errorEnabled="true">
+
+
+                        <EditText
+                            android:id="@+id/et_layout_extent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:hint="@string/extent_of_layout"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:textSize="16dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        app:errorEnabled="true">
+
+
+                        <EditText
+                            android:id="@+id/et_plot_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:hint="@string/plot_no_s_applied_for_lrs"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:textSize="16dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/whether_the_colony_locality_falls_in_any_of_the_objectionable_lands_such_as_water_body_nala_shikam_land_ftl_or_buffer_of_tank"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_colony_falls_objectionable_lands"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/colony_falls_objectionable_lands_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/yes"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/colony_falls_objectionable_lands_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/no"
+                                android:textSize="16sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/whether_the_colony_localityfalls_under_any_prohibitory_lands_list_like_govt_wakf_heritage_forest_land_monuments_endowment_land_ceiling_surplus_land_disputed_lands_court_litigations_etc"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_colony_falls_prohibitory_lands"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/colony_falls_prohibitory_lands_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/yes"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/colony_falls_prohibitory_lands_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/no"
+                                android:textSize="16sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/whether_the_colony_locality_falls_under_master_plan_open_space_layout_open_space_ht_line"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_colony_falls_master_plan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/colony_falls_master_plan_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/yes"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/colony_falls_master_plan_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/no"
+                                android:textSize="16sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/is_the_colony_locality_affected_by_any_master_plan_road_srdp_rdp"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <RadioGroup
+                                android:id="@+id/rg_colony_affected_Local_plan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <RadioButton
+                                    android:id="@+id/colony_affected_Local_plan_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/yes"
+                                    android:textSize="16sp" />
+
+                                <RadioButton
+                                    android:id="@+id/colony_affected_Local_plan_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/no"
+                                    android:textSize="16sp" />
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tv_plot_no_effected"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_5dp"
+                            android:visibility="gone"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_plot_no_effected"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/specify_the_plot_numbers_with_extent_of_area_affected"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/whether_10_of_open_space_is_available_as_on_ground_and_handed_over_to_local_body"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <RadioGroup
+                                android:id="@+id/rg_open_space_avail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <RadioButton
+                                    android:id="@+id/open_space_avail_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/yes"
+                                    android:textSize="16sp" />
+
+                                <RadioButton
+                                    android:id="@+id/open_space_avail_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/no"
+                                    android:textSize="16sp" />
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tv_percent_open_space"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_5dp"
+                            android:visibility="gone"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_percent_open_space"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/of_open_space_provided_and_handed_over"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tv_land_use_as_per_master_plan"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_land_use_as_per_master_plan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/specify_the_land_use_as_per_master_plan_master_plan_approved_towns_only"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/whether_the_lrs_can_be_permitted"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <RadioGroup
+                                android:id="@+id/rg_lrs_permitted"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <RadioButton
+                                    android:id="@+id/lrs_permitted_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/yes"
+                                    android:textSize="16sp" />
+
+                                <RadioButton
+                                    android:id="@+id/lrs_permitted_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/no"
+                                    android:textSize="16sp" />
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/whether_any_legal_disputes_complaints_against_the_land_covered_in_this_colony"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <RadioGroup
+                                android:id="@+id/rg_legal_disputes_complaints_against_the_land"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <RadioButton
+                                    android:id="@+id/legal_disputes_complaints_against_the_land_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/yes"
+                                    android:textSize="16sp" />
+
+                                <RadioButton
+                                    android:id="@+id/legal_disputes_complaints_against_the_land_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/no"
+                                    android:textSize="16sp" />
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tv_plot_no_recommended_approval"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_plot_no_recommended_approval"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/plot_numbers_recommended_for_approval_of_lrs"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tv_plot_no_recommended_shortfall"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_plot_no_recommended_shortfall"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/plot_numbers_recommended_for_shortfall_of_lrs_please_specify"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tv_plot_no_recommended_reject"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_plot_no_recommended_reject"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/plot_numbers_recommended_for_reject_of_lrs"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/btn_layout"
+                layout="@layout/button_layout" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

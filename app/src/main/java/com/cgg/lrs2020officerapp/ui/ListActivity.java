@@ -116,7 +116,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ListActivity.this, ImageUploadActivity.class));
+                    startActivity(new Intent(ListActivity.this, L1ChecklistActivity.class));
                 }
             });
 

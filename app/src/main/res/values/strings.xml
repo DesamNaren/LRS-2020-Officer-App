@@ -125,4 +125,30 @@
     <string name="select_short_fall">Please check Short Fall</string>
     <string name="fee_paid">Fee Paid</string>
     <string name="fee_to_be_paid">Fee To be Paid</string>
+    <string name="name_of_the_municipality_corporation">Name of the Municipality/Corporation</string>
+    <string name="ward">Ward</string>
+    <string name="mandal">Mandal</string>
+    <string name="district">District</string>
+    <string name="cluster_id">Cluster ID:</string>
+    <string name="cluster_survey_s">Cluster Survey #’s</string>
+    <string name="localities_covered">Localities Covered</string>
+    <string name="applications">Applications</string>
+    <string name="name_of_the_colony_locality">Name of the Colony / Locality</string>
+    <string name="survey_no_s_name_of_village"><![CDATA[Survey no’s & Name of Village]]></string>
+    <string name="extent_of_layout">Extent of Layout</string>
+    <string name="plot_no_s_applied_for_lrs">Plot no’s applied for LRS</string>
+    <string name="whether_the_colony_locality_falls_in_any_of_the_objectionable_lands_such_as_water_body_nala_shikam_land_ftl_or_buffer_of_tank">Whether the Colony/Locality falls in any of the objectionable lands such as Water Body/Nala /Shikam Land /FTL or Buffer of Tank</string>
+    <string name="whether_the_colony_localityfalls_under_any_prohibitory_lands_list_like_govt_wakf_heritage_forest_land_monuments_endowment_land_ceiling_surplus_land_disputed_lands_court_litigations_etc">Whether the Colony/Localityfalls under any Prohibitory lands list like Govt. /Wakf/ heritage/forest land /monuments / Endowment Land/ceiling Surplus Land/Disputed Lands/Court Litigations etc.,</string>
+    <string name="whether_the_colony_locality_falls_under_master_plan_open_space_layout_open_space_ht_line">Whether the Colony/Locality falls under Master Plan Open Space /Layout Open Space / HT line</string>
+    <string name="is_the_colony_locality_affected_by_any_master_plan_road_srdp_rdp">Is the Colony/Locality affected by any Master Plan Road / SRDP/RDP</string>
+    <string name="specify_the_plot_numbers_with_extent_of_area_affected">Specify the plot numbers with extent of area affected</string>
+    <string name="whether_10_of_open_space_is_available_as_on_ground_and_handed_over_to_local_body">Whether 10% of open space is available as on ground and handed over to local body</string>
+    <string name="of_open_space_provided_and_handed_over">% of open space provided and handed over.</string>
+    <string name="specify_the_land_use_as_per_master_plan_master_plan_approved_towns_only">Specify the land use as per Master plan (Master plan approved towns only)</string>
+    <string name="whether_the_lrs_can_be_permitted">Whether the LRS can be permitted</string>
+    <string name="whether_any_legal_disputes_complaints_against_the_land_covered_in_this_colony">Whether any legal disputes/ complaints against the land covered in this colony</string>
+    <string name="plot_numbers_recommended_for_approval_of_lrs">Plot Numbers recommended for approval of LRS</string>
+    <string name="plot_numbers_recommended_for_shortfall_of_lrs_please_specify">Plot Numbers recommended for shortfall of LRS (Please specify)</string>
+    <string name="plot_numbers_recommended_for_reject_of_lrs">Plot Numbers recommended for reject of LRS</string>
+
 </resources>
