@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class ApplicationReq {
     @SerializedName("TOKEN_ID")
     @Expose
-    private String uSERID;
+    private String tOKENID;
     @SerializedName("office_id")
     @Expose
     private String oFFICEID;
@@ -20,12 +20,12 @@ public class ApplicationReq {
     @Expose
     private String sTATUSID;
 
-    public String getUSERID() {
-        return uSERID;
+    public String getTOKENID() {
+        return tOKENID;
     }
 
-    public void setUSERID(String uSERID) {
-        this.uSERID = uSERID;
+    public void setTOKENID(String uSERID) {
+        this.tOKENID = uSERID;
     }
 
     public String getOFFICEID() {

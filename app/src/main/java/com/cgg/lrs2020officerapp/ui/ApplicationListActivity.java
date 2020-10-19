@@ -124,7 +124,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                     request.setAUTHORITYID(loginResponse.getAUTHORITYID());
                     request.setROLEID(loginResponse.getROLEID());
                     request.setSTATUSID(AppConstants.STATUS_ID);
-                    request.setUSERID(loginResponse.gettOKEN_ID());
+                    request.setTOKENID(loginResponse.gettOKEN_ID());
 
                     if (Utils.checkInternetConnection(ApplicationListActivity.this)) {
                         viewModel.getApplicationListCall(request).observe(ApplicationListActivity.this, new Observer<ApplicationRes>() {
