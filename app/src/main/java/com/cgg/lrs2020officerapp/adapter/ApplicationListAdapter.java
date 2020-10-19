@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.databinding.ItemViewBinding;
+import com.cgg.lrs2020officerapp.databinding.ItemViewApplicationListBinding;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
-import com.cgg.lrs2020officerapp.ui.LayoutActivity;
+import com.cgg.lrs2020officerapp.ui.ApplicationDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +44,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemViewBinding listItemBinding = DataBindingUtil.inflate(
+        ItemViewApplicationListBinding listItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
-                R.layout.item_view, parent, false);
+                R.layout.item_view_application_list, parent, false);
         return new ItemHolder(listItemBinding);
     }
 
@@ -70,7 +70,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
                 editor.putString(AppConstants.APPLICANT_NAME, dataModel.getNAME());
                 editor.commit();
 
-                Intent intent = new Intent(context, LayoutActivity.class);
+                Intent intent = new Intent(context, ApplicationDetailsActivity.class);
                 context.startActivity(intent);
             }
         });
@@ -83,9 +83,9 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
 
     class ItemHolder extends RecyclerView.ViewHolder {
 
-        ItemViewBinding listItemBinding;
+        ItemViewApplicationListBinding listItemBinding;
 
-        ItemHolder(ItemViewBinding listItemBinding) {
+        ItemHolder(ItemViewApplicationListBinding listItemBinding) {
             super(listItemBinding.getRoot());
             this.listItemBinding = listItemBinding;
         }

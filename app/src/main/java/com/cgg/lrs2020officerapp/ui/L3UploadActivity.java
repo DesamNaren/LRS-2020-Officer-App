@@ -25,14 +25,14 @@ import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.ScrutinyCheckListViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.L2ScrutinyChecklistViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 public class L3UploadActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
     ActivityL3UploadBinding binding;
-    ScrutinyCheckListViewModel scrutinyCheckListViewModel;
+    L2ScrutinyChecklistViewModel scrutinyCheckListViewModel;
     Context context;
     CustomProgressDialog customProgressDialog;
     String recommended_officer_remarks;
@@ -69,7 +69,7 @@ public class L3UploadActivity extends AppCompatActivity implements ErrorHandlerI
             e.printStackTrace();
         }
 
-        scrutinyCheckListViewModel = new ScrutinyCheckListViewModel(context, getApplication());
+        scrutinyCheckListViewModel = new L2ScrutinyChecklistViewModel(context, getApplication());
 
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

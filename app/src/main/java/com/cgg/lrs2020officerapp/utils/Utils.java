@@ -26,8 +26,7 @@ import android.widget.TextView;
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.ui.Dashboard;
-import com.cgg.lrs2020officerapp.ui.ListActivity;
+import com.cgg.lrs2020officerapp.ui.DashboardActivity;
 import com.cgg.lrs2020officerapp.ui.LoginActivity;
 import com.cgg.lrs2020officerapp.ui.QuitAppActivity;
 
@@ -405,7 +404,7 @@ public class Utils {
                         editor.putString(AppConstants.APPLICATION_ID, "");
                         editor.putString(AppConstants.APPLICANT_NAME, "");
                         editor.commit();
-                        Intent newIntent = new Intent(activity, Dashboard.class);
+                        Intent newIntent = new Intent(activity, DashboardActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         activity.startActivity(newIntent);
@@ -648,7 +647,7 @@ public class Utils {
 
 
     public static void DashboardActivity(Activity context) {
-        Intent i=new Intent(context, Dashboard.class);
+        Intent i=new Intent(context, DashboardActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
         context.finish();

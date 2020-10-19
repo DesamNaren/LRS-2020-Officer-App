@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/action_bar_layout" />
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ll_btn"
+            android:layout_below="@id/header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_5dp">
+
+                <include
+                    android:id="@+id/basic_layout"
+                    layout="@layout/basic_layout" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_5dp"
+                        android:layout_marginTop="@dimen/dimen_1dp"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        android:layout_marginBottom="@dimen/dimen_5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/short_fall"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_short_fall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/short_fall_yes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/yes"
+                                android:textSize="16sp" />
+
+                            <RadioButton
+                                android:id="@+id/short_fall_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/no"
+                                android:textSize="16sp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/ll_short_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:elevation="@dimen/dimen_4dp"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_5dp"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:id="@+id/plot_layout_falls_under"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/dimen_5dp"
+                                android:text="Plot Layout Falls Under" />
+
+                            <CheckBox
+                                android:id="@+id/plot_details"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/dimen_5dp"
+                                android:text="Plot Details" />
+
+                            <CheckBox
+                                android:id="@+id/plot_documents"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/dimen_5dp"
+                                android:text="Plot Documents" />
+
+                            <CheckBox
+                                android:id="@+id/applicant_details"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/dimen_5dp"
+                                android:text="Applicant Details" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_short_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:text="@string/fee_paid" />
+
+                            <TextView
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="1000"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:text="@string/fee_to_be_paid" />
+
+                            <TextView
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:text="0"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:elevation="@dimen/dimen_4dp"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dimen_5dp"
+                            android:layout_marginTop="@dimen/dimen_1dp"
+                            android:layout_marginRight="@dimen/dimen_5dp"
+                            android:layout_marginBottom="@dimen/dimen_5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:padding="@dimen/dimen_5dp"
+                                android:text="@string/fee_intimation"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <RadioGroup
+                                android:id="@+id/rg_fee_intimation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <RadioButton
+                                    android:id="@+id/fee_intimation_yes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/yes"
+                                    android:textSize="16sp" />
+
+                                <RadioButton
+                                    android:id="@+id/fee_intimation_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/elmessiri_regular"
+                                    android:padding="@dimen/dimen_5dp"
+                                    android:text="@string/no"
+                                    android:textSize="16sp" />
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:boxStrokeColor="@color/dark_gray"
+                            app:errorEnabled="true">
+
+
+                            <EditText
+                                android:id="@+id/et_recommended_officer_remarks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:hint="@string/recommended_officer_remarks"
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:maxLength="15"
+                                android:textSize="16dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:background="@color/colorPrimary"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_20dp"
+                        android:layout_height="@dimen/dimen_20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:background="@drawable/remarks"
+                        android:backgroundTint="@color/white" />
+
+                    <TextView
+                        style="@style/text_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Remarks" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/data_empty"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:paddingLeft="@dimen/dimen_5dp"
+                    android:paddingRight="@dimen/dimen_5dp"
+                    android:paddingBottom="@dimen/dimen_5dp"
+                    tools:listitem="@layout/item_view_remarks" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/btn_layout"
+                layout="@layout/button_layout" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements ErrorHandlerInte
                         String str = new Gson().toJson(loginResponse1);
                         editor.putString(AppConstants.LOGIN_RES, str);
                         editor.commit();
-                        startActivity(new Intent(context, Dashboard.class));
+                        startActivity(new Intent(context, DashboardActivity.class));
 //                        finish();
                     } else if (loginResponse.get(0).getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
                         Utils.customErrorAlert(context, getString(R.string.app_name), loginResponse.get(0).getStatusMessage());

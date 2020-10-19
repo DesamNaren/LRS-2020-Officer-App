@@ -46,14 +46,14 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
         } catch (Exception e) {
             e.printStackTrace();
         }
-        viewModel = new ApplicationListViewModel(ClusterActivity.this);
+        viewModel = new ApplicationListViewModel(ClusterActivity.this, getApplication());
         binding.name.setText("" + loginResponse.getUserName());
-        binding.designation.setText("" + loginResponse.getDESIGNATION());
+        binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.cluster1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ListActivity.class);
+                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
                 startActivity(i);
 //                } else {
 //                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
@@ -64,7 +64,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
             @Override
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ListActivity.class);
+                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
                 startActivity(i);
 //                } else {
 //                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
@@ -75,7 +75,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
             @Override
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ListActivity.class);
+                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
                 startActivity(i);
 //                } else {
 //                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
