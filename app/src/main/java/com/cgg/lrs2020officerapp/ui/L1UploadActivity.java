@@ -43,8 +43,8 @@ import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyCustomViewModel;
-import com.cgg.lrs2020officerapp.viewmodel.AddScrutinyViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.L2UploadCustomViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.L2UploadViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 
@@ -59,7 +59,7 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInterface {
 
     private CustomProgressDialog customProgressDialog;
-    private AddScrutinyViewModel addScrutinyViewModel;
+    private L2UploadViewModel addScrutinyViewModel;
     private static final int SELECT_FILE = 1;
     private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
@@ -110,8 +110,8 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
 
 
         addScrutinyViewModel = new ViewModelProvider(
-                this, new AddScrutinyCustomViewModel(context)).
-                get(AddScrutinyViewModel.class);
+                this, new L2UploadCustomViewModel(context)).
+                get(L2UploadViewModel.class);
 
         binding.btnLayout.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

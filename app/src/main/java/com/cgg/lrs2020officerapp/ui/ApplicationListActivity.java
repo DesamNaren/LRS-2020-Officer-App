@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -21,7 +20,7 @@ import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.adapter.ApplicationListAdapter;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.databinding.ActivityListBinding;
+import com.cgg.lrs2020officerapp.databinding.ActivityApplicationListBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
@@ -29,7 +28,6 @@ import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.ApplicationListCustomViewModel;
 import com.cgg.lrs2020officerapp.viewmodel.ApplicationListViewModel;
 import com.google.gson.Gson;
 
@@ -42,7 +40,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     private TextView tv;
     private Context context;
     private ApplicationListViewModel viewModel;
-    private ActivityListBinding binding;
+    private ActivityApplicationListBinding binding;
     private List<ApplicationListData> list;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -103,9 +101,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
 //            }
             setupSearchView(binding.searchView);
 
-            viewModel = new ViewModelProvider(
-                    this, new ApplicationListCustomViewModel(binding, context)).
-                    get(ApplicationListViewModel.class);
+            viewModel = new ApplicationListViewModel(context, getApplication());
             binding.setViewModel(viewModel);
 
             if (loginResponse.getROLEID().equalsIgnoreCase("3"))

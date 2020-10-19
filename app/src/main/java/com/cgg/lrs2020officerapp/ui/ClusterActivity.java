@@ -46,7 +46,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
         } catch (Exception e) {
             e.printStackTrace();
         }
-        viewModel = new ApplicationListViewModel(ClusterActivity.this);
+        viewModel = new ApplicationListViewModel(ClusterActivity.this, getApplication());
         binding.name.setText("" + loginResponse.getUserName());
         binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.cluster1.setOnClickListener(new View.OnClickListener() {

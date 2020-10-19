@@ -19,13 +19,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LayoutViewModel extends AndroidViewModel {
+public class ApplicationDetailsViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<ApplicantDetailsRes> applicantDetailsResMutableLiveData;
     private ErrorHandlerInterface errorHandlerInterface;
     private CustomProgressDialog customProgressDialog;
 
-    public LayoutViewModel(Context context, Application application) {
+    public ApplicationDetailsViewModel(Context context, Application application) {
         super(application);
         this.context = context;
         errorHandlerInterface = (ErrorHandlerInterface) context;

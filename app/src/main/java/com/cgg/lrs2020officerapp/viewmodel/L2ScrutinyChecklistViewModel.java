@@ -19,13 +19,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ScrutinyCheckListViewModel extends AndroidViewModel {
+public class L2ScrutinyChecklistViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<RoadDetailsResponse> roadDetailsResponseMutableLiveData;
     private MutableLiveData<LandDetailsResponse> landDetailsResponseMutableLiveData;
     private MutableLiveData<RecommendDetailsResponse> recommendDetailsResponseMutableLiveData;
     private ErrorHandlerInterface errorHandlerInterface;
-    public ScrutinyCheckListViewModel(Context context, Application application) {
+    public L2ScrutinyChecklistViewModel(Context context, Application application) {
         super(application);
         this.context = context;
         errorHandlerInterface = (ErrorHandlerInterface) context;

@@ -54,7 +54,7 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
         } catch (Exception e) {
             e.printStackTrace();
         }
-        viewModel = new ApplicationListViewModel(DashboardActivity.this);
+        viewModel = new ApplicationListViewModel(DashboardActivity.this, getApplication());
         binding.name.setText("" + loginResponse.getUserName());
         binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.pendingForScrutiny.setOnClickListener(new View.OnClickListener() {

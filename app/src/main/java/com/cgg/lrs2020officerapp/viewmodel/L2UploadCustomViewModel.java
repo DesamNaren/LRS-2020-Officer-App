@@ -6,19 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.cgg.lrs2020officerapp.databinding.ActivityListBinding;
 
-
-public class AddScrutinyCustomViewModel implements ViewModelProvider.Factory {
+public class L2UploadCustomViewModel implements ViewModelProvider.Factory {
     private Context context;
 
-    public AddScrutinyCustomViewModel(Context context) {
+    public L2UploadCustomViewModel(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new AddScrutinyViewModel( context);
+        return (T) new L2UploadViewModel( context);
     }
 }

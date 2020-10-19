@@ -17,12 +17,12 @@ import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.ScrutinyCheckListViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.L2ScrutinyChecklistViewModel;
 
 public class L2ViewScrutinyChecklistActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
     ActivityL2ViewScrutinyChecklistBinding binding;
-    ScrutinyCheckListViewModel scrutinyCheckListViewModel;
+    L2ScrutinyChecklistViewModel scrutinyCheckListViewModel;
     Context context;
     CustomProgressDialog customProgressDialog;
     private SharedPreferences sharedPreferences;
@@ -56,7 +56,7 @@ public class L2ViewScrutinyChecklistActivity extends AppCompatActivity implement
             e.printStackTrace();
         }
 
-        scrutinyCheckListViewModel = new ScrutinyCheckListViewModel(context, getApplication());
+        scrutinyCheckListViewModel = new L2ScrutinyChecklistViewModel(context, getApplication());
 
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

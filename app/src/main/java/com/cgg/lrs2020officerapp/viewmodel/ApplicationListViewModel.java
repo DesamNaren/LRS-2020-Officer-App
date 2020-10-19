@@ -1,8 +1,10 @@
 package com.cgg.lrs2020officerapp.viewmodel;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ApplicationListViewModel extends ViewModel {
+public class ApplicationListViewModel extends AndroidViewModel {
 
     private MutableLiveData<ApplicationRes> responseMutableLiveData;
 
@@ -26,7 +28,8 @@ public class ApplicationListViewModel extends ViewModel {
     private ErrorHandlerInterface errorHandlerInterface;
     private CustomProgressDialog customProgressDialog;
 
-    public ApplicationListViewModel(Context context) {
+    public ApplicationListViewModel(Context context, Application application) {
+        super(application);
         this.context = context;
         customProgressDialog = new CustomProgressDialog(context);
         errorHandlerInterface = (ErrorHandlerInterface) context;

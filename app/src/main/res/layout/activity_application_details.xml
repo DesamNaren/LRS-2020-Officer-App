@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.cgg.lrs2020officerapp.viewmodel.LayoutViewModel" />
+            type="com.cgg.lrs2020officerapp.viewmodel.ApplicationDetailsViewModel" />
 
         <variable
             name="data"

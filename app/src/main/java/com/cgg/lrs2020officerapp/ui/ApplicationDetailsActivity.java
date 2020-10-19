@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.databinding.ActivityLayoutBinding;
+import com.cgg.lrs2020officerapp.databinding.ActivityApplicationDetailsBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsListData;
@@ -21,13 +21,13 @@ import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsReq;
 import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsRes;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.LayoutViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.ApplicationDetailsViewModel;
 import com.google.gson.Gson;
 
 public class ApplicationDetailsActivity extends AppCompatActivity implements ErrorHandlerInterface {
-    ActivityLayoutBinding binding;
+    ActivityApplicationDetailsBinding binding;
     private String applicationID;
-    private LayoutViewModel viewModel;
+    private ApplicationDetailsViewModel viewModel;
     private Context context;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -45,7 +45,7 @@ public class ApplicationDetailsActivity extends AppCompatActivity implements Err
                 Utils.DashboardActivity(ApplicationDetailsActivity.this);
             }
         });
-        viewModel = new LayoutViewModel(context, getApplication());
+        viewModel = new ApplicationDetailsViewModel(context, getApplication());
         binding.setViewModel(viewModel);
 
         sharedPreferences = LRSApplication.get(context).getPreferences();

@@ -19,14 +19,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddScrutinyViewModel extends ViewModel {
+public class L2UploadViewModel extends ViewModel {
 
     private SubmitScrutinyInterface submitScrutinyInterface;
     private ErrorHandlerInterface errorHandlerInterface;
 
     private Context context;
 
-    public AddScrutinyViewModel(Context context) {
+    public L2UploadViewModel(Context context) {
         this.context = context;
 //        submitScrutinyInterface = (SubmitScrutinyInterface) context;
         errorHandlerInterface = (ErrorHandlerInterface) context;
