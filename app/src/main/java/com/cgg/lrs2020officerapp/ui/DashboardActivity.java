@@ -29,7 +29,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-public class Dashboard extends AppCompatActivity implements ErrorHandlerInterface {
+public class DashboardActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -43,7 +43,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
 
-        sharedPreferences = LRSApplication.get(Dashboard.this).getPreferences();
+        sharedPreferences = LRSApplication.get(DashboardActivity.this).getPreferences();
         editor = sharedPreferences.edit();
         try {
             String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
@@ -54,7 +54,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         } catch (Exception e) {
             e.printStackTrace();
         }
-        viewModel = new ApplicationListViewModel(Dashboard.this);
+        viewModel = new ApplicationListViewModel(DashboardActivity.this);
         binding.name.setText("" + loginResponse.getUserName());
         binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.pendingForScrutiny.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +62,9 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
                 if (loginResponse.getROLEID().equalsIgnoreCase("3"))
-                    startActivity(new Intent(Dashboard.this, ClusterActivity.class));
+                    startActivity(new Intent(DashboardActivity.this, ClusterActivity.class));
                 else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
-                    startActivity(new Intent(Dashboard.this, ListActivity.class));
+                    startActivity(new Intent(DashboardActivity.this, ApplicationListActivity.class));
 //                } else {
 //                    Toast.makeText(Dashboard.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
 //                }
@@ -73,14 +73,14 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         binding.logoutimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.customLogoutAlert(Dashboard.this, getString(R.string.app_name), "Do you want to logout from app?", editor);
+                Utils.customLogoutAlert(DashboardActivity.this, getString(R.string.app_name), "Do you want to logout from app?", editor);
             }
         });
 
         binding.About.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Dashboard.this, WebActivity.class);
+                Intent i = new Intent(DashboardActivity.this, WebActivity.class);
                 startActivity(i);
             }
         });
@@ -98,7 +98,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
 
         request.setUSERID(loginResponse.gettOKEN_ID());
 
-        if (Utils.checkInternetConnection(Dashboard.this)) {
+        if (Utils.checkInternetConnection(DashboardActivity.this)) {
             viewModel.getApplicationListCall(request).observe(this, new Observer<ApplicationRes>() {
                 @Override
                 public void onChanged(ApplicationRes response) {
@@ -117,16 +117,16 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
                         } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
 //                            Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), response.getStatusMessage());
                         } else {
-                            Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), getString(R.string.something));
+                            Utils.customErrorAlert(DashboardActivity.this, getString(R.string.app_name), getString(R.string.something));
                         }
 
                     } else {
-                        Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), getString(R.string.server_not));
+                        Utils.customErrorAlert(DashboardActivity.this, getString(R.string.app_name), getString(R.string.server_not));
                     }
                 }
             });
         } else {
-            Utils.customErrorAlert(Dashboard.this, getResources().getString(R.string.app_name),
+            Utils.customErrorAlert(DashboardActivity.this, getResources().getString(R.string.app_name),
                     getString(R.string.plz_check_int));
         }
     }
@@ -138,7 +138,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
     }
 
     private void exitHandler() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Dashboard.this);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(DashboardActivity.this);
         alertDialog.setTitle("Exit application?");
         alertDialog.setCancelable(false);
         alertDialog.setMessage("Are you sure you want to Exit From this application?");

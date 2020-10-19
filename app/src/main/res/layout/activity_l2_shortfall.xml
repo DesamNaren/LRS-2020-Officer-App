@@ -334,7 +334,7 @@
                     android:paddingLeft="@dimen/dimen_5dp"
                     android:paddingRight="@dimen/dimen_5dp"
                     android:paddingBottom="@dimen/dimen_5dp"
-                    tools:listitem="@layout/remarks_item_view" />
+                    tools:listitem="@layout/item_view_remarks" />
 
             </LinearLayout>
 

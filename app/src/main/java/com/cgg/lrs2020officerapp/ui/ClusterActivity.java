@@ -53,7 +53,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
             @Override
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ListActivity.class);
+                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
                 startActivity(i);
 //                } else {
 //                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
@@ -64,7 +64,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
             @Override
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ListActivity.class);
+                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
                 startActivity(i);
 //                } else {
 //                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
@@ -75,7 +75,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
             @Override
             public void onClick(View view) {
 //                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ListActivity.class);
+                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
                 startActivity(i);
 //                } else {
 //                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();

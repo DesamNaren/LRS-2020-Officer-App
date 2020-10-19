@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListActivity extends AppCompatActivity implements ErrorHandlerInterface {
+public class ApplicationListActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
     private TextView tv;
     private Context context;
@@ -54,8 +54,8 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_list);
-        context = ListActivity.this;
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_application_list);
+        context = ApplicationListActivity.this;
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
@@ -63,7 +63,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
         binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.DashboardActivity(ListActivity.this);
+                Utils.DashboardActivity(ApplicationListActivity.this);
             }
         });
 
@@ -116,7 +116,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ListActivity.this, L1ScrutinyChecklistActivity.class));
+                    startActivity(new Intent(ApplicationListActivity.this, L1ScrutinyChecklistActivity.class));
                 }
             });
 
@@ -130,8 +130,8 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                     request.setSTATUSID(AppConstants.STATUS_ID);
                     request.setUSERID(loginResponse.gettOKEN_ID());
 
-                    if (Utils.checkInternetConnection(ListActivity.this)) {
-                        viewModel.getApplicationListCall(request).observe(ListActivity.this, new Observer<ApplicationRes>() {
+                    if (Utils.checkInternetConnection(ApplicationListActivity.this)) {
+                        viewModel.getApplicationListCall(request).observe(ApplicationListActivity.this, new Observer<ApplicationRes>() {
                             @Override
                             public void onChanged(ApplicationRes response) {
 
@@ -156,15 +156,15 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                                         binding.tvEmpty.setText(response.getStatusMessage());
 //                                        Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), response.getStatusMessage());
                                     } else {
-                                        Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.something));
+                                        Utils.customErrorAlert(ApplicationListActivity.this, getString(R.string.app_name), getString(R.string.something));
                                     }
                                 } else {
-                                    Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
+                                    Utils.customErrorAlert(ApplicationListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
                                 }
                             }
                         });
                     } else {
-                        Utils.customErrorAlert(ListActivity.this, getResources().getString(R.string.app_name),
+                        Utils.customErrorAlert(ApplicationListActivity.this, getResources().getString(R.string.app_name),
                                 getString(R.string.plz_check_int));
                     }
                     binding.swipeRV.setRefreshing(false); // Disables the refresh icon
@@ -194,10 +194,10 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                     binding.tvEmpty.setText(applicationRes.getStatusMessage());
 //                Utils.customErrorAlert(context, getString(R.string.app_name), applicationRes.getStatusMessage());
                 } else {
-                    Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.something));
+                    Utils.customErrorAlert(ApplicationListActivity.this, getString(R.string.app_name), getString(R.string.something));
                 }
             } else {
-                Utils.customErrorAlert(ListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
+                Utils.customErrorAlert(ApplicationListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
             }
 
         } catch (Exception e) {
@@ -339,7 +339,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
     public void onBackPressed() {
         //Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
 
-        Intent intent = new Intent(context, Dashboard.class);
+        Intent intent = new Intent(context, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

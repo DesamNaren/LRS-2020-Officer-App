@@ -72,7 +72,7 @@
                     android:layout_height="match_parent"
                     android:padding="@dimen/dimen_5dp"
                     android:visibility="gone"
-                    tools:listitem="@layout/item_view" />
+                    tools:listitem="@layout/item_view_application_list" />
 
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

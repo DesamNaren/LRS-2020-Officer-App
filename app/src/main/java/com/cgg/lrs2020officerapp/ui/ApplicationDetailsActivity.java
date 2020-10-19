@@ -24,7 +24,7 @@ import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.LayoutViewModel;
 import com.google.gson.Gson;
 
-public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInterface {
+public class ApplicationDetailsActivity extends AppCompatActivity implements ErrorHandlerInterface {
     ActivityLayoutBinding binding;
     private String applicationID;
     private LayoutViewModel viewModel;
@@ -36,13 +36,13 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_layout);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_application_details);
         binding.header.headerTitle.setText(getString(R.string.scrutiny_details));
-        context = LayoutActivity.this;
+        context = ApplicationDetailsActivity.this;
         binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.DashboardActivity(LayoutActivity.this);
+                Utils.DashboardActivity(ApplicationDetailsActivity.this);
             }
         });
         viewModel = new LayoutViewModel(context, getApplication());
@@ -101,9 +101,9 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
             public void onClick(View v) {
 
                 if (loginResponse.getROLEID().equalsIgnoreCase("4"))
-                    startActivity(new Intent(LayoutActivity.this, L2ScrutinyChecklistActivity.class));
+                    startActivity(new Intent(ApplicationDetailsActivity.this, L2ScrutinyChecklistActivity.class));
                 else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
-                    startActivity(new Intent(LayoutActivity.this, L3UploadActivity.class));
+                    startActivity(new Intent(ApplicationDetailsActivity.this, L3UploadActivity.class));
             }
         });
     }
