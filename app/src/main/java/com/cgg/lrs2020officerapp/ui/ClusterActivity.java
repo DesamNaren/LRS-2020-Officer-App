@@ -48,7 +48,7 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
         }
         viewModel = new ApplicationListViewModel(ClusterActivity.this);
         binding.name.setText("" + loginResponse.getUserName());
-        binding.designation.setText("" + loginResponse.getDESIGNATION());
+        binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.cluster1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

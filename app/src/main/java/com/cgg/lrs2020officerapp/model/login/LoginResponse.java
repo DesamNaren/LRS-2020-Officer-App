@@ -23,7 +23,7 @@ public class LoginResponse {
     @SerializedName("OFFICE_ID")
     @Expose
     private String oFFICEID;
-     @SerializedName("SRO_DOC_LINK")
+    @SerializedName("SRO_DOC_LINK")
     @Expose
     private String sRO_DOC_LINK;
     @SerializedName("UserName")
@@ -31,7 +31,31 @@ public class LoginResponse {
     private String userName;
     @SerializedName("DESIGNATION")
     @Expose
-    private String DESIGNATION;
+    private String dESIGNATION;
+
+    @SerializedName("STATUS_ID")
+    @Expose
+    private String sTATUS_ID;
+
+    @SerializedName("TOKEN_ID")
+    @Expose
+    private String tOKEN_ID;
+
+    public String getsTATUS_ID() {
+        return sTATUS_ID;
+    }
+
+    public void setsTATUS_ID(String sTATUS_ID) {
+        this.sTATUS_ID = sTATUS_ID;
+    }
+
+    public String gettOKEN_ID() {
+        return tOKEN_ID;
+    }
+
+    public void settOKEN_ID(String tOKEN_ID) {
+        this.tOKEN_ID = tOKEN_ID;
+    }
 
     public String getStatusCode() {
         return statusCode;
@@ -97,11 +121,11 @@ public class LoginResponse {
         this.sRO_DOC_LINK = sRO_DOC_LINK;
     }
 
-    public String getDESIGNATION() {
-        return DESIGNATION;
+    public String getdESIGNATION() {
+        return dESIGNATION;
     }
 
-    public void setDESIGNATION(String DESIGNATION) {
-        this.DESIGNATION = DESIGNATION;
+    public void setdESIGNATION(String dESIGNATION) {
+        this.dESIGNATION = dESIGNATION;
     }
 }

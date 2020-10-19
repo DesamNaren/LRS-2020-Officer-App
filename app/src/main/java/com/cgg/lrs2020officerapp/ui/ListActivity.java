@@ -116,7 +116,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
             binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ListActivity.this, L1ChecklistActivity.class));
+                    startActivity(new Intent(ListActivity.this, L1ScrutinyChecklistActivity.class));
                 }
             });
 
@@ -128,7 +128,7 @@ public class ListActivity extends AppCompatActivity implements ErrorHandlerInter
                     request.setAUTHORITYID(loginResponse.getAUTHORITYID());
                     request.setROLEID(loginResponse.getROLEID());
                     request.setSTATUSID(AppConstants.STATUS_ID);
-                    request.setUSERID(loginResponse.getUSERID());
+                    request.setUSERID(loginResponse.gettOKEN_ID());
 
                     if (Utils.checkInternetConnection(ListActivity.this)) {
                         viewModel.getApplicationListCall(request).observe(ListActivity.this, new Observer<ApplicationRes>() {

@@ -56,7 +56,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         }
         viewModel = new ApplicationListViewModel(Dashboard.this);
         binding.name.setText("" + loginResponse.getUserName());
-        binding.designation.setText("" + loginResponse.getDESIGNATION());
+        binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.pendingForScrutiny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +96,7 @@ public class Dashboard extends AppCompatActivity implements ErrorHandlerInterfac
         else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
             request.setSTATUSID("80");
 
-        request.setUSERID(loginResponse.getUSERID());
+        request.setUSERID(loginResponse.gettOKEN_ID());
 
         if (Utils.checkInternetConnection(Dashboard.this)) {
             viewModel.getApplicationListCall(request).observe(this, new Observer<ApplicationRes>() {

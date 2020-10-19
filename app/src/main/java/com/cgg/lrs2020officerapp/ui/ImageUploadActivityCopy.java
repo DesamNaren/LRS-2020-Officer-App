@@ -39,7 +39,7 @@ import com.bumptech.glide.Glide;
 import com.cgg.lrs2020officerapp.BuildConfig;
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
-import com.cgg.lrs2020officerapp.databinding.ActivityImageUploadBinding;
+import com.cgg.lrs2020officerapp.databinding.ActivityL2UploadBinding;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
@@ -60,7 +60,7 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
     private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     String IMAGE_FLAG = null, PIC_NAME, FilePath;
-    ActivityImageUploadBinding binding;
+    ActivityL2UploadBinding binding;
     public Uri fileUri;
     public static final String IMAGE_DIRECTORY_NAME = "LRS_IMAGES";
     Bitmap bm;
@@ -86,7 +86,7 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(ImageUploadActivityCopy.this,
-                R.layout.activity_image_upload);
+                R.layout.activity_l2_upload);
         binding.header.headerTitle.setText(R.string.upload_files);
         binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
         });
 
 
-        binding.image1.setOnClickListener(new View.OnClickListener() {
+       /* binding.image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (callPermissions()) {
@@ -167,7 +167,7 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
                     }
                 }
             }
-        });
+        });*/
 
     }
 
@@ -192,7 +192,7 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bm.compress(Bitmap.CompressFormat.PNG, 50, stream);
 
-                if (IMAGE_FLAG.equals(AppConstants.IMAGE1)) {
+              /*  if (IMAGE_FLAG.equals(AppConstants.IMAGE1)) {
                     siteImage = true;
                     binding.image1.setPadding(0, 0, 0, 0);
                     binding.image1.setBackgroundColor(getResources().getColor(R.color.white));
@@ -225,7 +225,8 @@ public class ImageUploadActivityCopy extends LocBaseActivity {
 
                     P_IMAGE4_PATH = convertBase64(bm);
 
-                } else if (IMAGE_FLAG.equals(AppConstants.IMAGE_DOC)) {
+                } else*/
+                if (IMAGE_FLAG.equals(AppConstants.IMAGE_DOC)) {
                     extractDoc = true;
                     file_image_doc = new File(FilePath);
                     binding.btnSroRegDoc.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));

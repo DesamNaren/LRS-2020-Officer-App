@@ -55,11 +55,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.ScrutinyCheckListActivity"
+            android:name=".ui.L2ScrutinyChecklistActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.L2ScrutinyCheckListActivity"
+            android:name=".ui.L2ViewScrutinyChecklistActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -67,11 +67,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.ImageUploadActivity"
+            android:name=".ui.L2UploadActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.L2UploadActivity"
+            android:name=".ui.L2ShortfallActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -79,12 +79,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.L1ImageUploadActivity"
+            android:name=".ui.L1UploadActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".ui.L1ChecklistActivity"
+            android:name=".ui.L1ScrutinyChecklistActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 

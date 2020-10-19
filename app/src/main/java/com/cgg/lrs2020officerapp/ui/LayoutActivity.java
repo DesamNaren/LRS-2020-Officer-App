@@ -101,7 +101,7 @@ public class LayoutActivity extends AppCompatActivity implements ErrorHandlerInt
             public void onClick(View v) {
 
                 if (loginResponse.getROLEID().equalsIgnoreCase("4"))
-                    startActivity(new Intent(LayoutActivity.this, ScrutinyCheckListActivity.class));
+                    startActivity(new Intent(LayoutActivity.this, L2ScrutinyChecklistActivity.class));
                 else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
                     startActivity(new Intent(LayoutActivity.this, L3UploadActivity.class));
             }

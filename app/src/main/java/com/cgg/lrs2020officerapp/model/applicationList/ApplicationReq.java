@@ -4,19 +4,19 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ApplicationReq {
-    @SerializedName("USER_ID")
+    @SerializedName("TOKEN_ID")
     @Expose
     private String uSERID;
-    @SerializedName("OFFICE_ID")
+    @SerializedName("office_id")
     @Expose
     private String oFFICEID;
-    @SerializedName("AUTHORITY_ID")
+    @SerializedName("authority_id")
     @Expose
     private String aUTHORITYID;
-    @SerializedName("ROLE_ID")
+    @SerializedName("role_id")
     @Expose
     private String rOLEID;
-    @SerializedName("STATUS_ID")
+    @SerializedName("status_id")
     @Expose
     private String sTATUSID;
 
