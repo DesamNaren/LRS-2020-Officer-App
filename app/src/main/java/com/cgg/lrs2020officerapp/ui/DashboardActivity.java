@@ -96,7 +96,7 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
         else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
             request.setSTATUSID("80");
 
-        request.setUSERID(loginResponse.gettOKEN_ID());
+        request.setTOKENID(loginResponse.gettOKEN_ID());
 
         if (Utils.checkInternetConnection(DashboardActivity.this)) {
             viewModel.getApplicationListCall(request).observe(this, new Observer<ApplicationRes>() {
