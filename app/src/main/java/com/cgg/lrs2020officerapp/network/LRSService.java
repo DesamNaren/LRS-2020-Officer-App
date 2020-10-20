@@ -12,8 +12,10 @@ import com.cgg.lrs2020officerapp.model.otp.OtpReq;
 import com.cgg.lrs2020officerapp.model.otp.OtpRes;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
 import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
-import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
-import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyResponse;
+import com.cgg.lrs2020officerapp.model.submit.L1SubmitRequest;
+import com.cgg.lrs2020officerapp.model.submit.L1SubmitResponse;
+import com.cgg.lrs2020officerapp.model.submit.L2SubmitRequest;
+import com.cgg.lrs2020officerapp.model.submit.L2SubmitResponse;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -24,9 +26,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 public interface LRSService {
     class Factory {
@@ -52,7 +52,10 @@ public interface LRSService {
 
 
     @POST("Scrutiny/AddScrutinyDetails")
-    Call<List<SubmitScrutinyResponse>> getSubmitResponse(@Body SubmitScrutinyRequest request);
+    Call<List<L1SubmitResponse>> getSubmitResponse(@Body L1SubmitRequest request);
+
+    @POST("Scrutiny/AddScrutinyDetails")
+    Call<List<L2SubmitResponse>> getSubmitResponse(@Body L2SubmitRequest request);
 
     @POST("Scrutiny/GET_APPLICATIONS_LIST")
     Call<ApplicationRes> getApplicationListResponse(@Body ApplicationReq applicationReq);

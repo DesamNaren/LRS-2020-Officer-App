@@ -42,6 +42,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     private ApplicationListViewModel viewModel;
     private ActivityApplicationListBinding binding;
     private List<ApplicationListData> list;
+    private List<ApplicationListData> templist;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LoginResponse loginResponse;
@@ -112,7 +113,16 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
             binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(ApplicationListActivity.this, L1ScrutinyChecklistActivity.class));
+                    templist = new ArrayList<>();
+
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
+                            templist.add(list.get(i));
+
+                    }
+                    if (templist != null && templist.size() > 0)
+//                        Toast.makeText(context, "" + templist.size(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ApplicationListActivity.this, L1ScrutinyChecklistActivity.class));
                 }
             });
 
@@ -137,6 +147,11 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
                                             binding.tvEmpty.setVisibility(View.GONE);
+
+                                            for (int i = 0; i < list.size(); i++) {
+                                                list.get(i).setFlag(AppConstants.NO);
+                                            }
+
                                             viewTaskAdapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
                                             binding.recyclerView.setAdapter(viewTaskAdapter);
                                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -175,6 +190,10 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                     if (list != null && list.size() > 0) {
                         binding.recyclerView.setVisibility(View.VISIBLE);
                         binding.tvEmpty.setVisibility(View.GONE);
+
+                        for (int i = 0; i < list.size(); i++) {
+                            list.get(i).setFlag(AppConstants.NO);
+                        }
 
                         viewTaskAdapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
                         binding.recyclerView.setAdapter(viewTaskAdapter);
