@@ -8,6 +8,8 @@ import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
 import com.cgg.lrs2020officerapp.model.land.LandDetailsResponse;
 import com.cgg.lrs2020officerapp.model.login.LoginRequest;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
+import com.cgg.lrs2020officerapp.model.otp.OtpReq;
+import com.cgg.lrs2020officerapp.model.otp.OtpRes;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
 import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
 import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
@@ -55,6 +57,8 @@ public interface LRSService {
     @POST("Scrutiny/GET_APPLICATIONS_LIST")
     Call<ApplicationRes> getApplicationListResponse(@Body ApplicationReq applicationReq);
 
+    @POST("Scrutiny/SendOTP")
+    Call<OtpRes> getOtpResponse(@Body OtpReq otpReq);
 
     @POST("Scrutiny/GetApplicantSiteDetails")
     Call<ApplicantDetailsRes> getApplicantDetailsResponse(@Body ApplicantDetailsReq applicationReq);
