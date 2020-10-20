@@ -8,19 +8,29 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityL1ScrutinyCheckListBinding;
+import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
+import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class L1ScrutinyChecklistActivity extends AppCompatActivity {
+public class L1ScrutinyChecklistActivity extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
 
     ActivityL1ScrutinyCheckListBinding binding;
     private SharedPreferences sharedPreferences;
@@ -29,6 +39,8 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity {
             colony_falls_master_plan, colony_affected_master_plan,plot_no_affected,open_space_avail,percent_open_space,land_use_asper_master_plan,
             lrs_permitted,legal_disputes,plot_no_approval,plot_no_shortfall,plot_no_rejected;
     Context context;
+    private List<String> templist;
+    private String selectedStrings = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +48,21 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_l1_scrutiny_check_list);
         context = L1ScrutinyChecklistActivity.this;
         binding.header.headerTitle.setText(R.string.scrutiny_checklist);
+
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
+
+        try {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+            templist = gson.fromJson(sharedPreferences.getString(AppConstants.TEMP_APPLICATION_LIST, ""), type);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        binding.spPlotNoApprove.setItems(templist);
+        binding.spPlotNoApprove.setListener(L1ScrutinyChecklistActivity.this,"Approve");
 
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +169,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity {
                 plot_no_affected=binding.etPlotNoEffected.getText().toString().trim();
                 percent_open_space=binding.etPercentOpenSpace.getText().toString().trim();
                 land_use_asper_master_plan=binding.etLandUseAsPerMasterPlan.getText().toString().trim();
-                plot_no_approval=binding.etPlotNoRecommendedApproval.getText().toString().trim();
+//                plot_no_approval=binding.etPlotNoRecommendedApproval.getText().toString().trim();
                 plot_no_shortfall=binding.etPlotNoRecommendedShortfall.getText().toString().trim();
                 plot_no_rejected=binding.etPlotNoRecommendedReject.getText().toString().trim();
                 if(validate())
@@ -223,5 +248,15 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Utils.customWarningAlert(this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
+    }
+
+    @Override
+    public void selectedStrings(List<String> strings) {
+
+        String list = strings.toString();
+        selectedStrings = list.substring(1, list.length() - 1);
+        if (!selectedStrings.equals(""))
+            Toast.makeText(this, selectedStrings, Toast.LENGTH_LONG).show();
+
     }
 }

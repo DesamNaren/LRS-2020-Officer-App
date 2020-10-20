@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -42,7 +43,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     private ApplicationListViewModel viewModel;
     private ActivityApplicationListBinding binding;
     private List<ApplicationListData> list;
-    private List<ApplicationListData> templist;
+    private List<String> templist;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LoginResponse loginResponse;
@@ -59,6 +60,9 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
         binding.header.headerTitle.setText(R.string.pending_for_scrutiny);
+
+        editor.putString(AppConstants.TEMP_APPLICATION_LIST, "");
+        editor.commit();
         binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,12 +121,21 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
 
                     for (int i = 0; i < list.size(); i++) {
                         if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
-                            templist.add(list.get(i));
-
+                            templist.add(list.get(i).getPLOTNUMBER());
                     }
-                    if (templist != null && templist.size() > 0)
+
+                    if (templist != null && templist.size() > 0) {
 //                        Toast.makeText(context, "" + templist.size(), Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ApplicationListActivity.this, L1ScrutinyChecklistActivity.class));
+                        Gson gson = new Gson();
+                        String applicationListDetails = gson.toJson(templist);
+                        editor.putString(AppConstants.TEMP_APPLICATION_LIST, applicationListDetails);
+                        editor.commit();
+
+                        Intent intent = new Intent(ApplicationListActivity.this, L1ScrutinyChecklistActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "Please select atleast one application", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -354,10 +367,11 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     public void onBackPressed() {
         //Utils.customLogoutAlert(this, getString(R.string.app_name),"Do you want to logout from app?", editor);
 
-        Intent intent = new Intent(context, DashboardActivity.class);
+        /*Intent intent = new Intent(context, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        finish();*/
+        super.onBackPressed();
     }
 }

@@ -37,4 +37,5 @@ public class AppConstants {
 
     public static final String STATUS_ID = "30";
     public static final String APPLICATION_LIST_RESPONSE = "APPLICATION_LIST_RESPONSE";
+    public static final String TEMP_APPLICATION_LIST = "TEMP_APPLICATION_LIST";
 }

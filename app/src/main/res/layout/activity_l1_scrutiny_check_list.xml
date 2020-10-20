@@ -847,7 +847,14 @@
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
 
-                        <com.google.android.material.textfield.TextInputLayout
+                        <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
+                            android:id="@+id/sp_plot_no_approve"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/spinner_background"
+                            android:paddingRight="@dimen/dimen_30dp" />
+
+                       <!-- <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tv_plot_no_recommended_approval"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
@@ -866,7 +873,7 @@
                                 android:maxLength="50"
                                 android:textSize="16dp" />
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>-->
 
 
                     </LinearLayout>
