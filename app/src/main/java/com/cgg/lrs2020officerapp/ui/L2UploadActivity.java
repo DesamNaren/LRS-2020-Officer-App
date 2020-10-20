@@ -52,7 +52,7 @@ import com.cgg.lrs2020officerapp.databinding.ActivityL2UploadBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
-import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
+import com.cgg.lrs2020officerapp.model.submit.L2SubmitRequest;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.L2UploadCustomViewModel;
@@ -74,7 +74,7 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 public class L2UploadActivity extends LocBaseActivity implements ErrorHandlerInterface {
 
     private CustomProgressDialog customProgressDialog;
-    private L2UploadViewModel addScrutinyViewModel;
+    private L2UploadViewModel uploadViewModel;
     private static final int SELECT_FILE = 1;
     private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
@@ -96,7 +96,7 @@ public class L2UploadActivity extends LocBaseActivity implements ErrorHandlerInt
     private boolean siteImage = false;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private SubmitScrutinyRequest submitScrutinyRequest;
+    private L2SubmitRequest submitRequest;
     private String applicationId, applicantName;
     private LoginResponse loginResponse;
 
@@ -134,8 +134,8 @@ public class L2UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             applicationId = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
             applicantName = sharedPreferences.getString(AppConstants.APPLICANT_NAME, "");
             String str = sharedPreferences.getString(AppConstants.SUBMIT_REQUEST, "");
-            submitScrutinyRequest = new Gson().fromJson(str, SubmitScrutinyRequest.class);
-            if (TextUtils.isEmpty(applicationId) || submitScrutinyRequest == null || loginResponse == null) {
+            submitRequest = new Gson().fromJson(str, L2SubmitRequest.class);
+            if (TextUtils.isEmpty(applicationId) || submitRequest == null || loginResponse == null) {
                 Toast.makeText(context, R.string.something, Toast.LENGTH_SHORT).show();
                 finish();
                 return;
@@ -148,7 +148,7 @@ public class L2UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             e.printStackTrace();
         }
 
-        addScrutinyViewModel = new ViewModelProvider(
+        uploadViewModel = new ViewModelProvider(
                 this, new L2UploadCustomViewModel(context)).
                 get(L2UploadViewModel.class);
 
@@ -956,7 +956,7 @@ public class L2UploadActivity extends LocBaseActivity implements ErrorHandlerInt
     }
 
 
-    public void customInfoAlert(SubmitScrutinyRequest submitScrutinyRequest) {
+    public void customInfoAlert(L2SubmitRequest submitScrutinyRequest) {
         try {
             final Dialog dialog = new Dialog(context);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

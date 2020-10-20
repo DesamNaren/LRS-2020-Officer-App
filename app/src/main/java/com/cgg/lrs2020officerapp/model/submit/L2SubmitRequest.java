@@ -3,7 +3,7 @@ package com.cgg.lrs2020officerapp.model.submit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SubmitScrutinyRequest {
+public class L2SubmitRequest {
 
     @SerializedName("P_IP_ADDRESS")
     @Expose

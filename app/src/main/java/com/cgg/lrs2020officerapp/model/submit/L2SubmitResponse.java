@@ -3,7 +3,7 @@ package com.cgg.lrs2020officerapp.model.submit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SubmitScrutinyResponse {
+public class L2SubmitResponse {
 
     @SerializedName("Status Code")
     @Expose

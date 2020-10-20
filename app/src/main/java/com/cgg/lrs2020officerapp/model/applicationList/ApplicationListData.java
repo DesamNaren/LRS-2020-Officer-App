@@ -27,6 +27,16 @@ public class ApplicationListData {
     @Expose
     private String uPDATEDON;
 
+    private String flag;
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
     public String getAPPLICATIONID() {
         return aPPLICATIONID;
     }

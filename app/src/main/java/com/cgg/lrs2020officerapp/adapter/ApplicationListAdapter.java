@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 
@@ -39,6 +40,7 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
         this.list = list;
         this.roleID = roleId;
         mFilteredList = list;
+
     }
 
     @NonNull
@@ -72,6 +74,16 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
 
                 Intent intent = new Intent(context, ApplicationDetailsActivity.class);
                 context.startActivity(intent);
+            }
+        });
+        holder.listItemBinding.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    list.get(i).setFlag(AppConstants.YES);
+                }else {
+                    list.get(i).setFlag(AppConstants.NO);
+                }
             }
         });
     }

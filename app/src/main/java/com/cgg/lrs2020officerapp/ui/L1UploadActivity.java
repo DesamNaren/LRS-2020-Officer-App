@@ -31,7 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
@@ -39,12 +38,12 @@ import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityL1UploadBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
-import com.cgg.lrs2020officerapp.model.login.LoginResponse;
-import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
+import com.cgg.lrs2020officerapp.interfaces.L1SubmitInterface;
+import com.cgg.lrs2020officerapp.model.submit.L1SubmitRequest;
+import com.cgg.lrs2020officerapp.model.submit.L1SubmitResponse;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
-import com.cgg.lrs2020officerapp.viewmodel.L2UploadCustomViewModel;
-import com.cgg.lrs2020officerapp.viewmodel.L2UploadViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.L1UploadViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 
@@ -53,13 +52,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInterface {
+public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInterface, L1SubmitInterface {
 
     private CustomProgressDialog customProgressDialog;
-    private L2UploadViewModel addScrutinyViewModel;
+    private L1UploadViewModel uploadViewModel;
     private static final int SELECT_FILE = 1;
     private Context context;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
@@ -76,8 +76,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
     private boolean siteImage = false;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private SubmitScrutinyRequest submitScrutinyRequest;
-    private LoginResponse loginResponse;
+    private L1SubmitRequest submitScrutinyRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +108,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
 //        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
 
 
-        addScrutinyViewModel = new ViewModelProvider(
-                this, new L2UploadCustomViewModel(context)).
-                get(L2UploadViewModel.class);
+        uploadViewModel = new L1UploadViewModel(L1UploadActivity.this,getApplication());
 
         binding.btnLayout.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +134,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
 //                    submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
 //                    submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
 //                    submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
+                    
                     customInfoAlert(submitScrutinyRequest);
                 }
 
@@ -668,8 +666,8 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
         Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
     }
 
-   /* @Override
-    public void submitResponse(List<SubmitScrutinyResponse> responses) {
+   @Override
+    public void submitResponse(List<L1SubmitResponse> responses) {
         customProgressDialog.dismiss();
         if (responses != null && responses.get(0).getStatusCode() != null) {
 
@@ -685,9 +683,9 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
         } else {
             Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.server_not));
         }
-    }*/
+    }
 
-    public void customInfoAlert(SubmitScrutinyRequest submitScrutinyRequest) {
+    public void customInfoAlert(L1SubmitRequest submitScrutinyRequest) {
         try {
             final Dialog dialog = new Dialog(context);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -722,7 +720,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
 
                         if (Utils.checkInternetConnection(context)) {
 //                            customProgressDialog.show();
-//                            addScrutinyViewModel.callSubmitAPI(submitScrutinyRequest);
+//                            uploadViewModel.callSubmitAPI(submitScrutinyRequest);
                             Utils.customSuccessAlert(L1UploadActivity.this, getString(R.string.app_name),
                                     "L1 Review Successfully completed", true, editor);
 
@@ -749,5 +747,5 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             e.printStackTrace();
         }
     }
-
+    
 }

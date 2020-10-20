@@ -27,7 +27,7 @@ import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendListData;
 import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
 import com.cgg.lrs2020officerapp.model.road.RoadListData;
-import com.cgg.lrs2020officerapp.model.submit.SubmitScrutinyRequest;
+import com.cgg.lrs2020officerapp.model.submit.L2SubmitRequest;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.L2ScrutinyChecklistViewModel;
@@ -331,7 +331,7 @@ public class L2ScrutinyChecklistActivity extends AppCompatActivity implements Er
                 value_ason = binding.etValueAson.getText().toString().trim();
                 verification = binding.etVerification.getText().toString().trim();
                 if (validate()) {
-                    SubmitScrutinyRequest submitScrutinyRequest = new SubmitScrutinyRequest();
+                    L2SubmitRequest submitScrutinyRequest = new L2SubmitRequest();
                     submitScrutinyRequest.setPPRIDate(plot_registered);
                     submitScrutinyRequest.setPNAMEMATCH(name_tally);
                     submitScrutinyRequest.setPAREAMATCH(area_match);
