@@ -130,7 +130,7 @@
     <string name="mandal">Mandal</string>
     <string name="district">District</string>
     <string name="cluster_id">Cluster ID:</string>
-    <string name="cluster_survey_s">Cluster Survey #’s</string>
+    <string name="cluster_survey_s">Cluster Surveys</string>
     <string name="localities_covered">Localities Covered</string>
     <string name="applications">Applications</string>
     <string name="name_of_the_colony_locality">Name of the Colony / Locality</string>
@@ -150,9 +150,22 @@
     <string name="plot_numbers_recommended_for_approval_of_lrs">Plot Numbers recommended for approval of LRS</string>
     <string name="plot_numbers_recommended_for_shortfall_of_lrs_please_specify">Plot Numbers recommended for shortfall of LRS (Please specify)</string>
     <string name="plot_numbers_recommended_for_reject_of_lrs">Plot Numbers recommended for reject of LRS</string>
-    <string name="enter_name_colony_locality">Please enter name of the Colony/Locality</string>
-    <string name="enter_survey_no_name_village">Please enter Survey no’s &amp; Name of Village</string>
-    <string name="enter_extent_layout">Please enter extent of layout</string>
-    <string name="enter_plot_applied_for_lrs">Please enter Plot no’s applied for LRS</string>
+    <string name="enter_name_colony_locality">Enter name of the Colony/Locality</string>
+    <string name="enter_survey_no_name_village">Enter Survey no’s &amp; Name of Village</string>
+    <string name="enter_extent_layout">Enter extent of layout</string>
+    <string name="enter_plot_applied_for_lrs">Enter Plot no’s applied for LRS</string>
+    <string name="check_colony_falls_objectionable_land">Check whether the Colony/Locality falls in any of the objectionable lands</string>
+    <string name="check_colony_falls_prohibitory_land">Check whether the Colony/Locality falls under any Prohibitory lands list</string>
+    <string name="check_colony_falls_master_plan">Check whether the Colony/Locality falls under Master Plan Open Space /Layout Open Space / HT line</string>
+    <string name="check_colony_affected_master_plan">Check whether the Colony/Locality affected by any Master Plan Road / SRDP/RDP </string>
+    <string name="specify_plot_no_affected">Specify the plot numbers with extent of area affected</string>
+    <string name="check_open_space_available">Check whether 10% of open space is available as on ground and handed over to local body</string>
+    <string name="enter_percentage_open_space">Enter the % of open space provided and handed over.</string>
+    <string name="specify_land_use">Specify the land use as per master plan.</string>
+    <string name="check_lrs_permitted">Check whether LRS can be permitted.</string>
+    <string name="check_legal_disputes">Check whether any legal disputes/ complaints against the land covered in this colony .</string>
+    <string name="enter_plot_no_approved">Specify plot numbers recommended for approval of LRS .</string>
+    <string name="enter_plot_no_shorfall">Specify plot numbers recommended for shortfall of LRS .</string>
+    <string name="enter_plot_no_reject">Specify plot numbers recommended for reject of LRS .</string>
 
 </resources>

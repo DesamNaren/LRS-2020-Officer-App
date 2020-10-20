@@ -266,7 +266,7 @@
                             android:hint="@string/name_of_the_colony_locality"
                             android:imeOptions="actionNext"
                             android:inputType="text"
-                            android:maxLength="15"
+                            android:maxLength="50"
                             android:textSize="16dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -297,7 +297,7 @@
                             android:hint="@string/survey_no_s_name_of_village"
                             android:imeOptions="actionNext"
                             android:inputType="text"
-                            android:maxLength="15"
+                            android:maxLength="50"
                             android:textSize="16dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -328,7 +328,7 @@
                             android:hint="@string/extent_of_layout"
                             android:imeOptions="actionNext"
                             android:inputType="text"
-                            android:maxLength="15"
+                            android:maxLength="50"
                             android:textSize="16dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -359,7 +359,7 @@
                             android:hint="@string/plot_no_s_applied_for_lrs"
                             android:imeOptions="actionNext"
                             android:inputType="text"
-                            android:maxLength="15"
+                            android:maxLength="50"
                             android:textSize="16dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -600,7 +600,7 @@
                                 android:hint="@string/specify_the_plot_numbers_with_extent_of_area_affected"
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
-                                android:maxLength="15"
+                                android:maxLength="50"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -683,7 +683,7 @@
                                 android:hint="@string/of_open_space_provided_and_handed_over"
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
-                                android:maxLength="15"
+                                android:maxLength="50"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -700,7 +700,7 @@
                     android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
@@ -710,7 +710,6 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
                             app:errorEnabled="true">
 
 
@@ -722,7 +721,7 @@
                                 android:hint="@string/specify_the_land_use_as_per_master_plan_master_plan_approved_towns_only"
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
-                                android:maxLength="15"
+                                android:maxLength="50"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -840,11 +839,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_5dp"
                     android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="gone">
+                    android:padding="@dimen/dimen_5dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
@@ -865,7 +863,7 @@
                                 android:hint="@string/plot_numbers_recommended_for_approval_of_lrs"
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
-                                android:maxLength="15"
+                                android:maxLength="50"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -879,11 +877,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_5dp"
                     android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="gone">
+                    android:padding="@dimen/dimen_5dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
@@ -904,7 +901,7 @@
                                 android:hint="@string/plot_numbers_recommended_for_shortfall_of_lrs_please_specify"
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
-                                android:maxLength="15"
+                                android:maxLength="50"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -918,11 +915,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_5dp"
                     android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="gone">
+                    android:padding="@dimen/dimen_5dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
@@ -943,7 +939,7 @@
                                 android:hint="@string/plot_numbers_recommended_for_reject_of_lrs"
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
-                                android:maxLength="15"
+                                android:maxLength="50"
                                 android:textSize="16dp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
