@@ -18,7 +18,7 @@
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/ll_btn"
+            android:layout_above="@id/scroll"
             android:layout_below="@id/header">
 
             <LinearLayout
@@ -101,41 +101,14 @@
                         android:elevation="@dimen/dimen_4dp"
                         android:padding="@dimen/dimen_5dp">
 
-                        <LinearLayout
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_shortfall"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_5dp"
-                            android:orientation="vertical">
-
-                            <CheckBox
-                                android:id="@+id/plot_layout_falls_under"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/dimen_5dp"
-                                android:text="Plot Layout Falls Under" />
-
-                            <CheckBox
-                                android:id="@+id/plot_details"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/dimen_5dp"
-                                android:text="Plot Details" />
-
-                            <CheckBox
-                                android:id="@+id/plot_documents"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/dimen_5dp"
-                                android:text="Plot Documents" />
-
-                            <CheckBox
-                                android:id="@+id/applicant_details"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/dimen_5dp"
-                                android:text="Applicant Details" />
-
-                        </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:paddingLeft="@dimen/dimen_5dp"
+                            android:paddingRight="@dimen/dimen_5dp"
+                            android:paddingBottom="@dimen/dimen_5dp"
+                            tools:listitem="@layout/item_view_remarks" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -326,15 +299,6 @@
                     android:textColor="@color/white"
                     android:visibility="gone" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-                    android:paddingLeft="@dimen/dimen_5dp"
-                    android:paddingRight="@dimen/dimen_5dp"
-                    android:paddingBottom="@dimen/dimen_5dp"
-                    tools:listitem="@layout/item_view_remarks" />
 
             </LinearLayout>
 

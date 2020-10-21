@@ -12,6 +12,7 @@ import com.cgg.lrs2020officerapp.model.otp.OtpReq;
 import com.cgg.lrs2020officerapp.model.otp.OtpRes;
 import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
 import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
+import com.cgg.lrs2020officerapp.model.shortfall.ShortFallResponse;
 import com.cgg.lrs2020officerapp.model.submit.L1SubmitRequest;
 import com.cgg.lrs2020officerapp.model.submit.L1SubmitResponse;
 import com.cgg.lrs2020officerapp.model.submit.L2SubmitRequest;
@@ -72,6 +73,9 @@ public interface LRSService {
 
     @GET("Scrutiny/GetLandUsageType")
     Call<LandDetailsResponse> getLandDetails();
+
+     @GET("Scrutiny/GetShortFallMasterData")
+    Call<ShortFallResponse> getShortFallMasterData();
 
     @GET("Scrutiny/GetRecommendMaster")
     Call<RecommendDetailsResponse> getRecommendationMaster();

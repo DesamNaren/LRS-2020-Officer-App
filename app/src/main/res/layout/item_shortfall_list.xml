@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="shortfall"
+            type="com.cgg.lrs2020officerapp.model.shortfall.ShortfallList" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/dimen_5dp">
+
+        <CheckBox
+            android:id="@+id/plot_layout_falls_under"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_5dp"
+            android:text="@{shortfall.nAME}" />
+
+
+    </LinearLayout>
+
+</layout>

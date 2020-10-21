@@ -10,30 +10,47 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.adapter.ApplicationListAdapter;
+import com.cgg.lrs2020officerapp.adapter.ShortFallListAdapter;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityL2ShortfallBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
+import com.cgg.lrs2020officerapp.model.land.LandDetailsResponse;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
+import com.cgg.lrs2020officerapp.model.recommend.RecommendDetailsResponse;
+import com.cgg.lrs2020officerapp.model.road.RoadDetailsResponse;
+import com.cgg.lrs2020officerapp.model.shortfall.ShortFallResponse;
+import com.cgg.lrs2020officerapp.model.shortfall.ShortfallList;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.L2ScrutinyChecklistViewModel;
+import com.cgg.lrs2020officerapp.viewmodel.L2ShortfallViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 public class L2ShortfallActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
     ActivityL2ShortfallBinding binding;
     L2ScrutinyChecklistViewModel scrutinyCheckListViewModel;
+    L2ShortfallViewModel shortfallViewModel;
     Context context;
     CustomProgressDialog customProgressDialog;
     String short_fall, fee_intimation, recommended_officer_remarks;
@@ -41,6 +58,7 @@ public class L2ShortfallActivity extends AppCompatActivity implements ErrorHandl
     private SharedPreferences.Editor editor;
     private String applicationId, applicantName;
     private LoginResponse loginResponse;
+    List<ShortfallList> shortfallLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,119 +89,31 @@ public class L2ShortfallActivity extends AppCompatActivity implements ErrorHandl
             e.printStackTrace();
         }
 
-        scrutinyCheckListViewModel = new L2ScrutinyChecklistViewModel(context, getApplication());
-
-        binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-//                Utils.customWarningAlert(L2UploadActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
-            }
-        });
-
-        /*if (Utils.checkInternetConnection(context)) {
+        shortfallViewModel = new L2ShortfallViewModel(context, getApplication());
+        if (Utils.checkInternetConnection(context)) {
             customProgressDialog.show();
-            LiveData<RoadDetailsResponse> roadDetailsResponseLiveData = scrutinyCheckListViewModel.getRoadDetailsResponse();
-            roadDetailsResponseLiveData.observe(L2UploadActivity.this, new Observer<RoadDetailsResponse>() {
+            LiveData<ShortFallResponse> shortFallResponseLiveData = shortfallViewModel.getShortFallResponse();
+            shortFallResponseLiveData.observe(L2ShortfallActivity.this, new Observer<ShortFallResponse>() {
                 @Override
-                public void onChanged(RoadDetailsResponse roadDetailsResponse) {
-                    roadDetailsResponseLiveData.removeObservers(L2UploadActivity.this);
-                    if (roadDetailsResponse != null && roadDetailsResponse.getStatusCode() != null) {
-                        if (roadDetailsResponse.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
-                            if (roadDetailsResponse.getData() != null && roadDetailsResponse.getData().size() > 0) {
-                                roadListData = roadDetailsResponse.getData();
-                                roadList.clear();
-                                roadList.add(getString(R.string.select));
-                                for (int i = 0; i < roadDetailsResponse.getData().size(); i++) {
-                                    roadList.add(roadDetailsResponse.getData().get(i).getABBUTINGNAME());
-                                }
-
-                                ArrayAdapter adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item,
-                                        roadList);
-                                binding.spAbuttingRoadDetails.setAdapter(adapter);
-                                LiveData<LandDetailsResponse> landDetailsResponse = scrutinyCheckListViewModel.getLandDetailsResponse();
-                                landDetailsResponse.observe(L2UploadActivity.this, new Observer<LandDetailsResponse>() {
-                                    @Override
-                                    public void onChanged(LandDetailsResponse landDetailsResponse1) {
-                                        landDetailsResponse.removeObservers(L2UploadActivity.this);
-                                        if (landDetailsResponse1 != null && landDetailsResponse1.getStatus() != null) {
-                                            if (landDetailsResponse1.getStatus().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
-                                                if (landDetailsResponse1.getRemarks() != null && landDetailsResponse1.getRemarks().size() > 0) {
-                                                    landListData = landDetailsResponse1.getRemarks();
-                                                    landUseList.clear();
-                                                    landUseList.add(getString(R.string.select));
-                                                    for (int i = 0; i < landDetailsResponse1.getRemarks().size(); i++) {
-                                                        landUseList.add(landDetailsResponse1.getRemarks().get(i).getUSAGETYPE());
-                                                    }
-
-                                                    ArrayAdapter adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item,
-                                                            landUseList);
-                                                    binding.spLandUse.setAdapter(adapter);
-
-                                                    LiveData<RecommendDetailsResponse> recommendDetailsResponse = scrutinyCheckListViewModel.getRecommendDetailsResponse();
-                                                    recommendDetailsResponse.observe(L2UploadActivity.this, new Observer<RecommendDetailsResponse>() {
-                                                        @Override
-                                                        public void onChanged(RecommendDetailsResponse recommendDetailsResponse1) {
-                                                            recommendDetailsResponse.removeObservers(L2UploadActivity.this);
-                                                            if (recommendDetailsResponse1 != null && recommendDetailsResponse1.getStatus() != null) {
-                                                                if (recommendDetailsResponse1.getStatus().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
-                                                                    if (recommendDetailsResponse1.getRecommendMasterList() != null && recommendDetailsResponse1.getRecommendMasterList().size() > 0) {
-                                                                        recommendListData = recommendDetailsResponse1.getRecommendMasterList();
-                                                                        customProgressDialog.dismiss();
-                                                                        recommendList.clear();
-                                                                        recommendList.add(getString(R.string.select));
-                                                                        for (int i = 0; i < recommendDetailsResponse1.getRecommendMasterList().size(); i++) {
-                                                                            recommendList.add(recommendDetailsResponse1.getRecommendMasterList().get(i).getRECNAME());
-                                                                        }
-
-                                                                        ArrayAdapter adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item,
-                                                                                recommendList);
-                                                                        binding.spRecommendationFor.setAdapter(adapter);
-                                                                    } else {
-                                                                        customProgressDialog.dismiss();
-                                                                        Utils.customErrorAlert(L2UploadActivity.this, getResources().getString(R.string.app_name), getString(R.string.no_recomm));
-                                                                    }
-                                                                } else if (recommendDetailsResponse1.getStatus().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
-                                                                    customProgressDialog.dismiss();
-                                                                    Snackbar.make(binding.scroll, recommendDetailsResponse1.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                                                } else {
-                                                                    customProgressDialog.dismiss();
-                                                                    callSnackBar(getString(R.string.something));
-                                                                }
-                                                            } else {
-                                                                customProgressDialog.dismiss();
-                                                                callSnackBar(getString(R.string.something));
-                                                            }
-
-
-                                                        }
-                                                    });
-
-                                                } else {
-                                                    customProgressDialog.dismiss();
-                                                    Utils.customErrorAlert(L2UploadActivity.this, getResources().getString(R.string.app_name), getString(R.string.no_land));
-                                                }
-                                            } else if (landDetailsResponse1.getStatus().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
-                                                customProgressDialog.dismiss();
-                                                Snackbar.make(binding.scroll, landDetailsResponse1.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                            } else {
-                                                customProgressDialog.dismiss();
-                                                callSnackBar(getString(R.string.something));
-                                            }
-                                        } else {
-                                            customProgressDialog.dismiss();
-                                            callSnackBar(getString(R.string.something));
-                                        }
-                                    }
-                                });
+                public void onChanged(ShortFallResponse shortFallResponse) {
+                    shortFallResponseLiveData.removeObservers(L2ShortfallActivity.this);
+                    if (shortFallResponse != null && shortFallResponse.getStatusCode() != null) {
+                        if (shortFallResponse.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+                            if (shortFallResponse.getShortfallList() != null && shortFallResponse.getShortfallList().size() > 0) {
+                                customProgressDialog.dismiss();
+                                shortfallLists = shortFallResponse.getShortfallList();
+                                ShortFallListAdapter adapter = new ShortFallListAdapter(context, shortfallLists);
+                                binding.rvShortfall.setAdapter(adapter);
+                                binding.rvShortfall.setLayoutManager(new LinearLayoutManager(context));
+                                binding.rvShortfall.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
 
                             } else {
                                 customProgressDialog.dismiss();
-                                Utils.customErrorAlert(L2UploadActivity.this, getResources().getString(R.string.app_name), getString(R.string.no_roads));
+                                Utils.customErrorAlert(L2ShortfallActivity.this, getResources().getString(R.string.app_name), getString(R.string.no_roads));
                             }
-                        } else if (roadDetailsResponse.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
+                        } else if (shortFallResponse.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
                             customProgressDialog.dismiss();
-                            Snackbar.make(binding.scroll, roadDetailsResponse.getStatusMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.scroll, shortFallResponse.getStatusMessage(), Snackbar.LENGTH_SHORT).show();
                         } else {
                             customProgressDialog.dismiss();
                             callSnackBar(getString(R.string.something));
@@ -198,8 +128,16 @@ public class L2ShortfallActivity extends AppCompatActivity implements ErrorHandl
             });
 
         } else {
-            Utils.customErrorAlert(L2UploadActivity.this, getResources().getString(R.string.app_name), getString(R.string.plz_check_int));
-        }*/
+            Utils.customErrorAlert(L2ShortfallActivity.this, getResources().getString(R.string.app_name), getString(R.string.plz_check_int));
+        }
+        binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+//                Utils.customWarningAlert(L2UploadActivity.this, getString(R.string.app_name), "Data will be lost. Do you want to go back?", editor);
+            }
+        });
+
         binding.rgShortFall.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
