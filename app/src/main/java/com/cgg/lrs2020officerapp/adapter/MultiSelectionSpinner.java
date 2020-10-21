@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatSpinner;
+
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 
@@ -17,8 +19,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MultiSelectionSpinner extends androidx.appcompat.widget.AppCompatSpinner implements OnMultiChoiceClickListener {
-
+public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiChoiceClickListener {
 
     private OnMultipleItemsSelectedListener listener;
     private String flag;
@@ -61,10 +62,10 @@ public class MultiSelectionSpinner extends androidx.appcompat.widget.AppCompatSp
             mSelection[which] = isChecked;
             simple_adapter.clear();
             simple_adapter.add(buildSelectedItemString());
+
         } else {
-            Log.d("TAG", "onClick: " + "empty spinner");
-            throw new IllegalArgumentException(
-                    "Argument 'which' is out of bounds.");
+            Log.d("TAG", "Empty Data");
+            throw new IllegalArgumentException("Argument 'which' is out of bounds.");
         }
     }
 
@@ -74,7 +75,7 @@ public class MultiSelectionSpinner extends androidx.appcompat.widget.AppCompatSp
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Please select");
             builder.setMultiChoiceItems(_items, mSelection, this);
-            _itemsAtStart = getSelectedItemsAsString();
+            _itemsAtStart = buildSelectedItemString();
 
             builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                 @Override
@@ -95,7 +96,7 @@ public class MultiSelectionSpinner extends androidx.appcompat.widget.AppCompatSp
             builder.show();
         } else {
             Log.d("TAG", "NO LIST");
-             if (flag.equalsIgnoreCase(AppConstants.SHORTFALL))
+            if (flag.equalsIgnoreCase(AppConstants.SHORTFALL))
                 Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs), Toast.LENGTH_SHORT).show();
             else if (flag.equalsIgnoreCase(AppConstants.REJECT))
                 Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs), Toast.LENGTH_SHORT).show();
@@ -251,7 +252,9 @@ public class MultiSelectionSpinner extends androidx.appcompat.widget.AppCompatSp
         String data;
         boolean foundOne = false;
         if (_items != null && _items.length > 0) {
+
             for (int i = 0; i < _items.length; ++i) {
+
                 if (mSelection[i]) {
                     if (foundOne) {
                         sb.append(", ");
@@ -263,8 +266,13 @@ public class MultiSelectionSpinner extends androidx.appcompat.widget.AppCompatSp
             }
             if (sb.toString().isEmpty())
                 data = "Select";
-            else
+            else {
                 data = sb.toString();
+                if (data.contains("NONE,")) {
+                    data = data.substring(5);
+                    mSelection[0] = false;
+                }
+            }
         } else
             data = "Select";
         return data;

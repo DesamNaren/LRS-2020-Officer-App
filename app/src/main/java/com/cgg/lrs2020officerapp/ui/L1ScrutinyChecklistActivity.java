@@ -70,6 +70,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         binding.spPlotNoShortfall.setListener(L1ScrutinyChecklistActivity.this, AppConstants.SHORTFALL);
         binding.spPlotNoReject.setListener(L1ScrutinyChecklistActivity.this, AppConstants.REJECT);
 
+        approvelist.add(0, AppConstants.NONE);
         binding.spPlotNoApprove.setItems(approvelist);
 
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -260,24 +261,45 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
     @Override
     public void selectedStrings(List<String> selectedlist, List<String> notSelectedlist, String flag) {
-        String string, selectedStrings;
 
         if (flag.equalsIgnoreCase(AppConstants.APPROVE)) {
             shortfalllist = notSelectedlist;
+//            rejectlist=null;
+            if (shortfalllist != null && shortfalllist.size() > 0) {
+                if (!shortfalllist.get(0).equalsIgnoreCase(AppConstants.NONE))
+                    shortfalllist.add(0, AppConstants.NONE);
+            }else {
+                shortfalllist.add(0, AppConstants.NONE);
+            }
             binding.spPlotNoShortfall.setItems(shortfalllist);
-            approvelist = selectedlist;
+//            binding.spPlotNoReject.setItems(rejectlist);
+            selectedApprovalList = selectedList(selectedlist);
         } else if (flag.equalsIgnoreCase(AppConstants.SHORTFALL)) {
             rejectlist = notSelectedlist;
+            if (rejectlist != null && rejectlist.size() > 0) {
+                if (!rejectlist.get(0).equalsIgnoreCase(AppConstants.NONE))
+                    rejectlist.add(0, AppConstants.NONE);
+            }else {
+                rejectlist.add(0, AppConstants.NONE);
+            }
             binding.spPlotNoReject.setItems(rejectlist);
-            shortfalllist = selectedlist;
+            selectedShortfallList = selectedList(selectedlist);
         } else if (flag.equalsIgnoreCase(AppConstants.REJECT)) {
-            rejectlist = selectedlist;
+            selectedRejectList = selectedList(selectedlist);
         }
+    }
+
+    private String selectedList(List<String> selectedlist) {
+
+        String string, selectedStrings;
+
         string = selectedlist.toString();
         selectedStrings = string.substring(1, string.length() - 1);
+        if (selectedStrings.contains("NONE,"))
+            selectedStrings = selectedStrings.substring(5);
         if (!selectedStrings.equals("")) {
             Toast.makeText(this, selectedStrings, Toast.LENGTH_LONG).show();
         }
-
+        return selectedStrings;
     }
 }

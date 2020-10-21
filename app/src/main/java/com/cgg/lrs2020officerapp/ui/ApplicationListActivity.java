@@ -127,8 +127,8 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                         selectAllFlag = AppConstants.YES;
                     else
                         selectAllFlag = AppConstants.NO;
-                    for (int i = 0; i < list.size(); i++)
-                        list.get(i).setFlag(selectAllFlag);
+                    for (int i = 0; i < applicationListData.size(); i++)
+                        applicationListData.get(i).setFlag(selectAllFlag);
 //                    setAdapter();
                     adapter.notifyDataSetChanged();
                 }
@@ -140,8 +140,8 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                 public void onClick(View v) {
                     templist = new ArrayList<>();
 
-                    for (int i = 0; i < list.size(); i++) {
-                        if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
+                    for (int i = 0; i < applicationListData.size(); i++) {
+                        if (applicationListData.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
                             templist.add(list.get(i).getAPPLICATIONID());
                     }
 
@@ -181,6 +181,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
                                             binding.cbSelectAll.setVisibility(View.VISIBLE);
+                                            binding.cbSelectAll.setChecked(false);
                                             binding.tvEmpty.setVisibility(View.GONE);
 
                                             for (int i = 0; i < list.size(); i++) {
@@ -420,8 +421,8 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     @Override
     public void selectAllApplications() {
         boolean yes_flag = true;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.NO)) {
+        for (int i = 0; i < applicationListData.size(); i++) {
+            if (applicationListData.get(i).getFlag().equalsIgnoreCase(AppConstants.NO)) {
                 yes_flag = false;
                 break;
             }
@@ -435,8 +436,8 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     @Override
     public void deSelectAllApplications() {
         boolean no_flag = true;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.YES)) {
+        for (int i = 0; i < applicationListData.size(); i++) {
+            if (applicationListData.get(i).getFlag().equalsIgnoreCase(AppConstants.YES)) {
                 no_flag = false;
                 break;
             }

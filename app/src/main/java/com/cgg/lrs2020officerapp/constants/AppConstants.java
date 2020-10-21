@@ -37,6 +37,7 @@ public class AppConstants {
     public static final String APPROVE = "APPROVE";
     public static final String SHORTFALL = "SHORTFALL";
     public static final String REJECT = "REJECT";
+    public static final String NONE = "NONE";
 
     public static final String STATUS_ID = "30";
     public static final String APPLICATION_LIST_RESPONSE = "APPLICATION_LIST_RESPONSE";
