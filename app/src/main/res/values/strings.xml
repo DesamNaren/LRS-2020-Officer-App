@@ -147,9 +147,9 @@
     <string name="specify_the_land_use_as_per_master_plan_master_plan_approved_towns_only">Specify the land use as per Master plan (Master plan approved towns only)</string>
     <string name="whether_the_lrs_can_be_permitted">Whether the LRS can be permitted</string>
     <string name="whether_any_legal_disputes_complaints_against_the_land_covered_in_this_colony">Whether any legal disputes/ complaints against the land covered in this colony</string>
-    <string name="plot_numbers_recommended_for_approval_of_lrs">Plot Numbers recommended for approval of LRS</string>
-    <string name="plot_numbers_recommended_for_shortfall_of_lrs_please_specify">Plot Numbers recommended for shortfall of LRS (Please specify)</string>
-    <string name="plot_numbers_recommended_for_reject_of_lrs">Plot Numbers recommended for reject of LRS</string>
+    <string name="plot_numbers_recommended_for_approval_of_lrs">Application Numbers recommended for approval of LRS</string>
+    <string name="plot_numbers_recommended_for_shortfall_of_lrs_please_specify">Application Numbers recommended for shortfall of LRS</string>
+    <string name="plot_numbers_recommended_for_reject_of_lrs">Application Numbers recommended for reject of LRS</string>
     <string name="enter_name_colony_locality">Enter name of the Colony/Locality</string>
     <string name="enter_survey_no_name_village">Enter Survey no’s &amp; Name of Village</string>
     <string name="enter_extent_layout">Enter extent of layout</string>
@@ -167,5 +167,7 @@
     <string name="enter_plot_no_approved">Specify plot numbers recommended for approval of LRS .</string>
     <string name="enter_plot_no_shorfall">Specify plot numbers recommended for shortfall of LRS .</string>
     <string name="enter_plot_no_reject">Specify plot numbers recommended for reject of LRS .</string>
-
+    <string name="select_plot_numbers_recommended_for_approval_of_lrs">Please Choose Application Numbers recommended for approval of LRS</string>
+    <string name="select_plot_numbers_recommended_for_shortfall_of_lrs">Please Choose Application Numbers recommended for shortfall of LRS</string>
+    <string name="select_plot_numbers_recommended_for_reject_of_lrs">Please Choose Application Numbers recommended for reject of LRS</string>
 </resources>

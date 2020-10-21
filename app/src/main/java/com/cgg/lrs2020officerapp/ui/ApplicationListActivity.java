@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityApplicationListBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
+import com.cgg.lrs2020officerapp.interfaces.SelectionInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ApplicationListActivity extends AppCompatActivity implements ErrorHandlerInterface {
+public class ApplicationListActivity extends AppCompatActivity implements ErrorHandlerInterface, SelectionInterface {
 
     private TextView tv;
     private Context context;
@@ -47,7 +49,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LoginResponse loginResponse;
-    private ApplicationListAdapter viewTaskAdapter;
+    private ApplicationListAdapter adapter;
     SearchView mySearchView;
     ApplicationRes applicationRes;
 
@@ -109,10 +111,28 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
             viewModel = new ApplicationListViewModel(context, getApplication());
             binding.setViewModel(viewModel);
 
-            if (loginResponse.getROLEID().equalsIgnoreCase("3"))
+            if (loginResponse.getROLEID().equalsIgnoreCase("3")) {
                 binding.btnLayout.llBtn.setVisibility(View.VISIBLE);
-            else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
+            } else if (loginResponse.getROLEID().equalsIgnoreCase("4") ||
+                    loginResponse.getROLEID().equalsIgnoreCase("5")) {
                 binding.btnLayout.llBtn.setVisibility(View.GONE);
+            }
+
+            binding.cbSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    String selectAllFlag;
+                    if (isChecked)
+                        selectAllFlag = AppConstants.YES;
+                    else
+                        selectAllFlag = AppConstants.NO;
+                    for (int i = 0; i < list.size(); i++)
+                        list.get(i).setFlag(selectAllFlag);
+//                    setAdapter();
+                    adapter.notifyDataSetChanged();
+                }
+            });
+
 
             binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,7 +141,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
 
                     for (int i = 0; i < list.size(); i++) {
                         if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
-                            templist.add(list.get(i).getPLOTNUMBER());
+                            templist.add(list.get(i).getAPPLICATIONID());
                     }
 
                     if (templist != null && templist.size() > 0) {
@@ -159,18 +179,16 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                         list = response.getData();
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
+                                            binding.cbSelectAll.setVisibility(View.VISIBLE);
                                             binding.tvEmpty.setVisibility(View.GONE);
 
                                             for (int i = 0; i < list.size(); i++) {
                                                 list.get(i).setFlag(AppConstants.NO);
                                             }
-
-                                            viewTaskAdapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
-                                            binding.recyclerView.setAdapter(viewTaskAdapter);
-                                            binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                                            binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+                                            setAdapter();
                                         } else {
                                             binding.recyclerView.setVisibility(View.GONE);
+                                            binding.cbSelectAll.setVisibility(View.GONE);
                                             binding.tvEmpty.setVisibility(View.VISIBLE);
                                         }
 
@@ -202,18 +220,16 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                     list = applicationRes.getData();
                     if (list != null && list.size() > 0) {
                         binding.recyclerView.setVisibility(View.VISIBLE);
+                        binding.cbSelectAll.setVisibility(View.VISIBLE);
                         binding.tvEmpty.setVisibility(View.GONE);
 
                         for (int i = 0; i < list.size(); i++) {
                             list.get(i).setFlag(AppConstants.NO);
                         }
-
-                        viewTaskAdapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
-                        binding.recyclerView.setAdapter(viewTaskAdapter);
-                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                        binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+                        setAdapter();
                     } else {
                         binding.recyclerView.setVisibility(View.GONE);
+                        binding.cbSelectAll.setVisibility(View.GONE);
                         binding.tvEmpty.setVisibility(View.VISIBLE);
                     }
                 } else if (applicationRes.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
@@ -231,6 +247,13 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setAdapter() {
+        adapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
+        binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
     }
 
     //    private void callList() {
@@ -258,8 +281,8 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
             @Override
             public boolean onQueryTextChange(String newText) {
                 try {
-                    if (viewTaskAdapter != null) {
-                        viewTaskAdapter.getFilter().filter(newText);
+                    if (adapter != null) {
+                        adapter.getFilter().filter(newText);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -283,8 +306,8 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
             @Override
             public boolean onQueryTextChange(String newText) {
                 try {
-                    if (viewTaskAdapter != null) {
-                        viewTaskAdapter.getFilter().filter(newText);
+                    if (adapter != null) {
+                        adapter.getFilter().filter(newText);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -373,5 +396,35 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
         startActivity(intent);
         finish();*/
         super.onBackPressed();
+    }
+
+    @Override
+    public void selectAllApplications() {
+        boolean yes_flag = true;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.NO)) {
+                yes_flag = false;
+                break;
+            }
+        }
+        if (yes_flag)
+            binding.cbSelectAll.setChecked(true);
+        else
+            binding.cbSelectAll.setChecked(false);
+    }
+
+    @Override
+    public void deSelectAllApplications() {
+        boolean no_flag = true;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFlag().equalsIgnoreCase(AppConstants.YES)) {
+                no_flag = false;
+                break;
+            }
+        }
+        if (no_flag)
+            binding.cbSelectAll.setChecked(false);
+        else
+            binding.cbSelectAll.setChecked(true);
     }
 }

@@ -38,16 +38,14 @@
                 android:background="@color/white"
                 app:queryHint="Search by Applicant Name or OT Application Number"></SearchView>
 
-            <TextView
-                android:id="@+id/tv_records"
+            <CheckBox
+                android:id="@+id/cb_select_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_5dp"
-                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:buttonTint="@color/white"
                 android:fontFamily="@font/elmessiri_regular"
-                android:gravity="center"
-                android:padding="@dimen/dimen_5dp"
-                android:text=""
+                android:text="Select All"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:visibility="gone" />
@@ -59,7 +57,7 @@
                 android:gravity="center"
                 android:text="@string/data_empty"
                 android:textColor="@color/white"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipeRV"
@@ -70,7 +68,9 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="@dimen/dimen_5dp"
+                    android:paddingLeft="@dimen/dimen_5dp"
+                    android:paddingRight="@dimen/dimen_5dp"
+                    android:paddingBottom="@dimen/dimen_5dp"
                     android:visibility="gone"
                     tools:listitem="@layout/item_view_application_list" />
 

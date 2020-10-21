@@ -830,7 +830,6 @@
 
                         </LinearLayout>
 
-
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -838,14 +837,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp">
+                    android:elevation="@dimen/dimen_4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/dimen_10dp"
+                        android:paddingBottom="@dimen/dimen_10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dimen_5dp"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/plot_numbers_recommended_for_approval_of_lrs"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
                         <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
                             android:id="@+id/sp_plot_no_approve"
@@ -854,27 +864,40 @@
                             android:background="@drawable/spinner_background"
                             android:paddingRight="@dimen/dimen_30dp" />
 
-                       <!-- <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tv_plot_no_recommended_approval"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/dimen_10dp"
+                        android:paddingBottom="@dimen/dimen_10dp">
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:errorEnabled="true">
+                            android:layout_marginBottom="@dimen/dimen_5dp"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/plot_numbers_recommended_for_shortfall_of_lrs_please_specify"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-
-                            <EditText
-                                android:id="@+id/et_plot_no_recommended_approval"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:hint="@string/plot_numbers_recommended_for_approval_of_lrs"
-                                android:imeOptions="actionNext"
-                                android:inputType="text"
-                                android:maxLength="50"
-                                android:textSize="16dp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>-->
-
+                        <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
+                            android:id="@+id/sp_plot_no_shortfall"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/spinner_background"
+                            android:paddingRight="@dimen/dimen_30dp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -890,67 +913,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/dimen_10dp"
+                        android:paddingBottom="@dimen/dimen_10dp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tv_plot_no_recommended_shortfall"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:errorEnabled="true">
+                            android:layout_marginBottom="@dimen/dimen_5dp"
+                            android:fontFamily="@font/elmessiri_regular"
+                            android:padding="@dimen/dimen_5dp"
+                            android:text="@string/plot_numbers_recommended_for_reject_of_lrs"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-
-                            <EditText
-                                android:id="@+id/et_plot_no_recommended_shortfall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:hint="@string/plot_numbers_recommended_for_shortfall_of_lrs_please_specify"
-                                android:imeOptions="actionNext"
-                                android:inputType="text"
-                                android:maxLength="50"
-                                android:textSize="16dp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tv_plot_no_recommended_reject"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
+                            android:id="@+id/sp_plot_no_reject"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:errorEnabled="true">
-
-
-                            <EditText
-                                android:id="@+id/et_plot_no_recommended_reject"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:hint="@string/plot_numbers_recommended_for_reject_of_lrs"
-                                android:imeOptions="actionNext"
-                                android:inputType="text"
-                                android:maxLength="50"
-                                android:textSize="16dp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
+                            android:layout_height="50dp"
+                            android:background="@drawable/spinner_background"
+                            android:paddingRight="@dimen/dimen_30dp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

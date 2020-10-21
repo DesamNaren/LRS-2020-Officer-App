@@ -14,23 +14,25 @@
         android:id="@+id/ll_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/dimen_5dp">
+        android:layout_margin="@dimen/dimen_5dp"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:elevation="@dimen/dimen_10dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dimen_10dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/checkbox"
-                    android:visibility="gone"
-                  />
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,11 +45,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="vertical"
-                        android:paddingLeft="@dimen/dimen_5dp"
-                        android:paddingTop="@dimen/dimen_5dp"
-                        android:paddingRight="@dimen/dimen_5dp">
+                        android:padding="@dimen/dimen_5dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -103,40 +102,34 @@
 
                         </LinearLayout>
 
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:visibility="visible">
+                            android:padding="@dimen/dimen_5dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/dimen_5dp">
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:text="Father Name"
+                                android:textSize="@dimen/dimen_16sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:text="Father Name"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                                <TextView
-                                    android:id="@+id/father_name"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/elmessiri_regular"
-                                    android:singleLine="false"
-                                    android:text="@{taskData.FATHERHUSBANDNAME}"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/dimen_16sp" />
-
-                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/father_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:singleLine="false"
+                                android:text="@{taskData.FATHERHUSBANDNAME}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dimen_16sp" />
 
                         </LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -258,7 +251,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
-
 
 
         </androidx.cardview.widget.CardView>

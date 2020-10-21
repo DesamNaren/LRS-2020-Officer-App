@@ -19,6 +19,7 @@ import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ItemViewApplicationListBinding;
+import com.cgg.lrs2020officerapp.interfaces.SelectionInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
 import com.cgg.lrs2020officerapp.ui.ApplicationDetailsActivity;
 
@@ -34,13 +35,14 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private String roleID;
+    private SelectionInterface selectAllInterface;
 
     public ApplicationListAdapter(Context context, List<ApplicationListData> list, String roleId) {
         this.context = context;
         this.list = list;
         this.roleID = roleId;
         mFilteredList = list;
-
+        selectAllInterface = (SelectionInterface) context;
     }
 
     @NonNull
@@ -63,6 +65,11 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
         else if (roleID.equalsIgnoreCase("5") || roleID.equalsIgnoreCase("4"))
             holder.listItemBinding.checkbox.setVisibility(View.GONE);
 
+        if (dataModel.getFlag().equalsIgnoreCase(AppConstants.YES))
+            holder.listItemBinding.checkbox.setChecked(true);
+        else
+            holder.listItemBinding.checkbox.setChecked(false);
+
         holder.listItemBinding.llData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +88,10 @@ public class ApplicationListAdapter extends RecyclerView.Adapter<ApplicationList
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     list.get(i).setFlag(AppConstants.YES);
-                }else {
+                    selectAllInterface.selectAllApplications();
+                } else {
                     list.get(i).setFlag(AppConstants.NO);
+                    selectAllInterface.deSelectAllApplications();
                 }
             }
         });
