@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,11 +23,13 @@ import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
+import com.cgg.lrs2020officerapp.model.applicationList.Cluster;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.ApplicationListViewModel;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity implements ErrorHandlerInterface {
@@ -37,7 +40,8 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
     ActivityDashboardBinding binding;
     private ApplicationListViewModel viewModel;
     private List<ApplicationListData> list;
-
+    private List<Cluster> clusterList;
+    boolean flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,7 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
             e.printStackTrace();
         }
         viewModel = new ApplicationListViewModel(DashboardActivity.this, getApplication());
+        clusterList=new ArrayList<>();
         binding.name.setText("" + loginResponse.getUserName());
         binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.pendingForScrutiny.setOnClickListener(new View.OnClickListener() {
@@ -108,10 +113,35 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
                             list = response.getData();
                             if (list != null && list.size() > 0) {
                                 binding.tvPendCnt.setText("" + list.size());
+                                Cluster cluster=new Cluster();
+                                cluster.setCluster_id(list.get(0).getCLUSTER_ID());
+                                cluster.setCluster_name(list.get(0).getCLUSTER_NAME());
+                                cluster.setCount(1);
+                                clusterList.clear();
+                                clusterList.add(cluster);
+                                for(int z=1;z<list.size();z++){
+                                    flag=true;
+                                    for(int y=0;y<clusterList.size();y++){
+                                        if(clusterList.get(y).getCluster_id().equalsIgnoreCase(list.get(z).getCLUSTER_ID())){
+                                           flag=false;
+                                           clusterList.get(y).setCount((clusterList.get(y).getCount())+1);
+                                        }
+                                    }
+                                    if(flag) {
+                                        Cluster cluster1 = new Cluster();
+                                        cluster1.setCluster_id(list.get(z).getCLUSTER_ID());
+                                        cluster1.setCluster_name(list.get(z).getCLUSTER_NAME());
+                                        cluster1.setCount(1);
+                                        clusterList.add(cluster1);
+                                    }
+                                }
 
+                                Log.i("Tag",String.valueOf(clusterList.size()));
                                 Gson gson = new Gson();
                                 String applicationListDetails = gson.toJson(response);
                                 editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, applicationListDetails);
+                                String clusterListString = gson.toJson(clusterList);
+                                editor.putString(AppConstants.CLUSTERLIST, clusterListString);
                                 editor.commit();
                             }
                         } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {

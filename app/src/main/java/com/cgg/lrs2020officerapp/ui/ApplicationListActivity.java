@@ -44,7 +44,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     private Context context;
     private ApplicationListViewModel viewModel;
     private ActivityApplicationListBinding binding;
-    private List<ApplicationListData> list;
+    private List<ApplicationListData> list,applicationListData;
     private List<String> templist;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -62,6 +62,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
         binding.header.headerTitle.setText(R.string.pending_for_scrutiny);
+        applicationListData=new ArrayList<>();
 
         editor.putString(AppConstants.TEMP_APPLICATION_LIST, "");
         editor.commit();
@@ -185,6 +186,15 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                             for (int i = 0; i < list.size(); i++) {
                                                 list.get(i).setFlag(AppConstants.NO);
                                             }
+                                            applicationListData.clear();
+                                            String clusterId=sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,"");
+                                            for(int i=0;i<list.size();i++){
+                                                if(list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)){
+                                                    applicationListData.add(list.get(i));
+                                                }
+                                            }
+
+
                                             setAdapter();
                                         } else {
                                             binding.recyclerView.setVisibility(View.GONE);
@@ -226,6 +236,15 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                         for (int i = 0; i < list.size(); i++) {
                             list.get(i).setFlag(AppConstants.NO);
                         }
+                        applicationListData.clear();
+                        String clusterId=sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,"");
+                        for(int i=0;i<list.size();i++){
+                            if(list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)){
+                                applicationListData.add(list.get(i));
+                            }
+                        }
+
+
                         setAdapter();
                     } else {
                         binding.recyclerView.setVisibility(View.GONE);
@@ -250,7 +269,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     }
 
     private void setAdapter() {
-        adapter = new ApplicationListAdapter(context, list, loginResponse.getROLEID());
+        adapter = new ApplicationListAdapter(context, applicationListData, loginResponse.getROLEID());
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));

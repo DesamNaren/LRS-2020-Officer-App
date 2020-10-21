@@ -59,6 +59,31 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
                                 android:fontFamily="@font/elmessiri_regular"
+                                android:text="Cluster Name"
+                                android:textSize="@dimen/dimen_16sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/elmessiri_regular"
+                                android:singleLine="false"
+                                android:text="@{taskData.cLUSTER_NAME}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dimen_16sp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dimen_5dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/elmessiri_regular"
                                 android:text="Application Number"
                                 android:textSize="@dimen/dimen_16sp" />
 

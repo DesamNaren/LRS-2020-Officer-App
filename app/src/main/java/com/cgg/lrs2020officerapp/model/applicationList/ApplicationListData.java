@@ -26,6 +26,12 @@ public class ApplicationListData {
     @SerializedName("UPDATEDON")
     @Expose
     private String uPDATEDON;
+    @SerializedName("CLUSTER_ID")
+    @Expose
+    private String CLUSTER_ID;
+    @SerializedName("CLUSTER_NAME")
+    @Expose
+    private String CLUSTER_NAME;
 
     private String flag;
 
@@ -91,5 +97,21 @@ public class ApplicationListData {
 
     public void setUPDATEDON(String uPDATEDON) {
         this.uPDATEDON = uPDATEDON;
+    }
+
+    public String getCLUSTER_ID() {
+        return CLUSTER_ID;
+    }
+
+    public void setCLUSTER_ID(String CLUSTER_ID) {
+        this.CLUSTER_ID = CLUSTER_ID;
+    }
+
+    public String getCLUSTER_NAME() {
+        return CLUSTER_NAME;
+    }
+
+    public void setCLUSTER_NAME(String CLUSTER_NAME) {
+        this.CLUSTER_NAME = CLUSTER_NAME;
     }
 }

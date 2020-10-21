@@ -5,22 +5,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.cgg.lrs2020officerapp.R;
+import com.cgg.lrs2020officerapp.adapter.ApplicationListAdapter;
+import com.cgg.lrs2020officerapp.adapter.ClusterListAdapter;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityClusterBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
+import com.cgg.lrs2020officerapp.model.applicationList.Cluster;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.ApplicationListViewModel;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClusterActivity extends AppCompatActivity implements ErrorHandlerInterface {
@@ -30,18 +39,24 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
     private LoginResponse loginResponse;
     ActivityClusterBinding binding;
     private ApplicationListViewModel viewModel;
-    private List<ApplicationListData> list;
+    private List<Cluster> clusterList;
+    ClusterListAdapter clusterListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cluster);
 
+        clusterList=new ArrayList<>();
         sharedPreferences = LRSApplication.get(ClusterActivity.this).getPreferences();
         editor = sharedPreferences.edit();
         try {
             String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
-            loginResponse = new Gson().fromJson(str, LoginResponse.class);
+            Gson gson=new Gson();
+            loginResponse =gson.fromJson(str, LoginResponse.class);
+            Type type = new TypeToken<List<Cluster>>(){}.getType();
+            String clusterString = sharedPreferences.getString(AppConstants.CLUSTERLIST, "");
+            clusterList = gson.fromJson(clusterString, type);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,40 +64,13 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
         viewModel = new ApplicationListViewModel(ClusterActivity.this, getApplication());
         binding.name.setText("" + loginResponse.getUserName());
         binding.designation.setText("" + loginResponse.getdESIGNATION());
-        binding.cluster1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
-                startActivity(i);
-//                } else {
-//                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
-//                }
-            }
-        });
-        binding.cluster2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
-                startActivity(i);
-//                } else {
-//                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
-//                }
-            }
-        });
-        binding.cluster3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                if (list != null && list.size() > 0) {
-                Intent i = new Intent(ClusterActivity.this, ApplicationListActivity.class);
-                startActivity(i);
-//                } else {
-//                    Toast.makeText(ClusterActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
-//                }
-            }
-        });
 
+        if(clusterList!=null && clusterList.size()>0){
+            clusterListAdapter = new ClusterListAdapter(ClusterActivity.this, clusterList);
+            binding.rvCluster.setAdapter(clusterListAdapter);
+            binding.rvCluster.setLayoutManager(new LinearLayoutManager(ClusterActivity.this));
+
+        }
 
         /*ApplicationReq request = new ApplicationReq();
         request.setOFFICEID(loginResponse.getOFFICEID());
