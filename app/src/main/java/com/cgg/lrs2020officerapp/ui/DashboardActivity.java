@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -42,6 +43,7 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
     private List<ApplicationListData> list;
     private List<Cluster> clusterList;
     boolean flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,27 +54,25 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
         try {
             String str = sharedPreferences.getString(AppConstants.LOGIN_RES, "");
             loginResponse = new Gson().fromJson(str, LoginResponse.class);
-            editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, "");
-            editor.commit();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         viewModel = new ApplicationListViewModel(DashboardActivity.this, getApplication());
-        clusterList=new ArrayList<>();
+        clusterList = new ArrayList<>();
         binding.name.setText("" + loginResponse.getUserName());
         binding.designation.setText("" + loginResponse.getdESIGNATION());
         binding.pendingForScrutiny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (list != null && list.size() > 0) {
-                if (loginResponse.getROLEID().equalsIgnoreCase("3"))
-                    startActivity(new Intent(DashboardActivity.this, ClusterActivity.class));
-                else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
-                    startActivity(new Intent(DashboardActivity.this, ApplicationListActivity.class));
-//                } else {
-//                    Toast.makeText(Dashboard.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
-//                }
+                if (list != null && list.size() > 0) {
+                    if (loginResponse.getROLEID().equalsIgnoreCase("3"))
+                        startActivity(new Intent(DashboardActivity.this, ClusterActivity.class));
+                    else if (loginResponse.getROLEID().equalsIgnoreCase("4") || loginResponse.getROLEID().equalsIgnoreCase("5"))
+                        startActivity(new Intent(DashboardActivity.this, ApplicationListActivity.class));
+                } else {
+                    Toast.makeText(DashboardActivity.this, R.string.data_empty, Toast.LENGTH_SHORT).show();
+                }
             }
         });
         binding.logoutimg.setOnClickListener(new View.OnClickListener() {
@@ -113,21 +113,21 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
                             list = response.getData();
                             if (list != null && list.size() > 0) {
                                 binding.tvPendCnt.setText("" + list.size());
-                                Cluster cluster=new Cluster();
+                                Cluster cluster = new Cluster();
                                 cluster.setCluster_id(list.get(0).getCLUSTER_ID());
                                 cluster.setCluster_name(list.get(0).getCLUSTER_NAME());
                                 cluster.setCount(1);
                                 clusterList.clear();
                                 clusterList.add(cluster);
-                                for(int z=1;z<list.size();z++){
-                                    flag=true;
-                                    for(int y=0;y<clusterList.size();y++){
-                                        if(clusterList.get(y).getCluster_id().equalsIgnoreCase(list.get(z).getCLUSTER_ID())){
-                                           flag=false;
-                                           clusterList.get(y).setCount((clusterList.get(y).getCount())+1);
+                                for (int z = 1; z < list.size(); z++) {
+                                    flag = true;
+                                    for (int y = 0; y < clusterList.size(); y++) {
+                                        if (clusterList.get(y).getCluster_id().equalsIgnoreCase(list.get(z).getCLUSTER_ID())) {
+                                            flag = false;
+                                            clusterList.get(y).setCount((clusterList.get(y).getCount()) + 1);
                                         }
                                     }
-                                    if(flag) {
+                                    if (flag) {
                                         Cluster cluster1 = new Cluster();
                                         cluster1.setCluster_id(list.get(z).getCLUSTER_ID());
                                         cluster1.setCluster_name(list.get(z).getCLUSTER_NAME());
@@ -136,7 +136,7 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
                                     }
                                 }
 
-                                Log.i("Tag",String.valueOf(clusterList.size()));
+                                Log.i("Tag", String.valueOf(clusterList.size()));
                                 Gson gson = new Gson();
                                 String applicationListDetails = gson.toJson(response);
                                 editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, applicationListDetails);

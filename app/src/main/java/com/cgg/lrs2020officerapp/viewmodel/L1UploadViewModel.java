@@ -14,8 +14,6 @@ import com.cgg.lrs2020officerapp.model.submit.L1SubmitResponse;
 import com.cgg.lrs2020officerapp.network.LRSService;
 import com.google.gson.Gson;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,16 +29,16 @@ public class L1UploadViewModel extends AndroidViewModel {
         super(application);
         this.context = context;
         errorHandlerInterface = (ErrorHandlerInterface) context;
-        submitInterface=(L1SubmitInterface)context;
+        submitInterface = (L1SubmitInterface) context;
     }
 
     public void callSubmitAPI(L1SubmitRequest request) {
         LRSService lrsService = LRSService.Factory.create();
         String str = new Gson().toJson(request);
-        lrsService.getSubmitResponse(request)
-                .enqueue(new Callback<List<L1SubmitResponse>>() {
+        lrsService.getL1SubmitResponse(request)
+                .enqueue(new Callback<L1SubmitResponse>() {
                              @Override
-                             public void onResponse(@NonNull Call<List<L1SubmitResponse>> call, @NonNull Response<List<L1SubmitResponse>> response) {
+                             public void onResponse(@NonNull Call<L1SubmitResponse> call, @NonNull Response<L1SubmitResponse> response) {
                                  if (response.isSuccessful() && response.body() != null) {
                                      submitInterface.submitResponse(response.body());
 
@@ -50,7 +48,7 @@ public class L1UploadViewModel extends AndroidViewModel {
                              }
 
                              @Override
-                             public void onFailure(@NonNull Call<List<L1SubmitResponse>> call, @NonNull Throwable t) {
+                             public void onFailure(@NonNull Call<L1SubmitResponse> call, @NonNull Throwable t) {
                                  errorHandlerInterface.handleError(t, context);
                              }
                          }

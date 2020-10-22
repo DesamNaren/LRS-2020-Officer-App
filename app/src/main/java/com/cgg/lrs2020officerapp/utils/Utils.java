@@ -343,8 +343,14 @@ public class Utils {
                             dialog.dismiss();
                         }
 
-                        editor.clear();
+                        editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, "");
+                        editor.putString(AppConstants.SELECTED_CLUSTERID, "");
+                        editor.putString(AppConstants.CLUSTERLIST, "");
+                        editor.putString(AppConstants.L1_SUBMIT_REQUEST, "");
+                        editor.putString(AppConstants.TEMP_APPLICATION_LIST, "");
                         editor.commit();
+//                        editor.clear();
+//                        editor.commit();
                         Intent newIntent = new Intent(activity, LoginActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

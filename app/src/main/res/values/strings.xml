@@ -46,6 +46,7 @@
     <string name="site_inspection_image">Site Inspection Image</string>
     <string name="recommend_for">Recommend for*</string>
     <string name="verification_remarks">Verification Remarks*</string>
+    <string name="remarks"> Remarks*</string>
     <string name="submit">Submit</string>
     <string name="forward">Forward</string>
     <string name="revert">Revert</string>
@@ -170,4 +171,5 @@
     <string name="select_plot_numbers_recommended_for_approval_of_lrs">Please Choose Application Numbers recommended for approval of LRS</string>
     <string name="select_plot_numbers_recommended_for_shortfall_of_lrs">Please Choose Application Numbers recommended for shortfall of LRS</string>
     <string name="select_plot_numbers_recommended_for_reject_of_lrs">Please Choose Application Numbers recommended for reject of LRS</string>
+    <string name="enter_remarks">Enter Remarks</string>
 </resources>

@@ -671,16 +671,16 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
     }
 
     @Override
-    public void submitResponse(List<L1SubmitResponse> responses) {
+    public void submitResponse(L1SubmitResponse responses) {
         customProgressDialog.dismiss();
-        if (responses != null && responses.get(0).getStatusCode() != null) {
+        if (responses != null && responses.getStatusCode() != null) {
 
-            if (responses.get(0).getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+            if (responses.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
                 Utils.customSuccessAlert(this, getString(R.string.app_name),
-                        responses.get(0).getStatusMessage(), true, editor);
+                        responses.getStatusMessage(), true, editor);
 
-            } else if (responses.get(0).getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
-                Utils.customErrorAlert(context, getString(R.string.app_name), responses.get(0).getStatusMessage());
+            } else if (responses.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
+                Utils.customErrorAlert(context, getString(R.string.app_name), responses.getStatusMessage());
             } else {
                 Utils.customErrorAlert(context, getString(R.string.app_name), getString(R.string.something));
             }

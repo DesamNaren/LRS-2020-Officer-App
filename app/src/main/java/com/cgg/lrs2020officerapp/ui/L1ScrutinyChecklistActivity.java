@@ -44,9 +44,10 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     ActivityL1ScrutinyCheckListBinding binding;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    String name_colony_locality, surveyNo_nameVillage, layout_extent, plot_no_applied, colony_falls_objectionable, colony_falls_prohibitory_land,
-            colony_falls_master_plan, colony_affected_master_plan, plot_no_affected, open_space_avail, percent_open_space, land_use_asper_master_plan,
-            lrs_permitted, legal_disputes;
+    String name_colony_locality, surveyNo_nameVillage, layout_extent, plot_no_applied, colony_falls_objectionable,
+            colony_falls_prohibitory_land, colony_falls_master_plan, colony_affected_master_plan, plot_no_affected,
+            open_space_avail, percent_open_space, land_use_asper_master_plan,
+            lrs_permitted, legal_disputes,remarks;
     Context context;
     private List<String> approvelist;
     private List<String> shortfalllist;
@@ -220,6 +221,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                 plot_no_affected = binding.etPlotNoEffected.getText().toString().trim();
                 percent_open_space = binding.etPercentOpenSpace.getText().toString().trim();
                 land_use_asper_master_plan = binding.etLandUseAsPerMasterPlan.getText().toString().trim();
+                remarks = binding.etRemarks.getText().toString().trim();
 
                 if (validate()) {
                     L1SubmitRequest l1SubmitRequest = new L1SubmitRequest();
@@ -229,7 +231,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                     l1SubmitRequest.setAPPLSSHORTFALL(selectedShortfallList);
                     l1SubmitRequest.setCREATEDBY(loginResponse.getUSERID());
                     l1SubmitRequest.setIPADDRESS("");
-                    l1SubmitRequest.setLANDUSEASPERMAPLAN(land_use_asper_master_plan);
+                    l1SubmitRequest.setLANDUSEASPERMAPLAN(colony_falls_master_plan);
                     l1SubmitRequest.setLEGALDISPUTES(legal_disputes);
                     l1SubmitRequest.setLOCALITYAFFECTEDBYMP(colony_affected_master_plan);
                     l1SubmitRequest.setOBJECTIONABLELANDS(colony_falls_objectionable);
@@ -237,8 +239,10 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                     l1SubmitRequest.setOPENSPACE10PERCENT(open_space_avail);
                     l1SubmitRequest.setOPENSPACEHTLINE("");
                     l1SubmitRequest.setPROHIBITORYLANDS(colony_falls_prohibitory_land);
-                    l1SubmitRequest.setREMARKS("");
+                    l1SubmitRequest.setREMARKS(remarks);
                     l1SubmitRequest.setTOKENID(loginResponse.gettOKEN_ID());
+                    l1SubmitRequest.setoPEN_SPACE_10PERCENT_NO(percent_open_space);
+                    l1SubmitRequest.setlAND_USE_ASPER_MAPLAN_SPECIFY(land_use_asper_master_plan);
 
                     Gson gson = new Gson();
                     String request = gson.toJson(l1SubmitRequest);
@@ -303,6 +307,9 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             return false;
         } else if (TextUtils.isEmpty(selectedRejectList) || selectedRejectList.equalsIgnoreCase(AppConstants.SELECT)) {
             callSnackBar(getString(R.string.select_plot_numbers_recommended_for_reject_of_lrs));
+            return false;
+        } else if (TextUtils.isEmpty(remarks)) {
+            callSnackBar(getString(R.string.enter_remarks));
             return false;
         }
         return true;

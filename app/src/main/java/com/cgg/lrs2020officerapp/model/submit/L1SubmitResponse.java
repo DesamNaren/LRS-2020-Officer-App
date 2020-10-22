@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class L1SubmitResponse {
 
-    @SerializedName("Status Code")
+    @SerializedName("Status_Code")
     @Expose
     private String statusCode;
-    @SerializedName("Status Message")
+    @SerializedName("Status_Message")
     @Expose
     private String statusMessage;
 

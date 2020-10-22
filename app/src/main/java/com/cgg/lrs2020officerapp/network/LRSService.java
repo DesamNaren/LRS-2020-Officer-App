@@ -54,8 +54,8 @@ public interface LRSService {
     Call<List<LoginResponse>> getLoginResponse(@Body LoginRequest loginRequest);
 
 
-    @POST("Scrutiny/AddScrutinyDetails")
-    Call<List<L1SubmitResponse>> getSubmitResponse(@Body L1SubmitRequest request);
+    @POST("Scrutiny/SubmitL1Scrutiny")
+    Call<L1SubmitResponse> getL1SubmitResponse(@Body L1SubmitRequest request);
 
     @POST("Scrutiny/AddScrutinyDetails")
     Call<List<L2SubmitResponse>> getSubmitResponse(@Body L2SubmitRequest request);
@@ -71,9 +71,6 @@ public interface LRSService {
 
     @POST("Scrutiny/GetL1SrutinyChecklist")
     Call<L1ScrutinityResponse> getScrutinyCheckList(@Body L1ScrutinyChecklistRequest scrutinyChecklistRequest);
-
-    @POST("Scrutiny/SubmitL1Scrutiny")
-    Call<L1SubmitResponse> submitL1ScrutinityDetails(@Body L1SubmitRequest submitRequest);
 
     @GET("Scrutiny/Abutting_Road_Data")
     Call<RoadDetailsResponse> getRoadDetails();
