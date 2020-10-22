@@ -8,12 +8,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
+import com.cgg.lrs2020officerapp.ui.L1ScrutinyChecklistActivity;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -60,7 +60,15 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
         if (mSelection != null && which < mSelection.length) {
-            mSelection[which] = isChecked;
+
+            if (((AlertDialog) dialog).getListView().isItemChecked(0)) {
+                for (int i = 1; i < _items.length; ++i) {
+                    ((AlertDialog) dialog).getListView().setItemChecked(i, false);
+                    mSelection[i] = false;
+                }
+            } else {
+                mSelection[which] = isChecked;
+            }
             simple_adapter.clear();
             simple_adapter.add(buildSelectedItemString());
 
@@ -98,9 +106,9 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         } else {
             Log.d("TAG", "NO LIST");
             if (flag.equalsIgnoreCase(AppConstants.SHORTFALL))
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs), Toast.LENGTH_LONG).show();
+                ((L1ScrutinyChecklistActivity) getContext()).callSnackBar(getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs));
             else if (flag.equalsIgnoreCase(AppConstants.REJECT))
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs), Toast.LENGTH_LONG).show();
+                ((L1ScrutinyChecklistActivity) getContext()).callSnackBar(getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs));
         }
         return true;
 
@@ -272,10 +280,6 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
                 data = AppConstants.SELECT;
             else {
                 data = sb.toString();
-//                if (data.contains("NONE,")) {
-//                    data = data.substring(5);
-//
-//                }
             }
         } else
             data = AppConstants.SELECT;

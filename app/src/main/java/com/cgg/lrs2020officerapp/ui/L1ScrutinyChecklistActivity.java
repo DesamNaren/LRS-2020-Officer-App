@@ -245,7 +245,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         return true;
     }
 
-    void callSnackBar(String msg) {
+    public void callSnackBar(String msg) {
         Snackbar snackbar = Snackbar.make(binding.scroll, msg, Snackbar.LENGTH_LONG);
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
         View snackbarView = snackbar.getView();
@@ -263,33 +263,42 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     public void selectedStrings(List<String> selectedlist, List<String> notSelectedlist, String flag) {
 
         if (flag.equalsIgnoreCase(AppConstants.APPROVE)) {
-            shortfalllist = notSelectedlist;
-            rejectlist.clear();
-            if (shortfalllist != null && shortfalllist.size() > 0) {
-                if (!shortfalllist.get(0).equalsIgnoreCase(AppConstants.NONE))
+            if (selectedlist != null && selectedlist.size() > 0) {
+                shortfalllist = notSelectedlist;
+                if (shortfalllist != null && shortfalllist.size() > 0) {
+                    if (!shortfalllist.get(0).equalsIgnoreCase(AppConstants.NONE))
+                        shortfalllist.add(0, AppConstants.NONE);
+                } else {
                     shortfalllist.add(0, AppConstants.NONE);
+                }
             } else {
-                shortfalllist.add(0, AppConstants.NONE);
+                shortfalllist.clear();
             }
+
+            rejectlist.clear();
             binding.spPlotNoShortfall.setItems(shortfalllist);
             binding.spPlotNoReject.setItems(rejectlist);
             selectedApprovalList = selectedList(selectedlist);
             selectedShortfallList = "";
             selectedRejectList = "";
         } else if (flag.equalsIgnoreCase(AppConstants.SHORTFALL)) {
-            rejectlist = notSelectedlist;
-            if (rejectlist != null && rejectlist.size() > 0) {
-                if (!rejectlist.get(0).equalsIgnoreCase(AppConstants.NONE))
+            if (selectedlist != null && selectedlist.size() > 0) {
+                rejectlist = notSelectedlist;
+                if (rejectlist != null && rejectlist.size() > 0) {
+                    if (!rejectlist.get(0).equalsIgnoreCase(AppConstants.NONE))
+                        rejectlist.add(0, AppConstants.NONE);
+                } else {
                     rejectlist.add(0, AppConstants.NONE);
-            } else {
-                rejectlist.add(0, AppConstants.NONE);
-            }
+                }
+            } else
+                rejectlist.clear();
             binding.spPlotNoReject.setItems(rejectlist);
             selectedShortfallList = selectedList(selectedlist);
             selectedRejectList = "";
         } else if (flag.equalsIgnoreCase(AppConstants.REJECT)) {
             selectedRejectList = selectedList(selectedlist);
         }
+
     }
 
     private String selectedList(List<String> selectedlist) {
@@ -298,8 +307,6 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
         string = selectedlist.toString();
         selectedStrings = string.substring(1, string.length() - 1);
-//        if (selectedStrings.contains("NONE,"))
-//            selectedStrings = selectedStrings.substring(5);
         if (!selectedStrings.equals("")) {
             Toast.makeText(this, selectedStrings, Toast.LENGTH_LONG).show();
         }
