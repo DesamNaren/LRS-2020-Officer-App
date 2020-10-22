@@ -31,6 +31,7 @@ public class L1UploadViewModel extends AndroidViewModel {
         super(application);
         this.context = context;
         errorHandlerInterface = (ErrorHandlerInterface) context;
+        submitInterface=(L1SubmitInterface)context;
     }
 
     public void callSubmitAPI(L1SubmitRequest request) {

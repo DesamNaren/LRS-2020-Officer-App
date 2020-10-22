@@ -5,6 +5,8 @@ import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsReq;
 import com.cgg.lrs2020officerapp.model.applicantDetails.ApplicantDetailsRes;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
+import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinityResponse;
+import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinyChecklistRequest;
 import com.cgg.lrs2020officerapp.model.land.LandDetailsResponse;
 import com.cgg.lrs2020officerapp.model.login.LoginRequest;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
@@ -67,6 +69,12 @@ public interface LRSService {
     @POST("Scrutiny/GetApplicantSiteDetails")
     Call<ApplicantDetailsRes> getApplicantDetailsResponse(@Body ApplicantDetailsReq applicationReq);
 
+    @POST("Scrutiny/GetL1SrutinyChecklist")
+    Call<L1ScrutinityResponse> getScrutinyCheckList(@Body L1ScrutinyChecklistRequest scrutinyChecklistRequest);
+
+    @POST("Scrutiny/SubmitL1Scrutiny")
+    Call<L1SubmitResponse> submitL1ScrutinityDetails(@Body L1SubmitRequest submitRequest);
+
     @GET("Scrutiny/Abutting_Road_Data")
     Call<RoadDetailsResponse> getRoadDetails();
 
@@ -74,7 +82,7 @@ public interface LRSService {
     @GET("Scrutiny/GetLandUsageType")
     Call<LandDetailsResponse> getLandDetails();
 
-     @GET("Scrutiny/GetShortFallMasterData")
+    @GET("Scrutiny/GetShortFallMasterData")
     Call<ShortFallResponse> getShortFallMasterData();
 
     @GET("Scrutiny/GetRecommendMaster")

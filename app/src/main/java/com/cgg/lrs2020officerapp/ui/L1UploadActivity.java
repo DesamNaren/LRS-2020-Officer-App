@@ -118,7 +118,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
 //        binding.btnLayout.btnProceed.setText(getResources().getString(R.string.submit));
 
 
-        uploadViewModel = new L1UploadViewModel(L1UploadActivity.this,getApplication());
+        uploadViewModel = new L1UploadViewModel(L1UploadActivity.this, getApplication());
 
         binding.btnLayout.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,19 +132,13 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             public void onClick(View v) {
                 if (validations()) {
 
-//                    request.setPIPADDRESS(Utils.getLocalIpAddress());
-//                    request.setPOFFICERTYPE(AppConstants.OFFICER_TYPE);
-//                    request.setPEMPLOYEEID(loginResponse.getUSERID());
-//                    request.setPCREATEDBY(loginResponse.getUSERID());
-//                    request.setPOTPNO(AppConstants.OTP);
-//                    request.setPSRODOCLINK(loginResponse.getsRO_DOC_LINK());
-//                    request.setPAPPLICANTID(applicationId);
                     request.setIMAGE1PATH(P_IMAGE1_PATH);
                     request.setIMAGE2PATH(P_IMAGE2_PATH);
                     request.setIMAGE3PATH(P_IMAGE3_PATH);
                     request.setIMAGE4PATH(P_IMAGE4_PATH);
                     request.setIMAGE5PATH(P_IMAGE5_PATH);
-                    
+
+
                     customInfoAlert(request);
                 }
 
@@ -676,7 +670,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
         Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
     }
 
-   @Override
+    @Override
     public void submitResponse(List<L1SubmitResponse> responses) {
         customProgressDialog.dismiss();
         if (responses != null && responses.get(0).getStatusCode() != null) {
@@ -729,11 +723,8 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
                         }
 
                         if (Utils.checkInternetConnection(context)) {
-//                            customProgressDialog.show();
-//                            uploadViewModel.callSubmitAPI(submitScrutinyRequest);
-                            Utils.customSuccessAlert(L1UploadActivity.this, getString(R.string.app_name),
-                                    "L1 Review Successfully completed", true, editor);
-
+                            customProgressDialog.show();
+                            uploadViewModel.callSubmitAPI(submitScrutinyRequest);
                         } else {
                             Utils.customErrorAlert(context, context.getResources().getString(R.string.app_name), context.getString(R.string.plz_check_int));
                         }
@@ -757,5 +748,5 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             e.printStackTrace();
         }
     }
-    
+
 }

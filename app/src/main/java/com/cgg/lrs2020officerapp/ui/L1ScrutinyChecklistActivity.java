@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -12,14 +13,23 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
 import com.cgg.lrs2020officerapp.R;
 import com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityL1ScrutinyCheckListBinding;
+import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
+import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
+import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
+import com.cgg.lrs2020officerapp.model.applicationList.Cluster;
+import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinityResponse;
+import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinyChecklistRequest;
+import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.submit.L1SubmitRequest;
 import com.cgg.lrs2020officerapp.utils.Utils;
+import com.cgg.lrs2020officerapp.viewmodel.L1ScrutinyChecklistViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class L1ScrutinyChecklistActivity extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
+public class L1ScrutinyChecklistActivity extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener, ErrorHandlerInterface {
 
     ActivityL1ScrutinyCheckListBinding binding;
     private SharedPreferences sharedPreferences;
@@ -42,13 +52,15 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     private List<String> shortfalllist;
     private List<String> rejectlist;
     private String selectedApprovalList, selectedShortfallList, selectedRejectList;
-
+    L1ScrutinyChecklistViewModel scrutinyChecklistViewModel;
+    LoginResponse loginResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_l1_scrutiny_check_list);
         context = L1ScrutinyChecklistActivity.this;
         binding.header.headerTitle.setText(R.string.scrutiny_checklist);
+        scrutinyChecklistViewModel=new L1ScrutinyChecklistViewModel(L1ScrutinyChecklistActivity.this,getApplication());
 
         shortfalllist = new ArrayList<>();
         rejectlist = new ArrayList<>();
@@ -61,12 +73,41 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             Type type = new TypeToken<ArrayList<String>>() {
             }.getType();
             approvelist = gson.fromJson(sharedPreferences.getString(AppConstants.TEMP_APPLICATION_LIST, ""), type);
+            loginResponse = gson.fromJson(sharedPreferences.getString(AppConstants.LOGIN_RES, ""), LoginResponse.class);
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        L1ScrutinyChecklistRequest scrutinyChecklistRequest=new L1ScrutinyChecklistRequest();
+        scrutinyChecklistRequest.setCLUSTER_ID("62");
+        scrutinyChecklistRequest.setAPP_LIST("C/GHMC/003787/2020");
+        scrutinyChecklistRequest.setAUTHORITY_ID(loginResponse.getAUTHORITYID());
+        if (Utils.checkInternetConnection(L1ScrutinyChecklistActivity.this)) {
+            scrutinyChecklistViewModel.getScrutinyCheckListResponse(scrutinyChecklistRequest).observe(this, new Observer<L1ScrutinityResponse>() {
+                @Override
+                public void onChanged(L1ScrutinityResponse response) {
 
+                    if (response != null && response.getStatusCode() != null) {
+                        if (response.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
+                            binding.setChecklist(response.getCheckList().get(0));
+
+                        } else if (response.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
+//                            Utils.customErrorAlert(Dashboard.this, getString(R.string.app_name), response.getStatusMessage());
+                        } else {
+                            Utils.customErrorAlert(L1ScrutinyChecklistActivity.this, getString(R.string.app_name), getString(R.string.something));
+                        }
+
+                    } else {
+                        Utils.customErrorAlert(L1ScrutinyChecklistActivity.this, getString(R.string.app_name), getString(R.string.server_not));
+                    }
+                }
+            });
+        } else {
+            Utils.customErrorAlert(L1ScrutinyChecklistActivity.this, getResources().getString(R.string.app_name),
+                    getString(R.string.plz_check_int));
+        }
         binding.spPlotNoApprove.setListener(L1ScrutinyChecklistActivity.this, AppConstants.APPROVE);
         binding.spPlotNoShortfall.setListener(L1ScrutinyChecklistActivity.this, AppConstants.SHORTFALL);
         binding.spPlotNoReject.setListener(L1ScrutinyChecklistActivity.this, AppConstants.REJECT);
@@ -186,18 +227,18 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                     l1SubmitRequest.setAPPLSAPPROVED(selectedApprovalList);
                     l1SubmitRequest.setAPPLSREJECTED(selectedRejectList);
                     l1SubmitRequest.setAPPLSSHORTFALL(selectedShortfallList);
-                    l1SubmitRequest.setCREATEDBY("");
+                    l1SubmitRequest.setCREATEDBY(loginResponse.getUSERID());
                     l1SubmitRequest.setIPADDRESS("");
                     l1SubmitRequest.setLANDUSEASPERMAPLAN(land_use_asper_master_plan);
-                    l1SubmitRequest.setLEGALDISPUTES("");
+                    l1SubmitRequest.setLEGALDISPUTES(legal_disputes);
                     l1SubmitRequest.setLOCALITYAFFECTEDBYMP(colony_affected_master_plan);
                     l1SubmitRequest.setOBJECTIONABLELANDS(colony_falls_objectionable);
-                    l1SubmitRequest.setOFFICERTYPE("");
-                    l1SubmitRequest.setOPENSPACE10PERCENT(percent_open_space);
+                    l1SubmitRequest.setOFFICERTYPE(loginResponse.getROLEID());
+                    l1SubmitRequest.setOPENSPACE10PERCENT(open_space_avail);
                     l1SubmitRequest.setOPENSPACEHTLINE("");
                     l1SubmitRequest.setPROHIBITORYLANDS(colony_falls_prohibitory_land);
                     l1SubmitRequest.setREMARKS("");
-                    l1SubmitRequest.setTOKENID("");
+                    l1SubmitRequest.setTOKENID(loginResponse.gettOKEN_ID());
 
                     Gson gson = new Gson();
                     String request = gson.toJson(l1SubmitRequest);
@@ -333,5 +374,15 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             Toast.makeText(this, selectedStrings, Toast.LENGTH_LONG).show();
         }
         return selectedStrings;
+    }
+    @Override
+    public void handleError(Throwable e, Context context) {
+        String errMsg = ErrorHandler.handleError(e, context);
+        Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
+    }
+
+    @Override
+    public void handleError(String errMsg, Context context) {
+        Utils.customErrorAlert(context, getString(R.string.app_name), errMsg);
     }
 }
