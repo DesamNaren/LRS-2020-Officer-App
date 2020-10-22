@@ -66,29 +66,18 @@ public class L1SubmitRequest {
     @Expose
     private String iPADDRESS;
 
-    @SerializedName("OPEN_SPACE_10PERCENT_NO")
+    @SerializedName("OPEN_SPACE_10PERCENT_NO_TEXT")
     @Expose
-    private String oPEN_SPACE_10PERCENT_NO;
+    private String OPEN_SPACE_10PERCENT_NO_TEXT;
 
-    @SerializedName("LAND_USE_ASPER_MAPLAN_SPECIFY")
+    @SerializedName("LOCALITY_AFFECTEDBY_MP_OPTIONS")
     @Expose
-    private String lAND_USE_ASPER_MAPLAN_SPECIFY;
+    private String LOCALITY_AFFECTEDBY_MP_OPTIONS;
 
-    public String getoPEN_SPACE_10PERCENT_NO() {
-        return oPEN_SPACE_10PERCENT_NO;
-    }
+    @SerializedName("LRS_PERMIT")
+    @Expose
+    private String LRS_PERMIT;
 
-    public void setoPEN_SPACE_10PERCENT_NO(String oPEN_SPACE_10PERCENT_NO) {
-        this.oPEN_SPACE_10PERCENT_NO = oPEN_SPACE_10PERCENT_NO;
-    }
-
-    public String getlAND_USE_ASPER_MAPLAN_SPECIFY() {
-        return lAND_USE_ASPER_MAPLAN_SPECIFY;
-    }
-
-    public void setlAND_USE_ASPER_MAPLAN_SPECIFY(String lAND_USE_ASPER_MAPLAN_SPECIFY) {
-        this.lAND_USE_ASPER_MAPLAN_SPECIFY = lAND_USE_ASPER_MAPLAN_SPECIFY;
-    }
 
     public String getOBJECTIONABLELANDS() {
         return oBJECTIONABLELANDS;
@@ -248,5 +237,29 @@ public class L1SubmitRequest {
 
     public void setIPADDRESS(String iPADDRESS) {
         this.iPADDRESS = iPADDRESS;
+    }
+
+    public String getLRS_PERMIT() {
+        return LRS_PERMIT;
+    }
+
+    public void setLRS_PERMIT(String LRS_PERMIT) {
+        this.LRS_PERMIT = LRS_PERMIT;
+    }
+
+    public String getLOCALITY_AFFECTEDBY_MP_OPTIONS() {
+        return LOCALITY_AFFECTEDBY_MP_OPTIONS;
+    }
+
+    public void setLOCALITY_AFFECTEDBY_MP_OPTIONS(String LOCALITY_AFFECTEDBY_MP_OPTIONS) {
+        this.LOCALITY_AFFECTEDBY_MP_OPTIONS = LOCALITY_AFFECTEDBY_MP_OPTIONS;
+    }
+
+    public String getOPEN_SPACE_10PERCENT_NO_TEXT() {
+        return OPEN_SPACE_10PERCENT_NO_TEXT;
+    }
+
+    public void setOPEN_SPACE_10PERCENT_NO_TEXT(String OPEN_SPACE_10PERCENT_NO_TEXT) {
+        this.OPEN_SPACE_10PERCENT_NO_TEXT = OPEN_SPACE_10PERCENT_NO_TEXT;
     }
 }

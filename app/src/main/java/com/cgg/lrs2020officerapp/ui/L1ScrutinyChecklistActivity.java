@@ -49,7 +49,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             open_space_avail, percent_open_space, land_use_asper_master_plan,
             lrs_permitted, legal_disputes,remarks;
     Context context;
-    private List<String> approvelist;
+    private List<String> approvelist,selectedValueslist;
     private List<String> shortfalllist;
     private List<String> rejectlist;
     private String selectedApprovalList, selectedShortfallList, selectedRejectList;
@@ -74,6 +74,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             Type type = new TypeToken<ArrayList<String>>() {
             }.getType();
             approvelist = gson.fromJson(sharedPreferences.getString(AppConstants.TEMP_APPLICATION_LIST, ""), type);
+            selectedValueslist = gson.fromJson(sharedPreferences.getString(AppConstants.TEMP_APPLICATION_LIST, ""), type);
             loginResponse = gson.fromJson(sharedPreferences.getString(AppConstants.LOGIN_RES, ""), LoginResponse.class);
 
 
@@ -82,8 +83,9 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         }
 
         L1ScrutinyChecklistRequest scrutinyChecklistRequest=new L1ScrutinyChecklistRequest();
-        scrutinyChecklistRequest.setCLUSTER_ID("62");
-        scrutinyChecklistRequest.setAPP_LIST("C/GHMC/003787/2020");
+        scrutinyChecklistRequest.setCLUSTER_ID(""+sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,""));
+
+        scrutinyChecklistRequest.setAPP_LIST(""+selectedList(selectedValueslist));
         scrutinyChecklistRequest.setAUTHORITY_ID(loginResponse.getAUTHORITYID());
         if (Utils.checkInternetConnection(L1ScrutinyChecklistActivity.this)) {
             scrutinyChecklistViewModel.getScrutinyCheckListResponse(scrutinyChecklistRequest).observe(this, new Observer<L1ScrutinityResponse>() {
@@ -231,18 +233,20 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                     l1SubmitRequest.setAPPLSSHORTFALL(selectedShortfallList);
                     l1SubmitRequest.setCREATEDBY(loginResponse.getUSERID());
                     l1SubmitRequest.setIPADDRESS("");
-                    l1SubmitRequest.setLANDUSEASPERMAPLAN(colony_falls_master_plan);
+                    l1SubmitRequest.setLANDUSEASPERMAPLAN(colony_affected_master_plan);
+                    l1SubmitRequest.setLOCALITY_AFFECTEDBY_MP_OPTIONS(land_use_asper_master_plan);
                     l1SubmitRequest.setLEGALDISPUTES(legal_disputes);
                     l1SubmitRequest.setLOCALITYAFFECTEDBYMP(colony_affected_master_plan);
+
                     l1SubmitRequest.setOBJECTIONABLELANDS(colony_falls_objectionable);
                     l1SubmitRequest.setOFFICERTYPE(loginResponse.getROLEID());
                     l1SubmitRequest.setOPENSPACE10PERCENT(open_space_avail);
-                    l1SubmitRequest.setOPENSPACEHTLINE("");
+                    l1SubmitRequest.setOPENSPACEHTLINE(colony_falls_master_plan);
                     l1SubmitRequest.setPROHIBITORYLANDS(colony_falls_prohibitory_land);
                     l1SubmitRequest.setREMARKS(remarks);
                     l1SubmitRequest.setTOKENID(loginResponse.gettOKEN_ID());
-                    l1SubmitRequest.setoPEN_SPACE_10PERCENT_NO(percent_open_space);
-                    l1SubmitRequest.setlAND_USE_ASPER_MAPLAN_SPECIFY(land_use_asper_master_plan);
+                    l1SubmitRequest.setOPEN_SPACE_10PERCENT_NO_TEXT(percent_open_space);
+                    l1SubmitRequest.setLRS_PERMIT(lrs_permitted);
 
                     Gson gson = new Gson();
                     String request = gson.toJson(l1SubmitRequest);
