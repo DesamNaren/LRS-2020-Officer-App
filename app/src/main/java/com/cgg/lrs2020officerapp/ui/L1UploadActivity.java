@@ -21,6 +21,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
@@ -39,13 +40,16 @@ import com.cgg.lrs2020officerapp.databinding.ActivityL1UploadBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.interfaces.L1SubmitInterface;
+import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.model.submit.L1SubmitRequest;
 import com.cgg.lrs2020officerapp.model.submit.L1SubmitResponse;
+import com.cgg.lrs2020officerapp.model.submit.L2SubmitRequest;
 import com.cgg.lrs2020officerapp.utils.CustomProgressDialog;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.L1UploadViewModel;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -76,7 +80,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
     private boolean siteImage = false;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private L1SubmitRequest submitScrutinyRequest;
+    private L1SubmitRequest request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +101,13 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
         sharedPreferences = LRSApplication.get(this).getPreferences();
         editor = sharedPreferences.edit();
 
+        try {
+            String str = sharedPreferences.getString(AppConstants.L1_SUBMIT_REQUEST, "");
+            request = new Gson().fromJson(str, L1SubmitRequest.class);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         binding.header.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,21 +131,21 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             @Override
             public void onClick(View v) {
                 if (validations()) {
-//                    submitScrutinyRequest.setPIPADDRESS(Utils.getLocalIpAddress());
-//                    submitScrutinyRequest.setPOFFICERTYPE(AppConstants.OFFICER_TYPE);
-//                    submitScrutinyRequest.setPEMPLOYEEID(loginResponse.getUSERID());
-//                    submitScrutinyRequest.setPCREATEDBY(loginResponse.getUSERID());
-//                    submitScrutinyRequest.setPOTPNO(AppConstants.OTP);
-//                    submitScrutinyRequest.setPSRODOCLINK(loginResponse.getsRO_DOC_LINK());
-//                    submitScrutinyRequest.setPAPPLICANTID(applicationId);
-//                    submitScrutinyRequest.setPIMAGE1PATH(P_IMAGE1_PATH);
-//                    submitScrutinyRequest.setPIMAGE2PATH(P_IMAGE2_PATH);
-//                    submitScrutinyRequest.setPIMAGE3PATH(P_IMAGE3_PATH);
-//                    submitScrutinyRequest.setPIMAGE4PATH(P_IMAGE4_PATH);
-//                    submitScrutinyRequest.setPEXFILEPATH(P_EX_FILE_PATH);
-//                    submitScrutinyRequest.setPPLANPATH(P_PLAN_PATH);
+
+//                    request.setPIPADDRESS(Utils.getLocalIpAddress());
+//                    request.setPOFFICERTYPE(AppConstants.OFFICER_TYPE);
+//                    request.setPEMPLOYEEID(loginResponse.getUSERID());
+//                    request.setPCREATEDBY(loginResponse.getUSERID());
+//                    request.setPOTPNO(AppConstants.OTP);
+//                    request.setPSRODOCLINK(loginResponse.getsRO_DOC_LINK());
+//                    request.setPAPPLICANTID(applicationId);
+                    request.setIMAGE1PATH(P_IMAGE1_PATH);
+                    request.setIMAGE2PATH(P_IMAGE2_PATH);
+                    request.setIMAGE3PATH(P_IMAGE3_PATH);
+                    request.setIMAGE4PATH(P_IMAGE4_PATH);
+                    request.setIMAGE5PATH(P_IMAGE5_PATH);
                     
-                    customInfoAlert(submitScrutinyRequest);
+                    customInfoAlert(request);
                 }
 
             }

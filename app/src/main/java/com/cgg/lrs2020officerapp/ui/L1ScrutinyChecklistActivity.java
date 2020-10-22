@@ -18,6 +18,7 @@ import com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner;
 import com.cgg.lrs2020officerapp.application.LRSApplication;
 import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityL1ScrutinyCheckListBinding;
+import com.cgg.lrs2020officerapp.model.submit.L1SubmitRequest;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -178,11 +179,32 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                 plot_no_affected = binding.etPlotNoEffected.getText().toString().trim();
                 percent_open_space = binding.etPercentOpenSpace.getText().toString().trim();
                 land_use_asper_master_plan = binding.etLandUseAsPerMasterPlan.getText().toString().trim();
-//                plot_no_approval=binding.etPlotNoRecommendedApproval.getText().toString().trim();
-//                plot_no_shortfall=binding.etPlotNoRecommendedShortfall.getText().toString().trim();
-//                plot_no_rejected=binding.etPlotNoRecommendedReject.getText().toString().trim();
-                if (validate())
+
+                if (validate()) {
+                    L1SubmitRequest l1SubmitRequest = new L1SubmitRequest();
+
+                    l1SubmitRequest.setAPPLSAPPROVED(selectedApprovalList);
+                    l1SubmitRequest.setAPPLSREJECTED(selectedRejectList);
+                    l1SubmitRequest.setAPPLSSHORTFALL(selectedShortfallList);
+                    l1SubmitRequest.setCREATEDBY("");
+                    l1SubmitRequest.setIPADDRESS("");
+                    l1SubmitRequest.setLANDUSEASPERMAPLAN(land_use_asper_master_plan);
+                    l1SubmitRequest.setLEGALDISPUTES("");
+                    l1SubmitRequest.setLOCALITYAFFECTEDBYMP(colony_affected_master_plan);
+                    l1SubmitRequest.setOBJECTIONABLELANDS(colony_falls_objectionable);
+                    l1SubmitRequest.setOFFICERTYPE("");
+                    l1SubmitRequest.setOPENSPACE10PERCENT(percent_open_space);
+                    l1SubmitRequest.setOPENSPACEHTLINE("");
+                    l1SubmitRequest.setPROHIBITORYLANDS(colony_falls_prohibitory_land);
+                    l1SubmitRequest.setREMARKS("");
+                    l1SubmitRequest.setTOKENID("");
+
+                    Gson gson = new Gson();
+                    String request = gson.toJson(l1SubmitRequest);
+                    editor.putString(AppConstants.L1_SUBMIT_REQUEST, request);
+                    editor.commit();
                     startActivity(new Intent(L1ScrutinyChecklistActivity.this, L1UploadActivity.class));
+                }
             }
         });
 

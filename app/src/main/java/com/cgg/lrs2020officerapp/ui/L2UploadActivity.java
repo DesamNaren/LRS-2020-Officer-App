@@ -133,7 +133,7 @@ public class L2UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             loginResponse = new Gson().fromJson(strLogin, LoginResponse.class);
             applicationId = sharedPreferences.getString(AppConstants.APPLICATION_ID, "");
             applicantName = sharedPreferences.getString(AppConstants.APPLICANT_NAME, "");
-            String str = sharedPreferences.getString(AppConstants.SUBMIT_REQUEST, "");
+            String str = sharedPreferences.getString(AppConstants.L2_SUBMIT_REQUEST, "");
             submitRequest = new Gson().fromJson(str, L2SubmitRequest.class);
             if (TextUtils.isEmpty(applicationId) || submitRequest == null || loginResponse == null) {
                 Toast.makeText(context, R.string.something, Toast.LENGTH_SHORT).show();

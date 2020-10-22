@@ -400,7 +400,7 @@ public class Utils {
                         if (dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                        editor.putString(AppConstants.SUBMIT_REQUEST,"");
+                        editor.putString(AppConstants.L2_SUBMIT_REQUEST,"");
                         editor.putString(AppConstants.APPLICATION_ID, "");
                         editor.putString(AppConstants.APPLICANT_NAME, "");
                         editor.commit();
@@ -452,7 +452,7 @@ public class Utils {
                             dialog.dismiss();
                         }
 
-                        editor.putString(AppConstants.SUBMIT_REQUEST,"");
+                        editor.putString(AppConstants.L2_SUBMIT_REQUEST,"");
                         editor.commit();
 
                         activity.finish();

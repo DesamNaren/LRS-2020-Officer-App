@@ -331,25 +331,25 @@ public class L2ScrutinyChecklistActivity extends AppCompatActivity implements Er
                 value_ason = binding.etValueAson.getText().toString().trim();
                 verification = binding.etVerification.getText().toString().trim();
                 if (validate()) {
-                    L2SubmitRequest submitScrutinyRequest = new L2SubmitRequest();
-                    submitScrutinyRequest.setPPRIDate(plot_registered);
-                    submitScrutinyRequest.setPNAMEMATCH(name_tally);
-                    submitScrutinyRequest.setPAREAMATCH(area_match);
-                    submitScrutinyRequest.setPROADDETAILS(abuting_road_id);
-                    submitScrutinyRequest.setPROADEAST(east);
-                    submitScrutinyRequest.setPROADWEST(west);
-                    submitScrutinyRequest.setPROADNORTH(north);
-                    submitScrutinyRequest.setPROADSOUTH(south);
-                    submitScrutinyRequest.setPMARKETVALUE(value_sale_deed);
-                    submitScrutinyRequest.setPMVASONDATE(value_ason);
-                    submitScrutinyRequest.setPPLOTOBJECTON(pNo_objection);
-                    submitScrutinyRequest.setPLANDUSEID(land_use_id);
-                    submitScrutinyRequest.setPRECOMMENDEDFOR(recomend_id);
-                    submitScrutinyRequest.setPREMARKS(verification);
+                    L2SubmitRequest l2SubmitRequest = new L2SubmitRequest();
+                    l2SubmitRequest.setPPRIDate(plot_registered);
+                    l2SubmitRequest.setPNAMEMATCH(name_tally);
+                    l2SubmitRequest.setPAREAMATCH(area_match);
+                    l2SubmitRequest.setPROADDETAILS(abuting_road_id);
+                    l2SubmitRequest.setPROADEAST(east);
+                    l2SubmitRequest.setPROADWEST(west);
+                    l2SubmitRequest.setPROADNORTH(north);
+                    l2SubmitRequest.setPROADSOUTH(south);
+                    l2SubmitRequest.setPMARKETVALUE(value_sale_deed);
+                    l2SubmitRequest.setPMVASONDATE(value_ason);
+                    l2SubmitRequest.setPPLOTOBJECTON(pNo_objection);
+                    l2SubmitRequest.setPLANDUSEID(land_use_id);
+                    l2SubmitRequest.setPRECOMMENDEDFOR(recomend_id);
+                    l2SubmitRequest.setPREMARKS(verification);
 
                     Gson gson = new Gson();
-                    String request = gson.toJson(submitScrutinyRequest);
-                    editor.putString(AppConstants.SUBMIT_REQUEST, request);
+                    String request = gson.toJson(l2SubmitRequest);
+                    editor.putString(AppConstants.L2_SUBMIT_REQUEST, request);
                     editor.commit();
 
                     startActivity(new Intent(L2ScrutinyChecklistActivity.this,

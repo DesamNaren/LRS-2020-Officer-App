@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
 
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -102,7 +105,24 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
                     System.arraycopy(mSelectionAtStart, 0, mSelection, 0, mSelectionAtStart.length);
                 }
             });
-            builder.show();
+            AlertDialog alert11 = builder.create();
+            alert11.show();
+
+            Button buttonbackground = alert11.getButton(DialogInterface.BUTTON_NEGATIVE);
+            buttonbackground.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) buttonbackground.getLayoutParams();
+            params.setMargins(10, 0, 10, 0);
+            buttonbackground.setLayoutParams(params);
+
+            Button buttonbackground1 = alert11.getButton(DialogInterface.BUTTON_POSITIVE);
+            buttonbackground1.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimaryDark));
+
+            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) buttonbackground1.getLayoutParams();
+            params1.setMargins(10, 0, 10, 0);
+            buttonbackground1.setLayoutParams(params1);
+
+
         } else {
             Log.d("TAG", "NO LIST");
             if (flag.equalsIgnoreCase(AppConstants.SHORTFALL))

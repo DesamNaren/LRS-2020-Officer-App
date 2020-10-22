@@ -31,7 +31,8 @@ public class AppConstants {
     public static final String APPLICANT_NAME = "APPLICANT_NAME";
     public static final String YES = "Y";
     public static final String NO = "N";
-    public static final String SUBMIT_REQUEST = "SUBMIT_REQUEST";
+    public static final String L1_SUBMIT_REQUEST = "L1_SUBMIT_REQUEST";
+    public static final String L2_SUBMIT_REQUEST = "L2_SUBMIT_REQUEST";
     public static final String OTP = "123456";
     public static final String OFFICER_TYPE = "IO";
     public static final String APPROVE = "APPROVE";
