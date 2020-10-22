@@ -35,7 +35,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     private SharedPreferences.Editor editor;
     String name_colony_locality, surveyNo_nameVillage, layout_extent, plot_no_applied, colony_falls_objectionable, colony_falls_prohibitory_land,
             colony_falls_master_plan, colony_affected_master_plan, plot_no_affected, open_space_avail, percent_open_space, land_use_asper_master_plan,
-            lrs_permitted, legal_disputes, plot_no_approval, plot_no_shortfall, plot_no_rejected;
+            lrs_permitted, legal_disputes;
     Context context;
     private List<String> approvelist;
     private List<String> shortfalllist;
@@ -232,14 +232,14 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         } else if (TextUtils.isEmpty(legal_disputes)) {
             callSnackBar(getString(R.string.whether_any_legal_disputes_complaints_against_the_land_covered_in_this_colony));
             return false;
-        } else if (TextUtils.isEmpty(plot_no_approval)) {
-            callSnackBar(getString(R.string.enter_plot_no_approved));
+        } else if (TextUtils.isEmpty(selectedApprovalList) || selectedApprovalList.equalsIgnoreCase(AppConstants.SELECT)) {
+            callSnackBar(getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs));
             return false;
-        } else if (TextUtils.isEmpty(plot_no_shortfall)) {
-            callSnackBar(getString(R.string.enter_plot_no_shorfall));
+        } else if (TextUtils.isEmpty(selectedShortfallList) || selectedShortfallList.equalsIgnoreCase(AppConstants.SELECT)) {
+            callSnackBar(getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs));
             return false;
-        } else if (TextUtils.isEmpty(plot_no_rejected)) {
-            callSnackBar(getString(R.string.enter_plot_no_reject));
+        } else if (TextUtils.isEmpty(selectedRejectList) || selectedRejectList.equalsIgnoreCase(AppConstants.SELECT)) {
+            callSnackBar(getString(R.string.select_plot_numbers_recommended_for_reject_of_lrs));
             return false;
         }
         return true;
@@ -264,26 +264,29 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
         if (flag.equalsIgnoreCase(AppConstants.APPROVE)) {
             shortfalllist = notSelectedlist;
-//            rejectlist=null;
+            rejectlist.clear();
             if (shortfalllist != null && shortfalllist.size() > 0) {
                 if (!shortfalllist.get(0).equalsIgnoreCase(AppConstants.NONE))
                     shortfalllist.add(0, AppConstants.NONE);
-            }else {
+            } else {
                 shortfalllist.add(0, AppConstants.NONE);
             }
             binding.spPlotNoShortfall.setItems(shortfalllist);
-//            binding.spPlotNoReject.setItems(rejectlist);
+            binding.spPlotNoReject.setItems(rejectlist);
             selectedApprovalList = selectedList(selectedlist);
+            selectedShortfallList = "";
+            selectedRejectList = "";
         } else if (flag.equalsIgnoreCase(AppConstants.SHORTFALL)) {
             rejectlist = notSelectedlist;
             if (rejectlist != null && rejectlist.size() > 0) {
                 if (!rejectlist.get(0).equalsIgnoreCase(AppConstants.NONE))
                     rejectlist.add(0, AppConstants.NONE);
-            }else {
+            } else {
                 rejectlist.add(0, AppConstants.NONE);
             }
             binding.spPlotNoReject.setItems(rejectlist);
             selectedShortfallList = selectedList(selectedlist);
+            selectedRejectList = "";
         } else if (flag.equalsIgnoreCase(AppConstants.REJECT)) {
             selectedRejectList = selectedList(selectedlist);
         }
@@ -295,8 +298,8 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
         string = selectedlist.toString();
         selectedStrings = string.substring(1, string.length() - 1);
-        if (selectedStrings.contains("NONE,"))
-            selectedStrings = selectedStrings.substring(5);
+//        if (selectedStrings.contains("NONE,"))
+//            selectedStrings = selectedStrings.substring(5);
         if (!selectedStrings.equals("")) {
             Toast.makeText(this, selectedStrings, Toast.LENGTH_LONG).show();
         }

@@ -58,6 +58,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
     }
 
     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
         if (mSelection != null && which < mSelection.length) {
             mSelection[which] = isChecked;
             simple_adapter.clear();
@@ -97,9 +98,9 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         } else {
             Log.d("TAG", "NO LIST");
             if (flag.equalsIgnoreCase(AppConstants.SHORTFALL))
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs), Toast.LENGTH_LONG).show();
             else if (flag.equalsIgnoreCase(AppConstants.REJECT))
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs), Toast.LENGTH_LONG).show();
         }
         return true;
 
@@ -123,9 +124,12 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
             Arrays.fill(mSelection, false);
             mSelection[0] = false;
         } else {
-            _items = new String[items.size()];
+//            if (items != null && items.size() > 0)
+//                _items = new String[items.size()];
+            _items = null;
             simple_adapter.clear();
             simple_adapter.add(buildSelectedItemString());
+
             Log.d("TAG", "Request_" + "NO LIST");
         }
     }
@@ -265,16 +269,16 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
                 }
             }
             if (sb.toString().isEmpty())
-                data = "Select";
+                data = AppConstants.SELECT;
             else {
                 data = sb.toString();
-                if (data.contains("NONE,")) {
-                    data = data.substring(5);
-                    mSelection[0] = false;
-                }
+//                if (data.contains("NONE,")) {
+//                    data = data.substring(5);
+//
+//                }
             }
         } else
-            data = "Select";
+            data = AppConstants.SELECT;
         return data;
     }
 
