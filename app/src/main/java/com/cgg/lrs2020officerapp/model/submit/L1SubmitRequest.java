@@ -2,305 +2,348 @@ package com.cgg.lrs2020officerapp.model.submit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class L1SubmitRequest {
+public class L1SubmitRequest implements Serializable, Parcelable
+{
 
-    @SerializedName("P_IP_ADDRESS")
+    @SerializedName("OBJECTIONABLE_LANDS")
     @Expose
-    private String pIPADDRESS;
-    @SerializedName("P_OFFICER_TYPE")
+    private String oBJECTIONABLELANDS;
+    @SerializedName("PROHIBITORY_LANDS ")
     @Expose
-    private String pOFFICERTYPE;
-    @SerializedName("P_EMPLOYEE_ID")
+    private String pROHIBITORYLANDS;
+    @SerializedName("OPENSPACE_HTLINE")
     @Expose
-    private String pEMPLOYEEID;
-    @SerializedName("P_CREATED_BY")
+    private String oPENSPACEHTLINE;
+    @SerializedName("LOCALITY_AFFECTEDBY_MP ")
     @Expose
-    private String pCREATEDBY;
-    @SerializedName("P_OTPNO")
+    private String lOCALITYAFFECTEDBYMP;
+    @SerializedName("OPEN_SPACE_10PERCENT")
     @Expose
-    private String pOTPNO;
-    @SerializedName("P_REMARKS")
+    private String oPENSPACE10PERCENT;
+    @SerializedName("LAND_USE_ASPER_MAPLAN")
     @Expose
-    private String pREMARKS;
-    @SerializedName("p_RECOMMENDED_FOR")
+    private String lANDUSEASPERMAPLAN;
+    @SerializedName("LEGAL_DISPUTES")
     @Expose
-    private String pRECOMMENDEDFOR;
-    @SerializedName("P_IMAGE4_PATH")
+    private String lEGALDISPUTES;
+    @SerializedName("APPLS_APPROVED ")
     @Expose
-    private String pIMAGE4PATH;
-    @SerializedName("P_IMAGE3_PATH")
+    private String aPPLSAPPROVED;
+    @SerializedName("APPLS_SHORTFALL")
     @Expose
-    private String pIMAGE3PATH;
-    @SerializedName("P_IMAGE2_PATH")
+    private String aPPLSSHORTFALL;
+    @SerializedName("APPLS_REJECTED ")
     @Expose
-    private String pIMAGE2PATH;
-    @SerializedName("P_IMAGE1_PATH")
+    private String aPPLSREJECTED;
+    @SerializedName("IMAGE1_PATH")
     @Expose
-    private String pIMAGE1PATH;
-    @SerializedName("P_PLAN_PATH")
+    private String iMAGE1PATH;
+    @SerializedName("IMAGE2_PATH ")
     @Expose
-    private String pPLANPATH;
-    @SerializedName("P_SRO_DOC_LINK")
+    private String iMAGE2PATH;
+    @SerializedName("IMAGE3_PATH")
     @Expose
-    private String pSRODOCLINK;
-    @SerializedName("P_EX_FILE_PATH")
+    private String iMAGE3PATH;
+    @SerializedName("IMAGE4_PATH ")
     @Expose
-    private String pEXFILEPATH;
-    @SerializedName("P_LAND_USE_ID")
+    private String iMAGE4PATH;
+    @SerializedName("IMAGE5_PATH")
     @Expose
-    private String pLANDUSEID;
-    @SerializedName("P_PLOT_OBJECTON")
+    private String iMAGE5PATH;
+    @SerializedName("REMARKS ")
     @Expose
-    private String pPLOTOBJECTON;
-    @SerializedName("P_MVASONDATE")
+    private String rEMARKS;
+    @SerializedName("CREATED_BY")
     @Expose
-    private String pMVASONDATE;
-    @SerializedName("P_MARKET_VALUE")
+    private String cREATEDBY;
+    @SerializedName("TOKEN_ID")
     @Expose
-    private String pMARKETVALUE;
-    @SerializedName("P_ROAD_NORTH")
+    private String tOKENID;
+    @SerializedName("OFFICER_TYPE")
     @Expose
-    private String pROADNORTH;
-    @SerializedName("P_ROAD_SOUTH")
+    private String oFFICERTYPE;
+    @SerializedName("IP_ADDRESS")
     @Expose
-    private String pROADSOUTH;
-    @SerializedName("P_ROAD_WEST")
-    @Expose
-    private String pROADWEST;
-    @SerializedName("P_ROAD_EAST")
-    @Expose
-    private String pROADEAST;
-    @SerializedName("P_ROAD_DETAILS")
-    @Expose
-    private String pROADDETAILS;
-    @SerializedName("P_AREA_MATCH")
-    @Expose
-    private String pAREAMATCH;
-    @SerializedName("P_NAME_MATCH")
-    @Expose
-    private String pNAMEMATCH;
-    @SerializedName("P_PRIDate")
-    @Expose
-    private String pPRIDate;
-    @SerializedName("P_APPLICANT_ID")
-    @Expose
-    private String pAPPLICANTID;
+    private String iPADDRESS;
+    
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    public final static Parcelable.Creator<L1SubmitRequest> CREATOR = new Creator<L1SubmitRequest>() {
 
-    public String getPIPADDRESS() {
-        return pIPADDRESS;
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public L1SubmitRequest createFromParcel(Parcel in) {
+            return new L1SubmitRequest(in);
+        }
+
+        public L1SubmitRequest[] newArray(int size) {
+            return (new L1SubmitRequest[size]);
+        }
+
+    }
+            ;
+    private final static long serialVersionUID = 2290643554466095207L;
+
+    protected L1SubmitRequest(Parcel in) {
+        this.oBJECTIONABLELANDS = ((String) in.readValue((String.class.getClassLoader())));
+        this.pROHIBITORYLANDS = ((String) in.readValue((String.class.getClassLoader())));
+        this.oPENSPACEHTLINE = ((String) in.readValue((String.class.getClassLoader())));
+        this.lOCALITYAFFECTEDBYMP = ((String) in.readValue((String.class.getClassLoader())));
+        this.oPENSPACE10PERCENT = ((String) in.readValue((String.class.getClassLoader())));
+        this.lANDUSEASPERMAPLAN = ((String) in.readValue((String.class.getClassLoader())));
+        this.lEGALDISPUTES = ((String) in.readValue((String.class.getClassLoader())));
+        this.aPPLSAPPROVED = ((String) in.readValue((String.class.getClassLoader())));
+        this.aPPLSSHORTFALL = ((String) in.readValue((String.class.getClassLoader())));
+        this.aPPLSREJECTED = ((String) in.readValue((String.class.getClassLoader())));
+        this.iMAGE1PATH = ((String) in.readValue((String.class.getClassLoader())));
+        this.iMAGE2PATH = ((String) in.readValue((String.class.getClassLoader())));
+        this.iMAGE3PATH = ((String) in.readValue((String.class.getClassLoader())));
+        this.iMAGE4PATH = ((String) in.readValue((String.class.getClassLoader())));
+        this.iMAGE5PATH = ((String) in.readValue((String.class.getClassLoader())));
+        this.rEMARKS = ((String) in.readValue((String.class.getClassLoader())));
+        this.cREATEDBY = ((String) in.readValue((String.class.getClassLoader())));
+        this.tOKENID = ((String) in.readValue((String.class.getClassLoader())));
+        this.oFFICERTYPE = ((String) in.readValue((String.class.getClassLoader())));
+        this.iPADDRESS = ((String) in.readValue((String.class.getClassLoader())));
+        this.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
     }
 
-    public void setPIPADDRESS(String pIPADDRESS) {
-        this.pIPADDRESS = pIPADDRESS;
+    public L1SubmitRequest() {
     }
 
-    public String getPOFFICERTYPE() {
-        return pOFFICERTYPE;
+    @SerializedName("OBJECTIONABLE_LANDS")
+    public String getOBJECTIONABLELANDS() {
+        return oBJECTIONABLELANDS;
     }
 
-    public void setPOFFICERTYPE(String pOFFICERTYPE) {
-        this.pOFFICERTYPE = pOFFICERTYPE;
+    @SerializedName("OBJECTIONABLE_LANDS")
+    public void setOBJECTIONABLELANDS(String oBJECTIONABLELANDS) {
+        this.oBJECTIONABLELANDS = oBJECTIONABLELANDS;
     }
 
-    public String getPEMPLOYEEID() {
-        return pEMPLOYEEID;
+    @SerializedName("PROHIBITORY_LANDS ")
+    public String getPROHIBITORYLANDS() {
+        return pROHIBITORYLANDS;
     }
 
-    public void setPEMPLOYEEID(String pEMPLOYEEID) {
-        this.pEMPLOYEEID = pEMPLOYEEID;
+    @SerializedName("PROHIBITORY_LANDS ")
+    public void setPROHIBITORYLANDS(String pROHIBITORYLANDS) {
+        this.pROHIBITORYLANDS = pROHIBITORYLANDS;
     }
 
-    public String getPCREATEDBY() {
-        return pCREATEDBY;
+    @SerializedName("OPENSPACE_HTLINE")
+    public String getOPENSPACEHTLINE() {
+        return oPENSPACEHTLINE;
     }
 
-    public void setPCREATEDBY(String pCREATEDBY) {
-        this.pCREATEDBY = pCREATEDBY;
+    @SerializedName("OPENSPACE_HTLINE")
+    public void setOPENSPACEHTLINE(String oPENSPACEHTLINE) {
+        this.oPENSPACEHTLINE = oPENSPACEHTLINE;
     }
 
-    public String getPOTPNO() {
-        return pOTPNO;
+    @SerializedName("LOCALITY_AFFECTEDBY_MP ")
+    public String getLOCALITYAFFECTEDBYMP() {
+        return lOCALITYAFFECTEDBYMP;
     }
 
-    public void setPOTPNO(String pOTPNO) {
-        this.pOTPNO = pOTPNO;
+    @SerializedName("LOCALITY_AFFECTEDBY_MP ")
+    public void setLOCALITYAFFECTEDBYMP(String lOCALITYAFFECTEDBYMP) {
+        this.lOCALITYAFFECTEDBYMP = lOCALITYAFFECTEDBYMP;
     }
 
-    public String getPREMARKS() {
-        return pREMARKS;
+    @SerializedName("OPEN_SPACE_10PERCENT")
+    public String getOPENSPACE10PERCENT() {
+        return oPENSPACE10PERCENT;
     }
 
-    public void setPREMARKS(String pREMARKS) {
-        this.pREMARKS = pREMARKS;
+    @SerializedName("OPEN_SPACE_10PERCENT")
+    public void setOPENSPACE10PERCENT(String oPENSPACE10PERCENT) {
+        this.oPENSPACE10PERCENT = oPENSPACE10PERCENT;
     }
 
-    public String getPRECOMMENDEDFOR() {
-        return pRECOMMENDEDFOR;
+    @SerializedName("LAND_USE_ASPER_MAPLAN")
+    public String getLANDUSEASPERMAPLAN() {
+        return lANDUSEASPERMAPLAN;
     }
 
-    public void setPRECOMMENDEDFOR(String pRECOMMENDEDFOR) {
-        this.pRECOMMENDEDFOR = pRECOMMENDEDFOR;
+    @SerializedName("LAND_USE_ASPER_MAPLAN")
+    public void setLANDUSEASPERMAPLAN(String lANDUSEASPERMAPLAN) {
+        this.lANDUSEASPERMAPLAN = lANDUSEASPERMAPLAN;
     }
 
-    public String getPIMAGE4PATH() {
-        return pIMAGE4PATH;
+    @SerializedName("LEGAL_DISPUTES")
+    public String getLEGALDISPUTES() {
+        return lEGALDISPUTES;
     }
 
-    public void setPIMAGE4PATH(String pIMAGE4PATH) {
-        this.pIMAGE4PATH = pIMAGE4PATH;
+    @SerializedName("LEGAL_DISPUTES")
+    public void setLEGALDISPUTES(String lEGALDISPUTES) {
+        this.lEGALDISPUTES = lEGALDISPUTES;
     }
 
-    public String getPIMAGE3PATH() {
-        return pIMAGE3PATH;
+    @SerializedName("APPLS_APPROVED ")
+    public String getAPPLSAPPROVED() {
+        return aPPLSAPPROVED;
     }
 
-    public void setPIMAGE3PATH(String pIMAGE3PATH) {
-        this.pIMAGE3PATH = pIMAGE3PATH;
+    @SerializedName("APPLS_APPROVED ")
+    public void setAPPLSAPPROVED(String aPPLSAPPROVED) {
+        this.aPPLSAPPROVED = aPPLSAPPROVED;
     }
 
-    public String getPIMAGE2PATH() {
-        return pIMAGE2PATH;
+    @SerializedName("APPLS_SHORTFALL")
+    public String getAPPLSSHORTFALL() {
+        return aPPLSSHORTFALL;
     }
 
-    public void setPIMAGE2PATH(String pIMAGE2PATH) {
-        this.pIMAGE2PATH = pIMAGE2PATH;
+    @SerializedName("APPLS_SHORTFALL")
+    public void setAPPLSSHORTFALL(String aPPLSSHORTFALL) {
+        this.aPPLSSHORTFALL = aPPLSSHORTFALL;
     }
 
-    public String getPIMAGE1PATH() {
-        return pIMAGE1PATH;
+    @SerializedName("APPLS_REJECTED ")
+    public String getAPPLSREJECTED() {
+        return aPPLSREJECTED;
     }
 
-    public void setPIMAGE1PATH(String pIMAGE1PATH) {
-        this.pIMAGE1PATH = pIMAGE1PATH;
+    @SerializedName("APPLS_REJECTED ")
+    public void setAPPLSREJECTED(String aPPLSREJECTED) {
+        this.aPPLSREJECTED = aPPLSREJECTED;
     }
 
-    public String getPPLANPATH() {
-        return pPLANPATH;
+    @SerializedName("IMAGE1_PATH")
+    public String getIMAGE1PATH() {
+        return iMAGE1PATH;
     }
 
-    public void setPPLANPATH(String pPLANPATH) {
-        this.pPLANPATH = pPLANPATH;
+    @SerializedName("IMAGE1_PATH")
+    public void setIMAGE1PATH(String iMAGE1PATH) {
+        this.iMAGE1PATH = iMAGE1PATH;
     }
 
-    public String getPSRODOCLINK() {
-        return pSRODOCLINK;
+    @SerializedName("IMAGE2_PATH ")
+    public String getIMAGE2PATH() {
+        return iMAGE2PATH;
     }
 
-    public void setPSRODOCLINK(String pSRODOCLINK) {
-        this.pSRODOCLINK = pSRODOCLINK;
+    @SerializedName("IMAGE2_PATH ")
+    public void setIMAGE2PATH(String iMAGE2PATH) {
+        this.iMAGE2PATH = iMAGE2PATH;
     }
 
-    public String getPEXFILEPATH() {
-        return pEXFILEPATH;
+    @SerializedName("IMAGE3_PATH")
+    public String getIMAGE3PATH() {
+        return iMAGE3PATH;
     }
 
-    public void setPEXFILEPATH(String pEXFILEPATH) {
-        this.pEXFILEPATH = pEXFILEPATH;
+    @SerializedName("IMAGE3_PATH")
+    public void setIMAGE3PATH(String iMAGE3PATH) {
+        this.iMAGE3PATH = iMAGE3PATH;
     }
 
-    public String getPLANDUSEID() {
-        return pLANDUSEID;
+    @SerializedName("IMAGE4_PATH ")
+    public String getIMAGE4PATH() {
+        return iMAGE4PATH;
     }
 
-    public void setPLANDUSEID(String pLANDUSEID) {
-        this.pLANDUSEID = pLANDUSEID;
+    @SerializedName("IMAGE4_PATH ")
+    public void setIMAGE4PATH(String iMAGE4PATH) {
+        this.iMAGE4PATH = iMAGE4PATH;
     }
 
-    public String getPPLOTOBJECTON() {
-        return pPLOTOBJECTON;
+    @SerializedName("IMAGE5_PATH")
+    public String getIMAGE5PATH() {
+        return iMAGE5PATH;
     }
 
-    public void setPPLOTOBJECTON(String pPLOTOBJECTON) {
-        this.pPLOTOBJECTON = pPLOTOBJECTON;
+    @SerializedName("IMAGE5_PATH")
+    public void setIMAGE5PATH(String iMAGE5PATH) {
+        this.iMAGE5PATH = iMAGE5PATH;
     }
 
-    public String getPMVASONDATE() {
-        return pMVASONDATE;
+    @SerializedName("REMARKS ")
+    public String getREMARKS() {
+        return rEMARKS;
     }
 
-    public void setPMVASONDATE(String pMVASONDATE) {
-        this.pMVASONDATE = pMVASONDATE;
+    @SerializedName("REMARKS ")
+    public void setREMARKS(String rEMARKS) {
+        this.rEMARKS = rEMARKS;
     }
 
-    public String getPMARKETVALUE() {
-        return pMARKETVALUE;
+    @SerializedName("CREATED_BY")
+    public String getCREATEDBY() {
+        return cREATEDBY;
     }
 
-    public void setPMARKETVALUE(String pMARKETVALUE) {
-        this.pMARKETVALUE = pMARKETVALUE;
+    @SerializedName("CREATED_BY")
+    public void setCREATEDBY(String cREATEDBY) {
+        this.cREATEDBY = cREATEDBY;
     }
 
-    public String getPROADNORTH() {
-        return pROADNORTH;
+    @SerializedName("TOKEN_ID")
+    public String getTOKENID() {
+        return tOKENID;
     }
 
-    public void setPROADNORTH(String pROADNORTH) {
-        this.pROADNORTH = pROADNORTH;
+    @SerializedName("TOKEN_ID")
+    public void setTOKENID(String tOKENID) {
+        this.tOKENID = tOKENID;
     }
 
-    public String getPROADSOUTH() {
-        return pROADSOUTH;
+    @SerializedName("OFFICER_TYPE")
+    public String getOFFICERTYPE() {
+        return oFFICERTYPE;
     }
 
-    public void setPROADSOUTH(String pROADSOUTH) {
-        this.pROADSOUTH = pROADSOUTH;
+    @SerializedName("OFFICER_TYPE")
+    public void setOFFICERTYPE(String oFFICERTYPE) {
+        this.oFFICERTYPE = oFFICERTYPE;
     }
 
-    public String getPROADWEST() {
-        return pROADWEST;
+    @SerializedName("IP_ADDRESS")
+    public String getIPADDRESS() {
+        return iPADDRESS;
     }
 
-    public void setPROADWEST(String pROADWEST) {
-        this.pROADWEST = pROADWEST;
+    @SerializedName("IP_ADDRESS")
+    public void setIPADDRESS(String iPADDRESS) {
+        this.iPADDRESS = iPADDRESS;
     }
 
-    public String getPROADEAST() {
-        return pROADEAST;
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(oBJECTIONABLELANDS);
+        dest.writeValue(pROHIBITORYLANDS);
+        dest.writeValue(oPENSPACEHTLINE);
+        dest.writeValue(lOCALITYAFFECTEDBYMP);
+        dest.writeValue(oPENSPACE10PERCENT);
+        dest.writeValue(lANDUSEASPERMAPLAN);
+        dest.writeValue(lEGALDISPUTES);
+        dest.writeValue(aPPLSAPPROVED);
+        dest.writeValue(aPPLSSHORTFALL);
+        dest.writeValue(aPPLSREJECTED);
+        dest.writeValue(iMAGE1PATH);
+        dest.writeValue(iMAGE2PATH);
+        dest.writeValue(iMAGE3PATH);
+        dest.writeValue(iMAGE4PATH);
+        dest.writeValue(iMAGE5PATH);
+        dest.writeValue(rEMARKS);
+        dest.writeValue(cREATEDBY);
+        dest.writeValue(tOKENID);
+        dest.writeValue(oFFICERTYPE);
+        dest.writeValue(iPADDRESS);
+        dest.writeValue(additionalProperties);
     }
 
-    public void setPROADEAST(String pROADEAST) {
-        this.pROADEAST = pROADEAST;
-    }
-
-    public String getPROADDETAILS() {
-        return pROADDETAILS;
-    }
-
-    public void setPROADDETAILS(String pROADDETAILS) {
-        this.pROADDETAILS = pROADDETAILS;
-    }
-
-    public String getPAREAMATCH() {
-        return pAREAMATCH;
-    }
-
-    public void setPAREAMATCH(String pAREAMATCH) {
-        this.pAREAMATCH = pAREAMATCH;
-    }
-
-    public String getPNAMEMATCH() {
-        return pNAMEMATCH;
-    }
-
-    public void setPNAMEMATCH(String pNAMEMATCH) {
-        this.pNAMEMATCH = pNAMEMATCH;
-    }
-
-    public String getPPRIDate() {
-        return pPRIDate;
-    }
-
-    public void setPPRIDate(String pPRIDate) {
-        this.pPRIDate = pPRIDate;
-    }
-
-    public String getPAPPLICANTID() {
-        return pAPPLICANTID;
-    }
-
-    public void setPAPPLICANTID(String pAPPLICANTID) {
-        this.pAPPLICANTID = pAPPLICANTID;
+    public int describeContents() {
+        return 0;
     }
 
 }
