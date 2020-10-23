@@ -39,7 +39,7 @@
                 android:background="@color/white"
                 app:queryHint="Search by Applicant Name or OT Application Number"></SearchView>
 
-            <CheckBox
+            <!--<CheckBox
                 android:id="@+id/cb_select_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:text="Select All"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:visibility="gone" />
+                android:visibility="gone" />-->
 
             <TextView
                 android:id="@+id/tv_empty"
@@ -71,7 +71,7 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="@dimen/dimen_5dp"
                     android:paddingRight="@dimen/dimen_5dp"
-                    android:paddingBottom="@dimen/dimen_5dp"
+                    android:padding="@dimen/dimen_5dp"
                     android:visibility="gone"
                     tools:listitem="@layout/item_view_application_list" />
 

@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ApplicationListActivity extends AppCompatActivity implements ErrorHandlerInterface, SelectionInterface {
+public class ApplicationListActivity extends AppCompatActivity implements ErrorHandlerInterface {
 
     private TextView tv;
     private Context context;
@@ -119,7 +119,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                 binding.btnLayout.llBtn.setVisibility(View.GONE);
             }
 
-            binding.cbSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            /*binding.cbSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     String selectAllFlag;
@@ -132,7 +132,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
 //                    setAdapter();
                     adapter.notifyDataSetChanged();
                 }
-            });
+            });*/
 
 
             binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
@@ -180,12 +180,12 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                         list = response.getData();
                                         if (list != null && list.size() > 0) {
                                             binding.recyclerView.setVisibility(View.VISIBLE);
-                                            binding.cbSelectAll.setVisibility(View.VISIBLE);
-                                            binding.cbSelectAll.setChecked(false);
+//                                            binding.cbSelectAll.setVisibility(View.VISIBLE);
+//                                            binding.cbSelectAll.setChecked(false);
                                             binding.tvEmpty.setVisibility(View.GONE);
 
                                             for (int i = 0; i < list.size(); i++) {
-                                                list.get(i).setFlag(AppConstants.NO);
+                                                list.get(i).setFlag(AppConstants.YES);
                                             }
                                             applicationListData.clear();
                                             String clusterId=sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,"");
@@ -199,7 +199,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                             setAdapter();
                                         } else {
                                             binding.recyclerView.setVisibility(View.GONE);
-                                            binding.cbSelectAll.setVisibility(View.GONE);
+//                                            binding.cbSelectAll.setVisibility(View.GONE);
                                             binding.tvEmpty.setVisibility(View.VISIBLE);
                                         }
 
@@ -231,11 +231,11 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                     list = applicationRes.getData();
                     if (list != null && list.size() > 0) {
                         binding.recyclerView.setVisibility(View.VISIBLE);
-                        binding.cbSelectAll.setVisibility(View.VISIBLE);
+//                        binding.cbSelectAll.setVisibility(View.VISIBLE);
                         binding.tvEmpty.setVisibility(View.GONE);
 
                         for (int i = 0; i < list.size(); i++) {
-                            list.get(i).setFlag(AppConstants.NO);
+                            list.get(i).setFlag(AppConstants.YES);
                         }
                         applicationListData.clear();
                         String clusterId=sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,"");
@@ -245,11 +245,10 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                             }
                         }
 
-
                         setAdapter();
                     } else {
                         binding.recyclerView.setVisibility(View.GONE);
-                        binding.cbSelectAll.setVisibility(View.GONE);
+//                        binding.cbSelectAll.setVisibility(View.GONE);
                         binding.tvEmpty.setVisibility(View.VISIBLE);
                     }
                 } else if (applicationRes.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {
@@ -418,7 +417,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
         super.onBackPressed();
     }
 
-    @Override
+    /*@Override
     public void selectAllApplications() {
         boolean yes_flag = true;
         for (int i = 0; i < applicationListData.size(); i++) {
@@ -446,5 +445,5 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
             binding.cbSelectAll.setChecked(false);
         else
             binding.cbSelectAll.setChecked(true);
-    }
+    }*/
 }

@@ -30,6 +30,7 @@
                 <CheckBox
                     android:id="@+id/checkbox"
                     android:layout_width="@dimen/dimen_30dp"
+                    android:checked="true"
                     android:layout_height="wrap_content"
                     android:visibility="gone" />
 
