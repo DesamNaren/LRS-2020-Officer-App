@@ -111,6 +111,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
 
             viewModel = new ApplicationListViewModel(context, getApplication());
             binding.setViewModel(viewModel);
+            binding.btnLayout.btnProceed.setText("Update Field Inspection");
 
             if (loginResponse.getROLEID().equalsIgnoreCase("3")) {
                 binding.btnLayout.llBtn.setVisibility(View.VISIBLE);

@@ -696,7 +696,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
             if (dialog.getWindow() != null && dialog.getWindow().getAttributes() != null) {
                 dialog.getWindow().getAttributes().windowAnimations = R.style.exitdialog_animation1;
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setContentView(R.layout.custom_alert_information);
+                dialog.setContentView(R.layout.custom_alert_submit);
                 dialog.setCancelable(false);
                 TextView versionTitle = dialog.findViewById(R.id.version_tv);
                 versionTitle.setText("Version: " + Utils.getVersionName(context));
