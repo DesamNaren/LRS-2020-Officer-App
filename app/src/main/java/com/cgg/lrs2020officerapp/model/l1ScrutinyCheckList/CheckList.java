@@ -50,6 +50,15 @@ public class CheckList {
     @SerializedName("PLOT_NUMBER")
     @Expose
     private String pLOTNUMBER;
+    @SerializedName("LOCALITYCOUNT")
+    @Expose
+    private String lOCALITYCOUNT;
+    @SerializedName("CLUSTER_SURVEY_COUNT")
+    @Expose
+    private String cLUSTERSURVEYCOUNT;
+    @SerializedName("MANDAL")
+    @Expose
+    private String mANDAL;
 
     public String getCLUSTERID() {
         return cLUSTERID;
@@ -171,5 +180,28 @@ public class CheckList {
         this.pLOTNUMBER = pLOTNUMBER;
     }
 
+    public String getLOCALITYCOUNT() {
+        return lOCALITYCOUNT;
+    }
+
+    public void setLOCALITYCOUNT(String lOCALITYCOUNT) {
+        this.lOCALITYCOUNT = lOCALITYCOUNT;
+    }
+
+    public String getCLUSTERSURVEYCOUNT() {
+        return cLUSTERSURVEYCOUNT;
+    }
+
+    public void setCLUSTERSURVEYCOUNT(String cLUSTERSURVEYCOUNT) {
+        this.cLUSTERSURVEYCOUNT = cLUSTERSURVEYCOUNT;
+    }
+
+    public String getMANDAL() {
+        return mANDAL;
+    }
+
+    public void setMANDAL(String mANDAL) {
+        this.mANDAL = mANDAL;
+    }
 }
 

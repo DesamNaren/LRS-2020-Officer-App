@@ -135,7 +135,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@{checklist.cORPORATIONNAME}" />
+                                android:text="@{checklist.mANDAL}" />
 
                         </LinearLayout>
 
@@ -219,7 +219,8 @@
                                 style="@style/text_data"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1" />
+                                android:layout_weight="1"
+                                android:text="@{checklist.CLUSTERSURVEYCOUNT}"/>
 
                         </LinearLayout>
 
@@ -241,7 +242,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@{checklist.lOCALITY}" />
+                                android:text="@{checklist.lOCALITYCOUNT}" />
 
                         </LinearLayout>
 
