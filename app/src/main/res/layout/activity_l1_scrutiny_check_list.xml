@@ -12,6 +12,7 @@
             type="com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.CheckList" />
 
     </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,7 +47,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/dimen_10dp"
+                        android:layout_margin="@dimen/dimen_5dp"
                         android:background="@color/white"
                         android:orientation="vertical">
 
@@ -66,7 +67,7 @@
                                 android:id="@+id/tv_name_municipality"
                                 style="@style/text_data"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@{checklist.cORPORATIONNAME}" />
 
@@ -160,6 +161,25 @@
 
                         </LinearLayout>
 
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -199,7 +219,7 @@
                                 style="@style/text_data"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" />
 
                         </LinearLayout>
 
@@ -221,7 +241,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@{checklist.lOCALITY}"/>
+                                android:text="@{checklist.lOCALITY}" />
 
                         </LinearLayout>
 
@@ -243,7 +263,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@{checklist.nOOFAPPLS}"/>
+                                android:text="@{checklist.nOOFAPPLS}" />
 
                         </LinearLayout>
 
@@ -258,120 +278,98 @@
                     android:padding="@dimen/dimen_5dp"
                     android:visibility="visible">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_margin="@dimen/dimen_5dp"
-                        app:errorEnabled="true">
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-
-                        <EditText
-                            android:id="@+id/et_name_colony_localilty"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:hint="@string/name_of_the_colony_locality"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:maxLength="50"
-                            android:textSize="16dp" />
+                            android:orientation="horizontal">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/name_of_the_colony_locality" />
 
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@{checklist.LOCALITY}" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="visible">
+                        </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        app:errorEnabled="true">
-
-
-                        <EditText
-                            android:id="@+id/et_survey_no"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:hint="@string/survey_no_s_name_of_village"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:maxLength="50"
-                            android:textSize="16dp" />
+                            android:orientation="horizontal">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/survey_no_s_name_of_village" />
 
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@{checklist.VILLAGESYNO}" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="visible">
+                        </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        app:errorEnabled="true">
-
-
-                        <EditText
-                            android:id="@+id/et_layout_extent"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:hint="@string/extent_of_layout"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:maxLength="50"
-                            android:textSize="16dp" />
+                            android:orientation="horizontal">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/extent_of_layout" />
 
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@{checklist.LAYOUTEXTENT}" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_5dp"
-                    android:elevation="@dimen/dimen_4dp"
-                    android:padding="@dimen/dimen_5dp"
-                    android:visibility="visible">
+                        </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_5dp"
-                        app:errorEnabled="true">
-
-
-                        <EditText
-                            android:id="@+id/et_plot_no"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:hint="@string/plot_no_s_applied_for_lrs"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:maxLength="50"
-                            android:textSize="16dp" />
+                            android:orientation="horizontal">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                style="@style/text_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/plot_no_s_applied_for_lrs" />
 
+                            <TextView
+                                style="@style/text_data"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@{checklist.PLOTNUMBER}" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -935,12 +933,20 @@
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
-                        <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
-                            android:id="@+id/sp_plot_no_reject"
+                        <!-- <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
+                             android:id="@+id/sp_plot_no_reject"
+                             android:layout_width="match_parent"
+                             android:layout_height="50dp"
+                             android:background="@drawable/spinner_background"
+                             android:paddingRight="@dimen/dimen_30dp"
+                             />-->
+
+
+                        <TextView
+                            android:id="@+id/tv_reject"
+                            style="@style/text_data"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@drawable/spinner_background"
-                            android:paddingRight="@dimen/dimen_30dp" />
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

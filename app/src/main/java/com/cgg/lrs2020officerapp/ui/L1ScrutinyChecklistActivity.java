@@ -22,8 +22,6 @@ import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityL1ScrutinyCheckListBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
-import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
-import com.cgg.lrs2020officerapp.model.applicationList.Cluster;
 import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinityResponse;
 import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinyChecklistRequest;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
@@ -44,27 +42,29 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     ActivityL1ScrutinyCheckListBinding binding;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    String name_colony_locality, surveyNo_nameVillage, layout_extent, plot_no_applied, colony_falls_objectionable,
-            colony_falls_prohibitory_land, colony_falls_master_plan, colony_affected_master_plan, plot_no_affected,
+    String colony_falls_objectionable, colony_falls_prohibitory_land, colony_falls_master_plan,
+            colony_affected_master_plan, plot_no_affected,
             open_space_avail, percent_open_space, land_use_asper_master_plan,
-            lrs_permitted, legal_disputes,remarks;
+            lrs_permitted, legal_disputes, remarks;
     Context context;
-    private List<String> approvelist,selectedValueslist;
+    private List<String> approvelist;
     private List<String> shortfalllist;
-    private List<String> rejectlist;
+    //    private List<String> rejectlist;
     private String selectedApprovalList, selectedShortfallList, selectedRejectList;
     L1ScrutinyChecklistViewModel scrutinyChecklistViewModel;
     LoginResponse loginResponse;
+    private String selectedValueslist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_l1_scrutiny_check_list);
         context = L1ScrutinyChecklistActivity.this;
         binding.header.headerTitle.setText(R.string.scrutiny_checklist);
-        scrutinyChecklistViewModel=new L1ScrutinyChecklistViewModel(L1ScrutinyChecklistActivity.this,getApplication());
+        scrutinyChecklistViewModel = new L1ScrutinyChecklistViewModel(L1ScrutinyChecklistActivity.this, getApplication());
 
         shortfalllist = new ArrayList<>();
-        rejectlist = new ArrayList<>();
+//        rejectlist = new ArrayList<>();
 
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
@@ -74,19 +74,28 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             Type type = new TypeToken<ArrayList<String>>() {
             }.getType();
             approvelist = gson.fromJson(sharedPreferences.getString(AppConstants.TEMP_APPLICATION_LIST, ""), type);
-            selectedValueslist = gson.fromJson(sharedPreferences.getString(AppConstants.TEMP_APPLICATION_LIST, ""), type);
             loginResponse = gson.fromJson(sharedPreferences.getString(AppConstants.LOGIN_RES, ""), LoginResponse.class);
 
+            Log.i("TAG", "onCreate: "+approvelist.size());
+            String string = approvelist.toString();
+            selectedValueslist = string.substring(1, string.length() - 1);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        binding.header.ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.DashboardActivity(L1ScrutinyChecklistActivity.this);
+            }
+        });
 
-        L1ScrutinyChecklistRequest scrutinyChecklistRequest=new L1ScrutinyChecklistRequest();
-        scrutinyChecklistRequest.setCLUSTER_ID(""+sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,""));
+        L1ScrutinyChecklistRequest scrutinyChecklistRequest = new L1ScrutinyChecklistRequest();
 
-        scrutinyChecklistRequest.setAPP_LIST(""+selectedList(selectedValueslist));
+        scrutinyChecklistRequest.setCLUSTER_ID("" + sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID, ""));
+        scrutinyChecklistRequest.setAPP_LIST(selectedValueslist);
         scrutinyChecklistRequest.setAUTHORITY_ID(loginResponse.getAUTHORITYID());
+
         if (Utils.checkInternetConnection(L1ScrutinyChecklistActivity.this)) {
             scrutinyChecklistViewModel.getScrutinyCheckListResponse(scrutinyChecklistRequest).observe(this, new Observer<L1ScrutinityResponse>() {
                 @Override
@@ -113,7 +122,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         }
         binding.spPlotNoApprove.setListener(L1ScrutinyChecklistActivity.this, AppConstants.APPROVE);
         binding.spPlotNoShortfall.setListener(L1ScrutinyChecklistActivity.this, AppConstants.SHORTFALL);
-        binding.spPlotNoReject.setListener(L1ScrutinyChecklistActivity.this, AppConstants.REJECT);
+
 
         approvelist.add(0, AppConstants.NONE);
         binding.spPlotNoApprove.setItems(approvelist);
@@ -216,10 +225,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         binding.btnLayout.btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name_colony_locality = binding.etNameColonyLocalilty.getText().toString().trim();
-                surveyNo_nameVillage = binding.etSurveyNo.getText().toString().trim();
-                layout_extent = binding.etLayoutExtent.getText().toString().trim();
-                plot_no_applied = binding.etPlotNo.getText().toString().trim();
+
                 plot_no_affected = binding.etPlotNoEffected.getText().toString().trim();
                 percent_open_space = binding.etPercentOpenSpace.getText().toString().trim();
                 land_use_asper_master_plan = binding.etLandUseAsPerMasterPlan.getText().toString().trim();
@@ -261,19 +267,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     }
 
     private boolean validate() {
-        if (TextUtils.isEmpty(name_colony_locality)) {
-            callSnackBar(getString(R.string.enter_name_colony_locality));
-            return false;
-        } else if (TextUtils.isEmpty(surveyNo_nameVillage)) {
-            callSnackBar(getString(R.string.enter_survey_no_name_village));
-            return false;
-        } else if (TextUtils.isEmpty(layout_extent)) {
-            callSnackBar(getString(R.string.enter_extent_layout));
-            return false;
-        } else if (TextUtils.isEmpty(plot_no_applied)) {
-            callSnackBar(getString(R.string.enter_plot_applied_for_lrs));
-            return false;
-        } else if (TextUtils.isEmpty(colony_falls_objectionable)) {
+        if (TextUtils.isEmpty(colony_falls_objectionable)) {
             callSnackBar(getString(R.string.check_colony_falls_objectionable_land));
             return false;
         } else if (TextUtils.isEmpty(colony_falls_prohibitory_land)) {
@@ -309,10 +303,10 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         } else if (TextUtils.isEmpty(selectedShortfallList) || selectedShortfallList.equalsIgnoreCase(AppConstants.SELECT)) {
             callSnackBar(getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs));
             return false;
-        } else if (TextUtils.isEmpty(selectedRejectList) || selectedRejectList.equalsIgnoreCase(AppConstants.SELECT)) {
+        }/* else if (TextUtils.isEmpty(selectedRejectList) || selectedRejectList.equalsIgnoreCase(AppConstants.SELECT)) {
             callSnackBar(getString(R.string.select_plot_numbers_recommended_for_reject_of_lrs));
             return false;
-        } else if (TextUtils.isEmpty(remarks)) {
+        }*/ else if (TextUtils.isEmpty(remarks)) {
             callSnackBar(getString(R.string.enter_remarks));
             return false;
         }
@@ -349,14 +343,15 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                 shortfalllist.clear();
             }
 
-            rejectlist.clear();
             binding.spPlotNoShortfall.setItems(shortfalllist);
-            binding.spPlotNoReject.setItems(rejectlist);
+
             selectedApprovalList = selectedList(selectedlist);
             selectedShortfallList = "";
             selectedRejectList = "";
+
+            binding.tvReject.setText(selectedRejectList);
         } else if (flag.equalsIgnoreCase(AppConstants.SHORTFALL)) {
-            if (selectedlist != null && selectedlist.size() > 0) {
+            /*if (selectedlist != null && selectedlist.size() > 0) {
                 rejectlist = notSelectedlist;
                 if (rejectlist != null && rejectlist.size() > 0) {
                     if (!rejectlist.get(0).equalsIgnoreCase(AppConstants.NONE))
@@ -365,12 +360,18 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                     rejectlist.add(0, AppConstants.NONE);
                 }
             } else
-                rejectlist.clear();
-            binding.spPlotNoReject.setItems(rejectlist);
+                rejectlist.clear();*/
+
             selectedShortfallList = selectedList(selectedlist);
-            selectedRejectList = "";
-        } else if (flag.equalsIgnoreCase(AppConstants.REJECT)) {
-            selectedRejectList = selectedList(selectedlist);
+
+            String string = notSelectedlist.toString();
+            selectedRejectList = string.substring(1, string.length() - 1);
+
+            if (selectedRejectList.contains("NONE, "))
+                selectedRejectList = selectedRejectList.substring(6);
+
+            binding.tvReject.setText(selectedRejectList);
+
         }
 
     }
@@ -386,6 +387,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
         }
         return selectedStrings;
     }
+
     @Override
     public void handleError(Throwable e, Context context) {
         String errMsg = ErrorHandler.handleError(e, context);

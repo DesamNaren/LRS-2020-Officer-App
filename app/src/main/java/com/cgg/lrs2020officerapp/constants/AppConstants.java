@@ -37,7 +37,6 @@ public class AppConstants {
     public static final String OFFICER_TYPE = "IO";
     public static final String APPROVE = "APPROVE";
     public static final String SHORTFALL = "SHORTFALL";
-    public static final String REJECT = "REJECT";
     public static final String NONE = "NONE";
     public static final String SELECT = "Select";
 

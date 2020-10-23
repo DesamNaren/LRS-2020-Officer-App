@@ -346,8 +346,9 @@ public class Utils {
                         editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, "");
                         editor.putString(AppConstants.SELECTED_CLUSTERID, "");
                         editor.putString(AppConstants.CLUSTERLIST, "");
-                        editor.putString(AppConstants.L1_SUBMIT_REQUEST, "");
                         editor.putString(AppConstants.TEMP_APPLICATION_LIST, "");
+                        editor.putString(AppConstants.LOGIN_RES, "");
+
                         editor.commit();
 //                        editor.clear();
 //                        editor.commit();
@@ -409,6 +410,59 @@ public class Utils {
                         editor.putString(AppConstants.L2_SUBMIT_REQUEST,"");
                         editor.putString(AppConstants.APPLICATION_ID, "");
                         editor.putString(AppConstants.APPLICANT_NAME, "");
+                        editor.commit();
+                        Intent newIntent = new Intent(activity, DashboardActivity.class);
+                        newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        activity.startActivity(newIntent);
+                        activity.finish();
+                    }
+                });
+
+
+                if (!dialog.isShowing())
+                    dialog.show();
+            }
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+ public static void customL1SuccessAlert(Activity activity, String title, String msg,
+                                          boolean flag, SharedPreferences.Editor editor) {
+        try {
+            final Dialog dialog = new Dialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            if (dialog.getWindow() != null && dialog.getWindow().getAttributes() != null) {
+                dialog.getWindow().getAttributes().windowAnimations = R.style.exitdialog_animation1;
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(R.layout.custom_alert_success);
+                dialog.setCancelable(false);
+                TextView versionTitle = dialog.findViewById(R.id.version_tv);
+                versionTitle.setText("Version: " + Utils.getVersionName(activity));
+                TextView dialogTitle = dialog.findViewById(R.id.dialog_title);
+                dialogTitle.setText(title);
+                TextView dialogMessage = dialog.findViewById(R.id.dialog_message);
+                if (flag) {
+                    dialogMessage.setVisibility(View.VISIBLE);
+                } else {
+                    dialogMessage.setVisibility(View.GONE);
+                }
+                dialogMessage.setText(msg);
+                Button btDialogYes = dialog.findViewById(R.id.btDialogYes);
+                btDialogYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+
+                        editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, "");
+                        editor.putString(AppConstants.SELECTED_CLUSTERID, "");
+                        editor.putString(AppConstants.CLUSTERLIST, "");
+                        editor.putString(AppConstants.L1_SUBMIT_REQUEST, "");
+                        editor.putString(AppConstants.TEMP_APPLICATION_LIST, "");
+
                         editor.commit();
                         Intent newIntent = new Intent(activity, DashboardActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

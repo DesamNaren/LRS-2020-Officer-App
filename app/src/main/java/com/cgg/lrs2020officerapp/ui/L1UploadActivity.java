@@ -676,7 +676,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
         if (responses != null && responses.getStatusCode() != null) {
 
             if (responses.getStatusCode().equalsIgnoreCase(AppConstants.SUCCESS_CODE)) {
-                Utils.customSuccessAlert(this, getString(R.string.app_name),
+                Utils.customL1SuccessAlert(this, getString(R.string.app_name),
                         responses.getStatusMessage(), true, editor);
 
             } else if (responses.getStatusCode().equalsIgnoreCase(AppConstants.FAILURE_CODE)) {

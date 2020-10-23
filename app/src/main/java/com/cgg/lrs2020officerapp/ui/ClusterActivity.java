@@ -58,12 +58,14 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
             String clusterString = sharedPreferences.getString(AppConstants.CLUSTERLIST, "");
             clusterList = gson.fromJson(clusterString, type);
 
+            binding.name.setText("" + loginResponse.getUserName());
+            binding.designation.setText("" + loginResponse.getdESIGNATION());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         viewModel = new ApplicationListViewModel(ClusterActivity.this, getApplication());
-        binding.name.setText("" + loginResponse.getUserName());
-        binding.designation.setText("" + loginResponse.getdESIGNATION());
+
 
         if(clusterList!=null && clusterList.size()>0){
             clusterListAdapter = new ClusterListAdapter(ClusterActivity.this, clusterList);

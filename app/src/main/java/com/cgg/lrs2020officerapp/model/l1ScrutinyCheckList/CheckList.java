@@ -1,17 +1,9 @@
 package com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-public class CheckList implements Serializable, Parcelable
-{
+public class CheckList {
 
     @SerializedName("CLUSTER_ID")
     @Expose
@@ -58,44 +50,6 @@ public class CheckList implements Serializable, Parcelable
     @SerializedName("PLOT_NUMBER")
     @Expose
     private String pLOTNUMBER;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-    public final static Parcelable.Creator<CheckList> CREATOR = new Creator<CheckList>() {
-
-
-
-        public CheckList createFromParcel(Parcel in) {
-            return new CheckList(in);
-        }
-
-        public CheckList[] newArray(int size) {
-            return (new CheckList[size]);
-        }
-
-    }
-            ;
-    private final static long serialVersionUID = 5579050958648032245L;
-
-    protected CheckList(Parcel in) {
-        this.cLUSTERID = ((String) in.readValue((String.class.getClassLoader())));
-        this.cLUSTERNAME = ((String) in.readValue((String.class.getClassLoader())));
-        this.mUNICIPALITYID = ((String) in.readValue((String.class.getClassLoader())));
-        this.mUNICIPALITYNAME = ((String) in.readValue((String.class.getClassLoader())));
-        this.dISTRICTID = ((String) in.readValue((String.class.getClassLoader())));
-        this.dISTRICTNAME = ((String) in.readValue((String.class.getClassLoader())));
-        this.cORPORATIONID = ((String) in.readValue((String.class.getClassLoader())));
-        this.cORPORATIONNAME = ((String) in.readValue((String.class.getClassLoader())));
-        this.vILLAGEID = ((String) in.readValue((String.class.getClassLoader())));
-        this.vILLAGENAME = ((String) in.readValue((String.class.getClassLoader())));
-        this.nOOFAPPLS = ((String) in.readValue((String.class.getClassLoader())));
-        this.lOCALITY = ((String) in.readValue((String.class.getClassLoader())));
-        this.vILLAGESYNO = ((String) in.readValue((String.class.getClassLoader())));
-        this.lAYOUTEXTENT = ((String) in.readValue((String.class.getClassLoader())));
-        this.pLOTNUMBER = ((String) in.readValue((String.class.getClassLoader())));
-        this.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
-    }
-
-    public CheckList() {
-    }
 
     public String getCLUSTERID() {
         return cLUSTERID;
@@ -217,28 +171,5 @@ public class CheckList implements Serializable, Parcelable
         this.pLOTNUMBER = pLOTNUMBER;
     }
 
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(cLUSTERID);
-        dest.writeValue(cLUSTERNAME);
-        dest.writeValue(mUNICIPALITYID);
-        dest.writeValue(mUNICIPALITYNAME);
-        dest.writeValue(dISTRICTID);
-        dest.writeValue(dISTRICTNAME);
-        dest.writeValue(cORPORATIONID);
-        dest.writeValue(cORPORATIONNAME);
-        dest.writeValue(vILLAGEID);
-        dest.writeValue(vILLAGENAME);
-        dest.writeValue(nOOFAPPLS);
-        dest.writeValue(lOCALITY);
-        dest.writeValue(vILLAGESYNO);
-        dest.writeValue(lAYOUTEXTENT);
-        dest.writeValue(pLOTNUMBER);
-        dest.writeValue(additionalProperties);
-    }
-
-    public int describeContents() {
-        return 0;
-    }
-
 }
+

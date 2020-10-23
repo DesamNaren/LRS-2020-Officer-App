@@ -61,6 +61,9 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
                 </LinearLayout>
+                <!--<include
+                    android:id="@+id/basic_layout"
+                    layout="@layout/basic_layout" />-->
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/About"

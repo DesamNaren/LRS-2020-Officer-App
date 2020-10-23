@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -127,8 +126,6 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
             Log.d("TAG", "NO LIST");
             if (flag.equalsIgnoreCase(AppConstants.SHORTFALL))
                 ((L1ScrutinyChecklistActivity) getContext()).callSnackBar(getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_approval_of_lrs));
-            else if (flag.equalsIgnoreCase(AppConstants.REJECT))
-                ((L1ScrutinyChecklistActivity) getContext()).callSnackBar(getContext().getResources().getString(R.string.select_plot_numbers_recommended_for_shortfall_of_lrs));
         }
         return true;
 

@@ -130,7 +130,7 @@
     <string name="ward">Ward</string>
     <string name="mandal">Mandal</string>
     <string name="district">District</string>
-    <string name="cluster_id">Cluster ID:</string>
+    <string name="cluster_id">Cluster ID</string>
     <string name="cluster_survey_s">Cluster Surveys</string>
     <string name="localities_covered">Localities Covered</string>
     <string name="applications">Applications</string>
