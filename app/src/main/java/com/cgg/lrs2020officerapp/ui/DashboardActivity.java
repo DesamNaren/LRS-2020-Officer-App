@@ -94,13 +94,13 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
         request.setOFFICEID(loginResponse.getOFFICEID());
         request.setAUTHORITYID(loginResponse.getAUTHORITYID());
         request.setROLEID(loginResponse.getROLEID());
-        if (loginResponse.getROLEID().equalsIgnoreCase("3"))
+        /*if (loginResponse.getROLEID().equalsIgnoreCase("3"))
             request.setSTATUSID(AppConstants.STATUS_ID);
         else if (loginResponse.getROLEID().equalsIgnoreCase("4"))
             request.setSTATUSID("50");
         else if (loginResponse.getROLEID().equalsIgnoreCase("5"))
-            request.setSTATUSID("80");
-
+            request.setSTATUSID("80");*/
+        request.setSTATUSID(loginResponse.getsTATUS_ID());
         request.setTOKENID(loginResponse.gettOKEN_ID());
 
         if (Utils.checkInternetConnection(DashboardActivity.this)) {

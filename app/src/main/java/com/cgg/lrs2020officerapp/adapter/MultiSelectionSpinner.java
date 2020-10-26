@@ -164,7 +164,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         if (_items != null && _items.length > 0) {
             for (int i = 0; i < _items.length; ++i) {
                 if (mSelection[i]) {
-                    selection.add(_items[i]);
+                    selection.add(_items[i].trim());
                 }
             }
         }
@@ -176,7 +176,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         if (_items != null && _items.length > 0) {
             for (int i = 0; i < _items.length; ++i) {
                 if (!mSelection[i]) {
-                    selection.add(_items[i]);
+                    selection.add(_items[i].trim());
                 }
             }
         }
@@ -286,11 +286,11 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
 
                 if (mSelection[i]) {
                     if (foundOne) {
-                        sb.append(", ");
+                        sb.append(",");
                     }
                     foundOne = true;
 
-                    sb.append(_items[i]);
+                    sb.append(_items[i].trim());
                 }
             }
             if (sb.toString().isEmpty())
@@ -311,10 +311,10 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
             for (int i = 0; i < _items.length; ++i) {
                 if (mSelection[i]) {
                     if (foundOne) {
-                        sb.append(", ");
+                        sb.append(",");
                     }
                     foundOne = true;
-                    sb.append(_items[i]);
+                    sb.append(_items[i].trim());
                 }
             }
             if (sb.toString().isEmpty())

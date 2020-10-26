@@ -54,6 +54,8 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     L1ScrutinyChecklistViewModel scrutinyChecklistViewModel;
     LoginResponse loginResponse;
     private String selectedValueslist;
+    String[] _items = null;
+    boolean[] mSelection = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,8 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
             Log.i("TAG", "onCreate: "+approvelist.size());
             String string = approvelist.toString();
-            selectedValueslist = string.substring(1, string.length() - 1);
+            //selectedValueslist = string.substring(1, string.length() - 1);
+            selectedValueslist = selectedList(approvelist);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -234,6 +237,12 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                 if (validate()) {
                     L1SubmitRequest l1SubmitRequest = new L1SubmitRequest();
 
+                    if(selectedApprovalList.equalsIgnoreCase(AppConstants.NONE))
+                        selectedApprovalList = "";
+                    if(selectedRejectList.equalsIgnoreCase(AppConstants.NONE))
+                        selectedRejectList = "";
+                    if(selectedShortfallList.equalsIgnoreCase(AppConstants.NONE))
+                        selectedShortfallList = "";
                     l1SubmitRequest.setAPPLSAPPROVED(selectedApprovalList);
                     l1SubmitRequest.setAPPLSREJECTED(selectedRejectList);
                     l1SubmitRequest.setAPPLSSHORTFALL(selectedShortfallList);
@@ -365,9 +374,10 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             selectedShortfallList = selectedList(selectedlist);
 
             String string = notSelectedlist.toString();
-            selectedRejectList = string.substring(1, string.length() - 1);
+            //selectedRejectList = string.substring(1, string.length() - 1);
+            selectedRejectList = selectedList(notSelectedlist);
 
-            if (selectedRejectList.contains("NONE, "))
+            if (selectedRejectList.contains("NONE,"))
                 selectedRejectList = selectedRejectList.substring(6);
 
             binding.tvReject.setText(selectedRejectList);
@@ -376,7 +386,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
     }
 
-    private String selectedList(List<String> selectedlist) {
+    /*private String selectedList(List<String> selectedlist) {
 
         String string, selectedStrings;
 
@@ -386,8 +396,25 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
             Toast.makeText(this, selectedStrings, Toast.LENGTH_LONG).show();
         }
         return selectedStrings;
-    }
+    }*/
 
+    private String selectedList(List<String> selectedlist) {
+        StringBuilder sb = new StringBuilder();
+        String data;
+        boolean foundOne = false;
+        _items = selectedlist.toArray(new String[selectedlist.size()]);
+        mSelection = new boolean[_items.length];
+            for (int i = 0; i < _items.length; ++i) {
+                    if (foundOne) {
+                        sb.append(",");
+                    }
+                    foundOne = true;
+
+                    sb.append(_items[i].trim());
+            }
+                data = sb.toString();
+        return data;
+    }
     @Override
     public void handleError(Throwable e, Context context) {
         String errMsg = ErrorHandler.handleError(e, context);

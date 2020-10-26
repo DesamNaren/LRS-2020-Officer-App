@@ -138,7 +138,7 @@ public class L1UploadActivity extends LocBaseActivity implements ErrorHandlerInt
                     request.setIMAGE4PATH(P_IMAGE4_PATH);
                     request.setIMAGE5PATH(P_IMAGE5_PATH);
 
-                    String jsonValue = new Gson().toJson(request);
+                    //String jsonValue = new Gson().toJson(request);
                     customInfoAlert(request);
                 }
 
