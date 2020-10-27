@@ -164,7 +164,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         if (_items != null && _items.length > 0) {
             for (int i = 0; i < _items.length; ++i) {
                 if (mSelection[i]) {
-                    selection.add(_items[i].trim());
+                    selection.add(_items[i]);
                 }
             }
         }
@@ -176,7 +176,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         if (_items != null && _items.length > 0) {
             for (int i = 0; i < _items.length; ++i) {
                 if (!mSelection[i]) {
-                    selection.add(_items[i].trim());
+                    selection.add(_items[i]);
                 }
             }
         }
@@ -273,6 +273,29 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         }
         simple_adapter.clear();
         simple_adapter.add(buildSelectedItemString());
+
+    }
+      public String getSelectedItemsAsString() {
+        StringBuilder sb = new StringBuilder();
+        String data;
+        boolean foundOne = false;
+        if (_items != null && _items.length > 0) {
+            for (int i = 0; i < _items.length; ++i) {
+                if (mSelection[i]) {
+                    if (foundOne) {
+                        sb.append(", ");
+                    }
+                    foundOne = true;
+                    sb.append(_items[i]);
+                }
+            }
+            if (sb.toString().isEmpty())
+                data = "Select";
+            else
+                data = sb.toString();
+        } else
+            data = "Select";
+        return data;
     }*/
 
 
@@ -290,7 +313,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
                     }
                     foundOne = true;
 
-                    sb.append(_items[i].trim());
+                    sb.append(_items[i]);
                 }
             }
             if (sb.toString().isEmpty())
@@ -303,27 +326,6 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements OnMultiCh
         return data;
     }
 
-    public String getSelectedItemsAsString() {
-        StringBuilder sb = new StringBuilder();
-        String data;
-        boolean foundOne = false;
-        if (_items != null && _items.length > 0) {
-            for (int i = 0; i < _items.length; ++i) {
-                if (mSelection[i]) {
-                    if (foundOne) {
-                        sb.append(",");
-                    }
-                    foundOne = true;
-                    sb.append(_items[i].trim());
-                }
-            }
-            if (sb.toString().isEmpty())
-                data = "Select";
-            else
-                data = sb.toString();
-        } else
-            data = "Select";
-        return data;
-    }
+
 
 }

@@ -26,18 +26,12 @@ public class ApplicantDetailsListData {
     @SerializedName("gender")
     @Expose
     private String gender;
-    @SerializedName("address_correspondence")
-    @Expose
-    private String addressCorrespondence;
     @SerializedName("mobile_number")
     @Expose
     private String mobileNumber;
     @SerializedName("email_id")
     @Expose
     private String emailId;
-    @SerializedName("GramPanchayat")
-    @Expose
-    private String gramPanchayat;
     @SerializedName("district_name")
     @Expose
     private String districtName;
@@ -56,9 +50,6 @@ public class ApplicantDetailsListData {
     @SerializedName("ward_name")
     @Expose
     private String wardName;
-    @SerializedName("panchayat_name")
-    @Expose
-    private String panchayatName;
     @SerializedName("village_name")
     @Expose
     private String villageName;
@@ -71,30 +62,15 @@ public class ApplicantDetailsListData {
     @SerializedName("survey_number")
     @Expose
     private String surveyNumber;
-    @SerializedName("village")
-    @Expose
-    private String village;
     @SerializedName("area_extent")
     @Expose
     private String areaExtent;
-    @SerializedName("existing_road_width")
-    @Expose
-    private String existingRoadWidth;
     @SerializedName("sale_deed_number")
     @Expose
     private String saleDeedNumber;
     @SerializedName("sro_name")
     @Expose
     private String sroName;
-    @SerializedName("total_no_plots")
-    @Expose
-    private String totalNoPlots;
-    @SerializedName("total_layout_sqmtrs")
-    @Expose
-    private String totalLayoutSqmtrs;
-    @SerializedName("no_plot_sold")
-    @Expose
-    private String noPlotSold;
     @SerializedName("open_space_provided")
     @Expose
     private String openSpaceProvided;
@@ -104,12 +80,6 @@ public class ApplicantDetailsListData {
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("createdon")
-    @Expose
-    private String createdon;
-    @SerializedName("updatedon")
-    @Expose
-    private String updatedon;
     @SerializedName("alter_mobile_no")
     @Expose
     private String alterMobileNo;
@@ -137,9 +107,6 @@ public class ApplicantDetailsListData {
     @SerializedName("applied_for")
     @Expose
     private String appliedFor;
-    @SerializedName("PlotLayoutFallsUnder")
-    @Expose
-    private String plotLayoutFallsUnder;
     @SerializedName("bankreceiptno")
     @Expose
     private String bankreceiptno;
@@ -155,6 +122,9 @@ public class ApplicantDetailsListData {
     @SerializedName("sale_deed_ec")
     @Expose
     private String saleDeedEc;
+    @SerializedName("sale_deed_front_page")
+    @Expose
+    private String saleDeedFrontPage;
     @SerializedName("others_doc")
     @Expose
     private String othersDoc;
@@ -227,14 +197,6 @@ public class ApplicantDetailsListData {
         this.gender = gender;
     }
 
-    public String getAddressCorrespondence() {
-        return addressCorrespondence;
-    }
-
-    public void setAddressCorrespondence(String addressCorrespondence) {
-        this.addressCorrespondence = addressCorrespondence;
-    }
-
     public String getMobileNumber() {
         return mobileNumber;
     }
@@ -249,14 +211,6 @@ public class ApplicantDetailsListData {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
-    }
-
-    public String getGramPanchayat() {
-        return gramPanchayat;
-    }
-
-    public void setGramPanchayat(String gramPanchayat) {
-        this.gramPanchayat = gramPanchayat;
     }
 
     public String getDistrictName() {
@@ -307,14 +261,6 @@ public class ApplicantDetailsListData {
         this.wardName = wardName;
     }
 
-    public String getPanchayatName() {
-        return panchayatName;
-    }
-
-    public void setPanchayatName(String panchayatName) {
-        this.panchayatName = panchayatName;
-    }
-
     public String getVillageName() {
         return villageName;
     }
@@ -347,28 +293,12 @@ public class ApplicantDetailsListData {
         this.surveyNumber = surveyNumber;
     }
 
-    public String getVillage() {
-        return village;
-    }
-
-    public void setVillage(String village) {
-        this.village = village;
-    }
-
     public String getAreaExtent() {
         return areaExtent;
     }
 
     public void setAreaExtent(String areaExtent) {
         this.areaExtent = areaExtent;
-    }
-
-    public String getExistingRoadWidth() {
-        return existingRoadWidth;
-    }
-
-    public void setExistingRoadWidth(String existingRoadWidth) {
-        this.existingRoadWidth = existingRoadWidth;
     }
 
     public String getSaleDeedNumber() {
@@ -385,30 +315,6 @@ public class ApplicantDetailsListData {
 
     public void setSroName(String sroName) {
         this.sroName = sroName;
-    }
-
-    public String getTotalNoPlots() {
-        return totalNoPlots;
-    }
-
-    public void setTotalNoPlots(String totalNoPlots) {
-        this.totalNoPlots = totalNoPlots;
-    }
-
-    public String getTotalLayoutSqmtrs() {
-        return totalLayoutSqmtrs;
-    }
-
-    public void setTotalLayoutSqmtrs(String totalLayoutSqmtrs) {
-        this.totalLayoutSqmtrs = totalLayoutSqmtrs;
-    }
-
-    public String getNoPlotSold() {
-        return noPlotSold;
-    }
-
-    public void setNoPlotSold(String noPlotSold) {
-        this.noPlotSold = noPlotSold;
     }
 
     public String getOpenSpaceProvided() {
@@ -433,22 +339,6 @@ public class ApplicantDetailsListData {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getCreatedon() {
-        return createdon;
-    }
-
-    public void setCreatedon(String createdon) {
-        this.createdon = createdon;
-    }
-
-    public String getUpdatedon() {
-        return updatedon;
-    }
-
-    public void setUpdatedon(String updatedon) {
-        this.updatedon = updatedon;
     }
 
     public String getAlterMobileNo() {
@@ -523,14 +413,6 @@ public class ApplicantDetailsListData {
         this.appliedFor = appliedFor;
     }
 
-    public String getPlotLayoutFallsUnder() {
-        return plotLayoutFallsUnder;
-    }
-
-    public void setPlotLayoutFallsUnder(String plotLayoutFallsUnder) {
-        this.plotLayoutFallsUnder = plotLayoutFallsUnder;
-    }
-
     public String getBankreceiptno() {
         return bankreceiptno;
     }
@@ -569,6 +451,14 @@ public class ApplicantDetailsListData {
 
     public void setSaleDeedEc(String saleDeedEc) {
         this.saleDeedEc = saleDeedEc;
+    }
+
+    public String getSaleDeedFrontPage() {
+        return saleDeedFrontPage;
+    }
+
+    public void setSaleDeedFrontPage(String saleDeedFrontPage) {
+        this.saleDeedFrontPage = saleDeedFrontPage;
     }
 
     public String getOthersDoc() {
@@ -610,5 +500,4 @@ public class ApplicantDetailsListData {
     public void setPaymenttype(String paymenttype) {
         this.paymenttype = paymenttype;
     }
-
 }

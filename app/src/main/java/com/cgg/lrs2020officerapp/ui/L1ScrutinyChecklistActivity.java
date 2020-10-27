@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -54,8 +53,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     L1ScrutinyChecklistViewModel scrutinyChecklistViewModel;
     LoginResponse loginResponse;
     private String selectedValueslist;
-    String[] _items = null;
-    boolean[] mSelection = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -373,12 +371,12 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
 
             selectedShortfallList = selectedList(selectedlist);
 
-            String string = notSelectedlist.toString();
-            //selectedRejectList = string.substring(1, string.length() - 1);
+//            String string = notSelectedlist.toString();
+//            selectedRejectList = string.substring(1, string.length() - 1);
             selectedRejectList = selectedList(notSelectedlist);
 
             if (selectedRejectList.contains("NONE,"))
-                selectedRejectList = selectedRejectList.substring(6);
+                selectedRejectList = selectedRejectList.substring(5);
 
             binding.tvReject.setText(selectedRejectList);
 
@@ -399,6 +397,9 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
     }*/
 
     private String selectedList(List<String> selectedlist) {
+        String[] _items = null;
+        boolean[] mSelection = null;
+
         StringBuilder sb = new StringBuilder();
         String data;
         boolean foundOne = false;

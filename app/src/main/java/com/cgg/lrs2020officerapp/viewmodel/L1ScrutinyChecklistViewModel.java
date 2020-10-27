@@ -13,6 +13,7 @@ import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
 import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinityResponse;
 import com.cgg.lrs2020officerapp.model.l1ScrutinyCheckList.L1ScrutinyChecklistRequest;
 import com.cgg.lrs2020officerapp.network.LRSService;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +40,7 @@ public class L1ScrutinyChecklistViewModel extends AndroidViewModel {
     }
     private void getScrutinyCheckListCall(L1ScrutinyChecklistRequest scrutinyChecklistRequest) {
         LRSService lrsService = LRSService.Factory.create();
+        String str = new Gson().toJson(scrutinyChecklistRequest);
         lrsService.getScrutinyCheckList(scrutinyChecklistRequest).enqueue(new Callback<L1ScrutinityResponse>() {
             @Override
             public void onResponse(@NonNull Call<L1ScrutinityResponse> call, @NonNull Response<L1ScrutinityResponse> response) {
