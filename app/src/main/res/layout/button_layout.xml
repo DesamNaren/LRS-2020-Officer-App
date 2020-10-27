@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_5dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="#149751"
             android:fontFamily="@font/muli_bold"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
