@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -25,10 +24,10 @@ import com.cgg.lrs2020officerapp.constants.AppConstants;
 import com.cgg.lrs2020officerapp.databinding.ActivityApplicationListBinding;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandler;
 import com.cgg.lrs2020officerapp.error_handler.ErrorHandlerInterface;
-import com.cgg.lrs2020officerapp.interfaces.SelectionInterface;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationListData;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationReq;
 import com.cgg.lrs2020officerapp.model.applicationList.ApplicationRes;
+import com.cgg.lrs2020officerapp.model.applicationList.Cluster;
 import com.cgg.lrs2020officerapp.model.login.LoginResponse;
 import com.cgg.lrs2020officerapp.utils.Utils;
 import com.cgg.lrs2020officerapp.viewmodel.ApplicationListViewModel;
@@ -44,7 +43,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
     private Context context;
     private ApplicationListViewModel viewModel;
     private ActivityApplicationListBinding binding;
-    private List<ApplicationListData> list,applicationListData;
+    private List<ApplicationListData> list, applicationListData;
     private List<String> templist;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -62,7 +61,7 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
         sharedPreferences = LRSApplication.get(context).getPreferences();
         editor = sharedPreferences.edit();
         binding.header.headerTitle.setText(R.string.pending_for_scrutiny);
-        applicationListData=new ArrayList<>();
+        applicationListData = new ArrayList<>();
 
         editor.putString(AppConstants.TEMP_APPLICATION_LIST, "");
         editor.commit();
@@ -140,11 +139,17 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                 @Override
                 public void onClick(View v) {
                     templist = new ArrayList<>();
-
-                    for (int i = 0; i < applicationListData.size(); i++) {
-                        if (applicationListData.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
+                    String clusterId = sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID, "");
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)) {
                             templist.add(list.get(i).getAPPLICATIONID());
+                        }
                     }
+
+//                    for (int i = 0; i < applicationListData.size(); i++) {
+//                        if (applicationListData.get(i).getFlag().equalsIgnoreCase(AppConstants.YES))
+//                            templist.add(list.get(i).getAPPLICATIONID());
+//                    }
 
                     if (templist != null && templist.size() > 0) {
 //                        Toast.makeText(context, "" + templist.size(), Toast.LENGTH_SHORT).show();
@@ -189,14 +194,13 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                                 list.get(i).setFlag(AppConstants.YES);
                                             }
                                             applicationListData.clear();
-                                            String clusterId=sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,"");
-                                            for(int i=0;i<list.size();i++){
-                                                if(list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)){
+                                            String clusterId = sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID, "");
+
+                                            for (int i = 0; i < list.size(); i++) {
+                                                if (list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)) {
                                                     applicationListData.add(list.get(i));
                                                 }
                                             }
-
-
                                             setAdapter();
                                         } else {
                                             binding.recyclerView.setVisibility(View.GONE);
@@ -212,9 +216,43 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                                     } else {
                                         Utils.customErrorAlert(ApplicationListActivity.this, getString(R.string.app_name), getString(R.string.something));
                                     }
+
                                 } else {
                                     Utils.customErrorAlert(ApplicationListActivity.this, getString(R.string.app_name), getString(R.string.server_not));
                                 }
+
+                                boolean flag;
+                                List<Cluster> clusterList = new ArrayList<>();
+                                Cluster cluster = new Cluster();
+                                cluster.setCluster_id(list.get(0).getCLUSTER_ID());
+                                cluster.setCluster_name(list.get(0).getCLUSTER_NAME());
+                                cluster.setCount(1);
+                                clusterList.clear();
+                                clusterList.add(cluster);
+                                for (int z = 1; z < list.size(); z++) {
+                                    flag = true;
+                                    for (int y = 0; y < clusterList.size(); y++) {
+                                        if (clusterList.get(y).getCluster_id().equalsIgnoreCase(list.get(z).getCLUSTER_ID())) {
+                                            flag = false;
+                                            clusterList.get(y).setCount((clusterList.get(y).getCount()) + 1);
+                                        }
+                                    }
+                                    if (flag) {
+                                        Cluster cluster1 = new Cluster();
+                                        cluster1.setCluster_id(list.get(z).getCLUSTER_ID());
+                                        cluster1.setCluster_name(list.get(z).getCLUSTER_NAME());
+                                        cluster1.setCount(1);
+                                        clusterList.add(cluster1);
+                                    }
+                                }
+
+                                Gson gson = new Gson();
+                                String applicationListDetails = gson.toJson(response);
+                                editor.putString(AppConstants.APPLICATION_LIST_RESPONSE, applicationListDetails);
+                                String clusterListString = gson.toJson(clusterList);
+                                editor.putString(AppConstants.CLUSTERLIST, clusterListString);
+                                editor.commit();
+
                             }
                         });
                     } else {
@@ -239,9 +277,9 @@ public class ApplicationListActivity extends AppCompatActivity implements ErrorH
                             list.get(i).setFlag(AppConstants.YES);
                         }
                         applicationListData.clear();
-                        String clusterId=sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID,"");
-                        for(int i=0;i<list.size();i++){
-                            if(list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)){
+                        String clusterId = sharedPreferences.getString(AppConstants.SELECTED_CLUSTERID, "");
+                        for (int i = 0; i < list.size(); i++) {
+                            if (list.get(i).getCLUSTER_ID().equalsIgnoreCase(clusterId)) {
                                 applicationListData.add(list.get(i));
                             }
                         }

@@ -49,6 +49,7 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
 
+        list = new ArrayList<>();
         sharedPreferences = LRSApplication.get(DashboardActivity.this).getPreferences();
         editor = sharedPreferences.edit();
         try {
@@ -158,6 +159,25 @@ public class DashboardActivity extends AppCompatActivity implements ErrorHandler
         } else {
             Utils.customErrorAlert(DashboardActivity.this, getResources().getString(R.string.app_name),
                     getString(R.string.plz_check_int));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            String str = sharedPreferences.getString(AppConstants.APPLICATION_LIST_RESPONSE, "");
+            Gson gson = new Gson();
+            ApplicationRes applicationRes = gson.fromJson(str, ApplicationRes.class);
+            list = applicationRes.getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (list != null && list.size() > 0) {
+            binding.tvPendCnt.setText("" + list.size());
+        }else {
+            binding.tvPendCnt.setText("0");
         }
     }
 
