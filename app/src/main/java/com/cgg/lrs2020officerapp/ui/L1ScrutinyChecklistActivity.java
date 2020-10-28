@@ -245,7 +245,7 @@ public class L1ScrutinyChecklistActivity extends AppCompatActivity implements Mu
                     l1SubmitRequest.setAPPLSREJECTED(selectedRejectList);
                     l1SubmitRequest.setAPPLSSHORTFALL(selectedShortfallList);
                     l1SubmitRequest.setCREATEDBY(loginResponse.getUSERID());
-                    l1SubmitRequest.setIPADDRESS("");
+                    l1SubmitRequest.setIPADDRESS(Utils.getDeviceID(L1ScrutinyChecklistActivity.this));
                     l1SubmitRequest.setLANDUSEASPERMAPLAN(colony_affected_master_plan);
                     l1SubmitRequest.setLOCALITY_AFFECTEDBY_MP_OPTIONS(land_use_asper_master_plan);
                     l1SubmitRequest.setLEGALDISPUTES(legal_disputes);
