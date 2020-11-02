@@ -81,6 +81,9 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
 
         if (clusterList != null && clusterList.size() > 0) {
             setAdapter();
+        } else {
+            binding.tvEmpty.setVisibility(View.VISIBLE);
+            binding.rvCluster.setVisibility(View.GONE);
         }
 
         binding.swipeRV.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -169,6 +172,9 @@ public class ClusterActivity extends AppCompatActivity implements ErrorHandlerIn
     }
 
     private void setAdapter() {
+        binding.tvEmpty.setVisibility(View.GONE);
+        binding.rvCluster.setVisibility(View.VISIBLE);
+
         clusterListAdapter = new ClusterListAdapter(ClusterActivity.this, clusterList);
         binding.rvCluster.setAdapter(clusterListAdapter);
         binding.rvCluster.setLayoutManager(new LinearLayoutManager(ClusterActivity.this));
