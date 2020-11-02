@@ -67,31 +67,27 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/text_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="1."
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                style="@style/text_label"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/whether_the_plot_is_registered_prior_to_26_08_2020"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_whether_plot_reg_prior"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
@@ -136,31 +132,27 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/text_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="2."
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                style="@style/text_label"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/whether_the_name_of_lrs_applicant_is_tallying_with_the_ownership_document"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_name_of_lrs_tallying"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
@@ -205,34 +197,29 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/text_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="3."
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                style="@style/text_label"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/area_matching_with_application"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_area_matching_with_application"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-
 
                                 <RadioButton
                                     android:id="@+id/area_matching_with_application_yes"
@@ -271,9 +258,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="horizontal"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -290,19 +275,18 @@
                             android:orientation="vertical">
 
                             <TextView
+                                style="@style/text_label"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/dimen_5dp"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/abutting_road_details"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <Spinner
                                 android:id="@+id/sp_abutting_road_details"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dimen_10dp"
                                 android:fontFamily="@font/elmessiri_regular"
                                 android:spinnerMode="dropdown" />
 
@@ -477,7 +461,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:fontFamily="@font/elmessiri_regular"
                             android:padding="@dimen/dimen_5dp"
                             android:text="5."
@@ -636,9 +619,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="horizontal"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -668,6 +649,7 @@
                                 android:id="@+id/sp_land_use"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dimen_10dp"
                                 android:fontFamily="@font/elmessiri_regular"
                                 android:spinnerMode="dropdown" />
 
@@ -688,9 +670,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="horizontal"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
+                        android:orientation="horizontal">
 
 
                         <LinearLayout
@@ -712,6 +692,7 @@
                                 android:id="@+id/sp_recommendation_for"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dimen_10dp"
                                 android:fontFamily="@font/elmessiri_regular"
                                 android:spinnerMode="dropdown" />
 

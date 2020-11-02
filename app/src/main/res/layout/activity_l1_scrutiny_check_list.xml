@@ -220,7 +220,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@{checklist.CLUSTERSURVEYCOUNT}"/>
+                                android:text="@{checklist.CLUSTERSURVEYCOUNT}" />
 
                         </LinearLayout>
 
@@ -307,6 +307,25 @@
 
                         </LinearLayout>
 
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -328,6 +347,25 @@
 
                         </LinearLayout>
 
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -348,6 +386,25 @@
                                 android:text="@{checklist.LAYOUTEXTENT}" />
 
                         </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_5dp"
+                    android:elevation="@dimen/dimen_4dp"
+                    android:padding="@dimen/dimen_5dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -371,6 +428,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -382,26 +440,23 @@
                     android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            style="@style/text_label"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="@string/whether_the_colony_locality_falls_in_any_of_the_objectionable_lands_such_as_water_body_nala_shikam_land_ftl_or_buffer_of_tank"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <RadioGroup
                             android:id="@+id/rg_colony_falls_objectionable_lands"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-
 
                             <RadioButton
                                 android:id="@+id/colony_falls_objectionable_lands_yes"
@@ -435,23 +490,21 @@
                     android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            style="@style/text_label"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="@string/whether_the_colony_localityfalls_under_any_prohibitory_lands_list_like_govt_wakf_heritage_forest_land_monuments_endowment_land_ceiling_surplus_land_disputed_lands_court_litigations_etc"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <RadioGroup
                             android:id="@+id/rg_colony_falls_prohibitory_lands"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
@@ -488,23 +541,21 @@
                     android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            style="@style/text_label"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="@string/whether_the_colony_locality_falls_under_master_plan_open_space_layout_open_space_ht_line"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <RadioGroup
                             android:id="@+id/rg_colony_falls_master_plan"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
@@ -541,28 +592,26 @@
                     android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                style="@style/text_label"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/is_the_colony_locality_affected_by_any_master_plan_road_srdp_rdp"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_colony_affected_Local_plan"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
@@ -624,28 +673,26 @@
                     android:visibility="visible">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                style="@style/text_label"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/whether_10_of_open_space_is_available_as_on_ground_and_handed_over_to_local_body"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_open_space_avail"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
@@ -734,22 +781,20 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                style="@style/text_label"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/whether_the_lrs_can_be_permitted"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_lrs_permitted"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
@@ -800,13 +845,11 @@
                             android:orientation="vertical">
 
                             <TextView
+                                style="@style/text_label"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/elmessiri_regular"
-                                android:padding="@dimen/dimen_5dp"
                                 android:text="@string/whether_any_legal_disputes_complaints_against_the_land_covered_in_this_colony"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black" />
 
                             <RadioGroup
                                 android:id="@+id/rg_legal_disputes_complaints_against_the_land"
@@ -850,24 +893,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="vertical"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
+                        android:orientation="vertical">
 
                         <TextView
+                            style="@style/text_label"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dimen_5dp"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="@string/plot_numbers_recommended_for_approval_of_lrs"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
                             android:id="@+id/sp_plot_no_approve"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
+                            android:layout_marginBottom="@dimen/dimen_10dp"
                             android:background="@drawable/spinner_background"
                             android:paddingRight="@dimen/dimen_30dp" />
 
@@ -885,24 +925,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
-                        android:orientation="vertical"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:paddingBottom="@dimen/dimen_10dp">
+                        android:orientation="vertical">
 
                         <TextView
+                            style="@style/text_label"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dimen_5dp"
-                            android:fontFamily="@font/elmessiri_regular"
-                            android:padding="@dimen/dimen_5dp"
                             android:text="@string/plot_numbers_recommended_for_shortfall_of_lrs_please_specify"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black" />
 
                         <com.cgg.lrs2020officerapp.adapter.MultiSelectionSpinner
                             android:id="@+id/sp_plot_no_shortfall"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
+                            android:layout_marginBottom="@dimen/dimen_10dp"
                             android:background="@drawable/spinner_background"
                             android:paddingRight="@dimen/dimen_30dp" />
 
@@ -921,7 +958,6 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_5dp"
                         android:orientation="vertical"
-                        android:paddingTop="@dimen/dimen_10dp"
                         android:paddingBottom="@dimen/dimen_10dp">
 
                         <TextView
